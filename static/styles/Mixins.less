@@ -1,0 +1,47 @@
+.placeholder(@color: @black-38) {
+  &:-moz-placeholder {
+    color: @color;
+  }
+  &:-ms-input-placeholder {
+    color: @color;
+  }
+  &::-webkit-input-placeholder {
+    color: @color;
+  }
+}
+
+.cardImage() {
+  & > div {
+    display: flex;
+    align-items: center;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 24px;
+    // border: 1px solid @border-grey;
+    background: white;
+  }
+
+  & > div:empty {
+    background: url("../img/logo.png") no-repeat center center;
+    background-size: 100px 24px;
+  }
+
+  & > div > img {
+    display: block;
+    width: 128px;
+  }
+}
+
+@-webkit-keyframes pulse {
+  0% {transform: scale(.9);}
+  70% {transform: scale(1); box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);}
+  100% {transform: scale(.9); box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);}
+}
+
+.pulse {
+  animation: pulse 1.5s infinite;
+  -ms-animation: pulse 1.5s infinite;
+  -moz-animation: pulse 1.5s infinite;
+  -webkit-animation: pulse 1.5s infinite;
+  -o-animation: pulse 1.5s infinite;
+}
