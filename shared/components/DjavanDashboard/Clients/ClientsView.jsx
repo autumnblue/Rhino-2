@@ -4,40 +4,40 @@ import _ from 'lodash';
 import makeBem from 'bem-cx';
 import DashboardBar from '../../Dashboard/Bar/DashboardBar';
 import DashboardLoader from '../../Dashboard/Content/DashboardLoader';
-import AssessmentsViewItem from './AssessmentsViewItem';
-import AssessmentsEmptyView from './AssessmentsEmptyView';
+import ClientsViewItem from './ClientsViewItem';
+import ClientsEmptyView from './ClientsEmptyView';
 import { isLoading, isLoaded } from '../../../constants/loadingStatus';
 // import Sticky from 'react-stickynode';
 // import InfiniteScrolling from '../../Utilities/InfiniteScrolling';
 
 const bem = makeBem('djavanDashboardContent');
 
-const AssessmentsView = (
+const ClientsView = (
   { title,
     backLink,
     loadMoreItems,
-    // assessmentClickHandler,
+    // clientClickHandler,
     props: {
       // currentUser,
-      assessments,
-      assessmentsStatus,
+      clients,
+      clientsStatus,
       hasMore,
       loadingMore,
     },
   }
 ) =>
   <div>
-    <Helmet title="Assessments" titleTemplate="%s | Rhino Security Labs Djavan Security Assessment and Reporting System" />
-    {/*currentUser && */<DashboardBar title="Assessments" backLink={backLink} /*currentUser={currentUser}*/ />}
+    <Helmet title="Clients" titleTemplate="%s | Rhino Security Labs Djavan Security Assessment and Reporting System" />
+    {/*currentUser && */<DashboardBar title="Clients" backLink={backLink} /*currentUser={currentUser}*/ />}
 
     <div className={bem.el('details').mod({ smallHeader: true, narrow: true })}>
-      <DashboardLoader loading={isLoading(assessmentsStatus)} />
+      <DashboardLoader loading={isLoading(clientsStatus)} />
       {/*<Sticky enabled top={50} innerZ={999}>*/}
         {/*/!*{<StickyComponent />}*!/*/}
       {/*</Sticky>*/}
-      {isLoaded(assessmentsStatus) && _.isEmpty(assessments) && <AssessmentsEmptyView /*newAssessmentClickHandler={newAssessmentClickHandler}*/ />}
-      {isLoaded(assessmentsStatus) && _.map(assessments, (assessment, index) =>
-        <AssessmentsViewItem key={index} /*assessmentClickHandler={assessmentClickHandler}*/ {...assessment} />)
+      {isLoaded(clientsStatus) && _.isEmpty(clients) && <ClientsEmptyView /*newClientClickHandler={newClientClickHandler}*/ />}
+      {isLoaded(clientsStatus) && _.map(clients, (client, index) =>
+        <ClientsViewItem key={index} /*clientClickHandler={clientClickHandler}*/ {...client} />)
       }
       {/*<InfiniteScrolling*/}
         {/*loadMore={loadMoreItems}*/}
@@ -47,19 +47,19 @@ const AssessmentsView = (
     </div>
   </div>;
 
-AssessmentsView.propTypes = {
+ClientsView.propTypes = {
   title: PropTypes.string.isRequired,
   backLink: PropTypes.string.isRequired,
-  // assessmentClickHandler: PropTypes.func.isRequired,
-  // newAssessmentClickHandler: PropTypes.func.isRequired,
+  // clientClickHandler: PropTypes.func.isRequired,
+  // newClientClickHandler: PropTypes.func.isRequired,
   loadMoreItems: PropTypes.func.isRequired,
   props: PropTypes.shape({
     // currentUser: PropTypes.object.isRequired,
-    assessments: PropTypes.array.isRequired,
-    assessmentsStatus: PropTypes.string.isRequired,
+    clients: PropTypes.array.isRequired,
+    clientsStatus: PropTypes.string.isRequired,
     hasMore: PropTypes.bool.isRequired,
     loadingMore: PropTypes.bool.isRequired,
   }),
 };
 
-export default AssessmentsView;
+export default ClientsView;

@@ -1,0 +1,333 @@
+.djavanDashboardCard {
+  margin-bottom: 5px;
+  //display: flex;
+  //flex-flow: row nowrap;
+  //align-items: stretch;
+  //align-content: stretch;
+  justify-content: center;
+}
+
+
+.djavanDashboardCard__action {
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  align-content: stretch;
+  justify-content: center;
+  text-align: center;
+  padding-top: 10px;
+
+  .djavanDashboardCard__action--left {
+    flex: auto;
+    justify-content: flex-start;
+    text-align: left;
+    margin-bottom: -16px;
+    margin-left: -16px;
+  }
+
+  .djavanDashboardCard__action--center {
+    flex: auto;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: -16px;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  .djavanDashboardCard__action--right {
+    flex: auto;
+    justify-content: flex-end;
+    text-align: right;
+    margin-bottom: -16px;
+    margin-right: -16px;
+  }
+
+  .djavanDashboardCard__action--right > * {
+    margin-left: 10px;
+  }
+
+}
+
+
+.djavanDashboardCard__details {
+
+  line-height: 18px;
+  display: table;
+
+  .djavanDashboardCard__details__property {
+    width: 130px;
+    display: table-cell;
+    color: @black-54;
+  }
+
+  .djavanDashboardCard__details__property--long {
+    width: 230px;
+  }
+
+  .djavanDashboardCard__details__details {
+    display: table-cell;
+  }
+
+}
+
+
+.djavanDashboardCard__relevance {
+
+  color: @djavan-red;
+  line-height: 14px;
+  flex: auto;
+  padding-left: 24px;
+
+  .djavanDashboardCard__relevance__stars {
+    padding-right: 8px;
+  }
+
+  div {
+    display: inline;
+    flex: auto;
+  }
+  span {
+    padding-left: 8px;
+    flex: auto;
+  }
+
+}
+
+.djavanDashboardCard__relevance--right {
+  float: right;
+}
+
+.djavanDashboardCard__slicer {
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  align-content: stretch;
+  justify-content: flex-start;
+
+  .djavanDashboardCard__slicer__left {
+
+    width: 85px;
+    flex: none;
+    padding-right: 18px;
+
+  }
+
+  .djavanDashboardCard__slicer__middle {
+    flex: auto;
+  }
+
+  .djavanDashboardCard__slicer__right {
+    width: 200px;
+    flex: none;
+    padding-left: 18px;
+    text-align: right;
+
+  }
+
+}
+
+.djavanDashboardCard__info{
+  font-weight: 300;
+
+
+  .djavanDashboardCard__info__subtitle {
+    font-weight: 600;
+  }
+  .djavanDashboardCard__info__vuln {
+    font-weight: 800;
+  }
+  .djavanDashboardCard__info__countlabel {
+    font-size: 10px;
+    font-weight: 800;
+    text-align: center;
+    margin-right: 12px;
+  }
+  .djavanDashboardCard__info__id {
+    font-weight: 500;
+  }
+  .djavanDashboardCard__info__soceng {
+    color: saturate(darken(@stategreen, 20%), 20%);
+    font-weight: 700;
+  }
+  .djavanDashboardCard__info__webapp {
+    color: saturate(darken(@stateblue, 20%), 20%);
+    font-weight: 700;
+  }
+  .djavanDashboardCard__info__network {
+    color: saturate(darken(@stateyellow, 20%), 20%);
+    font-weight: 700;
+  }
+  .djavanDashboardCard__info__user {
+    font-size: 18px;
+    color: saturate(darken(@djavan-grey, 20%), 20%);
+    font-weight: 700;
+  }
+  .djavanDashboardCard__info__clientinfo{
+    font-size: 14px;
+    color: saturate(darken(@djavan-grey, 20%), 20%);
+    font-weight: 500;
+  }
+  .djavanDashboardCard__info__clientinfosmall{
+    font-size: 12px;
+    color: saturate(darken(@djavan-grey, 20%), 20%);
+    font-weight: 500;
+  }
+  .djavanDashboardCard__info__clientname{
+    font-size: 16px;
+    color: saturate(darken(@djavan-grey, 20%), 20%);
+    font-weight: 600;
+  }
+  .djavanDashboardCard__info__manager{
+    font-size: 12px;
+    color: saturate(lighten(@djavan-grey, 20%), 20%);
+    font-weight: 300;
+  }
+
+
+}
+
+
+
+.djavanDashboardCard__stepper {
+
+  .djavanDashboardCard__stepper__label {
+    font-size: 14px;
+    color: @black-54;
+    margin-bottom: 17px;
+  }
+
+  .djavanDashboardCard__stepper__holder {
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    align-content: stretch;
+    justify-content: center;
+
+    .djavanDashboardCard__stepper__step {
+
+      flex: auto;
+      position: relative;
+
+      .djavanDashboardCard__stepper__step__circle {
+        position: relative;
+        width: 12px;
+        height: 12px;
+        margin: 0 auto;
+        background-color: @stepper-grey;
+        border-radius: 50%;
+      }
+
+      .djavanDashboardCard__stepper__step__circle--selected {
+        background-color: @stepper-green;
+      }
+
+      .djavanDashboardCard__stepper__step__title {
+        margin-top: 12px;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+        color: @stepper-grey;
+      }
+
+      .djavanDashboardCard__stepper__step__title--selected {
+        color: @stepper-green;
+      }
+
+      // .djavanDashboardCard__stepper__step__title--hidden {
+      //   color: @white;
+      // }
+
+      .djavanDashboardCard__stepper__step__left {
+        position: absolute;
+        width: 50%;
+        top: 5px;
+        left: 0;
+        height: 2px;
+        border-top: 2px solid @stepper-grey;
+      }
+
+      .djavanDashboardCard__stepper__step__right {
+        position: absolute;
+        width: 50%;
+        top: 5px;
+        right: 0;
+        height: 2px;
+        border-top: 2px solid @stepper-grey;
+      }
+
+      .djavanDashboardCard__stepper__step__left--selected,
+      .djavanDashboardCard__stepper__step__right--selected {
+        border-top-color: @stepper-green;
+      }
+
+    }
+
+    .djavanDashboardCard__stepper__step:first-child {
+
+      .djavanDashboardCard__stepper__step__circle {
+        margin-left: 0;
+      }
+
+      .djavanDashboardCard__stepper__step__title {
+        text-align: left;
+      }
+
+      .djavanDashboardCard__stepper__step__left {
+        display: none;
+      }
+
+      .djavanDashboardCard__stepper__step__right {
+        width: 100%;
+      }
+
+    }
+
+    .djavanDashboardCard__stepper__step:last-child {
+
+      .djavanDashboardCard__stepper__step__circle {
+        margin-right: 0;
+      }
+
+      .djavanDashboardCard__stepper__step__title {
+        text-align: right;
+      }
+
+      .djavanDashboardCard__stepper__step__left {
+        width: 100%;
+      }
+
+      .djavanDashboardCard__stepper__step__right {
+        display: none;
+      }
+
+    }
+
+  }
+
+}
+
+
+//.djavanDashboardCard__subtitle {
+//
+//  line-height: 20px;
+//  margin-bottom: 5px;
+//
+//  .djavanDashboardCard__subtitle__companyName {}
+//
+//  .djavanDashboardCard__subtitle__companyName--link {
+//    color: @djavan-grey;
+//    cursor: pointer;
+//
+//    &:hover {
+//      text-decoration: underline;
+//    }
+//  }
+//
+//  div {
+//    display: inline-block;
+//  }
+//
+//}

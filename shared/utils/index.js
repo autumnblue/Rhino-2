@@ -1,4 +1,4 @@
-import request from 'popsicle';
+import {request, plugins} from 'popsicle';
 import cookie from 'react-cookie';
 import jwtDecode from 'jwt-decode';
 
@@ -8,7 +8,7 @@ function buildHeaders() {
   const token = cookie.load('token');
   return {
     token,
-    'client-version': 'WEB',
+    // 'client-version': 'WEB',
   };
 }
 
@@ -37,6 +37,7 @@ export function httpPost(url, data) {
     data,
   })
   .use(prefix(BASE_URL))
+  .use(plugins.parse('json'))
   .then(checkStatus);
 }
 
@@ -47,6 +48,7 @@ export function httpGet(url) {
     url,
   })
   .use(prefix(BASE_URL))
+  .use(plugins.parse('json'))
   .then(checkStatus);
 }
 
@@ -58,6 +60,7 @@ export function httpPut(url, data) {
     data,
   })
   .use(prefix(BASE_URL))
+  .use(plugins.parse('json'))
   .then(checkStatus);
 }
 
@@ -69,6 +72,7 @@ export function httpDelete(url, data = {}) {
     data,
   })
   .use(prefix(BASE_URL))
+  .use(plugins.parse('json'))
   .then(checkStatus);
 }
 
@@ -78,8 +82,9 @@ export function isClient() {
 
 function refreshToken() {
   httpGet('user/refresh_token')
+  .use(plugins.parse('json'))
   .then((response) => {
-    cookie.save('token', response.data.result, { path: '/' });
+    cookie.save('token', response.body.result, { path: '/' });
   })
   .catch((err) => {
     console.log(err);

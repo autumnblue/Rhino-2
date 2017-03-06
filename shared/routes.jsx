@@ -1,11 +1,12 @@
 import React from 'react';
 import { Route, IndexRedirect } from 'react-router';
-// import cookie from 'react-cookie';
 import MainLayout from './components/main';
-// import Entry from './containers/Entry';
 import App from './containers/App';
 import DjavanDashboard from './components/DjavanDashboard/DjavanDashboard';
 import Assessments from './components/DjavanDashboard/Assessments';
+import Clients from './components/DjavanDashboard/Clients';
+// import Entry from './containers/Entry';
+// import cookie from 'react-cookie';
 
 // import Login from './components/LoginSignUp/Login';
 // import LoginSignUp from './components/LoginSignUp/Index/';
@@ -70,7 +71,7 @@ export default function configRoutes(store) {
       {/*<IndexRedirect to="login" />*/}
         <Route path="dashboard" component={DjavanDashboard}>
           <IndexRedirect to="clients" />
-          {/*<Route path="clients" component={Clients} />*/}
+          <Route path="clients" component={Clients} />
           <Route path="assessments" component={Assessments} />
           {/*<Route path="details/:id" component={Details} />*/}
         </Route>

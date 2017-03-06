@@ -6,12 +6,12 @@ import AssessmentsActions from '../../../actions/assessments';
 // const mapStateToProps = ({ session, assessment, user }) => ({
 const mapStateToProps = ( assessment ) => ({
   // currentUser: session.currentUser,
-  assessments: assessment.assessments,
-  loadingMore: assessment.loadingMore,
-  hasMore: assessment.hasMore,
-  page: assessment.page,
-  assessmentsStatus: assessment.assessmentsStatus,
-  error: assessment.error,
+  assessments: assessment.assessments.assessments,
+  loadingMore: assessment.assessments.loadingMore,
+  hasMore: assessment.assessments.hasMore,
+  page: assessment.assessments.page,
+  assessmentsStatus: assessment.assessments.assessmentsStatus,
+  error: assessment.assessments.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({

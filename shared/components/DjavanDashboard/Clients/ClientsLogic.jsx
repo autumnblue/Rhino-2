@@ -1,19 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import AssessmentsView from './AssessmentsView';
+import ClientsView from './ClientsView';
 import NotificationModal from '../../Utilities/NotificationModal';
 
-export default class AssessmentsLogic extends Component {
+export default class ClientsLogic extends Component {
 
   static propTypes = {
     // currentUser: PropTypes.object,
-    assessments: PropTypes.array.isRequired,
+    clients: PropTypes.array.isRequired,
     loadingMore: PropTypes.bool.isRequired,
     hasMore: PropTypes.bool.isRequired,
     page: PropTypes.number.isRequired,
-    assessmentsStatus: PropTypes.string.isRequired,
+    clientsStatus: PropTypes.string.isRequired,
     loadData: PropTypes.func.isRequired,
-    // viewAssessment: PropTypes.func.isRequired,
-    // refreshAssessmentsList: PropTypes.func.isRequired,
+    // viewClient: PropTypes.func.isRequired,
+    // refreshClientsList: PropTypes.func.isRequired,
     error: PropTypes.string,
   }
 
@@ -23,7 +23,7 @@ export default class AssessmentsLogic extends Component {
 
   componentWillMount() {
 
-    if (this.props.assessmentsStatus !== 'loaded') {
+    if (this.props.clientsStatus !== 'loaded') {
       this.props.loadData(this.state.currentPage, false);
     }
 
@@ -34,10 +34,10 @@ export default class AssessmentsLogic extends Component {
   }
 
   componentWillUnmount() {
-    // this.props.refreshAssessmentsList();
+    // this.props.refreshClientsList();
   }
 
-  title = 'Assessments'
+  title = 'Clients'
   backLink = ''
 
 
@@ -53,12 +53,12 @@ export default class AssessmentsLogic extends Component {
 
 
   render() {
-    return <AssessmentsView {...this} />;
+    return <ClientsView {...this} />;
   }
 
 }
 
 
-AssessmentsLogic.contextTypes = {
+ClientsLogic.contextTypes = {
   router: PropTypes.object.isRequired,
 };

@@ -1,4 +1,4 @@
-import { httpPost, httpDelete } from '../utils';
+import { httpPost, httpGet } from '../utils';
 import { handleInternalErrors, logger } from '../utils/handleInternalErrors';
 import Constants from '../constants';
 
@@ -14,22 +14,23 @@ const Actions = {
           page,
           loadingMore,
         });
-        return httpPost(`assessment/assessments?page=${page}&limit=${limit}`)
+        return httpGet(`assessments.json?page=${page}&per_page=${limit}`)
           .catch((error) =>
             logger(error)
           )
           .then((response) => {
-            if (response.data.success) {
+            if (response.body) { //.data.meta.total_results > 0
+              console.log(response.body);
               dispatch({
                 type: Constants.FETCH_ASSESSMENTS,
-                assessments: response.data.result,
+                assessments: response.body.assessments,
                 loadingMore: false,
-                hasMore: !(limit > response.data.result.length),
+                hasMore: !(limit > response.body.meta.total_results),
               });
             } else {
               dispatch({
                 type: Constants.FETCH_ASSESSMENTS_FAILURE,
-                error: handleInternalErrors(response.data),
+                error: handleInternalErrors(response),
               });
             }
           });

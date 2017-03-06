@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import makeBem from 'bem-cx';
 import _ from 'lodash';
-import translations from '../../../actions/translations';
 
 const bem = makeBem('djavanDashboardCard');
 

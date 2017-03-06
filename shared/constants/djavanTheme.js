@@ -3,6 +3,7 @@ import { transparent, white, black, grey200, grey800, redA700 } from 'material-u
 
 export const djavanRed = '#AD1F1F';
 export const djavanRed8 = fade(djavanRed, 0.08);
+export const interestingBlue = "#279ccb";
 //export const djavanGrey = '#03A9F4';
 export const djavanGrey = '#333333';
 export const black26 = fade(black, 0.26);
@@ -59,7 +60,9 @@ export const djavanTheme = {
       border: `1px solid ${borderGrey}`,
     },
   },
-  drawer: {},
+  drawer: {
+    width: 230,
+  },
   dropDownMenu: {
     style: {
       fontSize: 16,
@@ -79,23 +82,23 @@ export const djavanTheme = {
     fontWeight: 500,
     color: transparent,
     textColor: white,
-    primaryColor: transparent,
+    primaryColor: interestingBlue,
     primaryTextColor: djavanRed,
-    secondaryColor: transparent,
+    secondaryColor: djavanRed,
     secondaryTextColor: djavanGrey,
     disabledColor: transparent,
     disabledTextColor: black26,
-    buttonFilterColor: overlayGrey,  // Hover color
+    buttonFilterColor: djavanGrey,  // Hover color
   },
   floatingActionButton: {
     buttonSize: 56,
     miniSize: 40,
     color: djavanRed,
     iconColor: white,
-    secondaryColor: djavanGrey,
-    secondaryIconColor: white,
+    secondaryColor: white,
+    secondaryIconColor: djavanRed8,
     disabledColor: disabledGrey,
-    disabledTextColor: black54,
+    disabledTextColor: white,
   },
   listItem: {
     itemStyle: {
