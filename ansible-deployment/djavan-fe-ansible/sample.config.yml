@@ -22,7 +22,6 @@ project:
   # These directories will be created, they do not need to exist prior to deployment. You may change them if you wish. They are used to hold the "in use" Djavan application files
   # Optional:
   root: /opt/djavan
-  virtualenv: /opt/djavan/venv/
 
 # Definition of variables for ./roles/nginx/templates/nginx.conf
 nginx:
@@ -30,26 +29,6 @@ nginx:
   # Can be changed to total number of cores plus 1 for better performance
   # OPTIONAL: usually not necessary
   worker_processes: 2
-
-# Definition variables for ./roles/uwsgi/templates/djavan_uwsgi.ini
-# OPTIONAL: usually not necessary
-uwsgi_processes: 5
-
-# Definition of variables for ./roles/django/templates/settings.py and ./roles/django/tasks/pip.yml
-# Required: this is used as the email address to which test emails are sent.
-admin_email: 'info@rhinosecuritylabs.com'
-
-# Definition of variables for ./roles/postgres/tasks/access.yml ./roles/postgres/tasks/database.yml and ./roles/django/templates.settings.py
-# Required: passwords should be changed for security purposes
-database:
-  name: djavan
-  user: djavan
-  password: CHANGE_ME
-
-# Defines a secret key for your particular instance of djavan (a salt, basically). Change this to a long string of letters and numbers, capitalization allowed but no special characters.
-# Example key: wddlGmcdZcxVNtQH5z1e4PZjwvxdN3WV
-# Required: same as passwords, should be changed for security purposes
-SECRET_KEY: 'CHANGE_ME'
 
 #
 #SSL Self Signed certs will only generate if set to true, an existing self signed cert does not exist and if a trusted cert does not exist in ./files/ssl/{{ssl_certs_common_name}}.*

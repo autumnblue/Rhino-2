@@ -1,0 +1,23 @@
+---
+- name: gosu | set internal variables for convenience
+  set_fact:
+    gosu_exe_url: "https://github.com/tianon/gosu/releases/download/{{ gosu_version }}/gosu-amd64"
+  when: ansible_userspace_bits == "64"
+
+- name: gosu | download gosu executable
+  get_url: url="{{ gosu_exe_url }}"  dest="/usr/local/bin/gosu"
+
+- name: gosu | add executable permission
+  file: path="/usr/local/bin/gosu" state=file mode="a+x"
+  
+- name: gosu | create djavan group
+  group:
+    name: djavan
+    gid: 1000
+    state: present
+    
+- name: gosu | create djavan user
+  user:
+    name: djavan
+    uid: 1000
+    group: djavan

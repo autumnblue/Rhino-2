@@ -1,0 +1,15 @@
+- name: packages | Update apt cache Debian
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: packages | Update OS packages
+  apt: upgrade: yes
+
+- name: packages | Install dependencies
+  action: "{{ ansible_pkg_mgr }} pkg={{ item }} state=latest"
+  with_items:
+    - ca-certificates
+    - sendmail
+    - wget
+    - build-essential
+    - g++
+

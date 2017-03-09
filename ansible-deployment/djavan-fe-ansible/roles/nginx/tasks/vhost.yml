@@ -8,19 +8,9 @@
   template: >
     src=vhost.conf
     dest=/etc/nginx/conf.d/{{project.name}}.conf
-  tags:
-    - configuration
-    - nginx
-    - webserver
-    - update
   
 - name: Nginx | Install nginx configuration file.
   template: >
     src=nginx.conf
     dest=/etc/nginx/nginx.conf
-  tags:
-    - configuration
-    - nginx
-    - webserver
-    - update
 

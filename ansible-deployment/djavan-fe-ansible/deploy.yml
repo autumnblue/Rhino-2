@@ -1,5 +1,5 @@
 ---
-- name: Deploy Djavan
+- name: Deploy Djavan Front End
   hosts: local
   become: true
   become_user: root
@@ -9,15 +9,13 @@
 
   roles:
     - hostname
-    - postgres
-    - backup
+    - packages
     - nginx
-    - wkhtmltopdf
     - ansible-role-ssl-certs
-    - django
-    - uwsgi
-
-- name: Restart Djavan stack
+    - nodejs
+    - yarn
+ 
+- name: Restart Djavan FE stack
   hosts: local
   become: true
   become_user: root
@@ -26,21 +24,21 @@
     - ./group_vars/package-versions.yml
   tasks:
 
-  - name: stop services
+  - name: stop services Djavan FE stack
     service: name="{{item}}" state=stopped
     with_items:
-      - uwsgi-{{project.name}}
+      - djavan
       - nginx
 
-  - name: start services
+  - name: start services Djavan FE stack
     service: name="{{item}}" state=started enabled=yes
     with_items:
       - nginx
-      - uwsgi-{{project.name}}
+      - djavan
 
-  - name: Apply version control
+  - name: Apply version control Djavan FE stack
     shell: apt-mark hold {{item}}
     with_items:
       - nginx
-      - postgresql
-      - virtualenv
+      - nodejs
+      - gosu

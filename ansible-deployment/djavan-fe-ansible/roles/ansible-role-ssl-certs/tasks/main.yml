@@ -1,10 +1,10 @@
 ---
-  - name: Ensure OpenSSL is installed
+  - name: ssl | Ensure OpenSSL is installed
     apt: name=openssl state=present
     when: ansible_os_family == "Debian"
     tags: [ssl-certs,packages]
 
-  - name: Ensure ssl folder exist
+  - name: ssl | Ensure ssl folder exist
     file:
       path: "{{ ssl_certs_path }}"
       state: directory
@@ -23,12 +23,12 @@
     become: no
     tags: [ssl-certs,configuration]
 
-  - name: Test if privkey file is needed
+  - name: ssl | Test if privkey file is needed
     fail: msg="Privkey file {{ ssl_certs_local_privkey_path }} is missing"
     when: not stat_privkey.stat.exists and stat_cert.stat.exists
     tags: [ssl-certs,configuration]
 
-  - name: Test if cert file is needed
+  - name: ssl | Test if cert file is needed
     fail: msg="Cert file {{ ssl_certs_local_cert_path }} is missing"
     when: stat_privkey.stat.exists and not stat_cert.stat.exists
     tags: [ssl-certs,configuration]
@@ -39,7 +39,7 @@
       and ( ssl_certs_local_privkey_data is undefined and ssl_certs_local_cert_data is undefined )
     tags: [ssl-certs,configuration]
 
-  - name: Copy SSL certificates
+  - name: ssl | Copy SSL certificates
     copy:
       src: "{{ item.src }}"
       dest: "{{ item.dest }}"
@@ -54,7 +54,7 @@
       - { src: "{{ ssl_certs_local_privkey_path }}", dest: "{{ ssl_certs_privkey_path }}" }
     tags: [ssl-certs,configuration]
 
-  - name: Copy SSL certificate data
+  - name: ssl | Copy SSL certificate data
     copy:
       content: "{{ item.content }}"
       dest: "{{ item.dest }}"
@@ -68,12 +68,12 @@
     no_log: true
     tags: [ssl-certs,configuration]
 
-  - name: Generate strong DHE parameter - https://weakdh.org/
+  - name: ssl | Generate strong DHE parameter - https://weakdh.org/
     command: openssl dhparam -out {{ssl_certs_dhparam_path}} {{ssl_certs_dhparam_size}} creates={{ssl_certs_dhparam_path}}
     when: ssl_certs_generate_dh_param
     tags: [ssl-certs,configuration]
     
 
-  - name: restart nginx
+  - name: ssl | restart nginx
     service: name=nginx state=restarted enabled=yes
 

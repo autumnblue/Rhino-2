@@ -1,0 +1,10 @@
+---
+- name: Install dependencies and build the project
+  shell: 'APP_PREFIX="{{ apache_prefix }}" npm install'
+  args:
+    chdir: "{{ project_dir }}"
+
+- name: Migrate database
+  shell: "npm run migrate-up"
+  args:
+      chdir: "{{ project_dir }}"
