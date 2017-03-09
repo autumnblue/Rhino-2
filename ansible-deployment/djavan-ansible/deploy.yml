@@ -1,0 +1,46 @@
+---
+- name: Deploy Djavan
+  hosts: local
+  become: true
+  become_user: root
+  vars_files:
+    - ./group_vars/config.yml
+    - ./group_vars/package-versions.yml
+
+  roles:
+    - hostname
+    - postgres
+    - backup
+    - nginx
+    - wkhtmltopdf
+    - ansible-role-ssl-certs
+    - django
+    - uwsgi
+
+- name: Restart Djavan stack
+  hosts: local
+  become: true
+  become_user: root
+  vars_files:
+    - ./group_vars/config.yml
+    - ./group_vars/package-versions.yml
+  tasks:
+
+  - name: stop services
+    service: name="{{item}}" state=stopped
+    with_items:
+      - uwsgi-{{project.name}}
+      - nginx
+
+  - name: start services
+    service: name="{{item}}" state=started enabled=yes
+    with_items:
+      - nginx
+      - uwsgi-{{project.name}}
+
+  - name: Apply version control
+    shell: apt-mark hold {{item}}
+    with_items:
+      - nginx
+      - postgresql
+      - virtualenv

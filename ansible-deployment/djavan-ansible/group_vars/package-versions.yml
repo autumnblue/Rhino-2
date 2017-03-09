@@ -1,0 +1,4 @@
+version:
+  nginx: 1.10
+  postgresql: 9.5
+  virtualenv: 15.0
