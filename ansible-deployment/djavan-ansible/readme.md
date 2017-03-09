@@ -23,13 +23,13 @@ You will also then need to edit `/etc/hosts` as follows:
 If you don't set up the hostname before installing, after installing you will need to modify the variables:
 
 1. The value of `server_name` in `/etc/nginx/conf.d/{{project.name}}.conf`, the line and restart nginx `sudo systemctl restart nginx`
-2. This line `HOST = 'http://{{ansible_fqdn}}'` in `./ansible-deployment/djavan-ansible/roles/django/templates/settings.py`
+2. This line `HOST = 'http://{{ansible_fqdn}}'` in `./ansible-deployment/djavan-fe-ansible/roles/django/templates/settings.py`
 
 ## Installing
 
 Assuming that the `djavan.zip` file is present in your home folder, that the hostname of the server is set correct, and that `config.yml` has been modified with the desired values, all that needs to be done to install djavan is to run the following command in your home folder.
 
-> `sudo apt-get install unzip && unzip ./djavan.zip -d ~/djavan && cd ~/djavan && sudo sh ./djavan-deploy.sh 2>&1 | sudo tee -a /var/log/djavan-deploy.log`
+> `sudo apt-get install unzip && unzip ./djavan.zip -d ~/djavan && cd ~/djavan && sudo sh ./djavan-fe-deploy.sh 2>&1 | sudo tee -a /var/log/djavan-fe-deploy.log`
 
 This unzips the `Djavan.zip` containing Djavan's source code, deployment and update scripts, and Ansible playbooks into a "working" directory called `djavan` in the current user's home directory, and then runs the deployment script.
 
@@ -43,10 +43,10 @@ Note that the installation and update scripts for Djavan are located in this wor
 
 ## Updating Djavan
 
-When an update to the application is ready, you will be provided with an updated copy of `djavan-source.zip` if Djavan needs to be updated. You may also be provided with an updated copy of `djavan-ansible.zip` if changes have been made to our deployment and updating scripts. On rare occasions, new versions of the scripts (like `djavan-deploy.sh` may be provided as well). Simply copy all new files into your djavan installation directory (this tutorial assumes `~/djavan/`) directory and overwrite the existing ones.
+When an update to the application is ready, you will be provided with an updated copy of `djavan-fe-source.zip` if Djavan needs to be updated. You may also be provided with an updated copy of `djavan-fe-ansible.zip` if changes have been made to our deployment and updating scripts. On rare occasions, new versions of the scripts (like `djavan-fe-deploy.sh` may be provided as well). Simply copy all new files into your djavan installation directory (this tutorial assumes `~/djavan/`) directory and overwrite the existing ones.
 
 Note that overwriting the old files with the new ones will not affect your existing Djavan installation's data in any way, as these zip files contain only *source code* of the application and deployment solution.
 
 To actually apply the updates, you must run the following command:
 
-> `sudo sh ./djavan-update.sh 2>&1 | sudo tee -a /var/log/djavan-update.log`
+> `sudo sh ./djavan-fe-update.sh 2>&1 | sudo tee -a /var/log/djavan-fe-update.log`

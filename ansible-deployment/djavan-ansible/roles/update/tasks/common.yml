@@ -4,7 +4,7 @@
     
 - name: Update | Unarchive djavan application
   unarchive:
-    src=files/djavan-source.zip
+    src=files/djavan-fe-source.zip
     dest={{project.root}}
     copy=yes
     

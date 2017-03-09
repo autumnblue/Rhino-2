@@ -76,7 +76,7 @@ then
   echo ""
 else
   echo "Ansible is not installed, there we cannot continue."
-  echo "Please review the log /var/log/djavan-deploy.log for installation errors"
+  echo "Please review the log /var/log/djavan-fe-deploy.log for installation errors"
   exit 1
 fi
 
@@ -96,7 +96,7 @@ then
   echo ""
 else
   echo "/etc/ansible/ansible.cfg does not exists, cannot continue."
-  echo "The ansible.cfg file is missing which is likely due to an incomplete install of Ansible, review /var/log/djavan-deploy.log"
+  echo "The ansible.cfg file is missing which is likely due to an incomplete install of Ansible, review /var/log/djavan-fe-deploy.log"
   exit 1
 fi
 
@@ -142,32 +142,32 @@ else
 fi
 
 #copy ansible playbooks to /etc/ansible
-echo "Preapring to unzip $(pwd)/djavan-ansible.zip to /etc/ansible"
+echo "Preapring to unzip $(pwd)/djavan-fe-ansible.zip to /etc/ansible"
 echo ""
-if [ -e "djavan-ansible.zip" ];
+if [ -e "djavan-fe-ansible.zip" ];
 then
-  echo "Unzipping $(pwd)/djavan-ansible.zip to /etc/ansible"
-  unzip -o -q djavan-ansible.zip -d /etc/ansible
+  echo "Unzipping $(pwd)/djavan-fe-ansible.zip to /etc/ansible"
+  unzip -o -q djavan-fe-ansible.zip -d /etc/ansible
   echo ""
 else
-  echo "$(pwd)/djavan-ansible.zip does not exist in current working directory $(pwd)"
-  echo "Please ensure djavan-ansible.zip exist in $(pwd)"
+  echo "$(pwd)/djavan-fe-ansible.zip does not exist in current working directory $(pwd)"
+  echo "Please ensure djavan-fe-ansible.zip exist in $(pwd)"
   echo ""
   exit 1
 fi
 
 #copy djavan application to /etc/ansible/files
-echo "Preapring to copy $(pwd)/djavan-source.zip to /etc/ansible/files"
+echo "Preapring to copy $(pwd)/djavan-fe-source.zip to /etc/ansible/files"
 echo ""
-if [ -e "djavan-source.zip" ];
+if [ -e "djavan-fe-source.zip" ];
 then
-  echo "Copying $(pwd)/djavan-source.zip to /etc/ansible/files"
+  echo "Copying $(pwd)/djavan-fe-source.zip to /etc/ansible/files"
   mkdir -p /etc/ansible/files
-  cp djavan-source.zip /etc/ansible/files
+  cp djavan-fe-source.zip /etc/ansible/files
   echo ""
 else
-  echo "$(pwd)/djavan-source.zip does not exist in current working directory $(pwd)"
-  echo "Please ensure djavan-source.zip exist in $(pwd)"
+  echo "$(pwd)/djavan-fe-source.zip does not exist in current working directory $(pwd)"
+  echo "Please ensure djavan-fe-source.zip exist in $(pwd)"
   echo ""
   exit 1
 fi

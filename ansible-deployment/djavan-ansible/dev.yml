@@ -21,20 +21,20 @@
   - name: Ensure /etc/ansible/files dir exists
     file: path=/etc/ansible/files state=directory
 
-  - name: Zip up ansible source into /tmp/djavan-ansible-{{project_version}}.zip
-    raw: (cd {{ project_doc_root }}/ansible-deployment/djavan-ansible/; zip -r /tmp/djavan-ansible-{{project_version}}.zip .)
+  - name: Zip up ansible source into /tmp/djavan-fe-ansible-{{project_version}}.zip
+    raw: (cd {{ project_doc_root }}/ansible-deployment/djavan-fe-ansible/; zip -r /tmp/djavan-fe-ansible-{{project_version}}.zip .)
 
-  - name: Remove ansible playbooks from {{ project_doc_root }} to prevent it from being added to djavan-source.zip
+  - name: Remove ansible playbooks from {{ project_doc_root }} to prevent it from being added to djavan-fe-source.zip
     raw: rm -rf {{ project_doc_root }}/ansible-deployment
 
-  - name: Zip up Djavan project into /etc/ansible/files/djavan-source.zip
-    raw: (cd {{ project_doc_root }}; zip -r /etc/ansible/files/djavan-source.zip .)
+  - name: Zip up Djavan project into /etc/ansible/files/djavan-fe-source.zip
+    raw: (cd {{ project_doc_root }}; zip -r /etc/ansible/files/djavan-fe-source.zip .)
 
-  - name: Extract /tmp/djavan-ansible-{{project_version}}.zip to /etc/ansible
-    raw: unzip -o -q /tmp/djavan-ansible-{{project_version}}.zip -d /etc/ansible
+  - name: Extract /tmp/djavan-fe-ansible-{{project_version}}.zip to /etc/ansible
+    raw: unzip -o -q /tmp/djavan-fe-ansible-{{project_version}}.zip -d /etc/ansible
 
-  - name: Move /tmp/djavan-ansible-{{project_version}}.zip to /etc/ansible/files
-    raw: mv /tmp/djavan-ansible-{{project_version}}.zip /etc/ansible/files/djavan-ansible.zip
+  - name: Move /tmp/djavan-fe-ansible-{{project_version}}.zip to /etc/ansible/files
+    raw: mv /tmp/djavan-fe-ansible-{{project_version}}.zip /etc/ansible/files/djavan-fe-ansible.zip
 
   - name: Cleanup existing /tmp/project folder
     file: path="{{ project_doc_root }}" state=absent
