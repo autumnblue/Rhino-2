@@ -5,6 +5,7 @@ import error from './error';
 import session from './session';
 import assessments from './assessments';
 import clients from './clients';
+import clientitems from './clientitems';
 
 const reducers = combineReducers({
   routing: routerReducer,
@@ -12,6 +13,7 @@ const reducers = combineReducers({
   // session,
   assessments,
   clients,
+  clientitems,
 });
 
 

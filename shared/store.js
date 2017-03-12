@@ -26,18 +26,18 @@ function createStoreWithReducer(history, data, reducer) {
   ];
 
   let finalCreateStore;
-  // if (process.env.NODE_ENV === 'development' && __CLIENT__ && __DEVTOOLS__) {
-  //   const { persistState } = require('redux-devtools');
-  //   const DevTools = require('../shared/containers/DevTools');
-  //
-  //   finalCreateStore = compose(
-  //     applyMiddleware(...middleware),
-  //     window.devToolsExtension ? window.devToolsExtension() : DevTools.default.instrument(),
-  //     persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
-  //   )(_createStore);
-  // } else {
+  if (process.env.NODE_ENV === 'development' && __CLIENT__ && __DEVTOOLS__) {
+    const { persistState } = require('redux-devtools');
+    const DevTools = require('../shared/containers/DevTools');
+
+    finalCreateStore = compose(
+      applyMiddleware(...middleware),
+      window.devToolsExtension ? window.devToolsExtension() : DevTools.default.instrument(),
+      persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
+    )(_createStore);
+  } else {
     finalCreateStore = applyMiddleware(...middleware)(_createStore);
-  // }
+  }
 
   const store = finalCreateStore(reducer, data);
 

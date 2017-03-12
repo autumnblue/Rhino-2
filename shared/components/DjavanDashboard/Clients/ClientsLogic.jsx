@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ClientsView from './ClientsView';
 import NotificationModal from '../../Utilities/NotificationModal';
 
+
 export default class ClientsLogic extends Component {
 
   static propTypes = {
@@ -15,11 +16,14 @@ export default class ClientsLogic extends Component {
     // viewClient: PropTypes.func.isRequired,
     // refreshClientsList: PropTypes.func.isRequired,
     error: PropTypes.string,
-  }
+    //fetchClient: PropTypes.func.isRequired,
+  };
 
   state = {
     currentPage: 1,
-  }
+  };
+
+
 
   componentWillMount() {
 
@@ -48,8 +52,7 @@ export default class ClientsLogic extends Component {
       });
       this.props.loadData(this.state.currentPage, true);
     }
-  }
-
+  };
 
 
   render() {
