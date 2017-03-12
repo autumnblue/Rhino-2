@@ -44,4 +44,3 @@
     with_items:
       - nginx
       - nodejs
-      - gosu
