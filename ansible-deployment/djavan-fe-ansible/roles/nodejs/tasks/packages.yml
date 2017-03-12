@@ -27,7 +27,7 @@
 
 - name: nodejs | create sym link for nvm
   file:
-    src: /root/.nvm/nvm
+    src: /root/.nvm/nvm.sh
     dest: /bin/nvm
     state: link
     
