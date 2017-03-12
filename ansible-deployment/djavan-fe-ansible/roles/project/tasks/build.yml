@@ -1,10 +1,15 @@
 ---
-- name: Install dependencies and build the project
-  shell: 'APP_PREFIX="{{ apache_prefix }}" npm install'
+- name: project | yarn
+  shell: yarn
   args:
-    chdir: "{{ project_dir }}"
+    chdir: "{{ project.root }}"
 
-- name: Migrate database
-  shell: "npm run migrate-up"
+- name: project | npm install
+  shell: "npm install --unsafe-perm"
   args:
-      chdir: "{{ project_dir }}"
+      chdir: "{{ project.root }}"
+
+- name: project | npm build
+  shell: "npm build"
+  args:
+      chdir: "{{ project.root }}"

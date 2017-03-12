@@ -8,12 +8,15 @@
     - ./group_vars/package-versions.yml
 
   roles:
+    #- clean
     - hostname
     - packages
     - nginx
     - ansible-role-ssl-certs
     - nodejs
     - yarn
+    - project
+    - systemd
  
 - name: Restart Djavan FE stack
   hosts: local

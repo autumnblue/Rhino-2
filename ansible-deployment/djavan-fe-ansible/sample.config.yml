@@ -9,19 +9,32 @@ project:
   # Optional:
   name: djavan
 
-  # The user below will be created as a Linux account to own the project directory and services like UWSGI. You may include the credentials for an existing user here if you wish.
-  # This user will also be used to log into the Djavan web UI for the first time.
+  # The user below will be created as a Linux account to own the project directory and services like node.js
   # Recommended: "userPassword" should be changed for security purposes
   user: djavan
   userPassword: CHANGE_ME
 
-  # Do not change this - sets the group to share access with services like UWSGI
+  # Do not change this - sets the group to share access with services like node.js
   # IGNORE:
-  group: www-data
+  group: djavan
 
   # These directories will be created, they do not need to exist prior to deployment. You may change them if you wish. They are used to hold the "in use" Djavan application files
   # Optional:
   root: /opt/djavan
+  
+  # Do not change this - defines the servie listening port for node.js
+  port: 6001
+  host: 0.0.0.0
+  
+  #Specify production or development. This must be in lowercase format!
+  environment: production
+  
+  #NPM logging level
+  npm_config_loglevel: info
+  
+  #Github project
+  repo: git@bitbucket.org:xander-sereda/djavan-front-end.git
+  
 
 # Definition of variables for ./roles/nginx/templates/nginx.conf
 nginx:

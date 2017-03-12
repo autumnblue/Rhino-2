@@ -8,12 +8,12 @@
   - name: stop services
     service: name="{{item}}" state=stopped
     with_items:
-      - uwsgi-{{project.name}}
+      - djavan
       - nginx
 
   - name: start services
     service: name="{{item}}" state=started
     with_items:
       - nginx
-      - uwsgi-{{project.name}}
+      - djavan
 

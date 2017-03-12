@@ -1,0 +1,9 @@
+list_of_files_to_keep:
+  - .
+  - ..
+  - logs
+  - node_modules
+  - public
+  - target
+  - package.json
+  - webpack

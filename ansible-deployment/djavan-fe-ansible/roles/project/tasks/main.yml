@@ -1,24 +1,24 @@
 ---
-- name: Clone project
+- name: project | Clone project
   git:
-    repo: "{{ project_repo }}"
+    repo: "{{ repo }}"
     dest: "{{ clone_tmpdir }}"
     force: true
     update: no
     accept_hostkey: true
 
-- name: Prepare git files
-  command: "mv -f {{ clone_tmpdir }}/.git/ {{ project_dir }}/"
+- name: project | Prepare git files
+  command: "mv -f {{ clone_tmpdir }}/.git/ {{ project.root }}/"
 
-- name: Update project
+- name: project | Update project
   git:
-    repo: "{{ project_repo }}"
-    dest: "{{ project_dir }}"
+    repo: "{{ project.repo }}"
+    dest: "{{ project.root }}"
     force: true
 
-- name: Check if logs dir exists
+- name: project | Check if logs dir exists
   file:
-    path: "{{ project_dir }}/logs"
+    path: "{{ project.root }}/logs"
     state: directory
 
 - include: build.yml

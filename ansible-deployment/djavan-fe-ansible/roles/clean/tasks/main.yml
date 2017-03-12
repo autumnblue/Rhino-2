@@ -1,0 +1,16 @@
+---
+- name: Check if project dir exists
+  file:
+    path: "{{ project.root }}"
+    state: directory
+
+- name: Capture files in path and register
+  shell: "ls -1a {{ project.root }}"
+  register: files
+
+- name: Remove unneeded files
+  file:
+    path: "{{ project.root }}/{{ item }}"
+    state: absent
+  with_items: '{{ files.stdout_lines }}'
+  when: "item not in list_of_files_to_keep"
