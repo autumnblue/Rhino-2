@@ -2,19 +2,11 @@
 - name: project | Clone project
   git:
     repo: "{{ project.repo }}"
-    dest: "{{ clone_tmpdir }}"
+    dest: "{{ project.root }}"
     force: true
     update: no
     accept_hostkey: true
-
-- name: project | Prepare git files
-  command: "mv -f {{ clone_tmpdir }}/.git/ {{ project.root }}/"
-
-- name: project | Update project
-  git:
-    repo: "{{ project.repo }}"
-    dest: "{{ project.root }}"
-    force: true
+    version: {{ project.repo_branch }}
 
 - name: project | Check if logs dir exists
   file:

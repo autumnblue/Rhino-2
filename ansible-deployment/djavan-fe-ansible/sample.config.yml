@@ -34,7 +34,7 @@ project:
   
   #Github project
   repo: git@bitbucket.org:xander-sereda/djavan-front-end.git
-  
+  repo_branch: ansible
 
 # Definition of variables for ./roles/nginx/templates/nginx.conf
 nginx:
