@@ -17,6 +17,8 @@
     - build-essential
     - g++
     - git
+    - curl
+    - libssl-dev
 
 - name: packages | create group "{{ project.group }}"
   group:
