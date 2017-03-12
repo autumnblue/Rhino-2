@@ -15,15 +15,15 @@
     - g++
     - git
 
-- name: packages | create group {{ project.group }}
+- name: packages | create group "{{ project.group }}"
   group:
-    name: {{ project.group }}
+    name: "{{ project.group }}"
     gid: 1000
     
-- name: packages | create user {{ project.user }}
+- name: packages | create user "{{ project.user }}"
   user:
-    name: {{ project.user }}
+    name: "{{ project.user }}"
     uid: 1000
     createhome: yes
     generate_ssh_key: yes
-    group: {{ project.group }}
+    group: "{{ project.group }}"
