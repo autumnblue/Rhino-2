@@ -6,7 +6,7 @@
     force: true
     update: no
     accept_hostkey: true
-    version: {{ project.repo_branch }}
+    version: "{{ project.repo_branch }}"
 
 - name: project | Check if logs dir exists
   file:
