@@ -20,5 +20,5 @@
   register: nvm_dir 
 
 - name: nodejs | Install the specified node version using the nvm command and set it as default
-  shell: . {{ nvm_dir.stdout }}/nvm.sh && nvm install {{ version.nodejs_version }} && nvm run {{version.nodejs_version}} --version && nvm alias default {{version.nodejs_version}}
+  shell: . /root/.nvm/nvm.sh && nvm install {{ version.nodejs_version }} && nvm run {{version.nodejs_version}} --version && nvm alias default {{version.nodejs_version}}
           creates=~/.nvm/versions/node/v{{ version.nodejs_version }} 
