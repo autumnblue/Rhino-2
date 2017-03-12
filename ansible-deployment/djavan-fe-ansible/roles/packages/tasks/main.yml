@@ -2,7 +2,8 @@
   apt: update_cache=yes cache_valid_time=3600
 
 - name: packages | Update OS packages
-  apt: upgrade: yes
+  apt: 
+    upgrade: yes
 
 - name: packages | Install dependencies
   action: "{{ ansible_pkg_mgr }} pkg={{ item }} state=latest"
