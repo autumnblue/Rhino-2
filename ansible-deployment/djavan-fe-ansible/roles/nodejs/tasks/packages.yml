@@ -18,6 +18,12 @@
 - name: nodejs | Register the NVM_DIR
   shell: echo $NVM_DIR
   register: nvm_dir 
+  
+- name: nodejs | create sym link for nvm-exec
+  file:
+    src: /root/.nvm/nvm-exec
+    dest: /bin/nvm-exec
+    state: link
 
 - name: nodejs | Install the specified node version using the nvm command and set it as default
   shell: . /root/.nvm/nvm.sh && nvm install {{ version.nodejs_version }} && nvm run {{version.nodejs_version}} --version && nvm alias default {{version.nodejs_version}}
