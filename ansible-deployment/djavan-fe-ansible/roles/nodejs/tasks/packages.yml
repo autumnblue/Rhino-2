@@ -40,4 +40,3 @@
       - nodejs
       - npm
     state: installed
-    update_cache: yes
