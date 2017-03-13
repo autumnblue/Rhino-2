@@ -1,4 +1,9 @@
 ---
+- name: project | remove "{{ project.root }}"
+  file:
+    path: "{{ project.root }}"
+    state: absent
+    
 - name: project | Clone project
   git:
     repo: "{{ project.repo }}"
@@ -19,6 +24,6 @@
     owner: "{{ project.user }}"
     path: "{{ project.root }}"
     recurse: yes
-    mode: 755
+    mode: 0755
 
 - include: build.yml

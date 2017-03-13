@@ -3,7 +3,7 @@ Description=Djavan
 Requires=After=nginx.service       # Requires the nginx service to run first
 
 [Service]
-ExecStart=/usr/local/bin/node #/opt/nodeserver/server.js
+ExecStart=/usr/bin/node
 WorkingDirectory={{ project.root }}
 Restart=always
 RestartSec=10                       # Restart service after 10 seconds if node service crashes
