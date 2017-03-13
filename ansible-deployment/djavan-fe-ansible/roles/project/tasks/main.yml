@@ -13,4 +13,12 @@
     path: "{{ project.root }}/logs"
     state: directory
 
+- name: project | set perms on "{{ project.root }}"
+  file:
+    group: "{{ project.group }}"
+    owner: "{{ project.user }}"
+    path: "{{ project.root }}"
+    recurse: yes
+    mode: 755
+
 - include: build.yml
