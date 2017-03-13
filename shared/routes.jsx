@@ -68,7 +68,7 @@ export default function configRoutes(store) {
       {/*</Route>*/}
       {/*<Route component={App} onEnter={ensureAuthenticated}>*/}
       <Route component={App} >
-      {/*<IndexRedirect to="login" />*/}
+      <IndexRedirect to="dashboard" />
         <Route path="dashboard" component={DjavanDashboard}>
           <IndexRedirect to="clients" />
           <Route path="clients" component={Clients} />
