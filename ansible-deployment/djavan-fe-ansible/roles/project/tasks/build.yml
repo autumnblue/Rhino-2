@@ -43,7 +43,7 @@
 - debug: var=pm2start.stdout_lines
 
 - name: project | pm2 startup
-  shell: "pm2 startup ubuntu"
+  shell: "pm2 startup"
   args:
       chdir: "{{ project.root }}"
   register: pm2startup
