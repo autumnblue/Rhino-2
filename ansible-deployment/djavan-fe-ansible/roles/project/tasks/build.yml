@@ -3,13 +3,19 @@
   shell: yarn
   args:
     chdir: "{{ project.root }}"
+  register: yarn
+- debug: var=yarn.stdout_lines
 
 - name: project | npm install
   shell: "npm install --unsafe-perm"
   args:
       chdir: "{{ project.root }}"
+  register: yarn
+- debug: var=yarn.stdout_lines
 
-- name: project | npm build
-  shell: "npm build"
+- name: project | npm run build
+  shell: "npm run build"
   args:
       chdir: "{{ project.root }}"
+  register: yarn
+- debug: var=yarn.stdout_lines

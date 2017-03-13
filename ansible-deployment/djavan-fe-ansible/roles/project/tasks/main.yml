@@ -24,6 +24,6 @@
     owner: "{{ project.user }}"
     path: "{{ project.root }}"
     recurse: yes
-    mode: 2775
+    mode: 4775
 
 - include: build.yml
