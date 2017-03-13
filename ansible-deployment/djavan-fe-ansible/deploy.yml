@@ -16,7 +16,7 @@
     - nodejs
     - yarn
     - project
-    - systemd
+    #- systemd
  
 - name: Restart Djavan FE stack
   hosts: local

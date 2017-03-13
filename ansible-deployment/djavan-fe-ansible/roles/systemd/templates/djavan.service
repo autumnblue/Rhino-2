@@ -12,7 +12,7 @@ StandardError=syslog
 SyslogIdentifier=djavan
 #User={{ project.user }}
 #Group={{ project.group }}
-Environment=NODE_ENV="{{ project.environment }} PORT={{ project.port }}"
+Environment="NODE_ENV={{ project.environment }} PORT={{ project.port }} API_URL={{ project.apiurl }}"
 
 [Install]
 WantedBy=multi-user.target

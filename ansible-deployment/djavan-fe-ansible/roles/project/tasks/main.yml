@@ -1,4 +1,9 @@
 ---
+- name: project | stop pm2
+  systemd:
+    name: pm2-root
+    state: stopped
+
 - name: project | remove "{{ project.root }}"
   file:
     path: "{{ project.root }}"
