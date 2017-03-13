@@ -15,6 +15,14 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
 
     case Constants.FETCH_CLIENTS: {
+
+      //append index of state client id's
+      //check for existance of action client id's if state client exists
+      //if existance, replace item in state with action
+      //return new state
+
+      //const clientsArray =
+
       return {
         ...state,
         error: null,
@@ -39,6 +47,40 @@ export default function reducer(state = initialState, action) {
         ...state,
         error: action.error,
         clientsStatus: loadingStatus.FAILED,
+      };
+    }
+
+
+
+    case Constants.FETCH_CLIENT: {
+      console.log("Client Action");
+      console.log(action.client);
+      const indexClient = _.findIndex(state.clients, ['id', action.id]);
+      const clientarray = state.clients;
+      clientarray[indexClient] = action.client[0];
+      console.log(clientarray);
+      return {
+        ...state,
+        error: null,
+        clients: clientarray.map((client) => {return Object.assign({}, client )}),
+      // }, clients: action.clients,
+        //_.set(state.clients, 'clients[' + action.id + ']', action.client),
+        clientStatus: loadingStatus.LOADED,
+      };
+    }
+
+    case Constants.FETCH_CLIENT_REQUEST: {
+      return {
+        ...state,
+        clientStatus: action.clientStatus,
+      };
+    }
+
+    case Constants.FETCH_CLIENT_FAILURE: {
+      return {
+        ...state,
+        error: action.error,
+        clientStatus: loadingStatus.FAILED,
       };
     }
 

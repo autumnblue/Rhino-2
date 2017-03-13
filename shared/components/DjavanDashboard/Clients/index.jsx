@@ -14,6 +14,7 @@ const mapStateToProps = ( client ) => ({
   error: client.clients.error,
 });
 
+
 const mapDispatchToProps = (dispatch) => ({
   loadData: (page, loadingMore) => {
     //dispatch(ClientsActions.mockClients(page, loadingMore));
@@ -21,7 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   viewClient: (id, title) => dispatch(ClientsActions.viewClient(id, title)),
   refreshClientsList: () => dispatch(ClientsActions.refreshClientsList()),
+  // fetchClient: (id) => dispatch(ClientsActions.fetchClient(id)),
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClientsLogic);

@@ -7,7 +7,9 @@ const BASE_URL = process.env.API_URL || 'http://api.djavan.local/v1/';
 function buildHeaders() {
   const token = cookie.load('token');
   return {
-    token,
+    //token,
+    'Content-Type': 'application/x-www-form-urlencoded',
+    // 'Content-Type': 'application/json',
     // 'client-version': 'WEB',
   };
 }
@@ -15,8 +17,8 @@ function buildHeaders() {
 //see https://www.npmjs.com/package/popsicle
 function prefix (url) {
     return function (self, next) {
-        self.url = url + self.url
-        return next()
+        self.url = url + self.url;
+        return next();
     }
 }
 
@@ -33,8 +35,8 @@ export function httpPost(url, data) {
   return request({
     method: 'post',
     headers: buildHeaders(),
-    url,
-    data,
+    url: url,
+    body: data,
   })
   .use(prefix(BASE_URL))
   .use(plugins.parse('json'))
@@ -45,7 +47,7 @@ export function httpGet(url) {
   return request({
     method: 'get',
     headers: buildHeaders(),
-    url,
+    url: url,
   })
   .use(prefix(BASE_URL))
   .use(plugins.parse('json'))
@@ -56,8 +58,8 @@ export function httpPut(url, data) {
   return request({
     method: 'put',
     headers: buildHeaders(),
-    url,
-    data,
+    url: url,
+    body: data,
   })
   .use(prefix(BASE_URL))
   .use(plugins.parse('json'))

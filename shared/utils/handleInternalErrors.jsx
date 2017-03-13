@@ -32,14 +32,14 @@ export function logger(error, store) {
   if (console.group) {
     window.console && console.error && console.error(error);
 
-    if (process.env.NODE_ENV !== 'development') {
-      Raven.captureException(error, {
-        extra: {
-          state: store.getState(),
-        },
-      });
-    } else {
+    // if (process.env.NODE_ENV !== 'development') {
+      // Raven.captureException(error, {
+      //   extra: {
+      //     state: store.getState(),
+      //   },
+      // });
+    // } else {
       StackTrace.fromError(error).then(log);
-    }
+    // }
   }
 }

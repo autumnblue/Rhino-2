@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Waypoint from 'react-waypoint';
 import DashboardLoader from '../Dashboard/Content/DashboardLoader';
 
-const InfinteScrolling = ({ loadMore, loadingMore, hasMore }) =>
+const InfiniteScrolling = ({ loadMore, loadingMore, hasMore }) =>
   (<div>
     {!loadingMore && hasMore ?
       (<Waypoint
@@ -16,10 +16,10 @@ const InfinteScrolling = ({ loadMore, loadingMore, hasMore }) =>
     }
   </div>);
 
-InfinteScrolling.propTypes = {
+InfiniteScrolling.propTypes = {
   loadMore: PropTypes.func.isRequired,
   loadingMore: PropTypes.bool.isRequired,
   hasMore: PropTypes.bool.isRequired,
 };
 
-export default InfinteScrolling;
+export default InfiniteScrolling;
