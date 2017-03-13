@@ -1,18 +1,18 @@
 [Unit]
 Description=Djavan
-Requires=After=nginx.service       # Requires the nginx service to run first
+#Requires=After=nginx.service
 
 [Service]
-ExecStart=/usr/bin/node
+ExecStart=/usr/bin/node ./bin/server.js
 WorkingDirectory={{ project.root }}
 Restart=always
-RestartSec=10                       # Restart service after 10 seconds if node service crashes
-StandardOutput=syslog               # Output to syslog
-StandardError=syslog                # Output to syslog
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
 SyslogIdentifier=djavan
-User={{ project.user }}
-Group={{ project.group }}
-Environment=NODE_ENV={{ project.environment }} PORT={{ project.port }}
+#User={{ project.user }}
+#Group={{ project.group }}
+Environment=NODE_ENV="{{ project.environment }} PORT={{ project.port }}"
 
 [Install]
 WantedBy=multi-user.target

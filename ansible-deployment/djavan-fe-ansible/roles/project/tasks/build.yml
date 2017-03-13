@@ -10,12 +10,20 @@
   shell: "npm install --unsafe-perm"
   args:
       chdir: "{{ project.root }}"
-  register: yarn
-- debug: var=yarn.stdout_lines
+  register: npminstall
+- debug: var=npminstall.stdout_lines
 
 - name: project | npm run build
   shell: "npm run build"
   args:
       chdir: "{{ project.root }}"
-  register: yarn
-- debug: var=yarn.stdout_lines
+  register: npmbuild
+- debug: var=npmbuild.stdout_lines
+
+- name: project | set perms on "{{ project.root }}"
+  file:
+    group: "{{ project.group }}"
+    owner: "{{ project.user }}"
+    path: "{{ project.root }}"
+    recurse: yes
+    mode: 4775
