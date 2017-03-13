@@ -20,7 +20,7 @@ export default function reducer(state = initialState, action) {
       //check for existance of action client id's if state client exists
       //if existance, replace item in state with action
       //return new state
-      
+
       //const clientsArray =
 
       return {
