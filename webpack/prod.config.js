@@ -95,7 +95,6 @@ module.exports = {
       'process.env': {
         NODE_ENV: '"production"',
         API_URL: JSON.stringify(process.env.API_URL),
-        LINKEDIN_REDIRECT_URI: JSON.stringify(process.env.LINKEDIN_REDIRECT_URI),
       },
       __CLIENT__: true,
       __DEVELOPMENT__: false,
