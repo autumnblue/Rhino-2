@@ -2,7 +2,7 @@ import {request, plugins} from 'popsicle';
 import cookie from 'react-cookie';
 import jwtDecode from 'jwt-decode';
 
-const BASE_URL = process.env.API_URL || 'https://djavan-server.rhino.lan/api/v1/';
+const BASE_URL = process.env.API_URL || 'https://djavan-server.rsl.host/api/v1/';
 
 function buildHeaders() {
   const token = cookie.load('token');
