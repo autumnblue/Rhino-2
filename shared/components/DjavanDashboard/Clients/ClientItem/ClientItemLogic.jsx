@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ClientItemView from './ClientItemView';
+import _ from 'lodash';
 // import DashboardCardActionLeft from '../../Dashboard/Card/DashboardCardActionLeft';
 // import DashboardCardSubtitle from '../../Dashboard/Card/DashboardCardSubtitle';
 // import DashboardCardDetails from '../../Dashboard/Card/DashboardCardDetails';
@@ -39,25 +40,27 @@ export default class ClientItemLogic extends Component {
       hourly_rate: PropTypes.number,
       id: PropTypes.number,
       name: PropTypes.string,
+      umbrella: PropTypes.node,
+      departments: PropTypes.array,
     }),
-    fetchClient: PropTypes.func.isRequired,
+    updateClient: PropTypes.func.isRequired,
+    possibleUmbrellas: PropTypes.array.isRequired,
 //  properties...
   };
 
   state = {
     showMore: false,
+    possibleUmbrellasWithoutThis: [],
   };
 
   componentWillMount() {
-    //
-    // if (this.props.clientsStatus !== 'loaded') {
-    //   this.props.loadData(this.state.currentPage, false);
-    // }
-    //
-    // if (this.props.showMore != this.state.showMore) {
-    //   this.setState({currentPage: this.props.showMore});
-    // }
-
+    if (this.props.possibleUmbrellas && this.props.clientItem)
+    {
+      const clientId = this.props.clientItem.id;
+      console.log(clientId);
+      const uniqueUmbrellas = this.props.possibleUmbrellas.map((umbrella) => {if (umbrella.id != clientId) return Object.assign({}, umbrella )})
+      this.setState({possibleUmbrellasWithoutThis: uniqueUmbrellas})
+    }
   }
 
   componentWillUnmount() {

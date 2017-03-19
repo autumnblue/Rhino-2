@@ -9,6 +9,8 @@ export const initialState = {
   loadingMore: false,
   hasMore: true,
   page: 0,
+  possibleUmbrellas: [],
+  umbrellasStatus: loadingStatus.UNINITIALIZED,
 };
 
 export default function reducer(state = initialState, action) {
@@ -53,12 +55,12 @@ export default function reducer(state = initialState, action) {
 
 
     case Constants.FETCH_CLIENT: {
-      console.log("Client Action");
-      console.log(action.client);
+      // console.log("Client Action");
+      // console.log(action.client);
       const indexClient = _.findIndex(state.clients, ['id', action.id]);
       const clientarray = state.clients;
       clientarray[indexClient] = action.client[0];
-      console.log(clientarray);
+      // console.log(clientarray);
       return {
         ...state,
         error: null,
@@ -101,6 +103,49 @@ export default function reducer(state = initialState, action) {
         loadingMore: false,
       };
     }
+
+    case Constants.FETCH_CLIENTS_POSSIBLE_UMBRELLAS: {
+
+      return {
+        ...state,
+        error: null,
+        possibleUmbrellas: state.possibleUmbrellas.concat(action.possibleUmbrellas),
+        umbrellasStatus: loadingStatus.LOADED,
+      };
+    }
+
+    case Constants.FETCH_CLIENTS_POSSIBLE_UMBRELLAS_REQUEST: {
+      return {
+        ...state,
+        umbrellasStatus: action.umbrellasStatus,
+      };
+    }
+
+    case Constants.FETCH_CLIENTS_POSSIBLE_UMBRELLAS_FAILURE: {
+      return {
+        ...state,
+        error: action.error,
+        umbrellasStatus: loadingStatus.FAILED,
+      };
+    }
+
+    case Constants.UPDATE_POSSIBLE_UMBRELLAS: {
+      // console.log("Client Action");
+      // console.log(action.department);
+      const indexClient = _.findIndex(state.possibleUmbrellas, ['id', action.id]);
+      const umbrellaarray = state.possibleUmbrellas;
+      umbrellaarray[indexClient] = action.umbrella[0];
+      // console.log(departmentarray);
+      return {
+        ...state,
+        error: null,
+        possibleUmbrellas: umbrellaarray.map((umbrella) => {return Object.assign({}, umbrella )}),
+        // }, clients: action.clients,
+        //_.set(state.clients, 'clients[' + action.id + ']', action.client),
+        umbrellasStatus: loadingStatus.LOADED,
+      };
+    }
+
 
     default:
       return state;

@@ -40,7 +40,7 @@ const Actions = {
           });
       }
     ),
-  fetchClient: (id, val) =>
+  updateClient: (id, val) =>
     ((dispatch) => {
         dispatch({
           type: Constants.FETCH_CLIENT_REQUEST,
@@ -63,17 +63,26 @@ const Actions = {
             }
             )
             .then((() => {
+              dispatch({
+                type: Constants.FETCH_CLIENTS_POSSIBLE_UMBRELLAS_REQUEST,
+                clientStatus: loadingStatus.LOADING,
+              });
               val.clientitem["commit"] = true;
               httpPut(`clients/${id}.json`, val.clientitem)
                 .catch((error) => logger(error))
                 .then((response => {
                   if (response.body) { //.data.meta.total_results > 0
-                    console.log(response.body);
+                    // console.log(response.body);
                     dispatch({
                       type: Constants.FETCH_CLIENT,
                       client: [response.body.client],
                       id: id,
                     });
+                    dispatch({
+                      type: Constants.UPDATE_POSSIBLE_UMBRELLAS,
+                      umbrella: [response.body.client],
+                      id: id,
+                    })
                   } else {
                     dispatch({
                       type: Constants.FETCH_CLIENT_FAILURE,
@@ -82,10 +91,71 @@ const Actions = {
                   }
                 }));
             }));
+          // .then( ( (dispatch) => {
+          //
+          //
+          //
+          //   }));
       }
     ),
-  updateClientsList: (newClients) => ({ type: Constants.UPDATE_CLIENTS_LIST, clients: newClients }),
+
+//  https://djavan-server.rsl.host/api/v1/clients.json?page=1&per_page=1000&sort[]=id&exclude[]=*&include[]=id&include[]=name&filter{umbrella.isnull}=1
+//   updateClientsList: (newClients) => ({ type: Constants.UPDATE_CLIENTS_LIST, clients: newClients }),
   refreshClientsList: () => ({ type: Constants.REFRESH_CLIENTS_LIST }),
+
+  fetchPossibleUmbrellas: () =>
+    ((dispatch) => {
+        dispatch({
+          type: Constants.FETCH_CLIENTS_POSSIBLE_UMBRELLAS_REQUEST,
+          umbrellasStatus: loadingStatus.LOADING,
+        });
+        // console.log("Requesting Clients");
+        return httpGet(`clients.json?page=1&per_page=1200&sort[]=id&exclude[]=*&include[]=id&include[]=name&filter{departments.isnull}=1`)
+          .catch((error) =>
+            logger(error)
+          )
+          .then((response) => {
+            if (response.body) { //.data.meta.total_results > 0
+              // console.log(response.body);
+              dispatch({
+                type: Constants.FETCH_CLIENTS_POSSIBLE_UMBRELLAS,
+                possibleUmbrellas: response.body.clients,
+              });
+            } else {
+              dispatch({
+                type: Constants.FETCH_CLIENTS_POSSIBLE_UMBRELLAS_FAILURE,
+                error: handleInternalErrors(response),
+              });
+            }
+          });
+      }
+    ),
+  // assignDepartmentToClient: () =>
+  //   ((dispatch) => {
+  //       dispatch({
+  //         type: Constants.FETCH_CLIENTS_POSSIBLE_DEPARTMENTS_REQUEST,
+  //         umbrellasStatus: loadingStatus.LOADING,
+  //       });
+  //       return httpGet(`clients.json?page=1&per_page=1200&sort[]=id&exclude[]=*&include[]=id&include[]=name&filter{departments.isnull}=1`)
+  //         .catch((error) =>
+  //           logger(error)
+  //         )
+  //         .then((response) => {
+  //           if (response.body) { //.data.meta.total_results > 0
+  //             console.log(response.body);
+  //             dispatch({
+  //               type: Constants.FETCH_CLIENTS_POSSIBLE_DEPARTMENTS,
+  //               possibleUmbrellas: response.body.clients,
+  //             });
+  //           } else {
+  //             dispatch({
+  //               type: Constants.FETCH_CLIENTS_POSSIBLE_DEPARTMENTS_FAILURE,
+  //               error: handleInternalErrors(response),
+  //             });
+  //           }
+  //         });
+  //     }
+  //   ),
 };
 
 export default Actions;
