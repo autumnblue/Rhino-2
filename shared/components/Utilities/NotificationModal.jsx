@@ -6,6 +6,7 @@ export default class NotificationModal extends Component {
 
   static propTypes = {
     message: PropTypes.string.isRequired,
+    clearError: PropTypes.function,
   }
 
   state = {
@@ -16,13 +17,14 @@ export default class NotificationModal extends Component {
     this.setState({
       open: false,
     });
-    window.location = location;
+    this.props.clearError();
+    // window.location = location;
   }
 
   render() {
     const actions = [
       <FlatButton
-        label="Click to refresh page"
+        label="Close window"
         secondary
         onTouchTap={this.handleRequestClose}
       />,

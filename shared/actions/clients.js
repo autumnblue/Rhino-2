@@ -20,11 +20,11 @@ const Actions = {
             logger(error)
           )
           .then((response) => {
-            console.log(limit*page);
-            console.log(response.body.meta.total_results);
-            console.log((limit*page < response.body.meta.total_results));
+            // console.log(limit*page);
+            // console.log(response.body.meta.total_results);
+            // console.log((limit*page < response.body.meta.total_results));
             if (response.body) { //.data.meta.total_results > 0
-              console.log(response.body);
+              // console.log(response.body);
               dispatch({
                 type: Constants.FETCH_CLIENTS,
                 clients: response.body.clients,
@@ -49,17 +49,19 @@ const Actions = {
         // console.log("ClientItem (field: val, clientitembefore, clientitemafter:");
         // console.log(val.field + " : " + val.value);
         // console.log(val.clientitem);
-        _.set(val.clientitem, val.field, val.value);
+        let clientcopy = Object.assign({}, val.clientitem);
+        _.set(clientcopy, val.field, val.value);
         // console.log(val.clientitem);
-        return httpPut(`clients/${id}.json`, val.clientitem)
+        return httpPut(`clients/${id}.json`, clientcopy)
             .catch((error) =>
             {
+              console.log(error.response);
               dispatch({
                 type: Constants.FETCH_CLIENT_FAILURE,
                 error: handleInternalErrors(error),
               });
               //should be a modification of props for field
-              logger(error)
+              logger(error);
             }
             )
             .then((() => {
@@ -68,7 +70,7 @@ const Actions = {
                 clientStatus: loadingStatus.LOADING,
               });
               val.clientitem["commit"] = true;
-              httpPut(`clients/${id}.json`, val.clientitem)
+              httpPut(`clients/${id}.json`, clientcopy)
                 .catch((error) => logger(error))
                 .then((response => {
                   if (response.body) { //.data.meta.total_results > 0
@@ -91,17 +93,13 @@ const Actions = {
                   }
                 }));
             }));
-          // .then( ( (dispatch) => {
-          //
-          //
-          //
-          //   }));
       }
     ),
 
 //  https://djavan-server.rsl.host/api/v1/clients.json?page=1&per_page=1000&sort[]=id&exclude[]=*&include[]=id&include[]=name&filter{umbrella.isnull}=1
 //   updateClientsList: (newClients) => ({ type: Constants.UPDATE_CLIENTS_LIST, clients: newClients }),
   refreshClientsList: () => ({ type: Constants.REFRESH_CLIENTS_LIST }),
+  clearClientError: () => ({type: Constants.CLEAR_CLIENT_ERROR }),
 
   fetchPossibleUmbrellas: () =>
     ((dispatch) => {

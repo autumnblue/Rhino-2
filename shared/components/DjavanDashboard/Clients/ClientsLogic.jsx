@@ -17,6 +17,7 @@ export default class ClientsLogic extends Component {
     fetchPossibleUmbrellas: PropTypes.func.isRequired,
     umbrellasStatus: PropTypes.string,
     possibleUmbrellas: PropTypes.array.isRequired,
+    clearClientError: PropTypes.func.isRequired,
   };
 
   state = {
@@ -59,6 +60,13 @@ export default class ClientsLogic extends Component {
 
 
   render() {
+
+    if (this.props.error) {
+      return <div>
+          <NotificationModal clearError={this.props.clearClientError} message={this.props.error} />
+          <ClientsView {...this} />
+        </div>
+    }
     return <ClientsView {...this} />;
   }
 

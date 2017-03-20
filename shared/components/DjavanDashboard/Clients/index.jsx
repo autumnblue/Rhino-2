@@ -26,6 +26,7 @@ const mapDispatchToProps = (dispatch) => ({
   refreshClientsList: () => dispatch(ClientsActions.refreshClientsList()),
   // fetchClient: (id) => dispatch(ClientsActions.fetchClient(id)),
   fetchPossibleUmbrellas: (id, val) => dispatch(ClientsActions.fetchPossibleUmbrellas()),
+  clearClientError: () => dispatch(ClientsActions.clearClientError()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClientsLogic);

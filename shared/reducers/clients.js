@@ -147,6 +147,13 @@ export default function reducer(state = initialState, action) {
     }
 
 
+    case Constants.CLEAR_CLIENT_ERROR: {
+      return {
+        ...state,
+        error: null,
+      };
+    }
+
     default:
       return state;
   }
