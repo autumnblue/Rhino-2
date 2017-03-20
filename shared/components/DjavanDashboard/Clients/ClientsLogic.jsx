@@ -15,7 +15,7 @@ export default class ClientsLogic extends Component {
     loadData: PropTypes.func.isRequired,
     error: PropTypes.string,
     fetchPossibleUmbrellas: PropTypes.func.isRequired,
-    umbrellasStatus: PropTypes.string.isRequired,
+    umbrellasStatus: PropTypes.string,
     possibleUmbrellas: PropTypes.array.isRequired,
   };
 

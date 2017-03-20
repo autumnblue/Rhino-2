@@ -54,13 +54,11 @@ export default class ClientItemLogic extends Component {
   };
 
   componentWillMount() {
-    if (this.props.possibleUmbrellas && this.props.clientItem)
-    {
-      const clientId = this.props.clientItem.id;
-      console.log(clientId);
-      const uniqueUmbrellas = this.props.possibleUmbrellas.map((umbrella) => {if (umbrella.id != clientId) return Object.assign({}, umbrella )})
-      this.setState({possibleUmbrellasWithoutThis: uniqueUmbrellas})
-    }
+    this.updatePossibleUmbrellas(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.updatePossibleUmbrellas(nextProps);
   }
 
   componentWillUnmount() {
@@ -74,6 +72,21 @@ export default class ClientItemLogic extends Component {
     });
     // console.log(this.state.showMore);
   };
+
+  updatePossibleUmbrellas(props = this.props) {
+    if (props.possibleUmbrellas && props.clientItem)
+    {
+      const clientId = props.clientItem.id;
+      console.log(clientId);
+      const uniqueUmbrellas = props.possibleUmbrellas.map((umbrella) => {return Object.assign({}, (umbrella.id != clientId) ?  umbrella : null )});
+      console.log(uniqueUmbrellas);
+      this.setState({possibleUmbrellasWithoutThis: uniqueUmbrellas});
+    }
+  }
+
+
+
+// };
 
   //
   // handleModalClose = () => {
