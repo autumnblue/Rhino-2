@@ -12,6 +12,8 @@ const mapStateToProps = ( client ) => ({
   page: client.clients.page,
   clientsStatus: client.clients.clientsStatus,
   error: client.clients.error,
+  umbrellasStatus: client.clients.umbrellasStatus,
+  possibleUmbrellas: client.clients.possibleUmbrellas,
 });
 
 
@@ -23,6 +25,8 @@ const mapDispatchToProps = (dispatch) => ({
   viewClient: (id, title) => dispatch(ClientsActions.viewClient(id, title)),
   refreshClientsList: () => dispatch(ClientsActions.refreshClientsList()),
   // fetchClient: (id) => dispatch(ClientsActions.fetchClient(id)),
+  fetchPossibleUmbrellas: (id, val) => dispatch(ClientsActions.fetchPossibleUmbrellas()),
+  clearClientError: () => dispatch(ClientsActions.clearClientError()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClientsLogic);

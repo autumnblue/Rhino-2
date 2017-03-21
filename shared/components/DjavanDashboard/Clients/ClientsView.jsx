@@ -23,6 +23,8 @@ const ClientsView = (
       clientsStatus,
       hasMore,
       loadingMore,
+      umbrellasStatus,
+      possibleUmbrellas,
       //fetchClient,
     },
   }
@@ -38,7 +40,7 @@ const ClientsView = (
       {/*</Sticky>*/}
       {isLoaded(clientsStatus) && _.isEmpty(clients) && <ClientsEmptyView /*newClientClickHandler={newClientClickHandler}*/ />}
       {isLoaded(clientsStatus) && _.map(clients, (clientItem, index) =>
-        <ClientItemView key={index} /*clientClickHandler={clientClickHandler}*/ clientItemObject={clientItem} clientItem={clientItem} />)
+        <ClientItemView key={index} /*clientClickHandler={clientClickHandler}*/ possibleUmbrellas={possibleUmbrellas} clientItemObject={clientItem} clientItem={clientItem} />)
       }
       <InfiniteScrolling
         loadMore={loadMoreItems}
