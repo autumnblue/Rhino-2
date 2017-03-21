@@ -67,9 +67,7 @@ export default class ClientItemLogic extends Component {
 
   toggleMore = () => {
     // console.log(this.state.showMore);
-    this.setState({
-      showMore: !this.state.showMore,
-    });
+    this.setState((prevState) => ({ showMore: !prevState.showMore }))
     // console.log(this.state.showMore);
   };
 
@@ -77,11 +75,15 @@ export default class ClientItemLogic extends Component {
     if (props.possibleUmbrellas && props.clientItem)
     {
       const clientId = props.clientItem.id;
-      console.log(clientId);
+      // console.log(clientId);
       const uniqueUmbrellas = props.possibleUmbrellas.map((umbrella) => {return Object.assign({}, (umbrella.id != clientId) ?  umbrella : null )});
-      console.log(uniqueUmbrellas);
+      // console.log(uniqueUmbrellas);
       this.setState({possibleUmbrellasWithoutThis: uniqueUmbrellas});
     }
+  }
+
+  updateField = (event, name, id, clientItemObject) => {
+    this.props.updateClient(id, {field: "name", value: event.target.value, clientitem: clientItemObject})
   }
 
 

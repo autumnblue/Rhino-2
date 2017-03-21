@@ -60,6 +60,7 @@ const ClientItemView = ({
     possibleUmbrellasWithoutThis,
   },
   toggleMore,
+  updateField,
 }
 ) =>
       <div>
@@ -123,7 +124,7 @@ const ClientItemView = ({
                       fullWidth={true}
                       defaultValue={name}
                       name="name"
-                      onBlur={(e) => {updateClient(id, {field: "name", value: e.target.value, clientitem: clientItemObject})}} />
+                      onBlur={(e) => {updateField(e, name, id, clientItemObject)}} />
                     <AutoComplete
                       floatingLabelFixed={true}
                       floatingLabelText="Parent (Umbrella) Client"

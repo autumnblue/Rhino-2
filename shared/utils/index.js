@@ -8,8 +8,8 @@ function buildHeaders() {
   const token = cookie.load('token');
   return {
     //token,
-    'Content-Type': 'application/x-www-form-urlencoded',
-    // 'Content-Type': 'application/json',
+    // 'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Type': 'application/json',
     // 'client-version': 'WEB',
   };
 }
@@ -64,6 +64,18 @@ export function httpPut(url, data) {
   .use(prefix(BASE_URL))
   .use(plugins.parse('json'))
   .then(checkStatus);
+}
+
+export function httpPatch(url, data) {
+  return request({
+    method: 'patch',
+    headers: buildHeaders(),
+    url: url,
+    body: data,
+  })
+    .use(prefix(BASE_URL))
+    .use(plugins.parse('json'))
+    .then(checkStatus);
 }
 
 export function httpDelete(url, data = {}) {

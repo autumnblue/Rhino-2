@@ -1,4 +1,4 @@
-import { httpPut, httpGet } from '../utils';
+import { httpPut, httpGet, httpPatch } from '../utils';
 import { handleInternalErrors, logger } from '../utils/handleInternalErrors';
 import Constants from '../constants';
 import { loadingStatus } from '../constants/loadingStatus';
@@ -49,10 +49,13 @@ const Actions = {
         // console.log("ClientItem (field: val, clientitembefore, clientitemafter:");
         // console.log(val.field + " : " + val.value);
         // console.log(val.clientitem);
-        let clientcopy = Object.assign({}, val.clientitem);
-        _.set(clientcopy, val.field, val.value);
-        // console.log(val.clientitem);
-        return httpPut(`clients/${id}.json`, clientcopy)
+        // let clientcopy = Object.assign({}, val.clientitem);
+        // _.set(clientcopy, val.field, val.value);
+        let clientcopy = {};
+        clientcopy[val.field] = val.value;
+        console.log(clientcopy.name);
+        console.log(clientcopy);
+        return httpPatch(`clients/${id}.json`, clientcopy)
             .catch((error) =>
             {
               console.log(error.response);
@@ -69,8 +72,8 @@ const Actions = {
                 type: Constants.FETCH_CLIENTS_POSSIBLE_UMBRELLAS_REQUEST,
                 clientStatus: loadingStatus.LOADING,
               });
-              val.clientitem["commit"] = true;
-              httpPut(`clients/${id}.json`, clientcopy)
+              clientcopy["commit"] = true;
+              httpPatch(`clients/${id}.json`, clientcopy)
                 .catch((error) => logger(error))
                 .then((response => {
                   if (response.body) { //.data.meta.total_results > 0
