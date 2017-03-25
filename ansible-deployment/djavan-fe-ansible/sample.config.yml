@@ -64,8 +64,8 @@ ssl_certs_csr_path: "{{ssl_certs_path}}/{{ssl_certs_common_name}}.csr"
 ssl_certs_dhparam_path: "{{ssl_certs_path}}/dhparam.pem"
 ssl_certs_mode: "0700"
 
-ssl_certs_local_privkey_path: "{{inventory_dir|default(playbook_dir)}}/files/ssl/{{ domainname }}.key"
-ssl_certs_local_cert_path: "{{inventory_dir|default(playbook_dir)}}/files/ssl/{{ domainname }}.pem"
+ssl_certs_local_privkey_path: "./files/ssl/{{ domainname }}.key"
+ssl_certs_local_cert_path: "./files/ssl/{{ domainname }}.pem"
 
 
 ssl_certs_key_size: "2048"
