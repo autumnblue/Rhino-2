@@ -8,6 +8,11 @@
   file:
     path: "{{ project.root }}"
     state: absent
+
+- name: project | create "{{ project.root }}"
+  file:
+    path: "{{ project.root }}"
+    state: directory
     
 #- name: project | Clone project
  # git:
