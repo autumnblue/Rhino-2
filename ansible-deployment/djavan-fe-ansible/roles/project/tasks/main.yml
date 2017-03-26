@@ -17,6 +17,14 @@
     update: no
     accept_hostkey: true
     version: "{{ project.repo_branch }}"
+    when: deploy == manual
+    
+- name: project | Unarchive djavan-fe application
+  unarchive:
+    src=files/djavan-fe-source.zip
+    dest={{project.root}}
+    copy=yes
+    when: deploy == automated
 
 - name: project | Check if logs dir exists
   file:
