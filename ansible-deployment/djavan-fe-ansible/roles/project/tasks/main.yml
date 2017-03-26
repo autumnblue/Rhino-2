@@ -9,22 +9,21 @@
     path: "{{ project.root }}"
     state: absent
     
-- name: project | Clone project
-  git:
-    repo: "{{ project.repo }}"
-    dest: "{{ project.root }}"
-    force: true
-    update: no
-    accept_hostkey: true
-    version: "{{ project.repo_branch }}"
-    when: "{{ deploy }}" is "manual"
+#- name: project | Clone project
+ # git:
+  #  repo: "{{ project.repo }}"
+  #  dest: "{{ project.root }}"
+  #  force: true
+  #  update: no
+  #  accept_hostkey: true
+  #  version: "{{ project.repo_branch }}"
+  #  when: "{{ deploy }}" is "manual"
     
 - name: project | Unarchive djavan-fe application
   unarchive:
     src: files/djavan-fe-source.zip
     dest: "{{ project.root }}"
     copy: yes
-    when: "{{ deploy }}" is "automated"
 
 - name: project | Check if logs dir exists
   file:
