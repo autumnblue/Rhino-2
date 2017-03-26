@@ -22,7 +22,7 @@
 - name: project | Unarchive djavan-fe application
   unarchive:
     src: files/djavan-fe-source.zip
-    dest: {{project.root}}
+    dest: "{{ project.root }}"
     copy: yes
     when: deploy == automated
 
