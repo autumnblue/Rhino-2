@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ClientItemView from './ClientItemView';
+import _ from 'lodash';
 // import DashboardCardActionLeft from '../../Dashboard/Card/DashboardCardActionLeft';
 // import DashboardCardSubtitle from '../../Dashboard/Card/DashboardCardSubtitle';
 // import DashboardCardDetails from '../../Dashboard/Card/DashboardCardDetails';
@@ -39,25 +40,25 @@ export default class ClientItemLogic extends Component {
       hourly_rate: PropTypes.number,
       id: PropTypes.number,
       name: PropTypes.string,
+      umbrella: PropTypes.node,
+      departments: PropTypes.array,
     }),
-    fetchClient: PropTypes.func.isRequired,
+    updateClient: PropTypes.func.isRequired,
+    possibleUmbrellas: PropTypes.array.isRequired,
 //  properties...
   };
 
   state = {
     showMore: false,
+    possibleUmbrellasWithoutThis: [],
   };
 
   componentWillMount() {
-    //
-    // if (this.props.clientsStatus !== 'loaded') {
-    //   this.props.loadData(this.state.currentPage, false);
-    // }
-    //
-    // if (this.props.showMore != this.state.showMore) {
-    //   this.setState({currentPage: this.props.showMore});
-    // }
+    this.updatePossibleUmbrellas(this.props);
+  }
 
+  componentWillReceiveProps(nextProps) {
+    this.updatePossibleUmbrellas(nextProps);
   }
 
   componentWillUnmount() {
@@ -66,11 +67,28 @@ export default class ClientItemLogic extends Component {
 
   toggleMore = () => {
     // console.log(this.state.showMore);
-    this.setState({
-      showMore: !this.state.showMore,
-    });
+    this.setState((prevState) => ({ showMore: !prevState.showMore }))
     // console.log(this.state.showMore);
   };
+
+  updatePossibleUmbrellas(props = this.props) {
+    if (props.possibleUmbrellas && props.clientItem)
+    {
+      const clientId = props.clientItem.id;
+      // console.log(clientId);
+      const uniqueUmbrellas = props.possibleUmbrellas.map((umbrella) => {return Object.assign({}, (umbrella.id != clientId) ?  umbrella : null )});
+      // console.log(uniqueUmbrellas);
+      this.setState({possibleUmbrellasWithoutThis: uniqueUmbrellas});
+    }
+  }
+
+  updateField = (event, name, id, clientItemObject) => {
+    this.props.updateClient(id, {field: "name", value: event.target.value, clientitem: clientItemObject})
+  }
+
+
+
+// };
 
   //
   // handleModalClose = () => {

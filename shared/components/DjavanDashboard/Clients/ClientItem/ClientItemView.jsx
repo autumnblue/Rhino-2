@@ -3,6 +3,7 @@ import makeBem from 'bem-cx';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+import AutoComplete from 'material-ui/AutoComplete';
 import DashboardCard from '../../../Dashboard/Card/DashboardCard';
 import DashboardCardTitle from '../../../Dashboard/Card/DashboardCardTitle';
 import DashboardCardAction from '../../../Dashboard/Card/DashboardCardAction';
@@ -47,13 +48,19 @@ const ClientItemView = ({
       hourly_rate, //z
       id, //z
       name, //z
+      umbrella,
+      departments,
     },
-    fetchClient,
+    updateClient,
+    possibleUmbrellas,
+    umbrellasStatus,
   },
   state: {
-    showMore
+    showMore,
+    possibleUmbrellasWithoutThis,
   },
   toggleMore,
+  updateField,
 }
 ) =>
       <div>
@@ -110,13 +117,23 @@ const ClientItemView = ({
                 <DashboardCardTitle title={"Edit " + name} />
                 <DashboardCardSlicer>
                   <DashboardCardSlicerMiddle>
-                    <TextField floatingLabelFixed={true}
-                               floatingLabelText="Name"
-                               hintText="Should be blah blah"
-                               fullWidth={true}
-                               defaultValue={name}
-                               name="name"
-                               onBlur={(e) => {fetchClient(id, {field: "name", value: e.target.value, clientitem: clientItemObject})}} />
+                    <TextField
+                      floatingLabelFixed={true}
+                      floatingLabelText="Name"
+                      hintText="Should be blah blah"
+                      fullWidth={true}
+                      defaultValue={name}
+                      name="name"
+                      onBlur={(e) => {updateField(e, name, id, clientItemObject)}} />
+                    <AutoComplete
+                      floatingLabelFixed={true}
+                      floatingLabelText="Parent (Umbrella) Client"
+                      hintText="Enter desired umbrella client"
+                      openOnFocus={true}
+                      dataSource={possibleUmbrellasWithoutThis}
+                      filter={AutoComplete.fuzzyFilter}
+                      dataSourceConfig={{ value: 'id', text: 'name',}}
+                      menuStyle = {{maxHeight:"300px"}} />
                   </DashboardCardSlicerMiddle>
                 </DashboardCardSlicer>
               </DashboardCard>
@@ -126,12 +143,9 @@ const ClientItemView = ({
         </DashboardCard>
       </div>;
 
-
 export default ClientItemView;
 
-
 //
-
 //
 // <Dialog title="Image upload"
 //         actions={actions}

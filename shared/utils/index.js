@@ -2,14 +2,14 @@ import {request, plugins} from 'popsicle';
 import cookie from 'react-cookie';
 import jwtDecode from 'jwt-decode';
 
-const BASE_URL = process.env.API_URL || 'http://djavan-server.rhino.lan/api/v1/';
+const BASE_URL = process.env.API_URL || 'https://djavan-server.rsl.host/api/v1/';
 
 function buildHeaders() {
   const token = cookie.load('token');
   return {
     //token,
-    'Content-Type': 'application/x-www-form-urlencoded',
-    // 'Content-Type': 'application/json',
+    // 'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Type': 'application/json',
     // 'client-version': 'WEB',
   };
 }
@@ -23,7 +23,7 @@ function prefix (url) {
 }
 
 export function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
+  if (response.status >= 200 && response.status <= 302) {
     return response;
   }
   const error = new Error(response.statusText);
@@ -64,6 +64,18 @@ export function httpPut(url, data) {
   .use(prefix(BASE_URL))
   .use(plugins.parse('json'))
   .then(checkStatus);
+}
+
+export function httpPatch(url, data) {
+  return request({
+    method: 'patch',
+    headers: buildHeaders(),
+    url: url,
+    body: data,
+  })
+    .use(prefix(BASE_URL))
+    .use(plugins.parse('json'))
+    .then(checkStatus);
 }
 
 export function httpDelete(url, data = {}) {

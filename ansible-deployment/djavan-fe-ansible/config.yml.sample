@@ -2,6 +2,9 @@
 hostname: djavan
 domainname: rhino.lan
 
+#Change from automated or manual. Manual will clone repo on the server to deploy code. Automated does not use git within playbooks and relies on compress source to exist in ./files (Jenkins will automatically put the source there)
+deploy: automated
+
 # General project variables
 project:
 
@@ -32,9 +35,10 @@ project:
   #NPM logging level
   npm_config_loglevel: info
   
-  #Github project
+  #Only used when manual deploy is set
+  Github project
   repo: git@bitbucket.org:xander-sereda/djavan-front-end.git
-  repo_branch: ansible
+  repo_branch: master
 
 # Definition of variables for ./roles/nginx/templates/nginx.conf
 nginx:
@@ -64,8 +68,8 @@ ssl_certs_csr_path: "{{ssl_certs_path}}/{{ssl_certs_common_name}}.csr"
 ssl_certs_dhparam_path: "{{ssl_certs_path}}/dhparam.pem"
 ssl_certs_mode: "0700"
 
-ssl_certs_local_privkey_path: "{{inventory_dir|default(playbook_dir)}}/files/ssl/{{ssl_certs_common_name}}.key"
-ssl_certs_local_cert_path: "{{inventory_dir|default(playbook_dir)}}/files/ssl/{{ssl_certs_common_name}}.pem"
+ssl_certs_local_privkey_path: "./files/ssl/{{ domainname }}.key"
+ssl_certs_local_cert_path: "./files/ssl/{{ domainname }}.pem"
 
 
 ssl_certs_key_size: "2048"

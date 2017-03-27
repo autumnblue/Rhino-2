@@ -13,10 +13,11 @@ export default class ClientsLogic extends Component {
     page: PropTypes.number.isRequired,
     clientsStatus: PropTypes.string.isRequired,
     loadData: PropTypes.func.isRequired,
-    // viewClient: PropTypes.func.isRequired,
-    // refreshClientsList: PropTypes.func.isRequired,
     error: PropTypes.string,
-    //fetchClient: PropTypes.func.isRequired,
+    fetchPossibleUmbrellas: PropTypes.func.isRequired,
+    umbrellasStatus: PropTypes.string,
+    possibleUmbrellas: PropTypes.array.isRequired,
+    clearClientError: PropTypes.func.isRequired,
   };
 
   state = {
@@ -31,10 +32,13 @@ export default class ClientsLogic extends Component {
       this.props.loadData(this.state.currentPage, false);
     }
 
+    if (this.props.umbrellasStatus !== 'loaded') {
+      this.props.fetchPossibleUmbrellas();
+    }
+
     if (this.props.page > this.state.currentPage) {
       this.setState({ currentPage: this.props.page });
     }
-
   }
 
   componentWillUnmount() {
@@ -56,6 +60,13 @@ export default class ClientsLogic extends Component {
 
 
   render() {
+
+    if (this.props.error) {
+      return <div>
+          <NotificationModal clearError={this.props.clearClientError} message={this.props.error} />
+          <ClientsView {...this} />
+        </div>
+    }
     return <ClientsView {...this} />;
   }
 
