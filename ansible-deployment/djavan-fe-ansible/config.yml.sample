@@ -35,7 +35,7 @@ project:
   #NPM logging level
   npm_config_loglevel: info
   
-  #Only used when manual deploy is set
+  #Only used when automated deploy is false
   Github project
   repo: git@bitbucket.org:xander-sereda/djavan-front-end.git
   repo_branch: master
