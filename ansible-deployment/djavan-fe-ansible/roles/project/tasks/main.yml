@@ -20,22 +20,23 @@
     path: "{{ project.root }}"
     state: directory
     
-#- name: project | Clone project
- # git:
-  #  repo: "{{ project.repo }}"
-  #  dest: "{{ project.root }}"
-  #  force: true
-  #  update: no
-  #  accept_hostkey: true
-  #  version: "{{ project.repo_branch }}"
-  #  when: "{{ deploy }}" is "manual"
+- name: project | Clone project
+  git:
+    repo: "{{ project.repo }}"
+    dest: "{{ project.root }}"
+    force: true
+    update: no
+    accept_hostkey: true
+    version: "{{ project.repo_branch }}"
+    when: not automated
     
 - name: project | Unarchive djavan-fe application
   unarchive:
     src: files/djavan-fe-source.zip
     dest: "{{ project.root }}"
     copy: yes
-
+    when: automated
+    
 - name: project | Check if logs dir exists
   file:
     path: "{{ project.root }}/logs"
