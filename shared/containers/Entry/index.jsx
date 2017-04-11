@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-export default function Entry({ children }) {
+const Entry = ({ children }) => {
   return (
     <div className="entryWrapper">
       { children }
@@ -11,3 +11,5 @@ export default function Entry({ children }) {
 Entry.propTypes = {
   children: PropTypes.object.isRequired,
 };
+
+export default Entry;
