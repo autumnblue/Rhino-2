@@ -14,4 +14,3 @@ coverage
 yarn.lock
 core
 .DS_Store
-.env
