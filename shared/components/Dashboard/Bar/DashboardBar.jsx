@@ -1,4 +1,6 @@
-import React, { PropTypes } from 'react';
+
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import makeBem from 'bem-cx';
 import { push } from 'react-router-redux';
@@ -23,20 +25,7 @@ const logOut = () => {
   window.location = '/';
 };
 
-export default class DashboardBar extends React.Component {
-
-  static propTypes = {
-    title: PropTypes.string.isRequired,
-    backLink: PropTypes.string,
-    // currentUser: PropTypes.object.isRequired,
-    children: PropTypes.node,
-    actions: PropTypes.node,
-  };
-
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  };
-
+export default class DashboardBar extends Component {
   render() {
     return (
       <Paper className={bem} zDepth={2}>
@@ -67,3 +56,11 @@ export default class DashboardBar extends React.Component {
   }
 
 }
+
+DashboardBar.propTypes = {
+  title: PropTypes.string.isRequired,
+  backLink: PropTypes.string,
+  // currentUser: PropTypes.object.isRequired,
+  children: PropTypes.node,
+  actions: PropTypes.node,
+};
