@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import makeBem from 'bem-cx';
 
 const bem = makeBem('djavanFormElement');
@@ -40,7 +41,7 @@ DjavanTextField.propTypes = {
   disabled: PropTypes.bool,
   autoFocus: PropTypes.bool,
   name: PropTypes.string.isRequired,
-  value: React.PropTypes.oneOfType([
+  value: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string]),
   max: PropTypes.number,

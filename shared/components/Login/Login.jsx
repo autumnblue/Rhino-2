@@ -1,108 +1,55 @@
-import React, { Component, PropTypes } from 'react';
-import isEmail from 'validator/lib/isEmail';
-import LoginView from './LoginView';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router';
+import Helmet from 'react-helmet';
+import makeBem from 'bem-cx';
+import RaisedButton from 'material-ui/RaisedButton';
+import DashboardForm from '../Dashboard/Form/DashboardForm';
+import DashboardFormCard from '../Dashboard/Form/DashboardFormCard';
+import DashboardFormCardAction from '../Dashboard/Form/DashboardFormCardAction';
+import DashboardCardActionCenter from '../Dashboard/Card/DashboardCardActionCenter';
+import InputField from '../Form/InputField';
 
+const bem = makeBem('login');
 
-export default class Login extends Component {
+const LoginComponent = (props) =>
+  <DashboardForm>
+    <Helmet title={props.title} titleTemplate="%s | DJAVAN - RSL" />
+    <DashboardFormCard title="Log In" backLink={props.backLink}>
+      <div className={bem}>
+        <form onSubmit={props.handleSubmit}>
 
-  static propTypes = {
-    email: PropTypes.string,
-    // emailGiveHint: PropTypes.func,
-    // passwordGiveHint: PropTypes.func,
-    onLogin: PropTypes.func,
-    validPassword: PropTypes.func,
-    resetEmailPassword: PropTypes.func,
-    resetSession: PropTypes.func,
-    setErrorMessage: PropTypes.func,
-    validEmail: PropTypes.func,
-    login: PropTypes.shape({
-      emailHint: PropTypes.string,
-      passHint: PropTypes.string,
-      error: PropTypes.string,
-    }),
-  }
+          <InputField
+            question="email"
+            hint="email@example.com"
+            icon="email"
+            onChange={props.handleEmailChange}
+            onBlur={props.handleEmailChange}
+            valid={props.valid}
+            autoFocus
+          />
 
-  state = {
-    valid: false,
-  }
+          <InputField
+            question="password"
+            hint="Password"
+            icon="lock"
+            onChange={props.handlePasswordChange}
+            onBlur={props.handlePasswordChange}
+          />
 
+          <DashboardFormCardAction>
+            <DashboardCardActionCenter>
+              <RaisedButton primary label="Login" onTouchTap={props.handleSubmit} />
+            </DashboardCardActionCenter>
+          </DashboardFormCardAction>
 
-  componentWillMount() {
-  }
+          <div className={bem.el('bottom')}>
+            <InputField question="rememberMe" label="Remember me" onChange={props.handleRememberChange} />
+          </div>
 
-  componentWillUnmount() {
-    // this.props.resetEmailPassword();
-    this.props.resetSession();
-  }
+        </form>
+      </div>
+    </DashboardFormCard>
+  </DashboardForm>;
 
-  title = 'Log in'
-  backLink = '/'
-  password = ''
-
-  checkValidEmail = (email) => (isEmail(email))
-
-  handleEmailChange = (response) => {
-    if (response.value) {
-      this.email = response.value.trim().toLowerCase();
-      this.validateField();
-    }
-  }
-
-  validateField = async () => {
-    // if (!this.checkValidEmail(this.email)) {
-    //   await this.props.emailGiveHint();
-    //   this.props.setErrorMessage({ emailInvalid: this.props.form.emailHint });
-    //   this.setState({
-    //     valid: false,
-    //   });
-    // } else {
-    //   this.props.validEmail();
-    //   this.setState({
-    //     valid: true,
-    //   });
-    // }
-  }
-
-  handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const data = { email: this.email, password: this.password };
-    // const emailCheck = this.checkValidEmail(data.email);
-    // const passwordCheck = this.checkPassword(data.password);
-
-    // if (this.state.valid) {
-    //   this.props.checkUser(this.email);
-    // } else {
-    //   await this.props.emailHint();
-    //   this.props.setErrorMessage({ emailInvalid: this.props.emailHint });
-    // }
-
-    // if (emailCheck && passwordCheck) {
-    //   this.props.validPassword();
-      this.props.onLogin(data);
-    // } else {
-    //   await this.props.passwordGiveHint();
-    //   this.props.setErrorMessage({ passwordIncorrect: this.props.error });
-    // }
-  }
-
-  checkPassword = (password) => (password.length >= 8);
-
-  handlePasswordChange = (response) => {
-    this.password = response.value.trim();
-  }
-
-  handleRememberChange = (response) => {
-    // console.log('handleRememberChange', response);
-  }
-
-  render() {
-    return <LoginView {...this} />;
-  }
-
-}
-
-
-Login.contextTypes = {
-  router: PropTypes.object.isRequired,
-};
+export default LoginComponent;

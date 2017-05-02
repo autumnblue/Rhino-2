@@ -7,7 +7,7 @@ import Assessments from './components/DjavanDashboard/Assessments';
 import Clients from './components/DjavanDashboard/Clients';
 import Entry from './containers/Entry';
 import cookie from 'react-cookie';
-import Login from './components/Login/Login';
+import Login from './components/Login';
 
 import Actions from './actions/sessions';
 import { isClient, checkToken } from './utils';

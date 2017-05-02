@@ -1,12 +1,13 @@
 /* eslint react/prefer-stateless-function: 0, react/no-danger: 0, react/forbid-prop-types: 0 */
 /* eslint no-underscore-dangle: 0, global-require: 0 */
 
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import { webpackHost, webpackPort } from '../../config/env';
 
-export default class Default extends React.Component {
+export default class Default extends Component {
   render() {
     const { assets, component, store } = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
@@ -54,7 +55,7 @@ export default class Default extends React.Component {
 }
 
 Default.propTypes = {
-  assets: React.PropTypes.object,
-  component: React.PropTypes.node,
-  store: React.PropTypes.object,
+  assets: PropTypes.object,
+  component: PropTypes.node,
+  store: PropTypes.object,
 };

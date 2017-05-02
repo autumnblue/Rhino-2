@@ -17,12 +17,9 @@ const Actions = {
       _.map(errors, (error, key) => dispatch({ type: Constants.APP_ERROR_MESSAGE, error, key }))
     ),
 
-  login: (data) =>
+  userLoginRequest: (data) =>
     ((dispatch) =>
-      (httpPost('/user/login', data)
-      .catch((error) => {
-        logger(error);
-      })
+      (httpPost('token/', data)
       .then((response) => {
         if (!response.data.success) {
           dispatch({
@@ -40,6 +37,9 @@ const Actions = {
             dispatch(push('/company'));
           }
         }
+      })
+      .catch((error) => {
+        logger(error);
       })
     )
   ),

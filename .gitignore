@@ -13,3 +13,4 @@ coverage
 .eslintcache
 yarn.lock
 core
+.DS_Store

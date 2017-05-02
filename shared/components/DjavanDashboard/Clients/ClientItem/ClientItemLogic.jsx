@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ClientItemView from './ClientItemView';
 import _ from 'lodash';
 // import DashboardCardActionLeft from '../../Dashboard/Card/DashboardCardActionLeft';

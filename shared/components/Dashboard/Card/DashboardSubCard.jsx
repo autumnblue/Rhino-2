@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import makeBem from 'bem-cx';
 import DashboardCard from './DashboardCard';
 import DashboardCardTitle from './DashboardCardTitle'
@@ -6,8 +7,7 @@ import DashboardCardTitle from './DashboardCardTitle'
 
 const bem = makeBem('djavanDashboardCard');
 
-
-export default class DashboardSubCard extends React.Component {
+export default class DashboardSubCard extends Component {
 
   static propTypes = {
     children: PropTypes.node,
@@ -60,7 +60,5 @@ export default class DashboardSubCard extends React.Component {
       </DashboardCard>
     );
   }
-
-
-
+  
 }

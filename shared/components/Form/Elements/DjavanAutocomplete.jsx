@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import makeBem from 'bem-cx';
 import AutoComplete from 'material-ui/AutoComplete';
 import { djavanTheme, borderGrey, errorRed } from '../../../constants/djavanTheme';

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import makeBem from 'bem-cx';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import { djavanTheme, borderGrey, errorRed } from '../../../constants/djavanTheme';
