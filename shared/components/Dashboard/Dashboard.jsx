@@ -14,7 +14,7 @@ const Dashboard = ({props: {menu, children, location}}) =>
   </div>;
 
 Dashboard.propTypes = {
-  props: React.PropTypes.shape({
+  props: PropTypes.shape({
     menu: PropTypes.array.isRequired,
     children: PropTypes.node.isRequired,
     location: PropTypes.object.isRequired,

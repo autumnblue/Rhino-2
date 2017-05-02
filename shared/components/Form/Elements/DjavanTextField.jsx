@@ -41,7 +41,7 @@ DjavanTextField.propTypes = {
   disabled: PropTypes.bool,
   autoFocus: PropTypes.bool,
   name: PropTypes.string.isRequired,
-  value: React.PropTypes.oneOfType([
+  value: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string]),
   max: PropTypes.number,
