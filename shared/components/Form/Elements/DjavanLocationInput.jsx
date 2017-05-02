@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import loadGoogleMapsAPI from 'load-google-maps-api';
 import makeBem from 'bem-cx';
 import cookie from 'react-cookie';
