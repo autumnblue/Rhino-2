@@ -5,6 +5,10 @@
   become: true
   become_user: "{{ project.user }}"
 
+- name: project | ensure pm2 is not running
+  shell: "pm2 delete all"
+  ignore_errors: true
+
 - name: project | remove previous pm2 configuration
   shell: "pm2 unstartup -u {{ project.user }}"
   ignore_errors: true
@@ -14,6 +18,9 @@
   args:
     chdir: "{{ project.root }}"
   register: yarn
+  become: true
+  become_user: "{{ project.user }}"
+    
 - debug: var=yarn.stdout_lines
 
 - name: project | npm install
