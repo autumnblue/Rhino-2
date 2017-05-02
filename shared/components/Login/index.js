@@ -11,12 +11,12 @@ class Login extends Component {
     password: null,
   }
 
-  handleEmailChange = (value) => {
-    this.setState({ username: value });
+  handleEmailChange = (username) => {
+    this.setState({ username: username.value });
   }
 
-  handlePasswordChange = (value) => {
-    this.setState({ password: value });
+  handlePasswordChange = (password) => {
+    this.setState({ password: password.value });
   }
 
   handleRememberChange = (value) => {
@@ -24,8 +24,8 @@ class Login extends Component {
   }
 
   handleSubmit = () => {
-    const { email, password } = this.state;
-    const data = { email: email, passowrd: password };
+    const { username, password } = this.state;
+    const data = { username: username, password: password };
     this.props.userLoginRequest(data);
   }
 
