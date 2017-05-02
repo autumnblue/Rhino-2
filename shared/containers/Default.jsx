@@ -2,6 +2,7 @@
 /* eslint no-underscore-dangle: 0, global-require: 0 */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import { webpackHost, webpackPort } from '../../config/env';
@@ -54,7 +55,7 @@ export default class Default extends React.Component {
 }
 
 Default.propTypes = {
-  assets: React.PropTypes.object,
-  component: React.PropTypes.node,
-  store: React.PropTypes.object,
+  assets: PropTypes.object,
+  component: PropTypes.node,
+  store: PropTypes.object,
 };
