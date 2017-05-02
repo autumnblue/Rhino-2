@@ -19,7 +19,7 @@ const Actions = {
 
   userLoginRequest: (data) =>
     ((dispatch) =>
-      (httpPost('user/login', data)
+      (httpPost('token/', data)
       .then((response) => {
         if (!response.data.success) {
           dispatch({
