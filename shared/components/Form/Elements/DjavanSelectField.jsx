@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import makeBem from 'bem-cx';
 import SelectField from 'material-ui/SelectField';
 import { djavanTheme, borderGrey, errorRed } from '../../../constants/djavanTheme';
