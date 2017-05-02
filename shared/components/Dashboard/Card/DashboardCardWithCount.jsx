@@ -1,10 +1,10 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import makeBem from 'bem-cx';
 import { Card, CardText } from 'material-ui/Card';
 import Badge from 'material-ui/Badge'
 
 const bem = makeBem('djavanDashboardCard');
-
 
 const DashboardCardWithCount = ({ clickHandler, children, badge }) =>
   <Badge badgeContent={badge} >
@@ -12,8 +12,6 @@ const DashboardCardWithCount = ({ clickHandler, children, badge }) =>
       <CardText>{children}</CardText>
     </Card>
   </Badge>;
-
-
 
 
 DashboardCardWithCount.propTypes = {
