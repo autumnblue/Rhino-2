@@ -17,29 +17,24 @@
     - project
 
  
-#- name: Restart Djavan FE stack
-  #hosts: local
-  #become: true
-  #become_user: root
-  #vars_files:
-   # - ./group_vars/config.yml
-    #- ./group_vars/package-versions.yml
-  #tasks:
+- name: Restart Djvana-FE stack
+  hosts: local
+  become: true
+  become_user: root
+  vars_files:
+    - ./group_vars/config.yml
+    - ./group_vars/package-versions.yml
+  tasks:
 
-  #- name: stop services Djavan FE stack
-#    service: name="{{item}}" state=stopped
-#    with_items:
- #     - djavan
-  #    - nginx
+  - name: stop services
+    service: name="{{item}}" state=stopped
+    with_items:
+      - "pm2-{{ project.user }}"
+      - nginx
 
-  #- name: start services Djavan FE stack
-   # service: name="{{item}}" state=started enabled=yes
-    #with_items:
-     # - nginx
-      #- djavan
 
-  #- name: Apply version control Djavan FE stack
-   # shell: apt-mark hold {{item}}
-    #with_items:
-     # - nginx
-      #- nodejs
+  - name: start services
+    service: name="{{item}}" state=started enabled=yes
+    with_items:
+      - nginx
+      - "pm2-{{ project.user }}"
