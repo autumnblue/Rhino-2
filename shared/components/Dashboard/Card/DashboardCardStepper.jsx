@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import makeBem from 'bem-cx';
 import _ from 'lodash';
 
@@ -12,7 +13,6 @@ const isSelected = (steps, status, index) => {
     hidden: arrayIndex >= 0 && index !== arrayIndex,
   };
 };
-
 
 const DashboardCardStepper = ({ steps, status, label }) =>
   <div className={bem.el('stepper')}>
