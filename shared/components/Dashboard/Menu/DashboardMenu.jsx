@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import makeBem from 'bem-cx';
 import Drawer from 'material-ui/Drawer';
 import { List } from 'material-ui/List';
@@ -6,7 +7,6 @@ import DashboardMenuItem from './DashboardMenuItem';
 import { djavanTheme } from '../../../constants/djavanTheme';
 
 const bem = makeBem('djavanDashboardMenu');
-
 
 const DashboardMenu = ({ menu, location }, context) =>
   <Drawer className="djavanDashboardMenu" docked zDepth={0} style={djavanTheme.drawer.style}>
