@@ -47,7 +47,6 @@ export default class ClientsLogic extends Component {
   title = 'Clients'
   backLink = ''
 
-
   loadMoreItems = async (options) => {
     if (options.previousPosition === 'below') {
       await this.setState({
@@ -57,7 +56,6 @@ export default class ClientsLogic extends Component {
     }
   };
 
-
   render() {
     if (this.props.error) {
       return (
@@ -66,10 +64,10 @@ export default class ClientsLogic extends Component {
           <ClientsView {...this} />
         </div>
       );
+    } else {
+      return <ClientsView {...this} />;
     }
-    return <ClientsView {...this} />;
   }
-
 }
 
 ClientsLogic.contextTypes = {
