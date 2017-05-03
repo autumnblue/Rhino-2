@@ -25,8 +25,6 @@ export default class ClientsLogic extends Component {
     currentPage: 1,
   };
 
-
-
   componentWillMount() {
 
     if (this.props.clientsStatus !== 'loaded') {
@@ -61,18 +59,18 @@ export default class ClientsLogic extends Component {
 
 
   render() {
-
     if (this.props.error) {
-      return <div>
+      return (
+        <div>
           <NotificationModal clearError={this.props.clearClientError} message={this.props.error} />
           <ClientsView {...this} />
         </div>
+      );
     }
     return <ClientsView {...this} />;
   }
 
 }
-
 
 ClientsLogic.contextTypes = {
   router: PropTypes.object.isRequired,

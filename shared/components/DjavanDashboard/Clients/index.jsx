@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ClientsLogic from './ClientsLogic';
 import ClientsActions from '../../../actions/clients';
-//// import UserActions from '../../../actions/users';
+// import UserActions from '../../../actions/users';
 
 // const mapStateToProps = ({ session, client, user }) => ({
 const mapStateToProps = ( client ) => ({
@@ -19,7 +19,7 @@ const mapStateToProps = ( client ) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   loadData: (page, loadingMore) => {
-    //dispatch(ClientsActions.mockClients(page, loadingMore));
+    // dispatch(ClientsActions.mockClients(page, loadingMore));
     dispatch(ClientsActions.fetchClients(page, loadingMore));
   },
   viewClient: (id, title) => dispatch(ClientsActions.viewClient(id, title)),

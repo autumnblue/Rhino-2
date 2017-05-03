@@ -39,6 +39,7 @@ const Actions = {
         }
       })
       .catch((error) => {
+        // dispatch(push('/dashboard'));
         logger(error);
       })
     )

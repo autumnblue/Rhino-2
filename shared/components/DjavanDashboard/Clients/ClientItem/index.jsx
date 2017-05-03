@@ -15,11 +15,8 @@ const mapStateToProps = ( clientItem ) => ({
   //fetchClient: clientItem.clientitems.fetchClient,
 });
 
-
 const mapDispatchToProps = (dispatch) => ({
-
   updateClient: (id, val) => dispatch(ClientsActions.updateClient(id, val)),
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClientItemLogic);
