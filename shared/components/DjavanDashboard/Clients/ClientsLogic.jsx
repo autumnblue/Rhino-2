@@ -44,9 +44,6 @@ export default class ClientsLogic extends Component {
     // this.props.refreshClientsList();
   }
 
-  title = 'Clients'
-  backLink = ''
-
   loadMoreItems = async (options) => {
     if (options.previousPosition === 'below') {
       await this.setState({
@@ -57,16 +54,40 @@ export default class ClientsLogic extends Component {
   };
 
   render() {
+
     if (this.props.error) {
       return (
         <div>
           <NotificationModal clearError={this.props.clearClientError} message={this.props.error} />
-          <ClientsView {...this} />
+          <ClientsView
+            title="Clients"
+            backLink=""
+            loadMoreItems={() => this.loadMoreItems()}
+            clients={this.props.clients}
+            clientsStatus={this.props.clientsStatus}
+            hasMore={this.props.hasMore}
+            loadingMore={this.props.loadingMore}
+            umbrellasStatus={this.props.umbrellasStatus}
+            possibleUmbrellas={this.props.possibleUmbrellas}
+          />
         </div>
       );
     } else {
-      return <ClientsView {...this} />;
+      return (
+        <ClientsView
+          title="Clients"
+          backLink=""
+          loadMoreItems={() => this.loadMoreItems()}
+          clients={this.props.clients}
+          clientsStatus={this.props.clientsStatus}
+          hasMore={this.props.hasMore}
+          loadingMore={this.props.loadingMore}
+          umbrellasStatus={this.props.umbrellasStatus}
+          possibleUmbrellas={this.props.possibleUmbrellas}
+        />
+      );
     }
+
   }
 }
 
