@@ -17,7 +17,6 @@ const Actions = {
         });
         return httpGet(`clients.json?page=${page}&per_page=${limit}&sort[]=id`)
           .then((response) => {
-            console.log('$$$$$$$$$$$$$: ', response)
             if (response.body) {
               dispatch({
                 type: Constants.FETCH_CLIENTS,
@@ -33,7 +32,6 @@ const Actions = {
             }
           })
           .catch((error) => {
-            console.log('@@@@@@@: ERROR: ', error);
             logger(error)
           });
       }

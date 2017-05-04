@@ -16,16 +16,13 @@ const bem = makeBem('djavanDashboardContent');
 const ClientsView = (props) =>
   <div>
     <Helmet title={props.title} titleTemplate="%s | Rhino Security Labs Djavan Security Assessment and Reporting System" />
-    {/*currentUser && */<DashboardBar title={props.title} backLink={props.backLink} /*currentUser={currentUser}*/ />}
+    <DashboardBar title={props.title} backLink={props.backLink} />
 
     <div className={bem.el('details').mod({ smallHeader: true, narrow: true })}>
       <DashboardLoader loading={isLoading(props.clientsStatus)} />
-      {/*<Sticky enabled top={50} innerZ={999}>*/}
-        {/*/!*{<StickyComponent />}*!/*/}
-      {/*</Sticky>*/}
-      {isLoaded(props.clientsStatus) && _.isEmpty(props.clients) && <ClientsEmptyView /*newClientClickHandler={newClientClickHandler}*/ />}
-      {isLoaded(props.clientsStatus) && _.map(clients, (clientItem, index) =>
-        <ClientItemView key={index} /*clientClickHandler={clientClickHandler}*/ possibleUmbrellas={possibleUmbrellas} clientItemObject={clientItem} clientItem={clientItem} />)
+      {isLoaded(props.clientsStatus) && _.isEmpty(props.clients) && <ClientsEmptyView />}
+      {isLoaded(props.clientsStatus) && _.map(props.clients, (clientItem, index) =>
+        <ClientItemView key={index} possibleUmbrellas={props.possibleUmbrellas} clientItemObject={clientItem} clientItem={clientItem} />)
       }
       <InfiniteScrolling
         loadMore={props.loadMoreItems}
