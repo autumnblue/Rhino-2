@@ -16,9 +16,6 @@ const Actions = {
           loadingMore,
         });
         return httpGet(`clients.json?page=${page}&per_page=${limit}&sort[]=id`)
-          .catch((error) =>
-            logger(error)
-          )
           .then((response) => {
             // console.log(limit*page);
             // console.log(response.body.meta.total_results);
@@ -37,7 +34,10 @@ const Actions = {
                 error: handleInternalErrors(response),
               });
             }
-          });
+          })
+          .catch((error) =>
+            logger(error)
+          );
       }
     ),
   updateClient: (id, val) =>
@@ -56,26 +56,15 @@ const Actions = {
         console.log(clientcopy.name);
         console.log(clientcopy);
         return httpPatch(`clients/${id}.json`, clientcopy)
-            .catch((error) =>
-            {
-              console.log(error.response);
-              dispatch({
-                type: Constants.FETCH_CLIENT_FAILURE,
-                error: handleInternalErrors(error),
-              });
-              //should be a modification of props for field
-              logger(error);
-            }
-            )
-            .then((() => {
+            .then(() => {
               dispatch({
                 type: Constants.FETCH_CLIENTS_POSSIBLE_UMBRELLAS_REQUEST,
                 clientStatus: loadingStatus.LOADING,
               });
+
               clientcopy["commit"] = true;
               httpPatch(`clients/${id}.json`, clientcopy)
-                .catch((error) => logger(error))
-                .then((response => {
+                .then((response) => {
                   if (response.body) { //.data.meta.total_results > 0
                     // console.log(response.body);
                     dispatch({
@@ -94,8 +83,18 @@ const Actions = {
                       error: handleInternalErrors(response),
                     });
                   }
-                }));
-            }));
+                })
+                .catch((error) => logger(error));
+            })
+            .catch((error) => {
+              console.log(error.response);
+              dispatch({
+                type: Constants.FETCH_CLIENT_FAILURE,
+                error: handleInternalErrors(error),
+              });
+              //should be a modification of props for field
+              logger(error);
+            });
       }
     ),
 
@@ -112,9 +111,6 @@ const Actions = {
         });
         // console.log("Requesting Clients");
         return httpGet(`clients.json?page=1&per_page=1200&sort[]=id&exclude[]=*&include[]=id&include[]=name&filter{departments.isnull}=1`)
-          .catch((error) =>
-            logger(error)
-          )
           .then((response) => {
             if (response.body) { //.data.meta.total_results > 0
               // console.log(response.body);
@@ -128,9 +124,11 @@ const Actions = {
                 error: handleInternalErrors(response),
               });
             }
-          });
-      }
-    ),
+          })
+          .catch((error) =>
+            logger(error)
+          );
+      }),
   // assignDepartmentToClient: () =>
   //   ((dispatch) => {
   //       dispatch({
