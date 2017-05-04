@@ -22,8 +22,7 @@ const Actions = {
       (httpPost('token/', data)
       .then((response) => {
         if (response.status == 200) {
-          dispatch(push('/dashboard'));
-          // cookie.save('token', response.data.result.token, { path: '/' });
+          cookie.save('token', response.body.token, { path: '/' });
           // dispatch(Actions.setLoginMethod('email'));
           // dispatch(Actions.currentUser());
           // const role = response.data.result.role;
@@ -32,6 +31,7 @@ const Actions = {
           // } else if (role === 'COMPANY_ADMIN') {
           //   dispatch(push('/company'));
           // }
+          dispatch(push('/dashboard'));
         } else {
           dispatch({
             type: Constants.LOGIN_FAILURE,

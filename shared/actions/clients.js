@@ -17,11 +17,8 @@ const Actions = {
         });
         return httpGet(`clients.json?page=${page}&per_page=${limit}&sort[]=id`)
           .then((response) => {
-            // console.log(limit*page);
-            // console.log(response.body.meta.total_results);
-            // console.log((limit*page < response.body.meta.total_results));
-            if (response.body) { //.data.meta.total_results > 0
-              // console.log(response.body);
+            console.log('$$$$$$$$$$$$$: ', response)
+            if (response.body) {
               dispatch({
                 type: Constants.FETCH_CLIENTS,
                 clients: response.body.clients,
@@ -35,9 +32,10 @@ const Actions = {
               });
             }
           })
-          .catch((error) =>
+          .catch((error) => {
+            console.log('@@@@@@@: ERROR: ', error);
             logger(error)
-          );
+          });
       }
     ),
   updateClient: (id, val) =>

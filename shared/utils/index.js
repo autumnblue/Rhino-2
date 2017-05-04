@@ -7,7 +7,7 @@ const BASE_URL = process.env.API_URL || 'https://djavan-server-dev.rsl.host/api/
 function buildHeaders() {
   const token = cookie.load('token');
   return {
-    //token,
+    'Authorization': 'JWT ' + token,
     // 'Content-Type': 'application/x-www-form-urlencoded',
     'Content-Type': 'application/json',
     // 'client-version': 'WEB',
