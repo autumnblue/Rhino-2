@@ -21,25 +21,25 @@ const Actions = {
     ((dispatch) =>
       (httpPost('token/', data)
       .then((response) => {
-        if (!response.data.success) {
+        if (response.status == 200) {
+          dispatch(push('/dashboard'));
+          // cookie.save('token', response.data.result.token, { path: '/' });
+          // dispatch(Actions.setLoginMethod('email'));
+          // dispatch(Actions.currentUser());
+          // const role = response.data.result.role;
+          // if (role === 'DRIVER') {
+          //   dispatch(push('/driver'));
+          // } else if (role === 'COMPANY_ADMIN') {
+          //   dispatch(push('/company'));
+          // }
+        } else {
           dispatch({
             type: Constants.LOGIN_FAILURE,
             error: handleInternalErrors(response.data),
           });
-        } else {
-          cookie.save('token', response.data.result.token, { path: '/' });
-          dispatch(Actions.setLoginMethod('email'));
-          dispatch(Actions.currentUser());
-          const role = response.data.result.role;
-          if (role === 'DRIVER') {
-            dispatch(push('/driver'));
-          } else if (role === 'COMPANY_ADMIN') {
-            dispatch(push('/company'));
-          }
         }
       })
       .catch((error) => {
-        // dispatch(push('/dashboard'));
         logger(error);
       })
     )
