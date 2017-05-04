@@ -4,16 +4,16 @@ import ClientsActions from '../../../actions/clients';
 // import UserActions from '../../../actions/users';
 
 // const mapStateToProps = ({ session, client, user }) => ({
-const mapStateToProps = ( client ) => ({
+const mapStateToProps = (state) => ({
   // currentUser: session.currentUser,
-  clients: client.clients.clients,
-  loadingMore: client.clients.loadingMore,
-  hasMore: client.clients.hasMore,
-  page: client.clients.page,
-  clientsStatus: client.clients.clientsStatus,
-  error: client.clients.error,
-  umbrellasStatus: client.clients.umbrellasStatus,
-  possibleUmbrellas: client.clients.possibleUmbrellas,
+  clients: state.clients.clients,
+  loadingMore: state.clients.loadingMore,
+  hasMore: state.clients.hasMore,
+  page: state.clients.page,
+  clientsStatus: state.clients.clientsStatus,
+  error: state.clients.error,
+  umbrellasStatus: state.clients.umbrellasStatus,
+  possibleUmbrellas: state.clients.possibleUmbrellas,
 });
 
 
