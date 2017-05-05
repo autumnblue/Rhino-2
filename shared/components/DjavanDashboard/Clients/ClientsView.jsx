@@ -7,6 +7,7 @@ import DashboardBar from '../../Dashboard/Bar/DashboardBar';
 import DashboardLoader from '../../Dashboard/Content/DashboardLoader';
 import ClientItemView from './ClientItem';
 import ClientsEmptyView from './ClientsEmptyView';
+import Client from './Client';
 import { isLoading, isLoaded } from '../../../constants/loadingStatus';
 import Sticky from 'react-stickynode';
 import InfiniteScrolling from '../../Utilities/InfiniteScrolling';
@@ -23,6 +24,9 @@ const ClientsView = (props) =>
       {isLoaded(props.clientsStatus) && _.isEmpty(props.clients) && <ClientsEmptyView />}
       {isLoaded(props.clientsStatus) && _.map(props.clients, (clientItem, index) =>
         <ClientItemView key={index} possibleUmbrellas={props.possibleUmbrellas} clientItemObject={clientItem} clientItem={clientItem} />)
+      }
+      {isLoaded(props.clientsStatus) && _.map(props.clients, (clientItem, index) =>
+        <Client key={index} clientItem={clientItem} />)
       }
       <InfiniteScrolling
         loadMore={props.loadMoreItems}
