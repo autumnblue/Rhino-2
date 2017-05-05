@@ -20,31 +20,41 @@ export default class Client extends Component {
         client: PropTypes.object.isRequired
     };
 
+    state = {
+        isOpened: false,
+    }
+
+    onEditButtonClick() {
+        const { isOpened } = this.state;
+
+        if (isOpened) {
+            this.setState({ isOpened: false });
+        } else {
+            this.setState({ isOpened: true });
+        }
+    }
+
     render() {
         return (
-            <div>
-                <DashboardCard>
-                    <div className={bem.mod({ interactive: true })}>
-                        <DashboardCardSlicer>
-                            <DashboardCardSlicerLeft>
-                                <div>TEST</div>
-                            </DashboardCardSlicerLeft>
-                            <DashboardCardSlicerMiddle>
-                                <div>TEST</div>
-                            </DashboardCardSlicerMiddle>
-                            <DashboardCardSlicerRight>
-                                <FontAwesome
-                                    className='super-crazy-colors'
-                                    name='edit'
-                                    size='2x'
-                                    style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-                                    onClick={() => console.log('$$$$$$$$')}
-                                />
-                            </DashboardCardSlicerRight>
-                        </DashboardCardSlicer>
-                    </div>
-                </DashboardCard>
-            </div>
+            <DashboardCard>
+                <DashboardCardSlicer>
+                    <DashboardCardSlicerLeft>
+                        <div>TEST</div>
+                    </DashboardCardSlicerLeft>
+                    <DashboardCardSlicerMiddle>
+                        <div>TEST</div>
+                    </DashboardCardSlicerMiddle>
+                    <DashboardCardSlicerRight>
+                        <FontAwesome
+                            className='edit-icon'
+                            name='edit'
+                            size='2x'
+                            style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+                            onClick={() => this.onEditButtonClick()}
+                        />
+                    </DashboardCardSlicerRight>
+                </DashboardCardSlicer>
+            </DashboardCard>
         );
     }
 }
