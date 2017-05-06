@@ -44,7 +44,7 @@ class Client extends Component {
 
     render() {
         const { option, toggle } = this.state;
-
+        
         return (
             <ClientItem
                 open={toggle}

@@ -58,6 +58,7 @@ const Client = (props) =>
                         fullWidth={true}
                         defaultValue={props.client.short_name}
                         name="name"
+                        onBlur={(e) => props.onUpdateField(e, "short_name")}
                     />
                 </div>
                 <div className="code">
@@ -82,6 +83,7 @@ const Client = (props) =>
                     fullWidth={true}
                     defaultValue={props.client.hourly_rate}
                     name="rate"
+                    onBlur={(e) => props.onUpdateField(e, "hourly_rate")}
                 />
             </div>
             <div className="action">
