@@ -22,6 +22,7 @@ const Client = (props) =>
                         fullWidth={true}
                         defaultValue={props.client.name}
                         name="name"
+                        onBlur={(e) => props.onUpdateField(e, "name")}
                     />
                 </div>
                 <div className="date">
@@ -66,7 +67,7 @@ const Client = (props) =>
                         hintText="Should be blah blah"
                         fullWidth={true}
                         defaultValue={props.client.focal_email}
-                        name="name"
+                        name="code"
                     />
                 </div>
             </div>
@@ -84,7 +85,7 @@ const Client = (props) =>
                 />
             </div>
             <div className="action">
-                <RaisedButton default label="delete" onTouchTap={props.delete} />
+                <RaisedButton default label="delete" onTouchTap={props.onDelete} />
             </div>
         </div>
     ) : (

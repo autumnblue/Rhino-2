@@ -49,8 +49,6 @@ const Actions = {
         // _.set(clientcopy, val.field, val.value);
         let clientcopy = {};
         clientcopy[val.field] = val.value;
-        console.log(clientcopy.name);
-        console.log(clientcopy);
         return httpPatch(`clients/${id}.json`, clientcopy)
             .then(() => {
               dispatch({
