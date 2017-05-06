@@ -1,28 +1,108 @@
 @color-icon: #000;
 
 .client-block {
-    display: flex;
+    display: inherit;
     margin: 5px 5px;
+    padding: 10px;
     position: relative;
-    .title {
-        font-size: 24px;
-    }
-    .edit-icon {
-        color: @normal-button;
-        font-size: 32px;
-        position: absolute;
-        right: 5px;
-        top: 5px;
-        &:hover {
-            font-size: 36px;
-            right: 3px;
-            top: 3px;
+    width: calc(~"100% - 10px");
+
+    .compressed-block {
+        .title {
+            font-size: 24px;
         }
-        &:active {
-            color:@active-button;
+        .edit-icon {
+            color: @normal-button;
             font-size: 32px;
-            right: 5px;
-            top: 5px;
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            &:hover {
+                font-size: 36px;
+                right: 6px;
+                top: 6px;
+            }
+            &:active {
+                color:@active-button;
+                font-size: 32px;
+                right: 8px;
+                top: 8px;
+            }
         }
     }
+    .opened-block {
+        width: 100%;
+
+        .header {
+            display: flex;
+            width: 100%;
+
+            .name {
+                width: 30%;
+            }
+            .date {
+                display: flex;
+                align-items: flex-end;
+                padding-bottom: 5px;
+                padding-left: 20px;
+                width: 50%;
+            }
+            .meridian {
+                width: 20%;
+
+                .dropdown {
+                    width: 100%;
+                }
+            }
+            .edit-icon {
+                color: @normal-button;
+                font-size: 32px;
+                position: absolute;
+                right: 8px;
+                top: 8px;
+                &:hover {
+                    font-size: 36px;
+                    right: 6px;
+                    top: 6px;
+                }
+                &:active {
+                    color:@active-button;
+                    font-size: 32px;
+                    right: 8px;
+                    top: 8px;
+                }
+            }
+        }
+        
+        .information {
+            display: flex;
+            width: 100%;
+
+            .name {
+                padding-left: 40px;
+                width: 40%;
+            }
+            .code {
+                padding-left: 20px;
+                width: 40%;
+            }
+        }
+
+        .detail {
+            height: 200px;
+        }
+
+        .rateinfo {
+            width: 200px;
+        }
+
+        .action {
+            width: 100%;
+
+            .delete {
+                width: 150px;
+            }
+        }
+    }
+    
 }

@@ -4,7 +4,7 @@ import { Card, CardText } from 'material-ui/Card';
 
 const DashboardCard = ({ className, clickHandler, children }) =>
     <Card className={className} onClick={clickHandler}>
-      <CardText>{children}</CardText>
+      {children}
     </Card>;
 
 DashboardCard.propTypes = {

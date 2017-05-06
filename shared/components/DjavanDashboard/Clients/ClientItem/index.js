@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import ClientItem from './ClientItem';
 
+
 export default class Client extends Component {
     static proptTypes = {
         client: PropTypes.object.isRequired
@@ -11,6 +12,7 @@ export default class Client extends Component {
     state = {
         toggle: false,
     }
+
 
     onToggleClick() {
         const { toggle } = this.state;
@@ -22,6 +24,14 @@ export default class Client extends Component {
         }
     }
 
+    onPMChange(value) {
+        console.log('$$$: ', value);
+    }
+
+    onDelete() {
+        console.log('$$$: ');
+    }
+
     render() {
         const { toggle } = this.state;
 
@@ -29,6 +39,7 @@ export default class Client extends Component {
             <ClientItem
                 open={toggle}
                 onToggle={() => this.onToggleClick()}
+                delete={() => this.onDelete()}
             />
         );
     }
