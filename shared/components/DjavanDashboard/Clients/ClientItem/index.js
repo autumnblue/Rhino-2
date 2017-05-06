@@ -34,7 +34,6 @@ export default class Client extends Component {
 
     render() {
         const { toggle } = this.state;
-        console.log(this.props.clientItem)
 
         return (
             <ClientItem
