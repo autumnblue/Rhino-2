@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import FontAwesome from 'react-fontawesome';
 import TextField from 'material-ui/TextField';
+import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
 import DashboardCard from '../../../Common/DashboardCard';
@@ -29,10 +30,15 @@ const Client = (props) =>
                 <div className="meridian">
                     <DropDownMenu 
                         className="dropdown"
-                        value={"Test"} 
-                        onChange={(value) => props.onPMChange(value)}
+                        value={props.option}
+                        onChange={props.onOptions}
                         >
-                        {_.map(props.clients, (client, index) => <div key={index}>{client}</div>)}
+                        {_.map(props.options, (option, index) => 
+                            <MenuItem key={index}
+                                      value={index}
+                                      primaryText={option}
+                            />
+                        )}
                     </DropDownMenu>
                 </div>
                 <FontAwesome

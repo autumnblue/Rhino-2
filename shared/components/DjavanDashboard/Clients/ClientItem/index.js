@@ -11,6 +11,7 @@ export default class Client extends Component {
 
     state = {
         toggle: false,
+        option: 0,
     }
 
 
@@ -24,8 +25,8 @@ export default class Client extends Component {
         }
     }
 
-    onPMChange(value) {
-        console.log('$$$: ', value);
+    onOptionChanged(e, selectedIndex, menuItem) {
+        this.setState({ option: selectedIndex });
     }
 
     onDelete() {
@@ -33,13 +34,16 @@ export default class Client extends Component {
     }
 
     render() {
-        const { toggle } = this.state;
+        const { option, toggle } = this.state;
 
         return (
             <ClientItem
                 open={toggle}
                 client={this.props.clientItem}
+                option={option}
+                options={['AM', 'PM']}
                 onToggle={() => this.onToggleClick()}
+                onOptions={(e, selectedIndex, menuItem) => this.onOptionChanged(e, selectedIndex, menuItem)}
                 delete={() => this.onDelete()}
             />
         );
