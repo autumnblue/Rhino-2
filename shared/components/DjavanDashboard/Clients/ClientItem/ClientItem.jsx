@@ -19,7 +19,7 @@ const Client = (props) =>
                         floatingLabelText="Name"
                         hintText="Should be blah blah"
                         fullWidth={true}
-                        defaultValue="Client X"
+                        defaultValue={props.client.name}
                         name="name"
                     />
                 </div>
@@ -46,20 +46,20 @@ const Client = (props) =>
                 <div className="name">
                     <TextField
                         floatingLabelFixed={true}
-                        floatingLabelText="Short Name"
+                        floatingLabelText="short name"
                         hintText="Should be blah blah"
                         fullWidth={true}
-                        defaultValue="Client X"
+                        defaultValue={props.client.short_name}
                         name="name"
                     />
                 </div>
                 <div className="code">
                     <TextField
                         floatingLabelFixed={true}
-                        floatingLabelText="Ref code"
+                        floatingLabelText="ref code"
                         hintText="Should be blah blah"
                         fullWidth={true}
-                        defaultValue="Ref Code"
+                        defaultValue={props.client.focal_email}
                         name="name"
                     />
                 </div>
@@ -70,10 +70,10 @@ const Client = (props) =>
             <div className="rateinfo">
                 <TextField
                     floatingLabelFixed={true}
-                    floatingLabelText="Hourly rate"
+                    floatingLabelText="hourly_rate"
                     hintText="Should be blah blah"
                     fullWidth={true}
-                    defaultValue="hourly rate"
+                    defaultValue={props.client.hourly_rate}
                     name="rate"
                 />
             </div>
@@ -84,7 +84,7 @@ const Client = (props) =>
     ) : (
         <div className="compressed-block">
             <div className="title">
-                ClientX
+                {props.client.name}
             </div>
             <FontAwesome
                 className='edit-icon'

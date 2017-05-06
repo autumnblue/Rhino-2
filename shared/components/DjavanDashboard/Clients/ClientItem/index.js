@@ -6,7 +6,7 @@ import ClientItem from './ClientItem';
 
 export default class Client extends Component {
     static proptTypes = {
-        client: PropTypes.object.isRequired
+        clientItem: PropTypes.object.isRequired
     };
 
     state = {
@@ -34,10 +34,12 @@ export default class Client extends Component {
 
     render() {
         const { toggle } = this.state;
+        console.log(this.props.clientItem)
 
         return (
             <ClientItem
                 open={toggle}
+                client={this.props.clientItem}
                 onToggle={() => this.onToggleClick()}
                 delete={() => this.onDelete()}
             />
