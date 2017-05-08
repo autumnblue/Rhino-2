@@ -9,7 +9,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DashboardCard from '../../../../Common/DashboardCard';
 
 const Client = (props) =>
-  <DashboardCard className="client-block">
+  <DashboardCard className="clientedit-block">
 
     {props.open ? (
         <div className="opened-block">
