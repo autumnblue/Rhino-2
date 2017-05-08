@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ClientsView from './ClientsView';
-import NotificationModal from '../../Utilities/NotificationModal';
+import NotificationModal from '../../../Utilities/NotificationModal';
 
 export default class ClientsLogic extends Component {
 

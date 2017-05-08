@@ -4,7 +4,9 @@ import MainLayout from './components/main';
 import App from './containers/App';
 import DjavanDashboard from './components/DjavanDashboard/DjavanDashboard';
 import Assessments from './components/DjavanDashboard/Assessments';
-import Clients from './components/DjavanDashboard/Clients';
+import Clients from './components/DjavanDashboard/Clients/Edit';
+import ClientEdit from './components/DjavanDashboard/Clients/Edit';
+import ClientList from './components/DjavanDashboard/Clients/Lists';
 import Entry from './containers/Entry';
 import cookie from 'react-cookie';
 import Login from './components/Login';
@@ -55,8 +57,9 @@ export default function configRoutes(store) {
       <Route component={App}>
         <IndexRedirect to="login" />
         <Route path="dashboard" component={DjavanDashboard}>
-          <IndexRedirect to="clients" />
-          <Route path="clients" component={Clients} />
+          <IndexRedirect to="list" />
+          <Route path="edit" component={ClientEdit} />
+          <Route path="list" component={ClientList} />
           <Route path="assessments" component={Assessments} />
         </Route>
       </Route>

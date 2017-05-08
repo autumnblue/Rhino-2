@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
-import DashboardCard from '../../../Common/DashboardCard';
+import DashboardCard from '../../../../Common/DashboardCard';
 
 const Client = (props) =>
   <DashboardCard className="client-block">

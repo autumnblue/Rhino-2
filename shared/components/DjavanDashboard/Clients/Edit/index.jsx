@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ClientsLogic from './ClientsLogic';
-import ClientsActions from '../../../actions/clients';
+import ClientsActions from '../../../../actions/clients';
 // import UserActions from '../../../actions/users';
 
 // const mapStateToProps = ({ session, client, user }) => ({
