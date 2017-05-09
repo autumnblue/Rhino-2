@@ -91,8 +91,8 @@ export const djavanTheme = {
     buttonFilterColor: djavanGrey,  // Hover color
   },
   floatingActionButton: {
-    buttonSize: 56,
-    miniSize: 40,
+    buttonSize: 34,
+    miniSize: 30,
     color: djavanRed,
     iconColor: white,
     secondaryColor: white,
