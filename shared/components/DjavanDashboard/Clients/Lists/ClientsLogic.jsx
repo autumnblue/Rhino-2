@@ -6,16 +6,34 @@ import List from './List';
 import Footer from './Footer';
 
 export default class ClientsLogic extends Component {
+    state = {
+        sort: []
+    }
+    
+    componentDidMount() {
+        this.state.sort.push({ value: 'one', label: 'One' });
+        this.state.sort.push({ value: 'two', label: 'Two' });
+        console.log(this.state.sort);
+    }
 
-  render() {
-    return (
-        <div>
-            <Header />
-            <List />
-            <Footer />
-        </div>
-    );
-  }
+    onSortChange(value) {
+        console.log(value);
+    }
+    
+    render() {
+        const { sort } = this.state;
+
+        return (
+            <div>
+                <Header
+                    sort={sort}
+                    onSort={() => this.onSortChange()}
+                />
+                <List />
+                <Footer />
+            </div>
+        );
+    }
 }
 
 ClientsLogic.contextTypes = {
