@@ -7,27 +7,28 @@ import Footer from './Footer';
 
 export default class ClientsLogic extends Component {
     state = {
-        sort: []
+        sort: null,
+        sortOptions: []
     }
     
     componentDidMount() {
-        this.state.sort.push({ value: 'one', label: 'One' });
-        this.state.sort.push({ value: 'two', label: 'Two' });
-        console.log(this.state.sort);
+        this.state.sortOptions.push({ value: 1, label: 'One' });
+        this.state.sortOptions.push({ value: 2, label: 'Two' });
     }
 
-    onSortChange(value) {
-        console.log(value);
+    onSortChange(obj) {
+        this.setState({ sort: obj.value });
     }
     
     render() {
-        const { sort } = this.state;
+        const { sort, sortOptions } = this.state;
 
         return (
             <div>
                 <Header
                     sort={sort}
-                    onSort={() => this.onSortChange()}
+                    sortOptions={sortOptions}
+                    onSort={(value) => this.onSortChange(value)}
                 />
                 <List />
                 <Footer />

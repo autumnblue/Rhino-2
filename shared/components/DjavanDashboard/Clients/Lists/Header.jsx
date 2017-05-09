@@ -4,12 +4,26 @@ import Select from 'react-select';
 
 const Header = (props) => (
     <div className="clientlistheader-block">
-        <Select
-            name="form-field-name"
-            value="one"
-            options={props.sort}
-            onChange={props.onSort}
-        />
+        <div className="sort">
+            <Select
+                name="form-field-name"
+                value={props.sort}
+                options={props.sortOptions}
+                onChange={(value) => props.onSort(value)}
+            />
+        </div>
+        <div className="display">
+
+        </div>
+        <div className="filter">
+
+        </div>
+        <div className="space">
+
+        </div>
+        <div className="control">
+
+        </div>
     </div>
 );
 
