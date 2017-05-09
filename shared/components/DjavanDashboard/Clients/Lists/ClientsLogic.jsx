@@ -11,6 +11,7 @@ export default class ClientsLogic extends Component {
         sortOptions: null,
         display: null,
         displayOptions: null,
+        ativePage: 1,
     }
     
     componentDidMount() {
@@ -41,9 +42,13 @@ export default class ClientsLogic extends Component {
     onFilterChange(e) {
         console.log(e.target.value);
     }
+
+    onPageChange(value) {
+        this.setState({ activePage: value });
+    }
     
     render() {
-        const { sort, sortOptions, display, displayOptions } = this.state;
+        const { sort, sortOptions, display, displayOptions, activePage } = this.state;
 
         return (
             <div>
@@ -57,7 +62,13 @@ export default class ClientsLogic extends Component {
                     onFilter={(value) => this.onFilterChange(value)}
                 />
                 <List />
-                <Footer />
+                <Footer 
+                    activePage={activePage}
+                    countPerPage={10}
+                    totalItemsCount={450}
+                    rangeDisplayed={5}
+                    onPage={(value) => this.onPageChange(value)}
+                />
             </div>
         );
     }
