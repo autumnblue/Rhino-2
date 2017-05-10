@@ -1,108 +1,86 @@
 @color-icon: #000;
 
-.clientedit-block {
-    display: inherit;
+.clientEdit-Block {
     margin: 5px 5px;
     padding: 10px;
     position: relative;
     width: calc(~"100% - 10px");
 
-    .compressed-block {
-        .title {
-            font-size: 24px;
-        }
-        .edit-icon {
-            color: @normal-button;
-            font-size: 32px;
-            position: absolute;
-            right: 8px;
-            top: 8px;
-            &:hover {
-                font-size: 36px;
-                right: 6px;
-                top: 6px;
-            }
-            &:active {
-                color:@active-button;
-                font-size: 32px;
-                right: 8px;
-                top: 8px;
-            }
-        }
-    }
-    .opened-block {
-        width: 100%;
+    .block {
+        display: flex;
 
-        .header {
-            display: flex;
-            width: 100%;
-
-            .name {
-                width: 30%;
+        .leftBlock {
+            width: 50%;
+            
+            .clientTitle {
+                font-size: 24px;
+                font-weight: 600;
+                margin-bottom: 10px;
             }
-            .date {
-                display: flex;
-                align-items: flex-end;
-                padding-bottom: 5px;
-                padding-left: 20px;
+            .clientContainer {
+                width: 80%;
+            }
+            .focalTitle {
+                font-size: 24px;
+                font-weight: 600;
+                margin-bottom: 10px;
+                margin-top: 30px;
+            }
+            .focalContainer {
+                width: 80%;
+            }
+            .action {
                 width: 50%;
             }
-            .meridian {
-                width: 20%;
+        }
 
-                .dropdown {
-                    width: 90% !important;
+        .rightBlock {
+            width: 50%;
+            
+            .manageTitle {
+                font-size: 24px;
+                font-weight: 600;
+                margin-bottom: 20px;
+                text-align: right;
+            }
+            .manageContainer {
+                width: 100%;
+
+                .date {
+                    display: flex;
+                    justify-content: flex-end;
+                    white-space: nowrap;
+                }
+                .drop {
+                    margin-left: 50%;
+                    width: 50%;
+                }
+                .note {
+                    margin-left: 30%;
+                    width: 70%;
                 }
             }
-            .edit-icon {
-                color: @normal-button;
-                font-size: 32px;
-                position: absolute;
-                right: 8px;
-                top: 8px;
-                &:hover {
-                    font-size: 36px;
-                    right: 6px;
-                    top: 6px;
-                }
-                &:active {
-                    color:@active-button;
-                    font-size: 32px;
-                    right: 8px;
-                    top: 8px;
-                }
+            .parentTitle {
+                font-size: 24px;
+                font-weight: 600;
+                margin-bottom: 10px;
+                margin-top: 30px;
+                text-align: right;
             }
-        }
-        
-        .information {
-            display: flex;
-            width: 100%;
-
-            .name {
-                padding-left: 40px;
-                width: 40%;
+            .parentContainer {
+                margin-left: 50%;
+                width: 50%;
             }
-            .code {
-                padding-left: 20px;
-                width: 40%;
+            .departmentTitle {
+                font-size: 24px;
+                font-weight: 600;
+                margin-bottom: 10px;
+                margin-top: 30px;
+                text-align: right;
             }
-        }
-
-        .detail {
-            height: 200px;
-        }
-
-        .rateinfo {
-            width: 200px;
-        }
-
-        .action {
-            width: 100%;
-
-            .delete {
-                width: 150px;
+            .departmentContainer {
+                width: 100%;
             }
         }
     }
-    
 }

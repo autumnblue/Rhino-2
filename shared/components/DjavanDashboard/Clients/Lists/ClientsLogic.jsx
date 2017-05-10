@@ -9,9 +9,13 @@ export default class ClientsLogic extends Component {
     state = {
         sort: null,
         sortOptions: null,
-        display: null,
+        display: 10,
         displayOptions: null,
         ativePage: 1,
+    }
+
+    componentWillMount() {
+        this.props.loadData(1, 10, false);
     }
     
     componentDidMount() {
@@ -24,10 +28,10 @@ export default class ClientsLogic extends Component {
         this.setState({ sortOptions: sorts });
 
         var displays = [];
-        displays.push({ value: 0, label: "Display 10" });
-        displays.push({ value: 1, label: "Display 50" });
-        displays.push({ value: 2, label: "Display 100" });
-        displays.push({ value: 3, label: "Display All" });
+        displays.push({ value: 10, label: "Display 10" });
+        displays.push({ value: 50, label: "Display 50" });
+        displays.push({ value: 100, label: "Display 100" });
+        displays.push({ value: 200, label: "Display All" });
         this.setState({ displayOptions: displays });
     }
 
@@ -44,7 +48,14 @@ export default class ClientsLogic extends Component {
     }
 
     onPageChange(value) {
+        const { display } = this.state;
+
         this.setState({ activePage: value });
+        this.props.loadData(value, display, false);
+    }
+
+    onSelect(value) {
+        this.props.viewClient(value);
     }
     
     render() {
@@ -61,7 +72,10 @@ export default class ClientsLogic extends Component {
                     onDisplay={(value) => this.onDisplayChange(value)}
                     onFilter={(value) => this.onFilterChange(value)}
                 />
-                <List />
+                <List
+                    clients={this.props.clients}
+                    onSelect={(client) => this.onSelect(client)}
+                />
                 <Footer 
                     activePage={activePage}
                     countPerPage={10}

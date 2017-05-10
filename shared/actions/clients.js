@@ -1,13 +1,19 @@
+import { push } from 'react-router-redux';
 import { httpPut, httpGet, httpPatch } from '../utils';
 import { handleInternalErrors, logger } from '../utils/handleInternalErrors';
 import Constants from '../constants';
 import { loadingStatus } from '../constants/loadingStatus';
 
-const limit = 5;
-
 const Actions = {
-  viewClient: (id, title) => ({ type: Constants.VIEW_CLIENT, id, title }),
-  fetchClients: (page, loadingMore) =>
+  viewClient: (client) =>
+    ((dispatch) => {
+      dispatch({
+        type: Constants.VIEW_CLIENT,
+        client
+      });
+      dispatch(push('/dashboard/edit'));
+    }),
+  fetchClients: (page, limit, loadingMore) =>
     ((dispatch) => {
         dispatch({
           type: Constants.FETCH_CLIENTS_REQUEST,

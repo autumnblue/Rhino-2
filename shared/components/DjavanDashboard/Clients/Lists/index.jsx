@@ -19,12 +19,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   loadData: (page, loadingMore) => {
-    // dispatch(ClientsActions.mockClients(page, loadingMore));
     dispatch(ClientsActions.fetchClients(page, loadingMore));
   },
-  viewClient: (id, title) => dispatch(ClientsActions.viewClient(id, title)),
+  viewClient: (client) => dispatch(ClientsActions.viewClient(client)),
   refreshClientsList: () => dispatch(ClientsActions.refreshClientsList()),
-  // fetchClient: (id) => dispatch(ClientsActions.fetchClient(id)),
   fetchPossibleUmbrellas: (id, val) => dispatch(ClientsActions.fetchPossibleUmbrellas()),
   clearClientError: () => dispatch(ClientsActions.clearClientError()),
 });

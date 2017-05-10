@@ -4,6 +4,7 @@ import { loadingStatus } from '../constants/loadingStatus';
 
 export const initialState = {
   error: null,
+  currentClient: null,
   clients: [],
   clientsStatus: loadingStatus.UNINITIALIZED,
   loadingMore: false,
@@ -28,7 +29,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         error: null,
-        clients: state.clients.concat(action.clients),
+        clients: action.clients,
         loadingMore: action.loadingMore,
         clientsStatus: loadingStatus.LOADED,
         hasMore: action.hasMore,
@@ -143,6 +144,13 @@ export default function reducer(state = initialState, action) {
         // }, clients: action.clients,
         //_.set(state.clients, 'clients[' + action.id + ']', action.client),
         umbrellasStatus: loadingStatus.LOADED,
+      };
+    }
+
+    case Constants.VIEW_CLIENT: {
+      return {
+        ...state,
+        currentClient: action.client,
       };
     }
 

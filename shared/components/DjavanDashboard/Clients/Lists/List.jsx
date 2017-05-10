@@ -1,47 +1,52 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import FlatButton from 'material-ui/FlatButton';
 import FontAwesome from 'react-fontawesome';
+import { push } from 'react-router-redux';
 
 const List = (props) => (
     <div className="clientlistlist-block">
-        <div className="listitem">
-            <div className="main-info">
-                <div>
-                    Client_name
+        {_.map(props.clients, (client, index) => 
+            <div key={index} className="listitem">
+                <div className="main-info">
+                    <div>
+                        {client.name}
+                    </div>
+                    <div>
+                        {client.address}
+                    </div>
                 </div>
-                <div>
-                    Client_Address
+                <div className="order-info">
+                    <div className="row">
+                        <FlatButton label={client.service_order_count + " Service Orders"} secondary />
+                        <FlatButton label={client.assessment_count + " 55 Assessments"} secondary />
+                    </div>
+                    <div className="row">
+                        <FlatButton label="3 Departments" secondary />
+                    </div>
+                </div>
+                <div className="focal-info">
+                    <div>
+                        {client.focal_name}
+                    </div>
+                    <div>
+                        {client.focal_email}
+                    </div>
+                    <div>
+                        {client.focal_phone}
+                    </div>
+                </div>
+                <div className="nav-container">
+                    <FontAwesome
+                        name='arrow-right'
+                        size='3x'
+                        style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+                        onClick={() => props.onSelect(client)}
+                    />
                 </div>
             </div>
-            <div className="order-info">
-                <div className="row">
-                    <FlatButton label="22 Service Orders" secondary />
-                    <FlatButton label="55 Assessments" secondary />
-                </div>
-                <div className="row">
-                    <FlatButton label="3 Departments" secondary />
-                </div>
-            </div>
-            <div className="focal-info">
-                <div>
-                    Focal_name
-                </div>
-                <div>
-                    Focal_Email
-                </div>
-                <div>
-                    Focal_Phone_Number
-                </div>
-            </div>
-            <div className="nav-container">
-                <FontAwesome
-                    name='arrow-right'
-                    size='3x'
-                    style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-                />
-            </div>
-        </div>
+        )}
     </div>
 );
 
