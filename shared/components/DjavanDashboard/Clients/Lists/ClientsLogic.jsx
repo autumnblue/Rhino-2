@@ -35,26 +35,26 @@ export default class ClientsLogic extends Component {
         this.setState({ displayOptions: displays });
     }
 
-    onSortChange(obj) {
+    handleSortChange(obj) {
         this.setState({ sort: obj.value });
     }
 
-    onDisplayChange(obj) {
+    handleDisplayChange(obj) {
         this.setState({ display: obj.value });
     }
 
-    onFilterChange(e) {
+    handleFilterChange(e) {
         console.log(e.target.value);
     }
 
-    onPageChange(value) {
+    handlePageChange(value) {
         const { display } = this.state;
 
         this.setState({ activePage: value });
         this.props.loadData(value, display, false);
     }
 
-    onSelect(value) {
+    handleSelect(value) {
         this.props.viewClient(value);
     }
     
@@ -66,22 +66,22 @@ export default class ClientsLogic extends Component {
                 <Header
                     sort={sort}
                     sortOptions={sortOptions}
-                    onSort={(value) => this.onSortChange(value)}
+                    onSort={(value) => this.handleSortChange(value)}
                     display={display}
                     displayOptions={displayOptions}
-                    onDisplay={(value) => this.onDisplayChange(value)}
-                    onFilter={(value) => this.onFilterChange(value)}
+                    onDisplay={(value) => this.handleDisplayChange(value)}
+                    onFilter={(value) => this.handleFilterChange(value)}
                 />
                 <List
                     clients={this.props.clients}
-                    onSelect={(client) => this.onSelect(client)}
+                    onSelect={(client) => this.handleSelect(client)}
                 />
                 <Footer 
                     activePage={activePage}
                     countPerPage={10}
                     totalItemsCount={450}
                     rangeDisplayed={5}
-                    onPage={(value) => this.onPageChange(value)}
+                    onPage={(value) => this.handlePageChange(value)}
                 />
             </div>
         );
