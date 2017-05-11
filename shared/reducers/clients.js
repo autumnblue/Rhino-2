@@ -4,7 +4,13 @@ import { loadingStatus } from '../constants/loadingStatus';
 
 export const initialState = {
   error: null,
-  currentClient: null,
+
+  client: null,
+  departments: null,
+  umbrella: null,
+  clientStatus: loadingStatus.UNINITIALIZED,
+  umbdepStatus: loadingStatus.UNINITIALIZED,
+
   clients: [],
   clientsStatus: loadingStatus.UNINITIALIZED,
   loadingMore: false,
@@ -105,6 +111,15 @@ export default function reducer(state = initialState, action) {
       };
     }
 
+    case Constants.FETCH_CLIENT_UMBRELLA: {
+      return {
+        ...state,
+        umbrella: action.client.umbrella,
+        departments: action.client.departments,
+        umbdepStatus: loadingStatus.LOADED
+      }
+    }
+
     case Constants.FETCH_CLIENTS_POSSIBLE_UMBRELLAS: {
 
       return {
@@ -150,7 +165,8 @@ export default function reducer(state = initialState, action) {
     case Constants.VIEW_CLIENT: {
       return {
         ...state,
-        currentClient: action.client,
+        client: action.client,
+        clientStatus: loadingStatus.LOADED,
       };
     }
 

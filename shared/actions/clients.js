@@ -11,6 +11,7 @@ const Actions = {
         type: Constants.VIEW_CLIENT,
         client
       });
+      dispatch(Actions.fetchClientUmbrella(client.id));
       dispatch(push('/dashboard/edit'));
     }),
   fetchClients: (page, limit, loadingMore) =>
@@ -102,6 +103,32 @@ const Actions = {
 //   updateClientsList: (newClients) => ({ type: Constants.UPDATE_CLIENTS_LIST, clients: newClients }),
   refreshClientsList: () => ({ type: Constants.REFRESH_CLIENTS_LIST }),
   clearClientError: () => ({type: Constants.CLEAR_CLIENT_ERROR }),
+
+  fetchClientUmbrella: (client) =>
+    ((dispatch) => {
+        dispatch({
+          type: Constants.FETCH_CLIENT_UMBRELLA_REQUEST,
+          umbrellasStatus: loadingStatus.LOADING,
+        });
+        return httpGet(`clients/${client}?include[]=departments&include[]=umbrella`)
+          .then((response) => {
+            console.log('$$$:  ', response);
+            if (response.body) {
+              dispatch({
+                type: Constants.FETCH_CLIENT_UMBRELLA,
+                client: response.body.client,
+              });
+            } else {
+              dispatch({
+                type: Constants.FETCH_CLIENT_UMBRELLA_FAILURE,
+                error: handleInternalErrors(response),
+              });
+            }
+          })
+          .catch((error) =>
+            logger(error)
+          );
+    }),
 
   fetchPossibleUmbrellas: () =>
     ((dispatch) => {

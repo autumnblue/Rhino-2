@@ -8,7 +8,63 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
 import ReactTable from 'react-table'
 import Select from 'react-select';
-import DashboardCard from '../../../../Common/DashboardCard';
+import DashboardCard from '../../../Common/DashboardCard';
+
+function getColumns() {
+    let columns = [{
+        header: 'Client Name',
+        accessor: 'clientname'
+    }, {
+        header: 'Focal Name',
+        accessor: 'focalname'
+    }, {
+        header: 'SO Count',
+        accessor: 'socount',
+        render: props => <span className='number'>{props.value}</span>
+    }, {
+        header: 'Assessment Count',
+        accessor: 'asscount',
+        render: props => <span className='number'>{props.value}</span>
+    }];
+
+    return columns;
+}
+
+function getDepartments(departments) {
+    let data = [];
+
+    _.map(departments, (department, key) =>
+        data.push({
+            clientname: department.name,
+            focalname: department.focal_name,
+            socount: department.service_order_count,
+            asscount: department.assessment_count
+        })
+    );
+
+    return data;
+};
+
+function getParents(umbrella) {
+    let parents = [];
+    
+    if (umbrella == null) {
+        parents.push({ value: 0, label: "None" });
+    } else {
+        parents.push({ value: 0, label: umbrella.name });
+    }
+
+    return parents;
+}
+
+function getPMs(client) {
+    let pms = [];
+
+    pms.push({ value: 0, label: "Default_PM" });
+    pms.push({ value: 1, label: client.project_manager.first_name + " " + client.project_manager.last_name });
+    
+    return pms;
+}
 
 const Client = (props) =>
   <DashboardCard className="clientEdit-Block">
@@ -25,7 +81,7 @@ const Client = (props) =>
                     fullWidth={true}
                     defaultValue={props.client.short_name}
                     name="company"
-                    onBlur={(e) => props.onUpdateField(e, "company")}
+                    onBlur={(e) => props.onUpdate(e, "company")}
                 />
                 <TextField
                     floatingLabelFixed={true}
@@ -34,7 +90,7 @@ const Client = (props) =>
                     fullWidth={true}
                     defaultValue={props.client.name}
                     name="name"
-                    onBlur={(e) => props.onUpdateField(e, "name")}
+                    onBlur={(e) => props.onUpdate(e, "name")}
                 />
                 <TextField
                     floatingLabelFixed={true}
@@ -43,7 +99,7 @@ const Client = (props) =>
                     fullWidth={true}
                     defaultValue={props.client.url}
                     name="url"
-                    onBlur={(e) => props.onUpdateField(e, "url")}
+                    onBlur={(e) => props.onUpdate(e, "url")}
                 />
                 <TextField
                     floatingLabelFixed={true}
@@ -52,7 +108,7 @@ const Client = (props) =>
                     fullWidth={true}
                     defaultValue={props.client.hourly_rate}
                     name="rate"
-                    onBlur={(e) => props.onUpdateField(e, "hourly_rate")}
+                    onBlur={(e) => props.onUpdate(e, "hourly_rate")}
                 />
                 <TextField
                     floatingLabelFixed={true}
@@ -62,7 +118,7 @@ const Client = (props) =>
                     multiLine={true}
                     defaultValue={props.client.address}
                     name="address"
-                    onBlur={(e) => props.onUpdateField(e, "address")}
+                    onBlur={(e) => props.onUpdate(e, "address")}
                 />
             </div>
 
@@ -72,21 +128,12 @@ const Client = (props) =>
             <div className="focalContainer">
                 <TextField
                     floatingLabelFixed={true}
-                    floatingLabelText="Focal First Name"
-                    hintText="Focal First Name"
+                    floatingLabelText="Focal Name"
+                    hintText="Focal Name"
                     fullWidth={true}
                     defaultValue={props.client.focal_name}
-                    name="ffname"
-                    onBlur={(e) => props.onUpdateField(e, "ffname")}
-                />
-                <TextField
-                    floatingLabelFixed={true}
-                    floatingLabelText="Focal Last Name"
-                    hintText="Focal Last Name"
-                    fullWidth={true}
-                    defaultValue={props.client.focal_name}
-                    name="flname"
-                    onBlur={(e) => props.onUpdateField(e, "flname")}
+                    name="focal_name"
+                    onBlur={(e) => props.onUpdate(e, "focal_name")}
                 />
                 <TextField
                     floatingLabelFixed={true}
@@ -94,8 +141,8 @@ const Client = (props) =>
                     hintText="Focal Title"
                     fullWidth={true}
                     defaultValue={props.client.focal_title}
-                    name="ftitle"
-                    onBlur={(e) => props.onUpdateField(e, "ftitle")}
+                    name="focal_title"
+                    onBlur={(e) => props.onUpdate(e, "focal_title")}
                 />
                 <TextField
                     floatingLabelFixed={true}
@@ -103,8 +150,8 @@ const Client = (props) =>
                     hintText="Focal Phone"
                     fullWidth={true}
                     defaultValue={props.client.focal_phone}
-                    name="fphone"
-                    onBlur={(e) => props.onUpdateField(e, "fphone")}
+                    name="focal_phone"
+                    onBlur={(e) => props.onUpdate(e, "focal_phone")}
                 />
                 <TextField
                     floatingLabelFixed={true}
@@ -112,8 +159,8 @@ const Client = (props) =>
                     hintText="Focal Email"
                     fullWidth={true}
                     defaultValue={props.client.focal_email}
-                    name="femail"
-                    onBlur={(e) => props.onUpdateField(e, "femail")}
+                    name="focal_email"
+                    onBlur={(e) => props.onUpdate(e, "focal_email")}
                 />
             </div>
             
@@ -132,9 +179,9 @@ const Client = (props) =>
                 <div className="drop">
                     <Select
                         name="form-field-name"
-                        value={props.option}
-                        options={props.options}
-                        onChange={(value) => props.onOptions(value)}
+                        value={props.pm}
+                        options={getPMs(props.client)}
+                        onChange={(value) => props.onPM(value)}
                     />
                 </div>
                 <div className="drop">
@@ -145,7 +192,7 @@ const Client = (props) =>
                         fullWidth={true}
                         defaultValue={props.client.ref_code}
                         name="code"
-                        onBlur={(e) => props.onUpdateField(e, "code")}
+                        onBlur={(e) => props.onUpdate(e, "code")}
                     />
                 </div>
                 <div className="note">
@@ -157,7 +204,7 @@ const Client = (props) =>
                         multiLine={true}
                         defaultValue={props.client.notes}
                         name="notes"
-                        onBlur={(e) => props.onUpdateField(e, "notes")}
+                        onBlur={(e) => props.onUpdate(e, "notes")}
                     />
                 </div>
             </div>
@@ -168,20 +215,27 @@ const Client = (props) =>
                 <Select
                     name="form-field-name"
                     value={props.parent}
-                    options={props.parents}
-                    onChange={(value) => props.onParents(value)}
+                    options={getParents(props.umbrella)}
+                    onChange={(value) => props.onParent(value)}
                 />
             </div>
             <div className="departmentTitle">
                 Department Clients
             </div>
             <div className="departmentContainer">
-                <ReactTable
-                    data={props.data}
-                    columns={props.columns}
-                    showPagination={false}
-                    defaultPageSize={5}
-                />
+                {(props.umbrella) && (
+                    <ReactTable
+                        data={getDepartments(props.departments)}
+                        columns={getColumns()}
+                        showPagination={false}
+                        defaultPageSize={5}
+                        getTdProps={(state, rowInfo, column, instance) => {
+                            return {
+                                onClick: e => props.onRow(rowInfo)
+                            }
+                        }}
+                    />
+                )}
             </div>
         </div>
       </div>
