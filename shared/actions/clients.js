@@ -14,7 +14,7 @@ const Actions = {
       dispatch(Actions.fetchClientUmbrella(client.id));
       dispatch(push('/dashboard/edit'));
     }),
-  fetchClients: (page, limit, loadingMore) =>
+  fetchClients: (page, sort, limit, filter, loadingMore) =>
     ((dispatch) => {
         dispatch({
           type: Constants.FETCH_CLIENTS_REQUEST,
@@ -22,7 +22,8 @@ const Actions = {
           page,
           loadingMore,
         });
-        return httpGet(`clients.json?page=${page}&per_page=${limit}&sort[]=id`)
+        
+        return httpGet(`clients.json?page=${page}&per_page=${limit}&sort[]=${sort}&filter{name.icontains}=${filter}`)
           .then((response) => {
             if (response.body) {
               dispatch({

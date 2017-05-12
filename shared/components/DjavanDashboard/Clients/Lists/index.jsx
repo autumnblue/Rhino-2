@@ -18,8 +18,8 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = (dispatch) => ({
-  loadData: (page, loadingMore) => {
-    dispatch(ClientsActions.fetchClients(page, loadingMore));
+  loadData: (page, sort, limit, filter, loadingMore) => {
+    dispatch(ClientsActions.fetchClients(page, sort, limit, filter, loadingMore));
   },
   viewClient: (client) => dispatch(ClientsActions.viewClient(client)),
   refreshClientsList: () => dispatch(ClientsActions.refreshClientsList()),

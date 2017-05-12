@@ -19,8 +19,8 @@ const Header = (props) => (
         <div className="display">
             <Select
                 name="form-field-name"
-                value={props.display}
-                options={props.displayOptions}
+                value={props.limit}
+                options={props.limitOptions}
                 onChange={(value) => props.onDisplay(value)}
             />
         </div>
