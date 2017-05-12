@@ -7,6 +7,7 @@ import ClientsActions from '../../../../actions/clients';
 const mapStateToProps = (state) => ({
   // currentUser: session.currentUser,
   clients: state.clients.clients,
+  meta: state.clients.meta,
   loadingMore: state.clients.loadingMore,
   hasMore: state.clients.hasMore,
   page: state.clients.page,

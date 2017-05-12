@@ -84,13 +84,15 @@ export default class ClientsLogic extends Component {
                     clients={this.props.clients}
                     onSelect={(client) => this.handleSelect(client)}
                 />
-                <Footer 
-                    activePage={activePage}
-                    countPerPage={10}
-                    totalItemsCount={450}
-                    rangeDisplayed={5}
-                    onPage={(value) => this.handlePageChange(value)}
-                />
+                {(this.props.meta) && (
+                    <Footer 
+                        activePage={activePage}
+                        countPerPage={limit}
+                        totalItemsCount={this.props.meta.total_results}
+                        rangeDisplayed={5}
+                        onPage={(value) => this.handlePageChange(value)}
+                    />
+                )}
             </div>
         );
     }

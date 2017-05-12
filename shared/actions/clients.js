@@ -25,10 +25,12 @@ const Actions = {
         
         return httpGet(`clients.json?page=${page}&per_page=${limit}&sort[]=${sort}&filter{name.icontains}=${filter}`)
           .then((response) => {
+            console.log('#######:  ', response);
             if (response.body) {
               dispatch({
                 type: Constants.FETCH_CLIENTS,
                 clients: response.body.clients,
+                meta: response.body.meta,
                 loadingMore: false,
                 hasMore: (limit*page < response.body.meta.total_results),
               });

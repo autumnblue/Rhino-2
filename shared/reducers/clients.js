@@ -16,6 +16,7 @@ export const initialState = {
   loadingMore: false,
   hasMore: true,
   page: 0,
+  meta: null,
   possibleUmbrellas: [],
   umbrellasStatus: loadingStatus.UNINITIALIZED,
 };
@@ -36,6 +37,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         error: null,
         clients: action.clients,
+        meta: action.meta,
         loadingMore: action.loadingMore,
         clientsStatus: loadingStatus.LOADED,
         hasMore: action.hasMore,
@@ -167,6 +169,13 @@ export default function reducer(state = initialState, action) {
         ...state,
         client: action.client,
         clientStatus: loadingStatus.LOADED,
+      };
+    }
+
+    case Constants.FETCH_TOTALCOUNTS: {
+      return {
+        ...state,
+        meta: action.meta,
       };
     }
 
