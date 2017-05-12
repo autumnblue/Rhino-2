@@ -113,7 +113,6 @@ const Actions = {
         });
         return httpGet(`clients/${client}?include[]=departments&include[]=umbrella`)
           .then((response) => {
-            console.log('$$$:  ', response);
             if (response.body) {
               dispatch({
                 type: Constants.FETCH_CLIENT_UMBRELLA,

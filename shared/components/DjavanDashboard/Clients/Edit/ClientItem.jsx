@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import FontAwesome from 'react-fontawesome';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
@@ -68,6 +69,26 @@ function getPMs(client) {
 
 const Client = (props) =>
   <DashboardCard className="clientEdit-Block">
+      <div className="header">
+        <div className="leftBlock">
+            <a href="/">Clients</a>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <FontAwesome
+                name='angle-right'
+                style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+            />
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>Acme Corporation</span>
+        </div>
+        <div className="rightBlock">
+            <FloatingActionButton className="add">
+                <FontAwesome
+                    name='check'
+                    style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+                />
+            </FloatingActionButton>
+        </div>
+      </div>
       <div className="block">
         <div className="leftBlock">
             <div className="clientTitle">

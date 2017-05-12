@@ -6,8 +6,26 @@
     position: relative;
     width: calc(~"100% - 10px");
 
+    .header {
+        display: flex;
+        background-color: grey;
+
+        .leftBlock {
+            display: flex;
+            align-items: center;
+            padding-left: 50px;
+            width: 80%;
+        }
+        .rightBlock {
+            padding: 10px;
+            text-align: right;
+            width: 20%;
+        }
+    }
+
     .block {
         display: flex;
+        padding: 10px;
 
         .leftBlock {
             width: 50%;
