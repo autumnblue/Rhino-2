@@ -164,7 +164,14 @@ export default function reducer(state = initialState, action) {
       };
     }
 
-    case Constants.VIEW_CLIENT: {
+    case Constants.VIEW_CLIENT_REQUEST: {
+      return {
+        ...state,
+        clientStatus: loadingStatus.LOADING,
+      }
+    }
+
+    case Constants.VIEW_CLIENT_SUCCESS: {
       return {
         ...state,
         client: action.client,

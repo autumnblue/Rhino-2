@@ -62,7 +62,9 @@ function getPMs(client) {
     let pms = [];
 
     pms.push({ value: 0, label: "Default_PM" });
-    pms.push({ value: 1, label: client.project_manager.first_name + " " + client.project_manager.last_name });
+    if (client.project_manager !== null) {
+        pms.push({ value: 1, label: client.project_manager.first_name + " " + client.project_manager.last_name });
+    }
     
     return pms;
 }
@@ -71,14 +73,14 @@ const Client = (props) =>
   <DashboardCard className="clientEdit-Block">
       <div className="header">
         <div className="leftBlock">
-            <a href="/">Clients</a>
+            <a href="/dashboard">Clients</a>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <FontAwesome
                 name='angle-right'
                 style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
             />
             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span>Acme Corporation</span>
+            <span>{props.client.name ? props.client.name : ""}</span>
         </div>
         <div className="rightBlock">
             <FloatingActionButton className="add" onTouchTap={() => props.onFinish()}>
@@ -96,30 +98,29 @@ const Client = (props) =>
             </div>
             <div className="clientContainer">
                 <TextField
-                    disabled
-                    floatingLabelFixed={true}
-                    floatingLabelText="Company"
-                    hintText="Acme Corporation"
-                    fullWidth={true}
-                    defaultValue={"Backend Needed"}
-                    name="company"
-                    onBlur={(e) => props.onUpdate(e, "company")}
-                />
-                <TextField
                     floatingLabelFixed={true}
                     floatingLabelText="Name"
                     hintText="Client Name"
                     fullWidth={true}
-                    defaultValue={props.client.name}
+                    value={props.client.name ? props.client.name : ""}
                     name="name"
                     onBlur={(e) => props.onUpdate(e, "name")}
+                />
+                <TextField
+                    floatingLabelFixed={true}
+                    floatingLabelText="Client Short Name"
+                    hintText="Client Short Name"
+                    fullWidth={true}
+                    value={props.client.short_name ? props.client.short_name : ""}
+                    name="short_name"
+                    onBlur={(e) => props.onUpdate(e, "short_name")}
                 />
                 <TextField
                     floatingLabelFixed={true}
                     floatingLabelText="URL"
                     hintText="Client URL"
                     fullWidth={true}
-                    defaultValue={props.client.url}
+                    value={props.client.url ? props.client.url : ""}
                     name="url"
                     onBlur={(e) => props.onUpdate(e, "url")}
                 />
@@ -128,7 +129,7 @@ const Client = (props) =>
                     floatingLabelText="hourly_rate"
                     hintText="Should be blah blah"
                     fullWidth={true}
-                    defaultValue={props.client.hourly_rate}
+                    value={props.client.hourly_rate ? props.client.hourly_rate : ""}
                     name="rate"
                     onBlur={(e) => props.onUpdate(e, "hourly_rate")}
                 />
@@ -138,7 +139,7 @@ const Client = (props) =>
                     hintText="Address"
                     fullWidth={true}
                     multiLine={true}
-                    defaultValue={props.client.address}
+                    value={props.client.address ? props.client.address : ""}
                     name="address"
                     onBlur={(e) => props.onUpdate(e, "address")}
                 />
@@ -153,7 +154,7 @@ const Client = (props) =>
                     floatingLabelText="Focal Name"
                     hintText="Focal Name"
                     fullWidth={true}
-                    defaultValue={props.client.focal_name}
+                    value={props.client.focal_name ? props.client.focal_name : ""}
                     name="focal_name"
                     onBlur={(e) => props.onUpdate(e, "focal_name")}
                 />
@@ -162,7 +163,7 @@ const Client = (props) =>
                     floatingLabelText="Focal Title"
                     hintText="Focal Title"
                     fullWidth={true}
-                    defaultValue={props.client.focal_title}
+                    value={props.client.focal_title ? props.client.focal_title : ""}
                     name="focal_title"
                     onBlur={(e) => props.onUpdate(e, "focal_title")}
                 />
@@ -171,7 +172,7 @@ const Client = (props) =>
                     floatingLabelText="Focal Phone"
                     hintText="Focal Phone"
                     fullWidth={true}
-                    defaultValue={props.client.focal_phone}
+                    value={props.client.focal_phone ? props.client.focal_phone : ""}
                     name="focal_phone"
                     onBlur={(e) => props.onUpdate(e, "focal_phone")}
                 />
@@ -180,14 +181,18 @@ const Client = (props) =>
                     floatingLabelText="Focal Email"
                     hintText="Focal Email"
                     fullWidth={true}
-                    defaultValue={props.client.focal_email}
+                    value={props.client.focal_email ? props.client.focal_email : ""}
                     name="focal_email"
                     onBlur={(e) => props.onUpdate(e, "focal_email")}
                 />
             </div>
             
             <div className="action">
-                <RaisedButton default label="delete" onTouchTap={props.onDelete} />
+                <RaisedButton
+                    default
+                    label="delete"
+                    onTouchTap={props.onDelete}
+                />
             </div>
         </div>
         <div className="rightBlock">
@@ -213,7 +218,7 @@ const Client = (props) =>
                         floatingLabelText="Ref Code"
                         hintText="Ref Code"
                         fullWidth={true}
-                        defaultValue={"Backend Needed"}
+                        value={"Backend Needed"}
                         name="code"
                         onBlur={(e) => props.onUpdate(e, "ref_code")}
                     />
@@ -225,7 +230,7 @@ const Client = (props) =>
                         hintText="Notes"
                         fullWidth={true}
                         multiLine={true}
-                        defaultValue={props.client.notes}
+                        value={props.client.notes ? props.client.notes : ""}
                         name="notes"
                         onBlur={(e) => props.onUpdate(e, "notes")}
                     />
@@ -242,11 +247,12 @@ const Client = (props) =>
                     onChange={(value) => props.onParent(value)}
                 />
             </div>
-            <div className="departmentTitle">
-                Department Clients
-            </div>
-            <div className="departmentContainer">
-                {(props.umbrella) && (
+            {(!props.umbrella) && (
+                <div>
+                <div className="departmentTitle">
+                    Department Clients
+                </div>
+                <div className="departmentContainer">
                     <ReactTable
                         data={getDepartments(props.departments)}
                         columns={getColumns()}
@@ -258,8 +264,9 @@ const Client = (props) =>
                             }
                         }}
                     />
-                )}
-            </div>
+                </div>
+                </div>
+            )}
         </div>
       </div>
   </DashboardCard>;

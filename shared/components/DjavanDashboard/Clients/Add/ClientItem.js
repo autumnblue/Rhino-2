@@ -81,7 +81,7 @@ const Client = (props) =>
             <span>Acme Corporation</span>
         </div>
         <div className="rightBlock">
-            <FloatingActionButton className="add">
+            <FloatingActionButton className="add" onTouchTap={() => props.onAdd()}>
                 <FontAwesome
                     name='check'
                     style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
@@ -96,6 +96,7 @@ const Client = (props) =>
             </div>
             <div className="clientContainer">
                 <TextField
+                    disabled
                     floatingLabelFixed={true}
                     floatingLabelText="Company"
                     hintText="Acme Corporation"

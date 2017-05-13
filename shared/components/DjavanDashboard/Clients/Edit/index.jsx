@@ -9,12 +9,17 @@ import ClientItem from './ClientItem';
 
 class Client extends Component {
     state = {
+        // client: null,
         pm: 0,
         parent: 0,
     }
 
-    handleDelete() {
+    // componentWillMount() {
+    //     this.setState({ client: this.props.client })
+    // }
 
+    handleDelete() {
+        this.props.deleteClient(this.props.client.id);
     }
 
     handleFinish() {
@@ -33,6 +38,7 @@ class Client extends Component {
         _.map(this.props.departments, (department, key) => {
             if (rowInfo.index == key && rowInfo.row.clientname == department.name) {
                 this.props.viewClient(department);
+                // this.setState({ client: department });
                 return;
             }
         });
@@ -48,7 +54,7 @@ class Client extends Component {
     }
 
     render() {
-        const { pm, parent } = this.state;
+        const { client, pm, parent } = this.state;
 
         if (isLoading(this.props.umbdepStatus) || isLoading(this.props.clientStatus)) {
             return (
@@ -83,6 +89,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    deleteClient: (client) => dispatch(ClientsActions.deleteClient(client)),
     finishClient: () => dispatch(ClientsActions.finishClient()),
     updateClient: (id, val) => dispatch(ClientsActions.updateClient(id, val)),
     viewClient: (client) => dispatch(ClientsActions.viewClient(client)),

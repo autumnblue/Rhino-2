@@ -1,5 +1,5 @@
 import { push } from 'react-router-redux';
-import { httpPut, httpGet, httpPatch } from '../utils';
+import { httpDelete, httpGet, httpPatch, httpPost, httpPut } from '../utils';
 import { handleInternalErrors, logger } from '../utils/handleInternalErrors';
 import Constants from '../constants';
 import { loadingStatus } from '../constants/loadingStatus';
@@ -7,12 +7,40 @@ import { loadingStatus } from '../constants/loadingStatus';
 const Actions = {
   viewClient: (client) =>
     ((dispatch) => {
+      console.log('$$$ Client :  ', client);
       dispatch({
-        type: Constants.VIEW_CLIENT,
-        client
+        type: Constants.VIEW_CLIENT_REQUEST,
+      });
+      dispatch({
+        type: Constants.VIEW_CLIENT_SUCCESS,
+        client,
       });
       dispatch(Actions.fetchClientUmbrella(client.id));
       dispatch(push('/dashboard/edit'));
+    }),
+  createClient: (client) =>
+    ((dispatch) => {
+      dispatch({
+        type: Constants.CREATE_CLIENT_REQUEST,
+        client,
+      })
+      return httpPost(`clients/`, client)
+        .then((response) => {
+          console.log('$$$$$$$$$:  ', response);
+        })
+        .catch((error) => {
+          logger(error);
+        });
+    }),
+  deleteClient: (client) =>
+    ((dispatch) => {
+      return httpDelete(`clients/${client}`)
+        .then((response) => {
+          dispatch(push('/dashboard/list'));
+        })
+        .catch((error) => {
+          logger(error);
+        })
     }),
   fetchClients: (page, sort, limit, filter, loadingMore) =>
     ((dispatch) => {
@@ -115,6 +143,7 @@ const Actions = {
         });
         return httpGet(`clients/${client}?include[]=departments&include[]=umbrella`)
           .then((response) => {
+            console.log('$$$ Umbrella :  ', response.body);
             if (response.body) {
               dispatch({
                 type: Constants.FETCH_CLIENT_UMBRELLA,
