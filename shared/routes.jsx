@@ -10,6 +10,7 @@ import ClientList from './components/DjavanDashboard/Clients/Lists';
 import Entry from './containers/Entry';
 import cookie from 'react-cookie';
 import Login from './components/Login';
+import Logout from './components/Logout';
 
 import Actions from './actions/sessions';
 import { isClient, checkToken } from './utils';
@@ -36,8 +37,8 @@ export default function configRoutes(store) {
 
   const checkAuth = (nextState, replace, cb) => {
     const { dispatch } = store;
-    const { session } = store.getState();
-    const { currentUser } = session;
+    const { sessions } = store.getState();
+    const { currentUser } = sessions;
 
     if (isClient()) {
       if (!currentUser && cookie.load('token')) {
@@ -56,11 +57,12 @@ export default function configRoutes(store) {
       {/*<Route component={App} onEnter={ensureAuthenticated}>*/}
       <Route component={App}>
         <IndexRedirect to="login" />
+        <Route path="logout" component={Logout} />
         <Route path="dashboard" component={DjavanDashboard}>
-          <IndexRedirect to="list" />
-          <Route path="add" component={ClientAdd} />
-          <Route path="edit" component={ClientEdit} />
-          <Route path="list" component={ClientList} />
+          <IndexRedirect to="clients/list" />
+          <Route path="clients/add" component={ClientAdd} />
+          <Route path="clients/edit" component={ClientEdit} />
+          <Route path="clients/list" component={ClientList} />
           <Route path="assessments" component={Assessments} />
         </Route>
       </Route>

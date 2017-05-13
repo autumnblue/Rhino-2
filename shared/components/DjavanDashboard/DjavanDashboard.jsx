@@ -12,8 +12,9 @@ export default class DjavanDashboard extends Component {
 
   static defaultProps = {
     menu: [
-      { id: 1, text: 'Clients', path: '/dashboard/clients', icon: PlacesBusinessCenter },
+      { id: 1, text: 'Clients', path: '/dashboard/clients/list', icon: PlacesBusinessCenter },
       { id: 2, text: 'Assessments', path: '/dashboard/assessments', icon: PlacesBusinessCenter },
+      { id: 3, text: 'Log out', path: '/logout', icon: PlacesBusinessCenter},
     ]
   }
 

@@ -44,12 +44,12 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = ({session, login}) => ({
-  email: session.email,
-  password: session.password,
-  emailHint: login.emailHint,
-  passwordHint: login.passwordHint,
-  error: session.error,
+const mapStateToProps = (state) => ({
+  email: state.sessions.email,
+  password: state.sessions.password,
+  emailHint: state.login.emailHint,
+  passwordHint: state.login.passwordHint,
+  error: state.sessions.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({

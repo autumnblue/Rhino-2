@@ -7,7 +7,6 @@ import { loadingStatus } from '../constants/loadingStatus';
 const Actions = {
   viewClient: (client) =>
     ((dispatch) => {
-      console.log('$$$ Client :  ', client);
       dispatch({
         type: Constants.VIEW_CLIENT_REQUEST,
       });
@@ -16,7 +15,7 @@ const Actions = {
         client,
       });
       dispatch(Actions.fetchClientUmbrella(client.id));
-      dispatch(push('/dashboard/edit'));
+      dispatch(push('/dashboard/clients/edit'));
     }),
   createClient: (client) =>
     ((dispatch) => {
@@ -36,7 +35,7 @@ const Actions = {
     ((dispatch) => {
       return httpDelete(`clients/${client}`)
         .then((response) => {
-          dispatch(push('/dashboard/list'));
+          dispatch(push('/dashboard/clients/list'));
         })
         .catch((error) => {
           logger(error);
@@ -128,7 +127,7 @@ const Actions = {
         dispatch({
           type: Constants.FINISH_CLIENT,
         })
-        dispatch(push('/dashboard/list'));
+        dispatch(push('/dashboard/clients/list'));
     }),
 //  https://djavan-server.rsl.host/api/v1/clients.json?page=1&per_page=1000&sort[]=id&exclude[]=*&include[]=id&include[]=name&filter{umbrella.isnull}=1
 //   updateClientsList: (newClients) => ({ type: Constants.UPDATE_CLIENTS_LIST, clients: newClients }),
@@ -143,7 +142,6 @@ const Actions = {
         });
         return httpGet(`clients/${client}?include[]=departments&include[]=umbrella`)
           .then((response) => {
-            console.log('$$$ Umbrella :  ', response.body);
             if (response.body) {
               dispatch({
                 type: Constants.FETCH_CLIENT_UMBRELLA,

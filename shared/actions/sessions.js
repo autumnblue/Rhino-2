@@ -1,4 +1,4 @@
-import { push } from 'react-router-redux';
+import { push, replace } from 'react-router-redux';
 import cookie from 'react-cookie';
 import merge from 'lodash/merge';
 import _ from 'lodash';
@@ -44,6 +44,12 @@ const Actions = {
       })
     )
   ),
+
+  userLogoutRequest: () =>
+    ((dispatch) => {
+      cookie.remove('token', { path: '/' });
+      dispatch(replace('/'));
+    }),
 
   // updatePassword: (data) =>
   //   ((dispatch) =>
