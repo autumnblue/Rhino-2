@@ -81,7 +81,7 @@ const Client = (props) =>
             <span>Acme Corporation</span>
         </div>
         <div className="rightBlock">
-            <FloatingActionButton className="add" onTouchTap={() => props.onFinish()}>
+            <FloatingActionButton className="add">
                 <FontAwesome
                     name='check'
                     style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
@@ -96,12 +96,10 @@ const Client = (props) =>
             </div>
             <div className="clientContainer">
                 <TextField
-                    disabled
                     floatingLabelFixed={true}
                     floatingLabelText="Company"
                     hintText="Acme Corporation"
                     fullWidth={true}
-                    defaultValue={"Backend Needed"}
                     name="company"
                     onBlur={(e) => props.onUpdate(e, "company")}
                 />
@@ -110,7 +108,6 @@ const Client = (props) =>
                     floatingLabelText="Name"
                     hintText="Client Name"
                     fullWidth={true}
-                    defaultValue={props.client.name}
                     name="name"
                     onBlur={(e) => props.onUpdate(e, "name")}
                 />
@@ -119,7 +116,6 @@ const Client = (props) =>
                     floatingLabelText="URL"
                     hintText="Client URL"
                     fullWidth={true}
-                    defaultValue={props.client.url}
                     name="url"
                     onBlur={(e) => props.onUpdate(e, "url")}
                 />
@@ -128,7 +124,6 @@ const Client = (props) =>
                     floatingLabelText="hourly_rate"
                     hintText="Should be blah blah"
                     fullWidth={true}
-                    defaultValue={props.client.hourly_rate}
                     name="rate"
                     onBlur={(e) => props.onUpdate(e, "hourly_rate")}
                 />
@@ -138,7 +133,6 @@ const Client = (props) =>
                     hintText="Address"
                     fullWidth={true}
                     multiLine={true}
-                    defaultValue={props.client.address}
                     name="address"
                     onBlur={(e) => props.onUpdate(e, "address")}
                 />
@@ -153,7 +147,6 @@ const Client = (props) =>
                     floatingLabelText="Focal Name"
                     hintText="Focal Name"
                     fullWidth={true}
-                    defaultValue={props.client.focal_name}
                     name="focal_name"
                     onBlur={(e) => props.onUpdate(e, "focal_name")}
                 />
@@ -162,7 +155,6 @@ const Client = (props) =>
                     floatingLabelText="Focal Title"
                     hintText="Focal Title"
                     fullWidth={true}
-                    defaultValue={props.client.focal_title}
                     name="focal_title"
                     onBlur={(e) => props.onUpdate(e, "focal_title")}
                 />
@@ -171,7 +163,6 @@ const Client = (props) =>
                     floatingLabelText="Focal Phone"
                     hintText="Focal Phone"
                     fullWidth={true}
-                    defaultValue={props.client.focal_phone}
                     name="focal_phone"
                     onBlur={(e) => props.onUpdate(e, "focal_phone")}
                 />
@@ -180,7 +171,6 @@ const Client = (props) =>
                     floatingLabelText="Focal Email"
                     hintText="Focal Email"
                     fullWidth={true}
-                    defaultValue={props.client.focal_email}
                     name="focal_email"
                     onBlur={(e) => props.onUpdate(e, "focal_email")}
                 />
@@ -199,23 +189,16 @@ const Client = (props) =>
                     <span>created 10/10/2016</span>
                 </div>
                 <div className="drop">
-                    <Select
-                        name="form-field-name"
-                        value={props.pm}
-                        options={getPMs(props.client)}
-                        onChange={(value) => props.onPM(value)}
-                    />
+                    
                 </div>
                 <div className="drop">
                     <TextField
-                        disabled
                         floatingLabelFixed={true}
                         floatingLabelText="Ref Code"
                         hintText="Ref Code"
                         fullWidth={true}
-                        defaultValue={"Backend Needed"}
                         name="code"
-                        onBlur={(e) => props.onUpdate(e, "ref_code")}
+                        onBlur={(e) => props.onUpdate(e, "code")}
                     />
                 </div>
                 <div className="note">
@@ -225,7 +208,6 @@ const Client = (props) =>
                         hintText="Notes"
                         fullWidth={true}
                         multiLine={true}
-                        defaultValue={props.client.notes}
                         name="notes"
                         onBlur={(e) => props.onUpdate(e, "notes")}
                     />
@@ -235,30 +217,13 @@ const Client = (props) =>
                 Parent
             </div>
             <div className="parentContainer">
-                <Select
-                    name="form-field-name"
-                    value={props.parent}
-                    options={getParents(props.umbrella)}
-                    onChange={(value) => props.onParent(value)}
-                />
+                
             </div>
             <div className="departmentTitle">
                 Department Clients
             </div>
             <div className="departmentContainer">
-                {(props.umbrella) && (
-                    <ReactTable
-                        data={getDepartments(props.departments)}
-                        columns={getColumns()}
-                        showPagination={false}
-                        defaultPageSize={5}
-                        getTdProps={(state, rowInfo, column, instance) => {
-                            return {
-                                onClick: e => props.onRow(rowInfo)
-                            }
-                        }}
-                    />
-                )}
+                
             </div>
         </div>
       </div>

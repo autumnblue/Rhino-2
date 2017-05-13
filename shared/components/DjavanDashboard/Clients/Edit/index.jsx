@@ -13,16 +13,20 @@ class Client extends Component {
         parent: 0,
     }
 
+    handleDelete() {
+
+    }
+
+    handleFinish() {
+        this.props.finishClient();
+    }
+
     handlePMChange(value) {
       this.setState({ pm: value });
     }
 
     handleParentChange(value) {
       this.setState({ parent: value });
-    }
-
-    handleDelete() {
-
     }
 
     handleRow(rowInfo) {
@@ -40,7 +44,6 @@ class Client extends Component {
         body["field"] = name;
         body["value"] = e.target.value;
         body["clientitem"] = this.props.client;
-
         this.props.updateClient(this.props.client.id, body);
     }
 
@@ -60,6 +63,7 @@ class Client extends Component {
                     departments={this.props.departments}
                     umbrella={this.props.umbrella}
                     onDelete={() => this.handleDelete()}
+                    onFinish={() => this.handleFinish()}
                     onParent={(value) => this.handleParentChange(value)}
                     onPM={(value) => this.handlePMChange(value)}
                     onUpdate={(e, name) => this.handleUpdate(e, name)}
@@ -79,6 +83,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    finishClient: () => dispatch(ClientsActions.finishClient()),
     updateClient: (id, val) => dispatch(ClientsActions.updateClient(id, val)),
     viewClient: (client) => dispatch(ClientsActions.viewClient(client)),
 });

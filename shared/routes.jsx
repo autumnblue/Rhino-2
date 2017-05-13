@@ -4,7 +4,7 @@ import MainLayout from './components/main';
 import App from './containers/App';
 import DjavanDashboard from './components/DjavanDashboard/DjavanDashboard';
 import Assessments from './components/DjavanDashboard/Assessments';
-import Clients from './components/DjavanDashboard/Clients/Edit';
+import ClientAdd from './components/DjavanDashboard/Clients/Add';
 import ClientEdit from './components/DjavanDashboard/Clients/Edit';
 import ClientList from './components/DjavanDashboard/Clients/Lists';
 import Entry from './containers/Entry';
@@ -58,6 +58,7 @@ export default function configRoutes(store) {
         <IndexRedirect to="login" />
         <Route path="dashboard" component={DjavanDashboard}>
           <IndexRedirect to="list" />
+          <Route path="add" component={ClientAdd} />
           <Route path="edit" component={ClientEdit} />
           <Route path="list" component={ClientList} />
           <Route path="assessments" component={Assessments} />

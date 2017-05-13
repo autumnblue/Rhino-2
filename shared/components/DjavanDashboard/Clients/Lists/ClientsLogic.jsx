@@ -37,6 +37,10 @@ export default class ClientsLogic extends Component {
         this.props.loadData(activePage, sort, limit, filter, false);
     }
 
+    handleAddClient() {
+        this.props.addClient();
+    }
+
     handleSortChange(obj) {
         const { activePage, sort, limit, filter } = this.state;
         if (obj == null) return;
@@ -72,13 +76,14 @@ export default class ClientsLogic extends Component {
         return (
             <div>
                 <Header
-                    sort={sort}
-                    sortOptions={sortOptions}
-                    onSort={(value) => this.handleSortChange(value)}
                     limit={limit}
                     limitOptions={limitOptions}
+                    sort={sort}
+                    sortOptions={sortOptions}
+                    onAdd={() => this.handleAddClient()}
                     onDisplay={(value) => this.handleDisplayChange(value)}
                     onFilter={(value) => this.handleFilterChange(value)}
+                    onSort={(value) => this.handleSortChange(value)}
                 />
                 <List
                     clients={this.props.clients}

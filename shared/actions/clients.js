@@ -25,7 +25,6 @@ const Actions = {
         
         return httpGet(`clients.json?page=${page}&per_page=${limit}&sort[]=${sort}&filter{name.icontains}=${filter}`)
           .then((response) => {
-            console.log('#######:  ', response);
             if (response.body) {
               dispatch({
                 type: Constants.FETCH_CLIENTS,
@@ -48,15 +47,11 @@ const Actions = {
     ),
   updateClient: (id, val) =>
     ((dispatch) => {
-        dispatch({
-          type: Constants.FETCH_CLIENT_REQUEST,
-          clientStatus: loadingStatus.LOADING,
-        });
-        // console.log("ClientItem (field: val, clientitembefore, clientitemafter:");
-        // console.log(val.field + " : " + val.value);
-        // console.log(val.clientitem);
-        // let clientcopy = Object.assign({}, val.clientitem);
-        // _.set(clientcopy, val.field, val.value);
+        // dispatch({
+        //   type: Constants.FETCH_CLIENT_REQUEST,
+        //   clientStatus: loadingStatus.LOADING,
+        // });
+
         let clientcopy = {};
         clientcopy[val.field] = val.value;
         return httpPatch(`clients/${id}.json`, clientcopy)
@@ -69,8 +64,7 @@ const Actions = {
               clientcopy["commit"] = true;
               httpPatch(`clients/${id}.json`, clientcopy)
                 .then((response) => {
-                  if (response.body) { //.data.meta.total_results > 0
-                    // console.log(response.body);
+                  if (response.body) {
                     dispatch({
                       type: Constants.FETCH_CLIENT,
                       client: [response.body.client],
@@ -101,7 +95,13 @@ const Actions = {
             });
       }
     ),
-
+  finishClient: () =>
+    ((dispatch) => {
+        dispatch({
+          type: Constants.FINISH_CLIENT,
+        })
+        dispatch(push('/dashboard/list'));
+    }),
 //  https://djavan-server.rsl.host/api/v1/clients.json?page=1&per_page=1000&sort[]=id&exclude[]=*&include[]=id&include[]=name&filter{umbrella.isnull}=1
 //   updateClientsList: (newClients) => ({ type: Constants.UPDATE_CLIENTS_LIST, clients: newClients }),
   refreshClientsList: () => ({ type: Constants.REFRESH_CLIENTS_LIST }),

@@ -31,7 +31,7 @@ const Header = (props) => (
 
         </div>
         <div className="control">
-            <FloatingActionButton className="add">
+            <FloatingActionButton className="add" onTouchTap={() => props.onAdd()}>
                 <FontAwesome
                     name='plus'
                     style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
