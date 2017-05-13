@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import ClientsActions from '../../../../actions/clients';
 import { isLoading, isLoaded } from '../../../../constants/loadingStatus';
 import DashboardLoader from '../../../Dashboard/Content/DashboardLoader';
@@ -12,6 +13,23 @@ class Client extends Component {
         // client: null,
         pm: 0,
         parent: 0,
+        client: null,
+    }
+
+    componentWillMount() {
+        this.setState({ client: this.props.client });
+    }
+
+    componentWillReceiveProps() {
+        this.setState({ client: this.props.client });
+    }
+
+    handleChange(e, field) {
+        let { client } = this.state;
+        client[field] = e.target.value;
+        this.setState({
+            client: client
+        });
     }
 
     handleDelete() {
@@ -34,6 +52,8 @@ class Client extends Component {
         _.map(this.props.departments, (department, key) => {
             if (rowInfo.index == key && rowInfo.row.clientname == department.name) {
                 this.props.viewClient(department);
+                console.log('$$$$$$$$:  ', department);
+                this.forceUpdate();
                 // this.setState({ client: department });
                 return;
             }
@@ -59,11 +79,12 @@ class Client extends Component {
         } else {
             return (
                 <ClientItem
-                    client={this.props.client}
+                    client={client}
                     pm={pm}
                     parent={parent}
                     departments={this.props.departments}
                     umbrella={this.props.umbrella}
+                    onChange={(e, field) => this.handleChange(e, field)}
                     onDelete={() => this.handleDelete()}
                     onFinish={() => this.handleFinish()}
                     onParent={(value) => this.handleParentChange(value)}
@@ -86,7 +107,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     deleteClient: (client) => dispatch(ClientsActions.deleteClient(client)),
-    finishClient: () => dispatch(ClientsActions.finishClient()),
+    finishClient: () => dispatch(push('/dashboard/clients/list')),
     updateClient: (id, val) => dispatch(ClientsActions.updateClient(id, val)),
     viewClient: (client) => dispatch(ClientsActions.viewClient(client)),
 });

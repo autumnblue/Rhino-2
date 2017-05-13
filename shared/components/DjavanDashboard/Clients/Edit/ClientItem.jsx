@@ -102,8 +102,9 @@ const Client = (props) =>
                     floatingLabelText="Name"
                     hintText="Client Name"
                     fullWidth={true}
-                    defaultValue={props.client.name}
+                    value={props.client.name}
                     name="name"
+                    onChange={(e, field) => props.onChange(e, "name")}
                     onBlur={(e) => props.onUpdate(e, "name")}
                 />
                 <TextField
@@ -111,8 +112,9 @@ const Client = (props) =>
                     floatingLabelText="Client Short Name"
                     hintText="Client Short Name"
                     fullWidth={true}
-                    defaultValue={props.client.short_name}
+                    value={props.client.short_name}
                     name="short_name"
+                    onChange={(e, field) => props.onChange(e, "short_name")}
                     onBlur={(e) => props.onUpdate(e, "short_name")}
                 />
                 <TextField
@@ -120,8 +122,9 @@ const Client = (props) =>
                     floatingLabelText="URL"
                     hintText="Client URL"
                     fullWidth={true}
-                    defaultValue={props.client.url}
+                    value={props.client.url}
                     name="url"
+                    onChange={(e, field) => props.onChange(e, "url")}
                     onBlur={(e) => props.onUpdate(e, "url")}
                 />
                 <TextField
@@ -129,8 +132,9 @@ const Client = (props) =>
                     floatingLabelText="hourly_rate"
                     hintText="Should be blah blah"
                     fullWidth={true}
-                    defaultValue={props.client.hourly_rate}
-                    name="rate"
+                    value={props.client.hourly_rate}
+                    name="hourly_rate"
+                    onChange={(e, field) => props.onChange(e, "hourly_rate")}
                     onBlur={(e) => props.onUpdate(e, "hourly_rate")}
                 />
                 <TextField
@@ -139,8 +143,9 @@ const Client = (props) =>
                     hintText="Address"
                     fullWidth={true}
                     multiLine={true}
-                    defaultValue={props.client.address}
+                    value={props.client.address}
                     name="address"
+                    onChange={(e, field) => props.onChange(e, "address")}
                     onBlur={(e) => props.onUpdate(e, "address")}
                 />
             </div>
@@ -154,8 +159,9 @@ const Client = (props) =>
                     floatingLabelText="Focal Name"
                     hintText="Focal Name"
                     fullWidth={true}
-                    defaultValue={props.client.focal_name}
+                    value={props.client.focal_name}
                     name="focal_name"
+                    onChange={(e, field) => props.onChange(e, "focal_name")}
                     onBlur={(e) => props.onUpdate(e, "focal_name")}
                 />
                 <TextField
@@ -163,8 +169,9 @@ const Client = (props) =>
                     floatingLabelText="Focal Title"
                     hintText="Focal Title"
                     fullWidth={true}
-                    defaultValue={props.client.focal_title}
+                    value={props.client.focal_title}
                     name="focal_title"
+                    onChange={(e, field) => props.onChange(e, "focal_title")}
                     onBlur={(e) => props.onUpdate(e, "focal_title")}
                 />
                 <TextField
@@ -172,8 +179,9 @@ const Client = (props) =>
                     floatingLabelText="Focal Phone"
                     hintText="Focal Phone"
                     fullWidth={true}
-                    defaultValue={props.client.focal_phone}
+                    value={props.client.focal_phone}
                     name="focal_phone"
+                    onChange={(e, field) => props.onChange(e, "focal_phone")}
                     onBlur={(e) => props.onUpdate(e, "focal_phone")}
                 />
                 <TextField
@@ -181,8 +189,9 @@ const Client = (props) =>
                     floatingLabelText="Focal Email"
                     hintText="Focal Email"
                     fullWidth={true}
-                    defaultValue={props.client.focal_email}
+                    value={props.client.focal_email}
                     name="focal_email"
+                    onChange={(e, field) => props.onChange(e, "focal_email")}
                     onBlur={(e) => props.onUpdate(e, "focal_email")}
                 />
             </div>
@@ -218,8 +227,9 @@ const Client = (props) =>
                         floatingLabelText="Ref Code"
                         hintText="Ref Code"
                         fullWidth={true}
-                        defaultValue={"Backend Needed"}
-                        name="code"
+                        value={"Backend Needed"}
+                        name="ref_code"
+                        onChange={(e, field) => props.onChange(e, "ref_code")}
                         onBlur={(e) => props.onUpdate(e, "ref_code")}
                     />
                 </div>
@@ -230,8 +240,9 @@ const Client = (props) =>
                         hintText="Notes"
                         fullWidth={true}
                         multiLine={true}
-                        defaultValue={props.client.notes}
+                        value={props.client.notes}
                         name="notes"
+                        onChange={(e, field) => props.onChange(e, "notes")}
                         onBlur={(e) => props.onUpdate(e, "notes")}
                     />
                 </div>
