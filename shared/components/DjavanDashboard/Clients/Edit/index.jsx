@@ -14,10 +14,6 @@ class Client extends Component {
         parent: 0,
     }
 
-    // componentWillMount() {
-    //     this.setState({ client: this.props.client })
-    // }
-
     handleDelete() {
         this.props.deleteClient(this.props.client.id);
     }

@@ -78,7 +78,7 @@ const Client = (props) =>
                 style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
             />
             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span>Acme Corporation</span>
+            <span></span>
         </div>
         <div className="rightBlock">
             <FloatingActionButton className="add" onTouchTap={() => props.onAdd()}>

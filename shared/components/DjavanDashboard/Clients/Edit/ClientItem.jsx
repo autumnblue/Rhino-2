@@ -73,14 +73,14 @@ const Client = (props) =>
   <DashboardCard className="clientEdit-Block">
       <div className="header">
         <div className="leftBlock">
-            <a href="/dashboard">Clients</a>
+            <a href="/dashboard/clients/list">Clients</a>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <FontAwesome
                 name='angle-right'
                 style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
             />
             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span>{props.client.name ? props.client.name : ""}</span>
+            <span>{props.client.name}</span>
         </div>
         <div className="rightBlock">
             <FloatingActionButton className="add" onTouchTap={() => props.onFinish()}>
@@ -102,7 +102,7 @@ const Client = (props) =>
                     floatingLabelText="Name"
                     hintText="Client Name"
                     fullWidth={true}
-                    value={props.client.name ? props.client.name : ""}
+                    defaultValue={props.client.name}
                     name="name"
                     onBlur={(e) => props.onUpdate(e, "name")}
                 />
@@ -111,7 +111,7 @@ const Client = (props) =>
                     floatingLabelText="Client Short Name"
                     hintText="Client Short Name"
                     fullWidth={true}
-                    value={props.client.short_name ? props.client.short_name : ""}
+                    defaultValue={props.client.short_name}
                     name="short_name"
                     onBlur={(e) => props.onUpdate(e, "short_name")}
                 />
@@ -120,7 +120,7 @@ const Client = (props) =>
                     floatingLabelText="URL"
                     hintText="Client URL"
                     fullWidth={true}
-                    value={props.client.url ? props.client.url : ""}
+                    defaultValue={props.client.url}
                     name="url"
                     onBlur={(e) => props.onUpdate(e, "url")}
                 />
@@ -129,7 +129,7 @@ const Client = (props) =>
                     floatingLabelText="hourly_rate"
                     hintText="Should be blah blah"
                     fullWidth={true}
-                    value={props.client.hourly_rate ? props.client.hourly_rate : ""}
+                    defaultValue={props.client.hourly_rate}
                     name="rate"
                     onBlur={(e) => props.onUpdate(e, "hourly_rate")}
                 />
@@ -139,7 +139,7 @@ const Client = (props) =>
                     hintText="Address"
                     fullWidth={true}
                     multiLine={true}
-                    value={props.client.address ? props.client.address : ""}
+                    defaultValue={props.client.address}
                     name="address"
                     onBlur={(e) => props.onUpdate(e, "address")}
                 />
@@ -154,7 +154,7 @@ const Client = (props) =>
                     floatingLabelText="Focal Name"
                     hintText="Focal Name"
                     fullWidth={true}
-                    value={props.client.focal_name ? props.client.focal_name : ""}
+                    defaultValue={props.client.focal_name}
                     name="focal_name"
                     onBlur={(e) => props.onUpdate(e, "focal_name")}
                 />
@@ -163,7 +163,7 @@ const Client = (props) =>
                     floatingLabelText="Focal Title"
                     hintText="Focal Title"
                     fullWidth={true}
-                    value={props.client.focal_title ? props.client.focal_title : ""}
+                    defaultValue={props.client.focal_title}
                     name="focal_title"
                     onBlur={(e) => props.onUpdate(e, "focal_title")}
                 />
@@ -172,7 +172,7 @@ const Client = (props) =>
                     floatingLabelText="Focal Phone"
                     hintText="Focal Phone"
                     fullWidth={true}
-                    value={props.client.focal_phone ? props.client.focal_phone : ""}
+                    defaultValue={props.client.focal_phone}
                     name="focal_phone"
                     onBlur={(e) => props.onUpdate(e, "focal_phone")}
                 />
@@ -181,7 +181,7 @@ const Client = (props) =>
                     floatingLabelText="Focal Email"
                     hintText="Focal Email"
                     fullWidth={true}
-                    value={props.client.focal_email ? props.client.focal_email : ""}
+                    defaultValue={props.client.focal_email}
                     name="focal_email"
                     onBlur={(e) => props.onUpdate(e, "focal_email")}
                 />
@@ -218,7 +218,7 @@ const Client = (props) =>
                         floatingLabelText="Ref Code"
                         hintText="Ref Code"
                         fullWidth={true}
-                        value={"Backend Needed"}
+                        defaultValue={"Backend Needed"}
                         name="code"
                         onBlur={(e) => props.onUpdate(e, "ref_code")}
                     />
@@ -230,7 +230,7 @@ const Client = (props) =>
                         hintText="Notes"
                         fullWidth={true}
                         multiLine={true}
-                        value={props.client.notes ? props.client.notes : ""}
+                        defaultValue={props.client.notes}
                         name="notes"
                         onBlur={(e) => props.onUpdate(e, "notes")}
                     />
