@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import FontAwesome from 'react-fontawesome';
+import Checkbox from 'material-ui/Checkbox';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/MenuItem';
@@ -31,29 +32,26 @@ function getColumns() {
     return columns;
 }
 
-function getDepartments(departments) {
-    let data = [];
+function getIssuers(clients) {
+    let issuers = [];
+    issuers.push({ value: 9999, label: "None" });
 
-    _.map(departments, (department, key) =>
-        data.push({
-            clientname: department.name,
-            focalname: department.focal_name,
-            socount: department.service_order_count,
-            asscount: department.assessment_count
-        })
-    );
+    _.map(clients, (client, key) => {
+        issuers.push({ value: client.id, label: client.name });
+    });
 
-    return data;
-};
+    return issuers;
+}
 
-function getParents(umbrella) {
+function getParents(clients) {
     let parents = [];
-    
-    if (umbrella == null) {
-        parents.push({ value: 0, label: "None" });
-    } else {
-        parents.push({ value: 0, label: umbrella.name });
-    }
+    parents.push({ value: 9999, label: "None" });
+
+    _.map(clients, (client, key) => {
+        if (client.umbrella == null) {
+            parents.push({ value: client.id, label: client.name });
+        }
+    });
 
     return parents;
 }
@@ -175,10 +173,6 @@ const Client = (props) =>
                     onBlur={(e) => props.onUpdate(e, "focal_email")}
                 />
             </div>
-            
-            <div className="action">
-                <RaisedButton default label="delete" onTouchTap={props.onDelete} />
-            </div>
         </div>
         <div className="rightBlock">
             <div className="manageTitle">
@@ -189,7 +183,10 @@ const Client = (props) =>
                     <span>created 10/10/2016</span>
                 </div>
                 <div className="drop">
-                    
+                    <Checkbox
+                        label="Commit"
+                        onCheck={(e) => props.onUpdate(e, "commit")}
+                    />
                 </div>
                 <div className="drop">
                     
@@ -210,13 +207,23 @@ const Client = (props) =>
                 Parent
             </div>
             <div className="parentContainer">
-                
+                <Select
+                    name="umbrella"
+                    value={props.umbrella}
+                    options={getParents(props.clients)}
+                    onChange={(value) => props.onUpdate(value, "umbrella")}
+                />
             </div>
             <div className="departmentTitle">
-                Department Clients
+                Issuer
             </div>
             <div className="departmentContainer">
-                
+                <Select
+                    name="issuer"
+                    value={props.issuer}
+                    options={getIssuers(props.clients)}
+                    onChange={(value) => props.onUpdate(value, "issuer")}
+                />
             </div>
         </div>
       </div>

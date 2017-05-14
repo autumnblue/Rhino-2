@@ -25,7 +25,7 @@ const Actions = {
       })
       return httpPost(`clients/`, client)
         .then((response) => {
-          console.log('$$$$$$$$$:  ', response);
+          dispatch(push('/dashboard/clients/list'));
         })
         .catch((error) => {
           logger(error);

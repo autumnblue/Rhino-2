@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import ClientsActions from '../../../../actions/clients';
 import { isLoading, isLoaded } from '../../../../constants/loadingStatus';
 import DashboardLoader from '../../../Dashboard/Content/DashboardLoader';
@@ -9,28 +10,51 @@ import ClientItem from './ClientItem';
 
 class Client extends Component {
     state = {
+        umbrella: 9999,
+        issuer: 9999,
         client: {},
     }
 
     handleAdd() {
         let { client } = this.state;
 
-        client["commit"] = "true";
-        client["issuer"] = 2;
-        client["umbrella"] = 2;
-
         this.props.createClient(client);
     }
 
     handleUpdate(e, field) {
         let { client } = this.state;
-        client[field] = e.target.value;
+        if (field == "commit") {
+            client[field] = e.target.checked;
+        } else if (field == "umbrella") {
+            if (e == null) return;
+            if (e.value == 9999) {
+                client[field] = null;
+            } else {
+                client[field] = e.value;
+            }
+            this.setState({ umbrella: e.value });
+            console.log(client);
+        } else if (field == "issuer") {
+            if (e == null) return;
+            if (e.value == 9999) {
+                client[field] = null;
+            } else {
+                client[field] = e.value;
+            }
+            this.setState({ issuer: e.value });
+            console.log(client);
+        } else {
+            client[field] = e.target.value;
+        }
         this.setState({ client: client });
     }
 
     render() {
         return (
             <ClientItem
+                clients={this.props.clients}
+                issuer={this.state.issuer}
+                umbrella={this.state.umbrella}
                 onAdd={() => this.handleAdd()}
                 onUpdate={(e, name) => this.handleUpdate(e, name)}
             />
@@ -39,7 +63,7 @@ class Client extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    client: state.clients.client,
+    clients: state.clients.clients,
 });
 
 const mapDispatchToProps = (dispatch) => ({
