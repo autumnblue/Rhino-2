@@ -71,7 +71,7 @@ const Client = (props) =>
   <DashboardCard className="clientEdit-Block">
       <div className="header">
         <div className="leftBlock">
-            <a href="/">Clients</a>
+            <a href="/dashboard/clients/list">Clients</a>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <FontAwesome
                 name='angle-right'
@@ -96,21 +96,20 @@ const Client = (props) =>
             </div>
             <div className="clientContainer">
                 <TextField
-                    disabled
-                    floatingLabelFixed={true}
-                    floatingLabelText="Company"
-                    hintText="Acme Corporation"
-                    fullWidth={true}
-                    name="company"
-                    onBlur={(e) => props.onUpdate(e, "company")}
-                />
-                <TextField
                     floatingLabelFixed={true}
                     floatingLabelText="Name"
                     hintText="Client Name"
                     fullWidth={true}
                     name="name"
                     onBlur={(e) => props.onUpdate(e, "name")}
+                />
+                <TextField
+                    floatingLabelFixed={true}
+                    floatingLabelText="Short Name"
+                    hintText="Short Name"
+                    fullWidth={true}
+                    name="short_name"
+                    onBlur={(e) => props.onUpdate(e, "short_name")}
                 />
                 <TextField
                     floatingLabelFixed={true}
@@ -193,14 +192,7 @@ const Client = (props) =>
                     
                 </div>
                 <div className="drop">
-                    <TextField
-                        floatingLabelFixed={true}
-                        floatingLabelText="Ref Code"
-                        hintText="Ref Code"
-                        fullWidth={true}
-                        name="code"
-                        onBlur={(e) => props.onUpdate(e, "code")}
-                    />
+                    
                 </div>
                 <div className="note">
                     <TextField
