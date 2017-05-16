@@ -20,10 +20,10 @@ const List = (props) => (
                 <div className="order-info">
                     <div className="row">
                         <FlatButton label={client.service_order_count + " Service Orders"} secondary />
-                        <FlatButton label={client.assessment_count + " 55 Assessments"} secondary />
+                        <FlatButton label={client.assessment_count + " Assessments"} secondary />
                     </div>
                     <div className="row">
-                        <FlatButton label="3 Departments" secondary />
+                        <FlatButton label={client.departments.length + " Departments"} secondary />
                     </div>
                 </div>
                 <div className="focal-info">

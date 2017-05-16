@@ -50,8 +50,9 @@ const Actions = {
           loadingMore,
         });
         
-        return httpGet(`clients.json?page=${page}&per_page=${limit}&sort[]=${sort}&filter{name.icontains}=${filter}`)
+        return httpGet(`clients.json?include[]=departments&page=${page}&per_page=${limit}&sort[]=${sort}&filter{name.icontains}=${filter}`)
           .then((response) => {
+            console.log('$$$:  ', response)
             if (response.body) {
               dispatch({
                 type: Constants.FETCH_CLIENTS,
