@@ -19,7 +19,7 @@ class Client extends Component {
         event.preventDefault();
 
         let { client } = this.state;
-        client["commit"] = "true";
+        client["commit"] = "false";
         this.props.createClient(client);
     }
 
