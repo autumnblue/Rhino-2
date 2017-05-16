@@ -214,17 +214,6 @@ const Client = (props) =>
                     onChange={(value) => props.onUpdate(value, "umbrella")}
                 />
             </div>
-            <div className="departmentTitle">
-                Issuer
-            </div>
-            <div className="departmentContainer">
-                <Select
-                    name="issuer"
-                    value={props.issuer}
-                    options={getIssuers(props.clients)}
-                    onChange={(value) => props.onUpdate(value, "issuer")}
-                />
-            </div>
         </div>
       </div>
   </DashboardCard>;
