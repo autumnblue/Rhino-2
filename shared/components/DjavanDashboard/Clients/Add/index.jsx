@@ -15,11 +15,27 @@ class Client extends Component {
         client: {},
     }
 
+    componentDidMount() {
+        let issuers = [];
+
+        issuers.push({ value: 9999, label: "None" });
+
+        _.map(this.props.clients, (client, key) => {
+            issuers.push({ value: client.id, label: client.name });
+        });
+
+        this.setState({ issuers: issuers });
+    }
+
     handleAdd(event) {
         event.preventDefault();
 
         let { client } = this.state;
-        client["commit"] = "false";
+        if (client["name"] && client["short_name"] && client["url"] && client["hourly_rate"] && client["address"] && client["focal_name"] && client["focal_title"] && client["focal_phone"] && client["focal_email"] && client["issuer"]) {
+            client["commit"] = "true";
+        } else {
+            client["commit"] = "false";
+        }
         this.props.createClient(client);
     }
 
@@ -60,6 +76,7 @@ class Client extends Component {
             <ClientItem
                 clients={this.props.clients}
                 issuer={this.state.issuer}
+                issuers={this.state.issuers}
                 umbrella={this.state.umbrella}
                 onAdd={(event) => this.handleAdd(event)}
                 onUpdate={(e, name) => this.handleUpdate(e, name)}

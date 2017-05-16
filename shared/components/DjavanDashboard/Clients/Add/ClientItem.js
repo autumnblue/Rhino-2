@@ -32,38 +32,6 @@ function getColumns() {
     return columns;
 }
 
-function getIssuers(clients) {
-    let issuers = [];
-    issuers.push({ value: 9999, label: "None" });
-
-    _.map(clients, (client, key) => {
-        issuers.push({ value: client.id, label: client.name });
-    });
-
-    return issuers;
-}
-
-function getParents(clients) {
-    let parents = [];
-    parents.push({ value: 9999, label: "None" });
-
-    _.map(clients, (client, key) => {
-        if (client.umbrella == null) {
-            parents.push({ value: client.id, label: client.name });
-        }
-    });
-
-    return parents;
-}
-
-function getPMs(client) {
-    let pms = [];
-
-    pms.push({ value: 0, label: "Default_PM" });
-    pms.push({ value: 1, label: client.project_manager.first_name + " " + client.project_manager.last_name });
-    
-    return pms;
-}
 
 const Client = (props) =>
   <DashboardCard className="clientEdit-Block">
@@ -120,7 +88,7 @@ const Client = (props) =>
                     floatingLabelFixed={true}
                     floatingLabelText="hourly_rate"
                     fullWidth={true}
-                    name="rate"
+                    name="hourly_rate"
                     type="number"
                     onBlur={(e) => props.onUpdate(e, "hourly_rate")}
                 />
@@ -189,15 +157,15 @@ const Client = (props) =>
                     />
                 </div>
             </div>
-            <div className="parentTitle">
-                Parent
+            <div className="departmentTitle">
+                Issuer
             </div>
-            <div className="parentContainer">
+            <div className="departmentContainer">
                 <Select
-                    name="umbrella"
-                    value={props.umbrella}
-                    options={getParents(props.clients)}
-                    onChange={(value) => props.onUpdate(value, "umbrella")}
+                    name="issuer"
+                    value={props.issuer}
+                    options={props.issuers}
+                    onChange={(value) => props.onUpdate(value, "issuer")}
                 />
             </div>
         </div>
