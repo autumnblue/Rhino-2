@@ -15,9 +15,11 @@ class Client extends Component {
         client: {},
     }
 
-    handleAdd() {
-        let { client } = this.state;
+    handleAdd(event) {
+        event.preventDefault();
 
+        let { client } = this.state;
+        client["commit"] = "true";
         this.props.createClient(client);
     }
 
@@ -44,7 +46,11 @@ class Client extends Component {
             this.setState({ issuer: e.value });
             console.log(client);
         } else {
-            client[field] = e.target.value;
+            if (e.target.value == "") {
+                delete client[field];
+            } else {
+                client[field] = e.target.value;
+            }
         }
         this.setState({ client: client });
     }
@@ -55,7 +61,7 @@ class Client extends Component {
                 clients={this.props.clients}
                 issuer={this.state.issuer}
                 umbrella={this.state.umbrella}
-                onAdd={() => this.handleAdd()}
+                onAdd={(event) => this.handleAdd(event)}
                 onUpdate={(e, name) => this.handleUpdate(e, name)}
             />
         );

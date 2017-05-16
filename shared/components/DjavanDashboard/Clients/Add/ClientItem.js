@@ -67,6 +67,7 @@ function getPMs(client) {
 
 const Client = (props) =>
   <DashboardCard className="clientEdit-Block">
+      <form onSubmit={(event) => props.onAdd(event)}>
       <div className="header">
         <div className="leftBlock">
             <a href="/dashboard/clients/list">Clients</a>
@@ -79,7 +80,7 @@ const Client = (props) =>
             <span></span>
         </div>
         <div className="rightBlock">
-            <FloatingActionButton className="add" onTouchTap={() => props.onAdd()}>
+            <FloatingActionButton type="submit" className="add">
                 <FontAwesome
                     name='check'
                     style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
@@ -96,7 +97,6 @@ const Client = (props) =>
                 <TextField
                     floatingLabelFixed={true}
                     floatingLabelText="Name"
-                    hintText="Client Name"
                     fullWidth={true}
                     name="name"
                     onBlur={(e) => props.onUpdate(e, "name")}
@@ -104,7 +104,6 @@ const Client = (props) =>
                 <TextField
                     floatingLabelFixed={true}
                     floatingLabelText="Short Name"
-                    hintText="Short Name"
                     fullWidth={true}
                     name="short_name"
                     onBlur={(e) => props.onUpdate(e, "short_name")}
@@ -112,23 +111,22 @@ const Client = (props) =>
                 <TextField
                     floatingLabelFixed={true}
                     floatingLabelText="URL"
-                    hintText="Client URL"
                     fullWidth={true}
                     name="url"
+                    type="url"
                     onBlur={(e) => props.onUpdate(e, "url")}
                 />
                 <TextField
                     floatingLabelFixed={true}
                     floatingLabelText="hourly_rate"
-                    hintText="Should be blah blah"
                     fullWidth={true}
                     name="rate"
+                    type="number"
                     onBlur={(e) => props.onUpdate(e, "hourly_rate")}
                 />
                 <TextField
                     floatingLabelFixed={true}
                     floatingLabelText="Address"
-                    hintText="Address"
                     fullWidth={true}
                     multiLine={true}
                     name="address"
@@ -143,7 +141,6 @@ const Client = (props) =>
                 <TextField
                     floatingLabelFixed={true}
                     floatingLabelText="Focal Name"
-                    hintText="Focal Name"
                     fullWidth={true}
                     name="focal_name"
                     onBlur={(e) => props.onUpdate(e, "focal_name")}
@@ -151,7 +148,6 @@ const Client = (props) =>
                 <TextField
                     floatingLabelFixed={true}
                     floatingLabelText="Focal Title"
-                    hintText="Focal Title"
                     fullWidth={true}
                     name="focal_title"
                     onBlur={(e) => props.onUpdate(e, "focal_title")}
@@ -159,17 +155,17 @@ const Client = (props) =>
                 <TextField
                     floatingLabelFixed={true}
                     floatingLabelText="Focal Phone"
-                    hintText="Focal Phone"
                     fullWidth={true}
                     name="focal_phone"
+                    type="number"
                     onBlur={(e) => props.onUpdate(e, "focal_phone")}
                 />
                 <TextField
                     floatingLabelFixed={true}
                     floatingLabelText="Focal Email"
-                    hintText="Focal Email"
                     fullWidth={true}
                     name="focal_email"
+                    type="email"
                     onBlur={(e) => props.onUpdate(e, "focal_email")}
                 />
             </div>
@@ -182,20 +178,10 @@ const Client = (props) =>
                 <div className="date">
                     <span>created 10/10/2016</span>
                 </div>
-                <div className="drop">
-                    <Checkbox
-                        label="Commit"
-                        onCheck={(e) => props.onUpdate(e, "commit")}
-                    />
-                </div>
-                <div className="drop">
-                    
-                </div>
                 <div className="note">
                     <TextField
                         floatingLabelFixed={true}
                         floatingLabelText="Notes"
-                        hintText="Notes"
                         fullWidth={true}
                         multiLine={true}
                         name="notes"
@@ -216,6 +202,7 @@ const Client = (props) =>
             </div>
         </div>
       </div>
+      </form>
   </DashboardCard>;
 
 export default Client;
