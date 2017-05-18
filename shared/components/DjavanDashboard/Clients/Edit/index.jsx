@@ -10,14 +10,30 @@ import ClientItem from './ClientItem';
 
 class Client extends Component {
     state = {
-        // client: null,
         pm: 0,
         parent: 0,
         client: null,
+        
+        parents: [],
+        pms: [],
     }
 
     componentWillMount() {
         this.setState({ client: this.props.client });
+
+        let parents = [];
+        parents.push({ id: 0, label: 'None' });
+        if (this.props.umbrella !== null) {
+            parents.push({ id: this.props.umbrella.id, label: this.props.umbrella.name });
+        }
+        this.setState({ parents: parents });
+
+        let pms = [];
+        pms.push({ id: 0, label: "Default_PM" });
+        if (this.props.client.project_manager !== null) {
+            pms.push({ id: 1, label: this.props.client.project_manager.first_name + " " + this.props.client.project_manager.last_name });
+        }
+        this.setState({ pms: pms });
     }
 
     componentWillReceiveProps() {
@@ -70,7 +86,7 @@ class Client extends Component {
     }
 
     render() {
-        const { client, pm, parent } = this.state;
+        const { client, pm, pms, parent, parents } = this.state;
 
         if (isLoading(this.props.umbdepStatus) || isLoading(this.props.clientStatus)) {
             return (
@@ -83,6 +99,8 @@ class Client extends Component {
                     pm={pm}
                     parent={parent}
                     departments={this.props.departments}
+                    parents={parents}
+                    pms={pms}
                     umbrella={this.props.umbrella}
                     onChange={(e, field) => this.handleChange(e, field)}
                     onDelete={() => this.handleDelete()}

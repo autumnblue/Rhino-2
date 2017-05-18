@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import FontAwesome from 'react-fontawesome';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import TextField from 'material-ui/TextField';
-import MenuItem from 'material-ui/MenuItem';
-import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
 import ReactTable from 'react-table'
-import Select from 'react-select';
+import Validation from 'react-validation';
+import '../../../../utils/validations';
 import DashboardCard from '../../../Common/DashboardCard';
 
 function getColumns() {
@@ -46,217 +43,124 @@ function getDepartments(departments) {
     return data;
 };
 
-function getParents(umbrella) {
-    let parents = [];
-    
-    if (umbrella == null) {
-        parents.push({ value: 0, label: "None" });
-    } else {
-        parents.push({ value: 0, label: umbrella.name });
-    }
-
-    return parents;
-}
-
-function getPMs(client) {
-    let pms = [];
-
-    pms.push({ value: 0, label: "Default_PM" });
-    if (client.project_manager !== null) {
-        pms.push({ value: 1, label: client.project_manager.first_name + " " + client.project_manager.last_name });
-    }
-    
-    return pms;
-}
 
 const Client = (props) =>
   <DashboardCard className="clientEdit-Block">
-      <div className="header">
-        <div className="leftBlock">
-            <a href="/dashboard/clients/list">Clients</a>
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <FontAwesome
-                name='angle-right'
-                style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-            />
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span>{props.client.name}</span>
-        </div>
-        <div className="rightBlock">
-            <FloatingActionButton className="add" onTouchTap={() => props.onFinish()}>
-                <FontAwesome
-                    name='check'
-                    style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-                />
-            </FloatingActionButton>
-        </div>
-      </div>
-      <div className="block">
-        <div className="leftBlock">
-            <div className="clientTitle">
-                Client
-            </div>
-            <div className="clientContainer">
-                <TextField
-                    floatingLabelFixed={true}
-                    floatingLabelText="Name"
-                    hintText="Client Name"
-                    fullWidth={true}
-                    value={props.client.name ? props.client.name : ""}
-                    name="name"
-                    onChange={(e, field) => props.onChange(e, "name")}
-                    onBlur={(e) => props.onUpdate(e, "name")}
-                />
-                <TextField
-                    floatingLabelFixed={true}
-                    floatingLabelText="Client Short Name"
-                    hintText="Client Short Name"
-                    fullWidth={true}
-                    value={props.client.short_name ? props.client.short_name : ""}
-                    name="short_name"
-                    onChange={(e, field) => props.onChange(e, "short_name")}
-                    onBlur={(e) => props.onUpdate(e, "short_name")}
-                />
-                <TextField
-                    floatingLabelFixed={true}
-                    floatingLabelText="URL"
-                    hintText="Client URL"
-                    fullWidth={true}
-                    value={props.client.url ? props.client.url : ""}
-                    name="url"
-                    onChange={(e, field) => props.onChange(e, "url")}
-                    onBlur={(e) => props.onUpdate(e, "url")}
-                />
-                <TextField
-                    floatingLabelFixed={true}
-                    floatingLabelText="hourly_rate"
-                    hintText="Should be blah blah"
-                    fullWidth={true}
-                    value={props.client.hourly_rate ? props.client.hourly_rate : ""}
-                    name="hourly_rate"
-                    onChange={(e, field) => props.onChange(e, "hourly_rate")}
-                    onBlur={(e) => props.onUpdate(e, "hourly_rate")}
-                />
-                <TextField
-                    floatingLabelFixed={true}
-                    floatingLabelText="Address"
-                    hintText="Address"
-                    fullWidth={true}
-                    multiLine={true}
-                    value={props.client.address ? props.client.address : ""}
-                    name="address"
-                    onChange={(e, field) => props.onChange(e, "address")}
-                    onBlur={(e) => props.onUpdate(e, "address")}
-                />
-            </div>
-
-            <div className="focalTitle">
-                Focal
-            </div>
-            <div className="focalContainer">
-                <TextField
-                    floatingLabelFixed={true}
-                    floatingLabelText="Focal Name"
-                    hintText="Focal Name"
-                    fullWidth={true}
-                    value={props.client.focal_name ? props.client.focal_name : ""}
-                    name="focal_name"
-                    onChange={(e, field) => props.onChange(e, "focal_name")}
-                    onBlur={(e) => props.onUpdate(e, "focal_name")}
-                />
-                <TextField
-                    floatingLabelFixed={true}
-                    floatingLabelText="Focal Title"
-                    hintText="Focal Title"
-                    fullWidth={true}
-                    value={props.client.focal_title ? props.client.focal_title : ""}
-                    name="focal_title"
-                    onChange={(e, field) => props.onChange(e, "focal_title")}
-                    onBlur={(e) => props.onUpdate(e, "focal_title")}
-                />
-                <TextField
-                    floatingLabelFixed={true}
-                    floatingLabelText="Focal Phone"
-                    hintText="Focal Phone"
-                    fullWidth={true}
-                    value={props.client.focal_phone ? props.client.focal_phone : ""}
-                    name="focal_phone"
-                    onChange={(e, field) => props.onChange(e, "focal_phone")}
-                    onBlur={(e) => props.onUpdate(e, "focal_phone")}
-                />
-                <TextField
-                    floatingLabelFixed={true}
-                    floatingLabelText="Focal Email"
-                    hintText="Focal Email"
-                    fullWidth={true}
-                    value={props.client.focal_email ? props.client.focal_email : ""}
-                    name="focal_email"
-                    onChange={(e, field) => props.onChange(e, "focal_email")}
-                    onBlur={(e) => props.onUpdate(e, "focal_email")}
-                />
-            </div>
-            
-            <div className="action">
-                <RaisedButton
-                    default
-                    label="delete"
-                    onTouchTap={props.onDelete}
-                />
-            </div>
-        </div>
-        <div className="rightBlock">
-            <div className="manageTitle">
-                Management
-            </div>
-            <div className="manageContainer">
-                <div className="date">
-                    <span>created 10/10/2016</span>
+      <Validation.components.Form onSubmit={(event) => props.onAdd(event)}>
+            <div className="header">
+                <div className="leftBlock">
+                    <a href="/dashboard/clients/list">Clients</a>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <FontAwesome
+                        name='angle-right'
+                        style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+                    />
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>{props.client.name}</span>
                 </div>
-                <div className="drop">
-                    <Select
-                        name="form-field-name"
-                        value={props.pm}
-                        options={getPMs(props.client)}
-                        onChange={(value) => props.onPM(value)}
+                <div className="rightBlock">
+                    <Validation.components.Button className='button'>
+                        <FontAwesome
+                            name='check'
+                            style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+                        />
+                    </Validation.components.Button>
+                </div>
+            </div>
+            <div className="block">
+                <div className="column">
+                    <label>
+                        Name*
+                        <Validation.components.Input errorClassName='is-invalid-input' type="text" containerClassName='' value={props.client.name} name='name' validations={['required', 'alphaNormal']} onChange={(event) => props.onUpdate(event, "name")} />
+                    </label>
+                </div>
+                <div className="column">
+                    <label>
+                        Short Name*
+                        <Validation.components.Input errorClassName='is-invalid-input' type="text" containerClassName='' value={props.client.short_name} name='short_name' validations={['required', 'alphaSpecial']} onChange={(event) => props.onUpdate(event, "short_name")} />
+                    </label>
+                </div>
+                <div className="column">
+                    <label>
+                        URL*
+                        <Validation.components.Input errorClassName='is-invalid-input' type="text" containerClassName='' value={props.client.url} name='url' validations={['required', 'url']} onChange={(event) => props.onUpdate(event, "url")} />
+                    </label>
+                </div>
+                <div className="column">
+                    <label>
+                        Rate*
+                        <Validation.components.Input errorClassName='is-invalid-input' type="text" containerClassName='' value={props.client.hourly_rate} name='hourly_rate' validations={['required', 'hourly_rate']} onChange={(event) => props.onUpdate(event, "hourly_rate")} />
+                    </label>
+                </div>
+                <div className="column">
+                    <label>
+                        Address*
+                        <Validation.components.Input errorClassName='is-invalid-input' type="text" containerClassName='' value={props.client.address} name='address' validations={['required', 'alphaNormal']} onChange={(event) => props.onUpdate(event, "address")} />
+                    </label>
+                </div>
+                <div className="column">
+                    <label>
+                        Focal name*
+                        <Validation.components.Input errorClassName='is-invalid-input' type="text" containerClassName='' value={props.client.focal_name} name='focal_name' validations={['required', 'alphaNormal']} onChange={(event) => props.onUpdate(event, "focal_name")} />
+                    </label>
+                </div>
+                <div className="column">
+                    <label>
+                        Focal Title*
+                        <Validation.components.Input errorClassName='is-invalid-input' type="text" containerClassName='' value={props.client.focal_title} name='focal_title' validations={['required', 'alphaNormal']} onChange={(event) => props.onUpdate(event, "focal_title")} />
+                    </label>
+                </div>
+                <div className="column">
+                    <label>
+                        Focal Phone*
+                        <Validation.components.Input errorClassName='is-invalid-input' type="text" containerClassName='' value={props.client.focal_phone} name='focal_phone' validations={['required', 'phone']} onChange={(event) => props.onUpdate(event, "focal_phone")} />
+                    </label>
+                </div>
+                <div className="column">
+                    <label>
+                        Focal Email*
+                        <Validation.components.Input errorClassName='is-invalid-input' type="text" containerClassName='' value={props.client.focal_email} name='focal_email' validations={['required', 'email']} onChange={(event) => props.onUpdate(event, "focal_email")} />
+                    </label>
+                </div>
+                <div className="column">
+                    <label>
+                        Notes
+                        <Validation.components.Input errorClassName='is-invalid-input' type="text" containerClassName='' value={props.client.notes} name='notes' validations={[]} onChange={(event) => props.onUpdate(event, "notes")} />
+                    </label>
+                </div>
+                <div className="column">
+                    <label>
+                        Parent
+                        <Validation.components.Select errorClassName='is-invalid-input' name='parent' value='' validations={['required']} onChange={(value) => props.onUpdate(value, "parent")}>
+                            {
+                                _.map(props.parents, (parent, key) => {return (
+                                    <option key={key} value={parent.id}>{parent.label}</option>
+                                )})
+                            }
+                            
+                        </Validation.components.Select>
+                    </label>
+                </div>
+                <div className="column">
+                    <label>
+                        Project manager
+                        <Validation.components.Select errorClassName='is-invalid-input' name='pm' value='' validations={['required']} onChange={(value) => props.onUpdate(value, "pm")}>
+                            {
+                                _.map(props.pms, (pm, key) => {return (
+                                    <option key={key} value={pm.id}>{pm.label}</option>
+                                )})
+                            }
+                            
+                        </Validation.components.Select>
+                    </label>
+                </div>
+                <div className="column">
+                    <RaisedButton
+                        default
+                        label="delete"
+                        onTouchTap={props.onDelete}
                     />
                 </div>
-                <div className="drop">
-                    <TextField
-                        disabled
-                        floatingLabelFixed={true}
-                        floatingLabelText="Ref Code"
-                        hintText="Ref Code"
-                        fullWidth={true}
-                        value={"Backend Needed"}
-                        name="ref_code"
-                        onChange={(e, field) => props.onChange(e, "ref_code")}
-                        onBlur={(e) => props.onUpdate(e, "ref_code")}
-                    />
-                </div>
-                <div className="note">
-                    <TextField
-                        floatingLabelFixed={true}
-                        floatingLabelText="Notes"
-                        hintText="Notes"
-                        fullWidth={true}
-                        multiLine={true}
-                        value={props.client.notes ? props.client.notes : ""}
-                        name="notes"
-                        onChange={(e, field) => props.onChange(e, "notes")}
-                        onBlur={(e) => props.onUpdate(e, "notes")}
-                    />
-                </div>
-            </div>
-            <div className="parentTitle">
-                Parent
-            </div>
-            <div className="parentContainer">
-                <Select
-                    name="form-field-name"
-                    value={props.parent}
-                    options={getParents(props.umbrella)}
-                    onChange={(value) => props.onParent(value)}
-                />
             </div>
             {(!props.umbrella) && (
                 <div>
@@ -278,8 +182,7 @@ const Client = (props) =>
                 </div>
                 </div>
             )}
-        </div>
-      </div>
+        </Validation.components.Form>
   </DashboardCard>;
 
 export default Client;
