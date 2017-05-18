@@ -24,80 +24,25 @@
     }
 
     .block {
-        display: flex;
+        display: inline-block;
         padding: 10px;
+        width: 100%;
 
-        .leftBlock {
-            width: 50%;
-            
-            .clientTitle {
-                font-size: 24px;
-                font-weight: 600;
-                margin-bottom: 10px;
-            }
-            .clientContainer {
-                width: 80%;
-            }
-            .focalTitle {
-                font-size: 24px;
-                font-weight: 600;
-                margin-bottom: 10px;
-                margin-top: 30px;
-            }
-            .focalContainer {
-                width: 80%;
-            }
-            .action {
-                width: 50%;
-            }
-        }
+        .column {
+            width: 100%;
 
-        .rightBlock {
-            width: 50%;
-            
-            .manageTitle {
-                font-size: 24px;
-                font-weight: 600;
-                margin-bottom: 20px;
-                text-align: right;
-            }
-            .manageContainer {
+            > label {
                 width: 100%;
 
-                .date {
-                    display: flex;
-                    justify-content: flex-end;
-                    white-space: nowrap;
+                > div > input {
+                    width: 100%;
+                    font-size: 24px;
                 }
-                .drop {
-                    margin-left: 50%;
-                    width: 50%;
+
+                > div > select {
+                    width: 100%;
+                    font-size: 24px;
                 }
-                .note {
-                    margin-left: 30%;
-                    width: 70%;
-                }
-            }
-            .parentTitle {
-                font-size: 24px;
-                font-weight: 600;
-                margin-bottom: 10px;
-                margin-top: 30px;
-                text-align: right;
-            }
-            .parentContainer {
-                margin-left: 50%;
-                width: 50%;
-            }
-            .departmentTitle {
-                font-size: 24px;
-                font-weight: 600;
-                margin-bottom: 10px;
-                margin-top: 30px;
-                text-align: right;
-            }
-            .departmentContainer {
-                width: 100%;
             }
         }
     }

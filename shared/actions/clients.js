@@ -25,10 +25,13 @@ const Actions = {
       })
       return httpPost(`clients/`, client)
         .then((response) => {
-          dispatch(push('/dashboard/clients/list'));
+          if (response.body) {
+            dispatch(push('/dashboard/clients/list'));
+            return response.body;
+          }
         })
         .catch((error) => {
-          logger(error);
+          return error.response;
         });
     }),
   deleteClient: (client) =>
@@ -52,7 +55,6 @@ const Actions = {
         
         return httpGet(`clients.json?include[]=departments&page=${page}&per_page=${limit}&sort[]=${sort}&filter{name.icontains}=${filter}`)
           .then((response) => {
-            console.log('$$$:  ', response)
             if (response.body) {
               dispatch({
                 type: Constants.FETCH_CLIENTS,

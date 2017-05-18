@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import Modal from 'react-modal';
 import ClientsActions from '../../../../actions/clients';
 import { isLoading, isLoaded } from '../../../../constants/loadingStatus';
 import DashboardLoader from '../../../Dashboard/Content/DashboardLoader';
@@ -10,21 +11,34 @@ import ClientItem from './ClientItem';
 
 class Client extends Component {
     state = {
-        umbrella: 9999,
-        issuer: 9999,
         client: {},
+        isOpen: false,
+        messages: [],
     }
 
-    componentDidMount() {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            client: {},
+        isOpen: false,
+        messages: [],
+        }
+    }
+
+    componentWillMount() {
         let issuers = [];
 
-        issuers.push({ value: 9999, label: "None" });
-
+        issuers.push({ id: '', label: "Choose a issuer" });
         _.map(this.props.clients, (client, key) => {
-            issuers.push({ value: client.id, label: client.name });
+            issuers.push({ id: client.id, label: client.name });
         });
 
         this.setState({ issuers: issuers });
+    }
+
+    handleCloseModal() {
+        this.setState({ isOpen: false });
     }
 
     handleAdd(event) {
@@ -36,31 +50,33 @@ class Client extends Component {
         } else {
             client["commit"] = "false";
         }
-        this.props.createClient(client);
+
+        this.props.createClient(client)
+            .then((response) => {
+                if (response.status) {
+                    let errors = [];
+                    _.map(response.body, (object, key) => {
+                        _.map(object, (message, key) => {
+                            errors.push(message);
+                        });
+                    });
+                    this.setState({ messages: errors });
+                    this.setState({ isOpen: true });
+                }
+            });
     }
 
     handleUpdate(e, field) {
         let { client } = this.state;
-        if (field == "commit") {
-            client[field] = e.target.checked;
-        } else if (field == "umbrella") {
-            if (e == null) return;
-            if (e.value == 9999) {
-                client[field] = null;
-            } else {
-                client[field] = e.value;
-            }
-            this.setState({ umbrella: e.value });
-            console.log(client);
+
+        if (field == "focal_phone") {
+            client[field] = e.target.value.replace(/[()-.]/g, '');
         } else if (field == "issuer") {
-            if (e == null) return;
-            if (e.value == 9999) {
-                client[field] = null;
+            if (e.target.value == '') {
+                delete client.issuer;
             } else {
-                client[field] = e.value;
+                client[field] = parseInt(e.target.value);
             }
-            this.setState({ issuer: e.value });
-            console.log(client);
         } else {
             if (e.target.value == "") {
                 delete client[field];
@@ -68,19 +84,43 @@ class Client extends Component {
                 client[field] = e.target.value;
             }
         }
+
         this.setState({ client: client });
     }
 
     render() {
+        const { isOpen, issuers, messages } = this.state;
+
         return (
-            <ClientItem
-                clients={this.props.clients}
-                issuer={this.state.issuer}
-                issuers={this.state.issuers}
-                umbrella={this.state.umbrella}
-                onAdd={(event) => this.handleAdd(event)}
-                onUpdate={(e, name) => this.handleUpdate(e, name)}
-            />
+            <div>
+                <ClientItem
+                    clients={this.props.clients}
+                    issuers={issuers}
+                    onAdd={(event) => this.handleAdd(event)}
+                    onUpdate={(e, name) => this.handleUpdate(e, name)}
+                />
+                <Modal
+                    isOpen={isOpen}
+                    onRequestClose={() => this.handleCloseModal()}
+                    closeTimeoutMS={2}
+                    shouldCloseOnOverlayClick={false}
+                    contentLabel="No Overlay Click Modal"
+                    className="modalBase"
+                    overlayClassName="modalOverlay"
+                    >
+
+                    <h1>Warning</h1>
+
+                    {
+                        _.map(messages, (message, key) => {
+                            return (
+                                <p key={key}>{message}</p>
+                            )
+                        })
+                    }
+                    <button onClick={() => this.handleCloseModal()}>Close Modal...</button>
+                </Modal>
+            </div>
         );
     }
 }
