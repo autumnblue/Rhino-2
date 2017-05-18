@@ -41,7 +41,7 @@ const List = (props) => (
                     <FontAwesome
                         name='arrow-right'
                         size='3x'
-                        style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+                        style={{ cursor: 'pointer', textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
                         onClick={() => props.onSelect(client)}
                     />
                 </div>
