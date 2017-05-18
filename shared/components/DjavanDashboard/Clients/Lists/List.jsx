@@ -31,7 +31,7 @@ const List = (props) => (
                         {client.focal_name}
                     </div>
                     <div>
-                        {client.focal_email}
+                        <a href={"mailto:" + client.focal_email}>{client.focal_email}</a>
                     </div>
                     <div>
                         {client.focal_phone}
