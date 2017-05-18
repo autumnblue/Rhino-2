@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import Modal from 'react-modal';
 import ClientsActions from '../../../../actions/clients';
 import { isLoading, isLoaded } from '../../../../constants/loadingStatus';
 import DashboardLoader from '../../../Dashboard/Content/DashboardLoader';
@@ -16,6 +17,8 @@ class Client extends Component {
         
         parents: [],
         pms: [],
+
+        isOpen: false,
     }
 
     componentWillMount() {
@@ -48,8 +51,16 @@ class Client extends Component {
         });
     }
 
+    handleCloseModal(value) {
+        if (value) {
+            this.props.deleteClient(this.props.client.id);
+        }
+        this.setState({ isOpen: false });
+
+    }
+
     handleDelete() {
-        this.props.deleteClient(this.props.client.id);
+        this.setState({ isOpen: true });
     }
 
     handleFinish() {
@@ -68,7 +79,6 @@ class Client extends Component {
         _.map(this.props.departments, (department, key) => {
             if (rowInfo.index == key && rowInfo.row.clientname == department.name) {
                 this.props.viewClient(department);
-                console.log('$$$$$$$$:  ', department);
                 this.forceUpdate();
                 // this.setState({ client: department });
                 return;
@@ -86,7 +96,7 @@ class Client extends Component {
     }
 
     render() {
-        const { client, pm, pms, parent, parents } = this.state;
+        const { isOpen, client, pm, pms, parent, parents } = this.state;
 
         if (isLoading(this.props.umbdepStatus) || isLoading(this.props.clientStatus)) {
             return (
@@ -94,22 +104,39 @@ class Client extends Component {
             );
         } else {
             return (
-                <ClientItem
-                    client={client}
-                    pm={pm}
-                    parent={parent}
-                    departments={this.props.departments}
-                    parents={parents}
-                    pms={pms}
-                    umbrella={this.props.umbrella}
-                    onChange={(e, field) => this.handleChange(e, field)}
-                    onDelete={() => this.handleDelete()}
-                    onFinish={() => this.handleFinish()}
-                    onParent={(value) => this.handleParentChange(value)}
-                    onPM={(value) => this.handlePMChange(value)}
-                    onUpdate={(e, name) => this.handleUpdate(e, name)}
-                    onRow={(rowInfo) => this.handleRow(rowInfo)}
-                />
+                <div>
+                    <ClientItem
+                        client={client}
+                        pm={pm}
+                        parent={parent}
+                        departments={this.props.departments}
+                        parents={parents}
+                        pms={pms}
+                        umbrella={this.props.umbrella}
+                        onChange={(e, field) => this.handleChange(e, field)}
+                        onDelete={() => this.handleDelete()}
+                        onFinish={() => this.handleFinish()}
+                        onParent={(value) => this.handleParentChange(value)}
+                        onPM={(value) => this.handlePMChange(value)}
+                        onUpdate={(e, name) => this.handleUpdate(e, name)}
+                        onRow={(rowInfo) => this.handleRow(rowInfo)}
+                    />
+                    <Modal
+                        isOpen={isOpen}
+                        onRequestClose={() => this.handleCloseModal()}
+                        closeTimeoutMS={2}
+                        shouldCloseOnOverlayClick={false}
+                        contentLabel="No Overlay Click Modal"
+                        className="modalBase"
+                        overlayClassName="modalOverlay"
+                        >
+
+                        <h1>Confirm Deletion</h1>
+
+                        <button onClick={() => this.handleCloseModal(true)}>Ok</button>
+                        <button onClick={() => this.handleCloseModal(false)}>Cancel</button>
+                    </Modal>
+                </div>
             );
         }
     }
