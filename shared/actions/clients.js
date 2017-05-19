@@ -1,4 +1,5 @@
-import { push } from 'react-router-redux';
+import { push, replace } from 'react-router-redux';
+import cookie from 'react-cookie';
 import { httpDelete, httpGet, httpPatch, httpPost, httpPut } from '../utils';
 import { handleInternalErrors, logger } from '../utils/handleInternalErrors';
 import Constants from '../constants';
@@ -17,6 +18,7 @@ const Actions = {
       dispatch(Actions.fetchClientUmbrella(client.id));
       dispatch(push('/dashboard/clients/edit'));
     }),
+
   createClient: (client) =>
     ((dispatch) => {
       dispatch({
@@ -30,20 +32,22 @@ const Actions = {
             return response.body;
           }
         })
-        .catch((error) => {
-          return error.response;
-        });
+        .catch((error) =>
+          dispatch(Actions.handleErrors(error.response))
+        );
     }),
+
   deleteClient: (client) =>
     ((dispatch) => {
       return httpDelete(`clients/${client}`)
         .then((response) => {
           dispatch(push('/dashboard/clients/list'));
         })
-        .catch((error) => {
-          logger(error);
-        })
+        .catch((error) => 
+          dispatch(Actions.handleErrors(error.response.status))
+        )
     }),
+
   fetchClients: (page, sort, limit, filter, loadingMore) =>
     ((dispatch) => {
         dispatch({
@@ -70,17 +74,14 @@ const Actions = {
               });
             }
           })
-          .catch((error) => {
-            logger(error)
-          });
+          .catch((error) =>
+            dispatch(Actions.handleErrors(error.response))
+          );
       }
     ),
+
   updateClient: (id, val) =>
     ((dispatch) => {
-        // dispatch({
-        //   type: Constants.FETCH_CLIENT_REQUEST,
-        //   clientStatus: loadingStatus.LOADING,
-        // });
 
         let clientcopy = {};
         clientcopy[val.field] = val.value;
@@ -116,19 +117,14 @@ const Actions = {
                 .catch((error) => logger(error));
             })
             .catch((error) => {
-              console.log(error.response);
-              dispatch({
-                type: Constants.FETCH_CLIENT_FAILURE,
-                error: handleInternalErrors(error),
-              });
-              //should be a modification of props for field
-              logger(error);
+              dispatch(Actions.handleErrors(error.response));
             });
       }
     ),
 //  https://djavan-server.rsl.host/api/v1/clients.json?page=1&per_page=1000&sort[]=id&exclude[]=*&include[]=id&include[]=name&filter{umbrella.isnull}=1
 //   updateClientsList: (newClients) => ({ type: Constants.UPDATE_CLIENTS_LIST, clients: newClients }),
   refreshClientsList: () => ({ type: Constants.REFRESH_CLIENTS_LIST }),
+  
   clearClientError: () => ({type: Constants.CLEAR_CLIENT_ERROR }),
 
   fetchClientUmbrella: (client) =>
@@ -147,7 +143,7 @@ const Actions = {
             }
           })
           .catch((error) =>
-            logger(error)
+            dispatch(Actions.handleErrors(error.response))
           );
     }),
 
@@ -157,11 +153,9 @@ const Actions = {
           type: Constants.FETCH_CLIENTS_POSSIBLE_UMBRELLAS_REQUEST,
           umbrellasStatus: loadingStatus.LOADING,
         });
-        // console.log("Requesting Clients");
         return httpGet(`clients.json?page=1&per_page=1200&sort[]=id&exclude[]=*&include[]=id&include[]=name&filter{departments.isnull}=1`)
           .then((response) => {
-            if (response.body) { //.data.meta.total_results > 0
-              // console.log(response.body);
+            if (response.body) {
               dispatch({
                 type: Constants.FETCH_CLIENTS_POSSIBLE_UMBRELLAS,
                 possibleUmbrellas: response.body.clients,
@@ -174,9 +168,19 @@ const Actions = {
             }
           })
           .catch((error) =>
-            logger(error)
+            dispatch(Actions.handleErrors(error.response))
           );
       }),
+
+  handleErrors: (response) =>
+    ((dispatch) => {
+      if (response.status == 403) {
+        cookie.remove('token', { path: '/' });
+        dispatch(replace('/'));
+      } else {
+        return response;
+      }
+    }),
   // assignDepartmentToClient: () =>
   //   ((dispatch) => {
   //       dispatch({
