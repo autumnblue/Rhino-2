@@ -65,7 +65,7 @@ const Client = (props) =>
                 <div className="column">
                     <label>
                         Address*
-                        <Validation.components.Input errorClassName='is-invalid-input' type="text" containerClassName='' value='' name='address' validations={['required', 'alphaNormal']} onChange={(event) => props.onUpdate(event, "address")} />
+                        <Validation.components.Input errorClassName='is-invalid-input' type="text" containerClassName='' value='' name='address' validations={['required', 'address']} onChange={(event) => props.onUpdate(event, "address")} />
                     </label>
                 </div>
                 <div className="column">

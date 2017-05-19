@@ -50,6 +50,20 @@ Object.assign(Validation.rules, {
         )
     },
 
+    address: {
+        rule: value => {
+            if (/^[a-zA-Z0-9\s\,]+$/.test(value))
+                return value;
+            else
+                return '';
+        },
+        hint: () => (
+            <span className="form-error is-visible">
+                String should contain only letters (a-zA-Z0-9,).
+            </span>
+        )
+    },
+
     email: {
         rule: value => validator.isEmail(value),
         hint: value => <span className="form-error is-visible">{value} is not an Email.</span>
