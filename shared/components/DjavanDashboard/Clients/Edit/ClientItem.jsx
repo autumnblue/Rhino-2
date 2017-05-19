@@ -41,7 +41,11 @@ const Client = (props) =>
                         style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
                     />
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span>{props.client.name}</span>
+                    {(props.client.path) ? (
+                        <span>{props.client.path}</span>
+                    ) : (
+                        <span>{props.client.name}</span>
+                    )}
                 </div>
                 <div className="rightBlock">
                     <Validation.components.Button className='button'>
@@ -140,7 +144,7 @@ const Client = (props) =>
                     </label>
                 </div>
                 <div className="column">
-                    {(!props.umbrella) && (
+                    {(!props.umbrella && props.departments.length > 0) && (
                         <div>
                             <div className="departmentTitle">
                                 Department Clients

@@ -86,8 +86,22 @@ class Client extends Component {
     handleRow(rowInfo) {
         _.map(this.props.client.departments, (department, key) => {
             if (rowInfo.row.clientname == department.name) {
+                let departments = [];
+                _.map(department.departments, (dep, key) =>
+                    departments.push({
+                        clientname: dep.name,
+                        focalname: dep.focal_name,
+                        socount: dep.service_order_count,
+                        asscount: dep.assessment_count
+                    })
+                );
+                this.setState({ departments: departments });
+
+                department["path"] = this.props.client.name + "    >    " + department.name;
+
                 this.props.viewClient(department);
                 this.setState({ client: department });
+
                 return;
             }
         });
