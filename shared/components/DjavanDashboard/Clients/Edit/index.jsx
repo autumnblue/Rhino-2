@@ -26,11 +26,29 @@ class Client extends Component {
         this.setState({ client: this.props.client });
 
         let parents = [];
-        parents.push({ id: 0, label: 'None' });
-        if (this.props.umbrella !== null) {
-            parents.push({ id: this.props.umbrella.id, label: this.props.umbrella.name });
-        }
+        parents.push({ id: null, label: 'N/A' });
+        _.map(this.props.clients, (client, key) => {
+            if (this.props.client.id !== client.id) {
+                if (client.umbrella) {
+                    if (client.id == client.umbrella.id) {
+                        parents.push({ id: client.id, label: client.name });
+                    }
+                } else {
+                    parents.push({ id: client.id, label: client.name });
+                }
+            }
+        });
         this.setState({ parents: parents });
+
+        if (this.props.client.umbrella) {
+            if (this.props.client.id == this.props.client.umbrella.id) {
+                this.setState({ parent: "N/A" });
+            } else {
+                this.setState({ parent: this.props.client.umbrella.id });
+            }
+        } else {
+            this.setState({ parent: "N/A" });
+        }
 
         let pms = [];
         pms.push({ id: 0, label: "Default_PM" });
@@ -110,8 +128,14 @@ class Client extends Component {
     handleUpdate(e, name) {
         let body = {};
         
+        
         body["field"] = name;
-        body["value"] = e.target.value;
+        if (e.target.value == 'N/A') {
+            body["value"] = null;
+        } else {
+            body["value"] = e.target.value;
+        }
+        
         body["clientitem"] = this.props.client;
         this.props.updateClient(this.props.client.id, body);
     }
@@ -165,6 +189,7 @@ class Client extends Component {
 
 const mapStateToProps = (state) => ({
     client: state.clients.client,
+    clients: state.clients.clients,
     umbrella: state.clients.umbrella,
     clientStatus: state.clients.clientStatus,
     umbdepStatus: state.clients.umbdepStatus,

@@ -120,7 +120,7 @@ const Client = (props) =>
                 <div className="column">
                     <label>
                         Parent
-                        <Validation.components.Select errorClassName='is-invalid-input' name='parent' value='' validations={['required']} onChange={(value) => props.onUpdate(value, "parent")}>
+                        <Validation.components.Select errorClassName='is-invalid-input' name='parent' value={props.parent} validations={['required']} onChange={(value) => props.onUpdate(value, "umbrella")}>
                             {
                                 _.map(props.parents, (parent, key) => {return (
                                     <option key={key} value={parent.id}>{parent.label}</option>

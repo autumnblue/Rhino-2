@@ -53,7 +53,7 @@ const Actions = {
           loadingMore,
         });
         
-        return httpGet(`clients.json?include[]=departments&page=${page}&per_page=${limit}&sort[]=${sort}&filter{name.icontains}=${filter}`)
+        return httpGet(`clients.json?include[]=departments&include[]=umbrella&page=${page}&per_page=${limit}&sort[]=${sort}&filter{name.icontains}=${filter}`)
           .then((response) => {
             if (response.body) {
               dispatch({
@@ -84,6 +84,7 @@ const Actions = {
 
         let clientcopy = {};
         clientcopy[val.field] = val.value;
+        
         return httpPatch(`clients/${id}.json`, clientcopy)
             .then(() => {
               dispatch({
