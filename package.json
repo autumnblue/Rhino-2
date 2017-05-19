@@ -99,6 +99,7 @@
     "react-stickynode": "^1.2.1",
     "react-table": "^5.6.0",
     "react-tap-event-plugin": "^2.0.1",
+    "react-validation": "^2.10.9",
     "react-waypoint": "^5.0.3",
     "reactify": "^1.1.1",
     "redux": "^3.0.5",
