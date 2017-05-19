@@ -52,10 +52,6 @@ class Client extends Component {
         this.setState({ departments: departments });
     }
 
-    componentWillReceiveProps() {
-        this.setState({ client: this.props.client });
-    }
-
     handleChange(e, field) {
         let { client } = this.state;
         client[field] = e.target.value;
@@ -89,10 +85,9 @@ class Client extends Component {
 
     handleRow(rowInfo) {
         _.map(this.props.client.departments, (department, key) => {
-            if (rowInfo.index == key && rowInfo.row.clientname == department.name) {
+            if (rowInfo.row.clientname == department.name) {
                 this.props.viewClient(department);
-                this.forceUpdate();
-                // this.setState({ client: department });
+                this.setState({ client: department });
                 return;
             }
         });
