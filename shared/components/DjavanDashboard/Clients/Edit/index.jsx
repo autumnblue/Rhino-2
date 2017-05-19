@@ -118,6 +118,7 @@ class Client extends Component {
     }
 
     handleFinish() {
+        event.preventDefault();
         this.props.finishClient();
     }
 

@@ -31,7 +31,7 @@ function getColumns() {
 
 const Client = (props) =>
   <DashboardCard className="clientEdit-Block">
-      <Validation.components.Form onSubmit={(event) => props.onAdd(event)}>
+      <Validation.components.Form onSubmit={(event) => props.onFinish(event)}>
             <div className="header">
                 <div className="leftBlock">
                     <a href="/dashboard/clients/list">Clients</a>
@@ -120,7 +120,7 @@ const Client = (props) =>
                 <div className="column">
                     <label>
                         Parent
-                        <Validation.components.Select errorClassName='is-invalid-input' name='parent' value={props.parent} validations={['required']} onChange={(value) => props.onUpdate(value, "umbrella")}>
+                        <Validation.components.Select errorClassName='is-invalid-input' name='parent' value={props.parent} validations={[]} onChange={(value) => props.onUpdate(value, "umbrella")}>
                             {
                                 _.map(props.parents, (parent, key) => {return (
                                     <option key={key} value={parent.id}>{parent.label}</option>
@@ -133,7 +133,7 @@ const Client = (props) =>
                 <div className="column">
                     <label>
                         Project manager
-                        <Validation.components.Select errorClassName='is-invalid-input' name='pm' value='' validations={['required']} onChange={(value) => props.onUpdate(value, "pm")}>
+                        <Validation.components.Select errorClassName='is-invalid-input' name='pm' value='' validations={[]} onChange={(value) => props.onUpdate(value, "pm")}>
                             {
                                 _.map(props.pms, (pm, key) => {return (
                                     <option key={key} value={pm.id}>{pm.label}</option>
