@@ -108,7 +108,7 @@ class Client extends Component {
 
     handleCloseModal(value) {
         if (value) {
-            this.props.deleteClient(this.props.client.id);
+            this.props.deleteClient(this.state.client.id);
         }
         this.setState({ isOpen: false });
     }

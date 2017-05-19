@@ -44,7 +44,7 @@ const Actions = {
           dispatch(push('/dashboard/clients/list'));
         })
         .catch((error) => 
-          dispatch(Actions.handleErrors(error.response.status))
+          dispatch(Actions.handleErrors(error.response))
         )
     }),
 
@@ -124,7 +124,7 @@ const Actions = {
 //  https://djavan-server.rsl.host/api/v1/clients.json?page=1&per_page=1000&sort[]=id&exclude[]=*&include[]=id&include[]=name&filter{umbrella.isnull}=1
 //   updateClientsList: (newClients) => ({ type: Constants.UPDATE_CLIENTS_LIST, clients: newClients }),
   refreshClientsList: () => ({ type: Constants.REFRESH_CLIENTS_LIST }),
-  
+
   clearClientError: () => ({type: Constants.CLEAR_CLIENT_ERROR }),
 
   fetchClientUmbrella: (client) =>
