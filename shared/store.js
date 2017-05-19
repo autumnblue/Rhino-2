@@ -49,8 +49,8 @@ function createStoreWithReducer(history, data, reducer) {
 
   store.subscribe(() => {
     // console.log("TEST" + ++count);
-    console.log(store.getState());
-    //store.dispatch(AssessmentActions.mockAssessments(1, true));
+    // console.log(store.getState());
+    // store.dispatch(AssessmentActions.mockAssessments(1, true));
   });
 
   return store;

@@ -40,8 +40,7 @@ const Actions = {
         }
       })
       .catch((error) => {
-        console.log('$$$$: ', error);
-        // logger(error);
+        logger(error);
       })
     )
   ),

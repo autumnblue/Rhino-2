@@ -19,8 +19,7 @@ const Actions = {
             logger(error)
           )
           .then((response) => {
-            if (response.body) { //.data.meta.total_results > 0
-              console.log(response.body);
+            if (response.body) {
               dispatch({
                 type: Constants.FETCH_ASSESSMENTS,
                 assessments: response.body.assessments,
