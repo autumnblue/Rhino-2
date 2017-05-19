@@ -155,9 +155,11 @@ const Client = (props) =>
                                     columns={getColumns()}
                                     showPagination={false}
                                     defaultPageSize={5}
-                                    getTdProps={(state, rowInfo, column, instance) => {
+                                    getTrProps={(state, rowInfo, column, instance) => {
                                         return {
-                                            onClick: e => props.onRow(rowInfo)
+                                            onClick: e => props.onRow(rowInfo),
+                                            className: 'depTableRow',
+                                            
                                         }
                                     }}
                                 />
