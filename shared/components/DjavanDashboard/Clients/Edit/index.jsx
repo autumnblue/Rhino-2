@@ -17,6 +17,7 @@ class Client extends Component {
         
         parents: [],
         pms: [],
+        deparments: [],
 
         isOpen: false,
     }
@@ -37,6 +38,18 @@ class Client extends Component {
             pms.push({ id: 1, label: this.props.client.project_manager.first_name + " " + this.props.client.project_manager.last_name });
         }
         this.setState({ pms: pms });
+
+        let departments = [];
+
+        _.map(this.props.client.departments, (department, key) =>
+            departments.push({
+                clientname: department.name,
+                focalname: department.focal_name,
+                socount: department.service_order_count,
+                asscount: department.assessment_count
+            })
+        );
+        this.setState({ departments: departments });
     }
 
     componentWillReceiveProps() {
@@ -56,7 +69,6 @@ class Client extends Component {
             this.props.deleteClient(this.props.client.id);
         }
         this.setState({ isOpen: false });
-
     }
 
     handleDelete() {
@@ -76,7 +88,7 @@ class Client extends Component {
     }
 
     handleRow(rowInfo) {
-        _.map(this.props.departments, (department, key) => {
+        _.map(this.props.client.departments, (department, key) => {
             if (rowInfo.index == key && rowInfo.row.clientname == department.name) {
                 this.props.viewClient(department);
                 this.forceUpdate();
@@ -96,9 +108,9 @@ class Client extends Component {
     }
 
     render() {
-        const { isOpen, client, pm, pms, parent, parents } = this.state;
+        const { isOpen, client, pm, pms, parent, parents, departments } = this.state;
 
-        if (isLoading(this.props.umbdepStatus) || isLoading(this.props.clientStatus)) {
+        if (isLoading(this.props.clientStatus)) {
             return (
                 <DashboardLoader loading={isLoading(this.props.umbdepStatus)} />
             );
@@ -109,7 +121,7 @@ class Client extends Component {
                         client={client}
                         pm={pm}
                         parent={parent}
-                        departments={this.props.departments}
+                        departments={departments}
                         parents={parents}
                         pms={pms}
                         umbrella={this.props.umbrella}
@@ -144,7 +156,6 @@ class Client extends Component {
 
 const mapStateToProps = (state) => ({
     client: state.clients.client,
-    departments: state.clients.departments,
     umbrella: state.clients.umbrella,
     clientStatus: state.clients.clientStatus,
     umbdepStatus: state.clients.umbdepStatus,

@@ -67,6 +67,7 @@ export default class ClientsLogic extends Component {
     }
 
     handleSelect(value) {
+        console.log('#######:   ', value);
         this.props.viewClient(value);
     }
     

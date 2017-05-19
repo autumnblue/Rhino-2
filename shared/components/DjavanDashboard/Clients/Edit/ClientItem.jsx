@@ -28,21 +28,6 @@ function getColumns() {
     return columns;
 }
 
-function getDepartments(departments) {
-    let data = [];
-
-    _.map(departments, (department, key) =>
-        data.push({
-            clientname: department.name,
-            focalname: department.focal_name,
-            socount: department.service_order_count,
-            asscount: department.assessment_count
-        })
-    );
-
-    return data;
-};
-
 
 const Client = (props) =>
   <DashboardCard className="clientEdit-Block">
@@ -155,6 +140,28 @@ const Client = (props) =>
                     </label>
                 </div>
                 <div className="column">
+                    {(!props.umbrella) && (
+                        <div>
+                            <div className="departmentTitle">
+                                Department Clients
+                            </div>
+                            <div className="departmentContainer">
+                                <ReactTable
+                                    data={props.departments}
+                                    columns={getColumns()}
+                                    showPagination={false}
+                                    defaultPageSize={5}
+                                    getTdProps={(state, rowInfo, column, instance) => {
+                                        return {
+                                            onClick: e => props.onRow(rowInfo)
+                                        }
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    )}
+                </div>
+                <div className="column">
                     <RaisedButton
                         default
                         label="delete"
@@ -162,26 +169,6 @@ const Client = (props) =>
                     />
                 </div>
             </div>
-            {(!props.umbrella) && (
-                <div>
-                <div className="departmentTitle">
-                    Department Clients
-                </div>
-                <div className="departmentContainer">
-                    <ReactTable
-                        data={getDepartments(props.departments)}
-                        columns={getColumns()}
-                        showPagination={false}
-                        defaultPageSize={5}
-                        getTdProps={(state, rowInfo, column, instance) => {
-                            return {
-                                onClick: e => props.onRow(rowInfo)
-                            }
-                        }}
-                    />
-                </div>
-                </div>
-            )}
         </Validation.components.Form>
   </DashboardCard>;
 

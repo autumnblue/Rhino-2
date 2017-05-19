@@ -138,15 +138,10 @@ const Actions = {
         });
         return httpGet(`clients/${client}?include[]=departments&include[]=umbrella`)
           .then((response) => {
-            if (response.body) {
+            if (client !== response.body.client.id) {
               dispatch({
                 type: Constants.FETCH_CLIENT_UMBRELLA,
                 client: response.body.client,
-              });
-            } else {
-              dispatch({
-                type: Constants.FETCH_CLIENT_UMBRELLA_FAILURE,
-                error: handleInternalErrors(response),
               });
             }
           })

@@ -6,7 +6,6 @@ export const initialState = {
   error: null,
 
   client: null,
-  departments: null,
   umbrella: null,
   clientStatus: loadingStatus.UNINITIALIZED,
   umbdepStatus: loadingStatus.UNINITIALIZED,
@@ -117,7 +116,6 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         umbrella: action.client.umbrella,
-        departments: action.client.departments,
         umbdepStatus: loadingStatus.LOADED
       }
     }
