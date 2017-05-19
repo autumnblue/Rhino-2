@@ -22,44 +22,72 @@ class Client extends Component {
         isOpen: false,
     }
 
-    componentWillMount() {
-        this.setState({ client: this.props.client });
+    componentDidMount() {
+        if (this.props.client) {
+            this.setState({ 
+                client: this.props.client ,
+                clients: this.props.clients,
+                umbrella: this.props.umbrella,
+            });
 
+            localStorage.setItem("client", JSON.stringify(this.props.client));
+            localStorage.setItem("clients", JSON.stringify(this.props.clients));
+            localStorage.setItem("umbrella", JSON.stringify(this.props.umbrella));
+
+            this.handleUpdateState(this.props.client, this.props.clients, this.props.umbrella);
+        } else {
+            let client, clients, umbrella;
+            client = JSON.parse(localStorage.getItem('client'));
+            clients = JSON.parse(localStorage.getItem('clients')),
+            umbrella = JSON.parse(localStorage.getItem('umbrella')),
+
+            this.setState({
+                client: client,
+                clients: clients,
+                umbrella: umbrella,
+            });
+
+            this.handleUpdateState(client, clients, umbrella);
+        }
+    }
+
+    handleUpdateState(client, clients, umbrella) {
         let parents = [];
         parents.push({ id: null, label: 'N/A' });
-        _.map(this.props.clients, (client, key) => {
-            if (this.props.client.id !== client.id) {
-                if (client.umbrella) {
-                    if (client.id == client.umbrella.id) {
-                        parents.push({ id: client.id, label: client.name });
+        _.map(clients, (item, key) => {
+            if (client.id !== item.id) {
+                if (item.umbrella) {
+                    if (item.id == item.umbrella.id) {
+                        parents.push({ id: item.id, label: item.name });
                     }
                 } else {
-                    parents.push({ id: client.id, label: client.name });
+                    parents.push({ id: item.id, label: item.name });
                 }
             }
         });
         this.setState({ parents: parents });
 
-        if (this.props.client.umbrella) {
-            if (this.props.client.id == this.props.client.umbrella.id) {
+        if (client.umbrella) {
+            if (client.id == client.umbrella.id) {
                 this.setState({ parent: "N/A" });
             } else {
-                this.setState({ parent: this.props.client.umbrella.id });
+                this.setState({ parent: client.umbrella.id });
             }
         } else {
             this.setState({ parent: "N/A" });
         }
 
+
         let pms = [];
         pms.push({ id: 0, label: "Default_PM" });
-        if (this.props.client.project_manager !== null) {
-            pms.push({ id: 1, label: this.props.client.project_manager.first_name + " " + this.props.client.project_manager.last_name });
+        if (client.project_manager !== null) {
+            pms.push({ id: 1, label: client.project_manager.first_name + " " + client.project_manager.last_name });
         }
         this.setState({ pms: pms });
 
-        let departments = [];
 
-        _.map(this.props.client.departments, (department, key) =>
+        let departments = [];
+        _.map(client.departments, (department, key) =>
             departments.push({
                 clientname: department.name,
                 focalname: department.focal_name,
@@ -102,7 +130,7 @@ class Client extends Component {
     }
 
     handleRow(rowInfo) {
-        _.map(this.props.client.departments, (department, key) => {
+        _.map(this.state.client.departments, (department, key) => {
             if (rowInfo.row.clientname == department.name) {
                 let departments = [];
                 _.map(department.departments, (dep, key) =>
@@ -115,7 +143,7 @@ class Client extends Component {
                 );
                 this.setState({ departments: departments });
 
-                department["path"] = this.props.client.name + "    >    " + department.name;
+                department["path"] = this.state.client.name + "    >    " + department.name;
 
                 this.props.viewClient(department);
                 this.setState({ client: department });
@@ -128,7 +156,6 @@ class Client extends Component {
     handleUpdate(e, name) {
         let body = {};
         
-        
         body["field"] = name;
         if (e.target.value == 'N/A') {
             body["value"] = null;
@@ -136,14 +163,14 @@ class Client extends Component {
             body["value"] = e.target.value;
         }
         
-        body["clientitem"] = this.props.client;
-        this.props.updateClient(this.props.client.id, body);
+        body["clientitem"] = this.state.client;
+        this.props.updateClient(this.state.client.id, body);
     }
 
     render() {
-        const { isOpen, client, pm, pms, parent, parents, departments } = this.state;
+        const { isOpen, client, pm, pms, parent, parents, departments, umbrella } = this.state;
 
-        if (isLoading(this.props.clientStatus)) {
+        if (client == null) {
             return (
                 <DashboardLoader loading={isLoading(this.props.umbdepStatus)} />
             );
@@ -157,7 +184,7 @@ class Client extends Component {
                         departments={departments}
                         parents={parents}
                         pms={pms}
-                        umbrella={this.props.umbrella}
+                        umbrella={umbrella}
                         onChange={(e, field) => this.handleChange(e, field)}
                         onDelete={() => this.handleDelete()}
                         onFinish={() => this.handleFinish()}

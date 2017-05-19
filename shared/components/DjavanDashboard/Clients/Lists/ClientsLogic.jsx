@@ -47,15 +47,15 @@ export default class ClientsLogic extends Component {
         let sortValue;
 
         if (event.target.value == "Date Created") {
-            sortValue = "id";
+            sortValue = "date_created";
         } else if (event.target.value == "Company Name") {
-            sortValue = "id";
-        } else if (event.target.value == "Focal Name") {
             sortValue = "name";
+        } else if (event.target.value == "Focal Name") {
+            sortValue = "focal_name";
         } else if (event.target.value == "Number of Service Orders") {
-            sortValue = "id";
+            sortValue = "service";
         } else if (event.target.value == "Number of Assessments") {
-            sortValue = "id";
+            sortValue = "assessments";
         }
 
         this.setState({ sort: sortValue });
