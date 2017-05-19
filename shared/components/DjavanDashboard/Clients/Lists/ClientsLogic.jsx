@@ -9,11 +9,11 @@ export default class ClientsLogic extends Component {
 
     componentWillMount() {
         var sorts = [];
-        sorts.push({ value: "id", label: "Date Created" });
-        sorts.push({ value: "id", label: "Company Name" });
-        sorts.push({ value: "name", label: "Focal Name" });
-        sorts.push({ value: "id", label: "Number of Service Orders" });
-        sorts.push({ value: "id", label: "Number of Assessments" });
+        sorts.push({ value: 0, label: "Date Created" });
+        sorts.push({ value: 1, label: "Company Name" });
+        sorts.push({ value: 2, label: "Focal Name" });
+        sorts.push({ value: 3, label: "Number of Service Orders" });
+        sorts.push({ value: 4, label: "Number of Assessments" });
 
         var limits = [];
         limits.push({ value: 10, label: "Display 10" });
@@ -41,17 +41,44 @@ export default class ClientsLogic extends Component {
         this.props.addClient();
     }
 
-    handleSortChange(obj) {
+    handleSortChange(event) {
         const { activePage, sort, limit, filter } = this.state;
-        if (obj == null) return;
-        this.setState({ sort: obj.value });
-        this.props.loadData(activePage, obj.value, limit, filter);
+
+        let sortValue;
+
+        if (event.target.value == "Date Created") {
+            sortValue = "id";
+        } else if (event.target.value == "Company Name") {
+            sortValue = "id";
+        } else if (event.target.value == "Focal Name") {
+            sortValue = "name";
+        } else if (event.target.value == "Number of Service Orders") {
+            sortValue = "id";
+        } else if (event.target.value == "Number of Assessments") {
+            sortValue = "id";
+        }
+
+        this.setState({ sort: sortValue });
+        this.props.loadData(activePage, sortValue, limit, filter);
     }
 
-    handleDisplayChange(obj) {
+    handleDisplayChange(event) {
         const { activePage, sort, limit, filter } = this.state;
-        this.setState({ limit: obj.value });
-        this.props.loadData(activePage, sort, obj.value, filter);
+
+        let displayValue;
+
+        if (event.target.value == "Display 10") {
+            displayValue = 10;
+        } else if (event.target.value == "Display 50") {
+            displayValue = 50;
+        } else if (event.target.value == "Display 100") {
+            displayValue = 100;
+        } else if (event.target.value == "Display All") {
+            displayValue = 1000;
+        }
+
+        this.setState({ limit: displayValue });
+        this.props.loadData(activePage, sort, displayValue, filter);
     }
 
     handleFilterChange(e) {
@@ -67,7 +94,6 @@ export default class ClientsLogic extends Component {
     }
 
     handleSelect(value) {
-        console.log('#######:   ', value);
         this.props.viewClient(value);
     }
     

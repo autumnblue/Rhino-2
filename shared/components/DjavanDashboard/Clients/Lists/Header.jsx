@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import FontAwesome from 'react-fontawesome';
-import Select from 'react-select';
 
 import { djavanTheme } from '../../../../constants/djavanTheme';
 
 const Header = (props) => (
     <div className="clientlistheader-block">
         <div className="sort">
-            <Select
-                name="form-field-name"
-                value={props.sort}
-                options={props.sortOptions}
-                onChange={(value) => props.onSort(value)}
-            />
+            <select className="select" onChange={(value) => props.onSort(value)}>
+                {
+                    _.map(props.sortOptions, (sort, key) => {return (
+                        <option key={key} value={sort.id}>{sort.label}</option>
+                    )})
+                }
+            </select>
         </div>
         <div className="display">
-            <Select
-                name="form-field-name"
-                value={props.limit}
-                options={props.limitOptions}
-                onChange={(value) => props.onDisplay(value)}
-            />
+            <select className="select" onChange={(value) => props.onDisplay(value)}>
+                {
+                    _.map(props.limitOptions, (limit, key) => {return (
+                        <option key={key} value={limit.id}>{limit.label}</option>
+                    )})
+                }
+            </select>
         </div>
         <div className="filter">
             <input type="text" className="control" placeholder="Filter..." onChange={(value) => props.onFilter(value)}/>

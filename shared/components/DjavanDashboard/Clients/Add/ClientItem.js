@@ -11,7 +11,6 @@ import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
 import ReactTable from 'react-table'
-import Select from 'react-select';
 import DashboardCard from '../../../Common/DashboardCard';
 import '../../../../utils/validations';
 
