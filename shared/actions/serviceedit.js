@@ -20,7 +20,7 @@ const Actions = {
 
       dispatch({type: Constants.SERVICES_EDIT_LOADING});
 
-      httpGet(`services/${id}?ordering=default_sort_priority`)
+      httpGet(`services/${id}`)
         .then((response) => {
           if (response.body) {
             dispatch({
