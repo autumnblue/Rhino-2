@@ -64,7 +64,7 @@ export default class Services extends Component {
 
         <div className="services-edit-header">
           {this.props.service != null && <div className="services-edit-links">
-            <Link to="/dashboard/services/'">Services</Link> > {this.props.service.name || ''}
+            <Link to="/dashboard/services/">Services</Link> > {this.props.service.name || ''}
           </div>}
           <FontAwesome
             className='services-edit-link-services'
