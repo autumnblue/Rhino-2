@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import Validation from 'react-validation';
 import _ from 'lodash';
 import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
+import FontAwesome from 'react-fontawesome';
 import SortPriority from '../SortPriority';
 
 export default class Services extends Component {
@@ -52,6 +55,7 @@ export default class Services extends Component {
     this.props.deleteService(this.props.service);
   }
 
+
   render() {
     return (
       <div className="services-edit-block">
@@ -59,11 +63,20 @@ export default class Services extends Component {
         {this.props.loading && <div className="services-edit-loading">Loading...</div>}
 
         <div className="services-edit-header">
-
-
+          {this.props.service != null && <div className="services-edit-links">
+            <Link to="/dashboard/services/'">Services</Link> > {this.props.service.name || ''}
+          </div>}
+          <FontAwesome
+            className='services-edit-link-services'
+            name='check-circle-o'
+            size='5x'
+            style={{ cursor: 'pointer' }}
+            onClick={this.props.goServicesPage}
+          />
         </div>
 
         {this.props.service != null &&
+        <Paper className="services-edit-paper">
         <Validation.components.Form onSubmit={(event) => false} ref={form => { this.form = form }}>
           <div className="services-edit-left">
             <h2>Service</h2>
@@ -111,6 +124,7 @@ export default class Services extends Component {
             <input type="file" className="services-edit-uplaod-button" onChange={this.handleFileUpload.bind(this)} disabled={!this.props.service.id} />
           </div>
         </Validation.components.Form>
+        </Paper>
         }
       </div>
     )

@@ -14,6 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
   saveServiceValue: (id, name, value) => dispatch(EditActions.saveServiceValue(id, name, value)),
   uploadAsset: (file, service) => dispatch(EditActions.uploadAsset(file, service)),
   deleteService: (service) => dispatch(EditActions.deleteService(service)),
+  goServicesPage: () =>  dispatch(push('/dashboard/services/'))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Edit);
