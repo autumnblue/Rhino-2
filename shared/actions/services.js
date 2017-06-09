@@ -11,7 +11,7 @@ const Actions = {
     ((dispatch) => {
       dispatch({type: Constants.SERVICES_LOADING});
 
-      httpGet('services/?ordering=default_sort_priority&per_page=1000')
+      httpGet('services/?sort[]=default_sort_priority&per_page=1000')
         .then((response) => {
           if (response.body) {
             dispatch({
