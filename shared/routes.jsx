@@ -11,6 +11,8 @@ import Entry from './containers/Entry';
 import cookie from 'react-cookie';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import Services from './components/DjavanDashboard/Services';
+import ServicesEdit from './components/DjavanDashboard/Services/Edit';
 
 import Actions from './actions/sessions';
 import { isClient, checkToken } from './utils';
@@ -64,6 +66,9 @@ export default function configRoutes(store) {
           <Route path="clients/edit" component={ClientEdit} />
           <Route path="clients/list" component={ClientList} />
           <Route path="assessments" component={Assessments} />
+          <Route path="services" component={Services} />
+          <Route path="services/edit/:id" component={ServicesEdit} />
+          <Route path="services/add/" component={ServicesEdit} />
         </Route>
       </Route>
     </Route>

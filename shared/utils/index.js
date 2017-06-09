@@ -4,14 +4,18 @@ import jwtDecode from 'jwt-decode';
 
 const BASE_URL = process.env.API_URL || 'https://djavan-server-dev.rsl.host/api/v1/';
 
-function buildHeaders() {
+function buildHeaders(headers) {
   const token = cookie.load('token');
-  return {
+  let result = {
     'Authorization': 'JWT ' + token,
     // 'Content-Type': 'application/x-www-form-urlencoded',
     'Content-Type': 'application/json',
     // 'client-version': 'WEB',
   };
+  if (headers) {
+    result = {...result, ...headers};
+  }
+  return result;
 }
 
 //see https://www.npmjs.com/package/popsicle
@@ -31,10 +35,10 @@ export function checkStatus(response) {
   throw error;
 }
 
-export function httpPost(url, data) {
+export function httpPost(url, data, headers) {
   return request({
     method: 'post',
-    headers: buildHeaders(),
+    headers: buildHeaders(headers),
     url: url,
     body: data,
   })
