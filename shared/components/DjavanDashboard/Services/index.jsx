@@ -7,9 +7,10 @@ import ServicesActions from '../../../actions/services';
 const mapStateToProps = (state) => state.services;
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchServices: () => dispatch(ServicesActions.fetchServices()),
+  fetchServices: (filter) => dispatch(ServicesActions.fetchServices(filter)),
   orderChanged: (id, value) => dispatch(ServicesActions.orderChanged(id, value)),
-  edit: (id) => dispatch(id ? push('/dashboard/services/edit/' + id) : push('/dashboard/services/add/'))
+  edit: (id) => dispatch(id ? push('/dashboard/services/edit/' + id) : push('/dashboard/services/add/')),
+  filterChanged: (value) => {dispatch(ServicesActions.filterChanged(value))}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Services);

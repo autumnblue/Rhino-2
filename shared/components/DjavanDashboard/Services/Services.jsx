@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import ServiceItem from './ServiceItem.jsx';
+import DebounceInput from 'react-debounce-input';
 
 export default class Services extends Component {
 
   componentDidMount() {
-    this.props.fetchServices();
+    this.props.fetchServices(this.props.filter);
   }
 
   render() {
@@ -13,13 +14,23 @@ export default class Services extends Component {
       <div className="services-block">
         {this.props.loading && <div className="services-loading">Loading...</div>}
         <div className="services-block-header">
-          <FontAwesome
-            className='services-edit-arrow'
-            name='plus-circle'
-            size='5x'
-            style={{ cursor: 'pointer' }}
-            onClick={() => {this.props.edit()}}
-          />
+          <div className="services-block-filter">
+            <DebounceInput
+              type="text"
+              className="services-block-filter-input"
+              debounceTimeout={300}
+              placeholder="Filter..."
+              onChange={(event) => {this.props.filterChanged(event.target.value)}}/>
+          </div>
+          <div className="services-block-create">
+            <FontAwesome
+              className='services-edit-arrow'
+              name='plus-circle'
+              size='5x'
+              style={{ cursor: 'pointer' }}
+              onClick={() => {this.props.edit()}}
+            />
+          </div>
         </div>
         {this.props.services.map((service) =>
           <ServiceItem

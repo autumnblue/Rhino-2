@@ -3,7 +3,8 @@ import Constants from '../constants';
 
 export const initialState = {
   services: [],
-  loading: false
+  loading: false,
+  filter: ''
 };
 
 export default function reducer(state = initialState, action) {
@@ -36,6 +37,13 @@ export default function reducer(state = initialState, action) {
         ...state,
         services: services
       };
+    }
+
+    case Constants.SERVICES_FILTER_CHANGED: {
+      return {
+        ...state,
+        filter: action.filter
+      }
     }
 
     default:

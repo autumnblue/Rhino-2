@@ -7,11 +7,11 @@ import { loadingStatus } from '../constants/loadingStatus';
 import ActionsEdit from './serviceedit';
 
 const Actions = {
-  fetchServices: () =>
+  fetchServices: (filter) =>
     ((dispatch) => {
       dispatch({type: Constants.SERVICES_LOADING});
 
-      httpGet('services/?sort[]=default_sort_priority&per_page=1000')
+      httpGet(`services/?sort[]=default_sort_priority&per_page=1000&filter{name.icontains}=${filter}`)
         .then((response) => {
           if (response.body) {
             dispatch({
@@ -37,6 +37,15 @@ const Actions = {
         value: value
       });
       dispatch(ActionsEdit.saveServiceValue(id, 'default_sort_priority', value));
+    }),
+
+  filterChanged: (value) =>
+    ((dispatch) => {
+      dispatch({
+        type: Constants.SERVICES_FILTER_CHANGED,
+        value: value
+      });
+      dispatch(Actions.fetchServices(value));
     }),
 
   handleError: (response) =>
