@@ -1,19 +1,26 @@
 .services-block {
   float: none;
-  padding: 10px;
+  position: relative;
 
   .services-loading {
+    left: 0;
+    right: 0;
+    margin: auto auto;
     position: absolute;
+    width: 150px;
+    font-size: 24px;
   }
 
   .services-block-header {
-    margin-top: 20px;
+    padding: 10px 5px 10px 15px;
+    margin-bottom: 20px;
     width: 100%;
-    height: 75px;
+    height: 50px;
+    background-color: #888 !important;
     .services-block-filter {
       float: left;
       input {
-        height: 60px;
+        height: 30px;
         font-size: 20px
       }
     }
@@ -24,7 +31,7 @@
 
   .services-item {
     padding: 5px;
-    margin-bottom: 10px;
+    margin: 0px 20px 10px 20px;
     height: 115px;
   }
 

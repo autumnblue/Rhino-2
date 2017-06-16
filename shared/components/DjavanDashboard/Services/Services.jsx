@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import ServiceItem from './ServiceItem.jsx';
 import DebounceInput from 'react-debounce-input';
+import Paper from 'material-ui/Paper';
 
 export default class Services extends Component {
 
@@ -13,7 +14,7 @@ export default class Services extends Component {
     return (
       <div className="services-block">
         {this.props.loading && <div className="services-loading">Loading...</div>}
-        <div className="services-block-header">
+        <Paper className="services-block-header">
           <div className="services-block-filter">
             <DebounceInput
               type="text"
@@ -26,12 +27,12 @@ export default class Services extends Component {
             <FontAwesome
               className='services-edit-arrow'
               name='plus-circle'
-              size='5x'
+              size='2x'
               style={{ cursor: 'pointer' }}
               onClick={() => {this.props.edit()}}
             />
           </div>
-        </div>
+        </Paper>
         {this.props.services.map((service) =>
           <ServiceItem
             service={service}
