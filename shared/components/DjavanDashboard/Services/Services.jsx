@@ -36,7 +36,7 @@ export default class Services extends Component {
           <ServiceItem
             service={service}
             key={service.id}
-            orderChanged={this.props.orderChanged}
+            orderChanged={(id, value) => {this.props.orderChanged(id, value, this.props.filter)}}
             edit={this.props.edit}
           />
         )}

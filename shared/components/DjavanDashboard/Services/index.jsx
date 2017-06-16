@@ -8,9 +8,9 @@ const mapStateToProps = (state) => state.services;
 
 const mapDispatchToProps = (dispatch) => ({
   fetchServices: (filter) => dispatch(ServicesActions.fetchServices(filter)),
-  orderChanged: (id, value) => dispatch(ServicesActions.orderChanged(id, value)),
+  orderChanged: (id, value, filter) => dispatch(ServicesActions.orderChanged(id, value, filter)),
   edit: (id) => dispatch(id ? push('/dashboard/services/edit/' + id) : push('/dashboard/services/add/')),
-  filterChanged: (value) => {dispatch(ServicesActions.filterChanged(value))}
+  filterChanged: (filter) => {dispatch(ServicesActions.filterChanged(filter))}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Services);

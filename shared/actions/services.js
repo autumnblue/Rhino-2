@@ -4,7 +4,7 @@ import { httpDelete, httpGet, httpPatch, httpPost, httpPut } from '../utils';
 import { handleInternalErrors, logger } from '../utils/handleInternalErrors';
 import Constants from '../constants';
 import { loadingStatus } from '../constants/loadingStatus';
-import ActionsEdit from './serviceedit';
+import ActionsError from './error';
 
 const Actions = {
   fetchServices: (filter) =>
@@ -28,7 +28,7 @@ const Actions = {
 
     }),
 
-  orderChanged: (id, value) =>
+  orderChanged: (id, value, filter) =>
     ((dispatch) => {
       if (value <= 0) return;
       dispatch({
@@ -36,26 +36,39 @@ const Actions = {
         id: id,
         value: value
       });
-      dispatch(ActionsEdit.saveServiceValue(id, 'default_sort_priority', value));
+
+      dispatch({type: Constants.SERVICES_LOADING});
+
+      let data = {};
+      data['default_sort_priority'] = value;
+      data['commit'] = true;
+      //patching default_sort_priority and re-fetching services for reorder
+      httpPatch(`services/${id}`, data)
+        .then((response) => {
+          if (response.body) {
+            dispatch(Actions.fetchServices(filter));
+          } else {
+            dispatch(Actions.handleError(error.response));
+          }
+        })
+        .catch((error) => {
+          dispatch(Actions.handleError(error.response));
+        });
     }),
 
-  filterChanged: (value) =>
+  filterChanged: (filter) =>
     ((dispatch) => {
       dispatch({
         type: Constants.SERVICES_FILTER_CHANGED,
-        value: value
+        filter: filter
       });
-      dispatch(Actions.fetchServices(value));
+      dispatch(Actions.fetchServices(filter));
     }),
 
   handleError: (response) =>
     ((dispatch) => {
-      if (response.status == 403) {
-        cookie.remove('token', { path: '/' });
-        dispatch(replace('/'));
-      } else {
-        return response;
-      }
+      dispatch({type: Constants.SERVICES_LOADED});
+      dispatch(ActionsError.response(response));
     })
 };
 
