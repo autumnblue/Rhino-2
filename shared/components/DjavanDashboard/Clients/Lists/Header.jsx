@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import FontAwesome from 'react-fontawesome';
+import DebounceInput from 'react-debounce-input';
 
 import { djavanTheme } from '../../../../constants/djavanTheme';
 
@@ -12,7 +13,7 @@ const Header = (props) => (
             <select className="select" onChange={(value) => props.onSort(value)}>
                 {
                     _.map(props.sortOptions, (sort, key) => {return (
-                        <option key={key} value={sort.id}>{sort.label}</option>
+                        <option key={key} value={sort.sortValue}>{sort.label}</option>
                     )})
                 }
             </select>
@@ -21,13 +22,13 @@ const Header = (props) => (
             <select className="select" onChange={(value) => props.onDisplay(value)}>
                 {
                     _.map(props.limitOptions, (limit, key) => {return (
-                        <option key={key} value={limit.id}>{limit.label}</option>
+                        <option key={key} value={limit.sortValue}>{limit.label}</option>
                     )})
                 }
             </select>
         </div>
         <div className="filter">
-            <input type="text" className="control" placeholder="Filter..." onChange={(value) => props.onFilter(value)}/>
+            <DebounceInput debounceTimeout={300} type="text" className="control" placeholder="Filter..." onChange={(value) => props.onFilter(value)}/>
         </div>
         <div className="space">
 

@@ -9,17 +9,17 @@ export default class ClientsLogic extends Component {
 
     componentWillMount() {
         var sorts = [];
-        sorts.push({ value: 0, label: "Date Created" });
-        sorts.push({ value: 1, label: "Company Name" });
-        sorts.push({ value: 2, label: "Focal Name" });
-        sorts.push({ value: 3, label: "Number of Service Orders" });
-        sorts.push({ value: 4, label: "Number of Assessments" });
+        sorts.push({ value: 0, label: "Date Created", sortValue: "date_created" });
+        sorts.push({ value: 1, label: "Company Name", sortValue: "name" });
+        sorts.push({ value: 2, label: "Focal Name", sortValue: "focal_name" });
+        sorts.push({ value: 3, label: "Number of Service Orders", sortValue: "service" });
+        sorts.push({ value: 4, label: "Number of Assessments", sortValue: "assessments" });
 
         var limits = [];
-        limits.push({ value: 10, label: "Display 10" });
-        limits.push({ value: 50, label: "Display 50" });
-        limits.push({ value: 100, label: "Display 100" });
-        limits.push({ value: 200, label: "Display All" });
+        limits.push({ value: 10, label: "Display 10", sortValue: 10 });
+        limits.push({ value: 50, label: "Display 50", sortValue: 20 });
+        limits.push({ value: 100, label: "Display 100", sortValue: 100 });
+        limits.push({ value: 200, label: "Display All", sortValue: 1000 });
 
         this.setState({
             activePage: 1,
@@ -43,42 +43,14 @@ export default class ClientsLogic extends Component {
 
     handleSortChange(event) {
         const { activePage, sort, limit, filter } = this.state;
-
-        let sortValue;
-
-        if (event.target.value == "Date Created") {
-            sortValue = "date_created";
-        } else if (event.target.value == "Company Name") {
-            sortValue = "name";
-        } else if (event.target.value == "Focal Name") {
-            sortValue = "focal_name";
-        } else if (event.target.value == "Number of Service Orders") {
-            sortValue = "service";
-        } else if (event.target.value == "Number of Assessments") {
-            sortValue = "assessments";
-        }
-
-        this.setState({ sort: sortValue });
-        this.props.loadData(activePage, sortValue, limit, filter);
+        this.setState({ sort: event.target.value });
+        this.props.loadData(activePage, event.target.value, limit, filter);
     }
 
     handleDisplayChange(event) {
         const { activePage, sort, limit, filter } = this.state;
-
-        let displayValue;
-
-        if (event.target.value == "Display 10") {
-            displayValue = 10;
-        } else if (event.target.value == "Display 50") {
-            displayValue = 50;
-        } else if (event.target.value == "Display 100") {
-            displayValue = 100;
-        } else if (event.target.value == "Display All") {
-            displayValue = 1000;
-        }
-
-        this.setState({ limit: displayValue });
-        this.props.loadData(activePage, sort, displayValue, filter);
+        this.setState({ limit: event.target.value });
+        this.props.loadData(activePage, sort, event.target.value, filter);
     }
 
     handleFilterChange(e) {
