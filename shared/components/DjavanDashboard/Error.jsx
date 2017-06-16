@@ -7,7 +7,7 @@ import Actions from '../../actions/error';
 const mapStateToProps = (state) => state.error;
 
 const mapDispatchToProps = (dispatch) => ({
-  dismiss: () => dispatch(Actions.dismiss())
+  dismiss: () => dispatch(Actions.diesmiss())
 })
 
 class Error extends Component {

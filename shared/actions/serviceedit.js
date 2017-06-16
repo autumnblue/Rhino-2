@@ -11,7 +11,7 @@ const Actions = {
       if (!id) {
         dispatch({
           type: Constants.SERVICES_EDIT_SET,
-          service: {default_sort_priority: 1, tools: null},
+          service: {tools: null},
         });
         dispatch({type: Constants.SERVICES_EDIT_LOADED});
 
@@ -53,6 +53,11 @@ const Actions = {
                 type: Constants.SERVICES_EDIT_SET_VALUE,
                 name: 'id',
                 value: response.body.service.id
+              });
+              dispatch({
+                type: Constants.SERVICES_EDIT_SET_VALUE,
+                name: 'default_sort_priority',
+                value: response.body.service.default_sort_priority
               });
             } else {
               dispatch(Actions.handleError(response));
@@ -158,6 +163,16 @@ const Actions = {
         .catch((error) => {
           dispatch(Actions.handleError(error.response));
         });
+    }),
+
+  dialogLeaveOpen: () =>
+    ((dispatch) => {
+      dispatch({type: Constants.SERVICES_EDIT_DIALOG_LEAVE_SHOW, dialogLeaveShow: true});
+    }),
+
+  dialogLeaveClose: () =>
+    ((dispatch) => {
+      dispatch({type: Constants.SERVICES_EDIT_DIALOG_LEAVE_SHOW, dialogLeaveShow: false});
     }),
 
   handleError: (response) =>

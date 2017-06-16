@@ -11,14 +11,14 @@ export default class SortPriority extends Component {
           name='arrow-up'
           size='3x'
           style={{ cursor: 'pointer' }}
-          onClick={() => this.props.valueChanged(this.props.id, this.props.value + 1)}
+          onClick={() => this.props.valueChanged(this.props.id, this.props.value - 1)}
         />
-        <div style={{ width: '100%', textAlign: 'center'}}> {this.props.value} </div>
+        <div style={{ width: '100%', textAlign: 'center'}}> {this.props.value || '-'} </div>
         <FontAwesome
           name='arrow-down'
           size='3x'
           style={{ cursor: 'pointer' }}
-          onClick={() => this.props.valueChanged(this.props.id, this.props.value - 1)}
+          onClick={() => this.props.valueChanged(this.props.id, this.props.value + 1)}
         />
       </div>
     )

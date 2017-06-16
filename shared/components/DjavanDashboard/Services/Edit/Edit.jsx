@@ -4,6 +4,7 @@ import Validation from 'react-validation';
 import _ from 'lodash';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
+import Dialog from 'material-ui/Dialog';
 import FontAwesome from 'react-fontawesome';
 import SortPriority from '../SortPriority';
 
@@ -20,6 +21,7 @@ export default class Services extends Component {
   }
 
   handleChange(event) {
+    this.form.validateAll();
     let name = event.target.name;
     let value = event.target.value;
     let errors = this.form.getErrors();
@@ -56,7 +58,35 @@ export default class Services extends Component {
   }
 
 
+  safeExit() {
+    if (this.props.service.id) {
+      this.props.goServicesPage();
+    } else {
+      let errors = this.form.validateAll();
+      if (!_.isEmpty(errors)) {
+        this.props.dialogLeaveOpen();
+      }
+    }
+  }
+
   render() {
+    const dialogLeaveActions = [
+      <RaisedButton
+        className="services-edit-dialog-yes"
+        label="Yes"
+        primary={true}
+        onTouchTap={() => {
+          this.props.dialogLeaveClose();
+          this.props.goServicesPage();
+        }}
+      />,
+      <RaisedButton
+        label="No"
+        primary={false}
+        onTouchTap={this.props.dialogLeaveClose}
+      />,
+    ];
+
     return (
       <div className="services-edit-block">
 
@@ -71,7 +101,7 @@ export default class Services extends Component {
             name='check-circle-o'
             size='5x'
             style={{ cursor: 'pointer' }}
-            onClick={this.props.goServicesPage}
+            onClick={this.safeExit.bind(this)}
           />
         </div>
 
@@ -110,6 +140,11 @@ export default class Services extends Component {
                 validations={['required']}
                 onBlur={this.handleChange.bind(this)}
               />
+              <RaisedButton
+                label="Edit"
+                secondary={true}
+                onClick={() => {}}
+              />
             </div>
             <RaisedButton
               label="Delete"
@@ -124,6 +159,15 @@ export default class Services extends Component {
             <input type="file" className="services-edit-uplaod-button" onChange={this.handleFileUpload.bind(this)} disabled={!this.props.service.id} />
           </div>
         </Validation.components.Form>
+          <Dialog
+            actions={dialogLeaveActions}
+            modal={false}
+            open={this.props.dialogLeaveShow}
+            onRequestClose={this.props.dialogLeaveClose}
+          >
+            There is error and service is NOT saved yet, are you sure you wan't to leave?
+          </Dialog>
+          <div className="clear-fix"></div>
         </Paper>
         }
       </div>

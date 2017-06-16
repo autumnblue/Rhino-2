@@ -3,7 +3,8 @@ import Constants from '../constants';
 
 export const initialState = {
   service: null,
-  loading: false
+  loading: false,
+  dialogLeaveShow: false
 };
 
 export default function reducer(state = initialState, action) {
@@ -52,6 +53,13 @@ export default function reducer(state = initialState, action) {
         loading: false,
         error: action.reason
       };
+    }
+
+    case Constants.SERVICES_EDIT_DIALOG_LEAVE_SHOW: {
+      return {
+        ...state,
+        dialogLeaveShow: action.dialogLeaveShow
+      }
     }
 
     default:
