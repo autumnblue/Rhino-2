@@ -157,9 +157,8 @@ const Client = (props) =>
                                     defaultPageSize={5}
                                     getTrProps={(state, rowInfo, column, instance) => {
                                         return {
-                                            onClick: e => props.onRow(rowInfo),
+                                            onClick: function() {props.onRow(rowInfo)},
                                             className: 'depTableRow',
-                                            
                                         }
                                     }}
                                 />
