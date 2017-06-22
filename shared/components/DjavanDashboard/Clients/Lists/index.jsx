@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => ({
   loadData: (page, sort, limit, filter, loadingMore) => {
     dispatch(ClientsActions.fetchClients(page, sort, limit, filter, loadingMore));
   },
-  viewClient: (client) => dispatch(ClientsActions.viewClient(client)),
+  viewClient: (client) => dispatch(push(`/dashboard/clients/edit/${client.id}`)),
   refreshClientsList: () => dispatch(ClientsActions.refreshClientsList()),
   fetchPossibleUmbrellas: (id, val) => dispatch(ClientsActions.fetchPossibleUmbrellas()),
   clearClientError: () => dispatch(ClientsActions.clearClientError()),
