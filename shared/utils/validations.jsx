@@ -14,7 +14,7 @@ Object.assign(Validation.rules, {
     },
 
     required: {
-        rule: value => value.toString().trim(),
+        rule: value => value && value.toString().trim(),
         hint: () => <span className="form-error is-visible">Required</span>
     },
 
