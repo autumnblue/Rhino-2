@@ -19,7 +19,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addClient: () => dispatch(push('/dashboard/clients/add')),
+  addClient: () => dispatch(push('/dashboard/clients/edit/new')),
   loadData: (page, sort, limit, filter, loadingMore) => {
     dispatch(ClientsActions.fetchClients(page, sort, limit, filter, loadingMore));
   },

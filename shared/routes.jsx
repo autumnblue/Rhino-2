@@ -13,6 +13,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Services from './components/DjavanDashboard/Services';
 import ServicesEdit from './components/DjavanDashboard/Services/Edit';
+import SuperClientEdit from './components/DjavanDashboard/SuperClients/Edit';
 
 import Actions from './actions/sessions';
 import { isClient, checkToken } from './utils';
@@ -64,6 +65,8 @@ export default function configRoutes(store) {
           <IndexRedirect to="clients/list" />
           <Route path="clients/add" component={ClientAdd} />
           <Route path="clients/edit" component={ClientEdit} />
+          <Route path="clients/edit/new" component={SuperClientEdit} />
+          <Route path="clients/edit/:id" component={SuperClientEdit} />
           <Route path="clients/list" component={ClientList} />
           <Route path="assessments" component={Assessments} />
           <Route path="services" component={Services} />

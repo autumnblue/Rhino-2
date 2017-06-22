@@ -9,6 +9,7 @@ import clients from './clients';
 import clientitems from './clientitems';
 import services from './services';
 import servicesedit from './servicesedit';
+import clientedit from './clientedit';
 
 const reducers = combineReducers({
   routing: routerReducer,
@@ -19,7 +20,8 @@ const reducers = combineReducers({
   clients,
   clientitems,
   services,
-  servicesedit
+  servicesedit,
+  clientedit
 });
 
 
