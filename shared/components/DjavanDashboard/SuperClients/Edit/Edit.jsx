@@ -211,7 +211,8 @@ export default class Edit extends Component {
             <RaisedButton
               default
               label="delete"
-              onTouchTap={this.props.onDelete}
+              disabled={!this.props.client.id}
+              onTouchTap={() => this.props.delete(this.props.client.id)}
             />
           </div>
         </div>

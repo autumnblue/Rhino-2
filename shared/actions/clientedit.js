@@ -144,6 +144,19 @@ const Actions = {
       }
     }),
 
+  delete: (id) =>
+    ((dispatch) => {
+      dispatch({type: Constants.CLIENTS_EDIT_LOADING});
+      httpDelete(`clients/${id}`, {commit:true})
+        .then((response) => {
+            dispatch(push('/dashboard/clients/list'));
+        })
+        .catch((error) => {
+          dispatch(Actions.handleError(error.response));
+        });
+
+    }),
+
   handleError: (response) =>
     ((dispatch) => {
       dispatch({type: Constants.CLIENTS_EDIT_LOADED});

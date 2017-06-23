@@ -13,6 +13,7 @@ const mapDispatchToProps = (dispatch) => ({
   saveValue: (client, name, value, shouldSaveOnServer) => dispatch(EditActions.saveValue(client, name, value, shouldSaveOnServer)),
   goToEdit: (id) => dispatch(push(`/dashboard/clients/edit/${id}`)),
   goToClients: () => dispatch(push('/dashboard/clients/list')),
+  delete: (id) => dispatch(EditActions.delete(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Edit);
