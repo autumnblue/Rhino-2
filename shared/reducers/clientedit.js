@@ -35,11 +35,17 @@ export default function reducer(state = initialState, action) {
       };
     }
 
-    case Constants.CLIENTS_EDIT_SET_PARENTS_ISSUERS: {
+    case Constants.CLIENTS_EDIT_SET_ISSUERS: {
+      return {
+        ...state,
+        issuers: action.issuers,
+      };
+    }
+
+    case Constants.CLIENTS_EDIT_SET_PARENTS: {
       return {
         ...state,
         parents: action.parents,
-        issuers: action.issuers,
       };
     }
 

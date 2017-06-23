@@ -64,19 +64,29 @@ const Actions = {
 
   fetchParentsAndIssuers: () =>
     ((dispatch) => {
-      httpGet(`clients?per_page=1000&sort[]=id&include[]=umbrella`)
+      httpGet('clients?per_page=1000&sort[]=id&include[]=umbrella')
         .then((response) => {
           if (response.body) {
             let parents = _.filter(response.body.clients, (client) => !client.umbrella);
             parents.unshift({id:0, name:'N/A'});
             dispatch({
-              type: Constants.CLIENTS_EDIT_SET_PARENTS_ISSUERS,
+              type: Constants.CLIENTS_EDIT_SET_PARENTS,
               parents: parents,
-              issuers: response.body.clients
             });
           } else {
             dispatch(Actions.handleError(response));
           }
+        })
+        .catch((error) => {
+          dispatch(Actions.handleError(error.response));
+        });
+
+      httpGet('issuers?per_page=1000')
+        .then((response) => {
+          dispatch({
+            type: Constants.CLIENTS_EDIT_SET_ISSUERS,
+            issuers: response.body.issuers
+          });
         })
         .catch((error) => {
           dispatch(Actions.handleError(error.response));
