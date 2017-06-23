@@ -48,7 +48,6 @@ export default class Edit extends Component {
     }
   }
 
-
   render() {
    let that = this;
    return <div className="clients-edit-block">
@@ -61,7 +60,7 @@ export default class Edit extends Component {
               name='angle-right'
               className="clients-edit-header-arrow"
             />
-            {this.props.client.umbrella && <span>
+            {this.props.client.umbrellaName && <span>
               {this.props.client.umbrellaName}
               <FontAwesome
                 name='angle-right'
@@ -129,6 +128,7 @@ export default class Edit extends Component {
             <div className="column">
               <div className="float-right">
               <Validation.components.Select className="float-right" errorClassName='is-invalid-input float-right' name='issuer' value={this.props.client.issuer} validations={['required']} disabled={this.props.issuers == null} onChange={this.handleChange.bind(this)} >
+                {!this.props.client.issuer && <option value={0}>N/A</option> }
                 {
                   _.map(this.props.issuers, (issuer, key) => {return (
                     <option key={key} value={issuer.id}>{issuer.name}</option>
