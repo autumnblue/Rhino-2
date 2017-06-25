@@ -1,21 +1,12 @@
 /* eslint no-console: 0, react/jsx-filename-extension: 0 */
 
-import express from 'express';
-import favicon from 'serve-favicon';
-import http from 'http';
-import httpProxy from 'http-proxy';
-import path from 'path';
-import PrettyError from 'pretty-error';
-import React from 'react';
-import ReactDOM from 'react-dom/server';
-import { match, RouterContext } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-import createHistory from 'react-router/lib/createMemoryHistory';
-import { Provider } from 'react-redux';
-import configureStore from '../shared/store';
-import configRoutes from '../shared/routes';
-import Default from '../shared/containers/Default';
-import { port, apiHost, apiPort, webpackHost, webpackPort } from '../config/env';
+const express = require('express');
+const favicon = require( 'serve-favicon');
+const http = require( 'http');
+const httpProxy = require( 'http-proxy');
+const path = require( 'path');
+const PrettyError = require( 'pretty-error');
+const { port, apiHost, apiPort, webpackHost, webpackPort } = require( '../config/env');
 
 const targetUrl = `http://${apiHost}:${apiPort}`;
 const pretty = new PrettyError();

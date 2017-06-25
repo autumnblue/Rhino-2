@@ -110,9 +110,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-       shared: path.resolve(__dirname, '../shared/'),
+       client: path.resolve(__dirname, '../client/'),
    },
-    modules: [path.resolve('./shared'), 'node_modules'],
+    modules: [path.resolve('./client'), 'node_modules'],
     extensions: ['.json', '.js', '.jsx', '.ts', '.tsx'],
   },
   plugins: [
@@ -128,12 +128,15 @@ module.exports = {
       },
     }),
     new HtmlWebpackPlugin({
-          template: 'shared/containers/Default.jsx',
+          template: 'client/IndexHTML.js',
         filename: './index.html'
       }),
       new CopyWebpackPlugin([
           { from: 'static', to: './assets' },
-      ])
+      ]),
+      new webpack.ProvidePlugin({
+      'React': 'react'
+    })
   ],
   devServer: {
     hot: true,
