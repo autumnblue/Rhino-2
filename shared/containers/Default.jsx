@@ -2,12 +2,13 @@
 /* eslint no-underscore-dangle: 0, global-require: 0 */
 
 import React, { Component } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import { webpackHost, webpackPort } from '../../config/env';
 
-export default class Default extends Component {
+class Default extends Component {
   render() {
     const { assets, component, store } = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
@@ -24,31 +25,10 @@ export default class Default extends Component {
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
           {/*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.7.0/css/flag-icon.min.css" />*/}
 
-          {/* production */}
-          {Object.keys(assets.styles).map((style, key) =>
-            <link
-              href={assets.styles[style]}
-              key={key} media="screen, projection"
-              rel="stylesheet" type="text/css" charSet="UTF-8"
-            />
-          )}
-           {/*development*/}
-          {
-            Object.keys(assets.styles).length === 0 ?
-              <style dangerouslySetInnerHTML={{ __html: require('../../static/styles/app.less')._style }} /> :
-            null
-          }
+
         </head>
         <body>
-          <div id="react-view" dangerouslySetInnerHTML={{ __html: content }} />
-          <script
-            dangerouslySetInnerHTML={{ __html: `window.__INITIAL_STATE__=${serialize(store.getState())};` }}
-            charSet="UTF-8"
-          />
-          <script
-            src={assets.javascript.main}
-            charSet="UTF-8"
-          />
+          <div id="react-view" />
         </body>
       </html>
     );
@@ -59,4 +39,9 @@ Default.propTypes = {
   assets: PropTypes.object,
   component: PropTypes.node,
   store: PropTypes.object,
+};
+
+module.exports = () => {
+    const html = ReactDOMServer.renderToStaticMarkup(<Default />);
+    return `<!DOCTYPE html>${html}`;
 };

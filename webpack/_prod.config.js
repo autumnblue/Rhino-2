@@ -5,11 +5,6 @@ const webpack = require('webpack');
 
 const assetsPath = path.resolve(__dirname, '../static/dist/');
 
-const webpackIsomorphicToolsConfig = require('./webpack-isomorphic-tools');
-const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
-
-const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig);
-
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const autoprefixer = require('autoprefixer');
@@ -72,7 +67,7 @@ module.exports = {
         loader: 'json-loader',
       },
       {
-        test: webpackIsomorphicToolsPlugin.regular_expression('images'),
+        test: /(\.jpeg|\.jpg|\.png|\.gif)$/,
         loader: 'url-loader?limit=10240',
       },
     ],
@@ -112,6 +107,5 @@ module.exports = {
         warnings: false,
       },
     }),
-    webpackIsomorphicToolsPlugin,
   ],
 };

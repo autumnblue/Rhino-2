@@ -32,19 +32,17 @@ const component = (
 );
 
 injectTapEventPlugin();
-ReactDOM.render(
-  <Provider store={store} key="provider">
-    {component}
-  </Provider>,
-  target
-);
 
-if (process.env.NODE_ENV !== 'production') {
-  window.React = React; // enable debugger
-  if (!target || !target.firstChild || !target.firstChild.attributes || !target.firstChild.attributes['data-react-checksum']) {
-    console.error('Server-side React render was discarded. Make sure that your initial render does not contain any client-side code.');
-  }
+function render() {
+  ReactDOM.render(
+    <Provider store={store} key="provider">
+      {component}
+    </Provider>,
+    target
+  );
 }
+render();
+
 
 if (__DEVTOOLS__ && !window.devToolsExtension) {
   const DevTools = require('../shared/containers/DevTools'); // eslint-disable-line
@@ -59,4 +57,11 @@ if (__DEVTOOLS__ && !window.devToolsExtension) {
     </Provider>,
     target
   );
+}
+
+if (module.hot) {
+  module.hot.accept('../shared/routes', () => {
+        require('../shared/routes'); // eslint-disable-line global-require
+        render();
+    });
 }
