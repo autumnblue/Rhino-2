@@ -2,6 +2,8 @@ import React from 'react';
 import validator from 'validator';
 import Validation from 'react-validation';
 
+console.log('!!!!!!!!!!!!!!!!!!!! validations !!!!!!!!!!!!!!!!!!!!!!!');
+
 Object.assign(Validation.rules, {
     api: {
         hint: value => (

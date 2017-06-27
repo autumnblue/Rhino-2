@@ -5,6 +5,7 @@ import _ from 'lodash';
 import FontAwesome from 'react-fontawesome';
 import RaisedButton from 'material-ui/RaisedButton';
 import ReactTable from 'react-table';
+import validationRules from '../../../../utils/validations';
 
 export default class Edit extends Component {
   componentDidMount() {
@@ -151,7 +152,7 @@ export default class Edit extends Component {
             </div>
             <div className="clear-fix"></div>
 
-            <div className="column">
+            <div className="column">`
               <h3 className="float-right">Parent</h3>
             </div>
             <div className="clear-fix"></div>
