@@ -1,40 +1,5 @@
-
-
-function normalize(object, result) {
-  if(isArray(object)) {
-
-  } else if(isObject(object)) {
-    const clone = {};
-
-    for(const [key, value] of object) {
-      if(isObject(value) && value.entity_type) {
-        const normalized = normalize(value, result);
-
-        clone[key] = value.id;
-
-        result[value.entity_type] = result[value.entity_type] || result[value.entity_type];
-        result[value.entity_type][value.id] = normalized;
-      } else {
-        clone[key] = value;
-      }
-
-      return clone;
-    }
-
-  } else {
-
-  }
-}
-
-console.clear();
-
-console.clear();
-
-let isArray = a => a instanceof Array;
-let isObject = a => a instanceof Object;
-
 function place(object, result) {
-  if(isObject(object) && object.entity_type) {
+  if(object && typeof object === 'object' && object.entity_type) {
     result[object.entity_type] = result[object.entity_type] || {};
     result[object.entity_type][object.id] = result[object.entity_type][object.id] ? Object.assign(result[object.entity_type][object.id], object) : object;
 
@@ -44,18 +9,18 @@ function place(object, result) {
   }
 }
 
-function normalize(object, result) {
-  if(isObject(object)) {
+function normalizer(object, result) {
+  if(object && typeof object === 'object') {
     const clone = {};
 
     for(const [key, value] of Object.entries(object)) {
-      clone[key] = normalize(value, result);
+      clone[key] = normalizer(value, result);
     }
 
     return place(clone, result);
   }
 
-  if(isArray(object)) {
+  if(object instanceof Array) {
     const ids = [];
     for(const item of object) {
       ids.push(place(item));
@@ -66,7 +31,40 @@ function normalize(object, result) {
   else return object;
 }
 
-x = {}; normalize({
+function normalize(data = {}) {
+  const result = {};
+  normalizer(data, result);
+  return result;
+}
+
+export function combineRelationships(state, response) {
+  const normalized = normalize(response);
+  const newState = Object.assign({}, state);
+
+  for(const [key, branch] of Object.entries(newState)) {
+    if(key in response) {
+      const newBranch = Object.assign({}, branch);
+      newState[key] = newBranch;
+      newBranch.data = Object.assign({}, newBranch.data);
+      for(const [id, entity] of Object.entries(response[key])) {
+        if(id in newBranch.data) {
+          newBranch.data[id] = Object.assign({}, branch[id], entity);
+        } else {
+          newBranch.data[id] = entity;
+        }
+      }
+    }
+  }
+
+  return newState;
+}
+
+
+
+/*
+x = {};
+
+normalize({
   "service_order": {
     entity_type: "service_order",
     id: "33",
@@ -182,4 +180,4 @@ export default function (state = {}, action) {
 
       }
   }
-}
+*/

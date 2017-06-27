@@ -11,10 +11,14 @@
 }); */
 
 
-import { push } from 'react-router-redux';
 
-export default async function apiMiddleware(crud) {
-    return ({ dispatch, getState }) => next => (action) => {
+import { push } from 'react-router-redux';
+import apiCrud from '../helpers/apiCrud';
+
+export const COMBINE_RELATIONSHIPS = 'djavan/COMBINE_RELATIONSHIPS';
+
+export default function apiMiddleware() {
+    return ({ dispatch, getState }) => next => async (action) => {
         const { api, types, ...rest } = action;
 
         if (!api) {
@@ -26,9 +30,13 @@ export default async function apiMiddleware(crud) {
         next({ ...rest, type: REQUEST });
 
         try {
-          const response = await api(crud);
+          const response = await api(apiCrud);
 
-          next({ response, type: 'COMBINE_RELATIONSHIPS' });
+          if(response.status !== 400) {
+            return next({ ...rest, response, type: FAILURE });
+          }
+
+          next({ response: response.data, type: COMBINE_RELATIONSHIPS });
 
           return next({ ...rest, response, type: SUCCESS });
         } catch(error) {
