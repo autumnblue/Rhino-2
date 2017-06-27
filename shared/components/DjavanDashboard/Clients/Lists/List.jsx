@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import FlatButton from 'material-ui/FlatButton';
+import Paper from 'material-ui/Paper';
 import FontAwesome from 'react-fontawesome';
 import { push } from 'react-router-redux';
 
 const List = (props) => (
     <div className="clientlistlist-block">
         {_.map(props.clients, (client, index) => 
-            <div key={index} className="listitem">
+            <Paper key={index} className="listitem">
                 <div className="main-info">
                     <div>
                         {client.name}
@@ -45,7 +46,7 @@ const List = (props) => (
                         onClick={() => props.onSelect(client)}
                     />
                 </div>
-            </div>
+            </Paper>
         )}
     </div>
 );

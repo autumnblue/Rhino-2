@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+import Paper from 'material-ui/Paper';
 import FontAwesome from 'react-fontawesome';
 import DebounceInput from 'react-debounce-input';
 
 import { djavanTheme } from '../../../../constants/djavanTheme';
 
 const Header = (props) => (
-    <div className="clientlistheader-block">
+    <Paper className="clientlistheader-block">
         <div className="sort">
             <select className="select" onChange={(value) => props.onSort(value)}>
                 {
@@ -41,7 +42,7 @@ const Header = (props) => (
                 />
             </FloatingActionButton>
         </div>
-    </div>
+    </Paper>
 );
 
 export default Header;
