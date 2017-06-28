@@ -1,7 +1,15 @@
+import { mapKeys } from 'lodash';
+import pluralize from 'pluralize';
+
+
 function place(object, result) {
   if(object && typeof object === 'object' && object.entity_type) {
-    result[object.entity_type] = result[object.entity_type] || {};
-    result[object.entity_type][object.id] = result[object.entity_type][object.id] ? Object.assign(result[object.entity_type][object.id], object) : object;
+    const { id, entity_type: entityType } = object;
+
+    result[entityType] = result[entityType] || {};
+    result[entityType][id] = result[entityType][id]
+      ? Object.assign(result[entityType][id], object)
+      : object;
 
     return object.id;
   } else {
@@ -37,16 +45,23 @@ function normalize(data = {}) {
   return result;
 }
 
+function pluralizeKeys(object) {
+  return mapKeys(object, (value, key) => pluralize(key));
+}
+
 export function combineRelationships(state, response) {
-  const normalized = normalize(response);
+  const normalized = pluralizeKeys(normalize(response));
   const newState = Object.assign({}, state);
 
+
+
   for(const [key, branch] of Object.entries(newState)) {
-    if(key in response) {
+    if(key in normalized) {
       const newBranch = Object.assign({}, branch);
       newState[key] = newBranch;
-      newBranch.data = Object.assign({}, newBranch.data);
-      for(const [id, entity] of Object.entries(response[key])) {
+      newBranch.data = Object.assign({}, branch.data);
+
+      for(const [id, entity] of Object.entries(normalized[key])) {
         if(id in newBranch.data) {
           newBranch.data[id] = Object.assign({}, branch[id], entity);
         } else {

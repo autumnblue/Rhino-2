@@ -6,7 +6,6 @@ import createSagaMiddleware from 'redux-saga'
 
 import createReducer from './createReducer' // Or wherever you keep your reducers
 import createSaga from './createSaga';
-import { INIT } from './redux/app/constants';
 import apiMiddleware from './middlewares/apiMiddleware';
 
 export default function configureStore(history, initialState = {}) {
@@ -37,8 +36,6 @@ export default function configureStore(history, initialState = {}) {
     }
 
     sagaMiddleware.run(createSaga);
-
-    store.dispatch({ type: INIT })
 
     return store;
 

@@ -5,6 +5,8 @@ import Router from 'react-router/es/Router';
 import browserHistory from 'react-router/es/browserHistory';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
 
 import configureStore from './configureStore'; // Configure Redux store
 import Routes from './Routes'; // Import routes
@@ -31,11 +33,13 @@ const renderApp = (routes) => (
     </AppContainer>
 );
 
+injectTapEventPlugin();
 ReactDOM.render(renderApp(<Routes history={history} />), rootEl);
 
 if (module.hot) {
     module.hot.accept('./Routes', () => {
         const {default: Routes} = require('./Routes'); // eslint-disable-line global-require
+        injectTapEventPlugin();
         ReactDOM.render(renderApp(<Routes history={history} />), rootEl);
     });
 }

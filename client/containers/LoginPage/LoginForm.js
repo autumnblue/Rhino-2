@@ -10,14 +10,8 @@ import {
 } from 'client/components';
 
 const reduxFormEnhancer = reduxForm({
-    form: 'loginForm',
-    //fields: ['email', 'password'],
-    pure: true,
-    destroyOnUnmount: false
-    /*initialValues: {
-        email: 'xxx',
-        password: 'yyy',
-    },*/
+  pure: true,
+  form: 'loginForm',
 });
 
 const onSubmitEnhancer = withHandlers({
@@ -25,11 +19,10 @@ const onSubmitEnhancer = withHandlers({
 });
 
 const enhance = compose(
-  connect(),
   reduxFormEnhancer,
   onSubmitEnhancer,
   pure
-)
+);
 
 const bem = makeBem('login');
 
@@ -37,13 +30,13 @@ const LoginForm = ({
   onSubmit
 }) => (
   <form onSubmit={onSubmit}>
-    <Field name="emailx" component="input" type="text" placeholder="email@example.com" />
+    <Field name="username" component="input" type="text" placeholder="email@example.com" />
     <br />
-    <Field name="passwordx" component="input" type="password" placeholder="Password" />
+    <Field name="password" component="input" type="password" placeholder="Password" />
 
     <DashboardFormCardAction>
       <DashboardCardActionCenter>
-        <RaisedButton primary label="Login" onTouchTap={onSubmit} />
+        <RaisedButton primary label="Login" onTouchTap={onSubmit}  />
       </DashboardCardActionCenter>
     </DashboardFormCardAction>
 
@@ -55,4 +48,4 @@ const LoginForm = ({
   </form>
 )
 
-export default reduxFormEnhancer(LoginForm)
+export default enhance(LoginForm)

@@ -145,6 +145,7 @@ module.exports = {
     stats: 'normal',
     headers: { 'Access-Control-Allow-Origin': '*' },
     port: webpackPort,
+    
     /*proxy: [{
         context: ['/**'],
         target: `http://localhost:${apiDevPort}`,

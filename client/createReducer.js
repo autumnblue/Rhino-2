@@ -5,12 +5,16 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
 import users from './redux/users';
-import { COMBINE_RELATIONSHIPS } from 'middlewares/apiMiddleware';
+
+import { COMBINE_RELATIONSHIPS } from './middlewares/apiMiddleware';
+import { combineRelationships } from './helpers/combineRelationships';
 
 const rootReducer = (state = {}, action) => {
   switch(action.type) {
     case COMBINE_RELATIONSHIPS:
       return combineRelationships(state, action.response);
+    default:
+      return state;
   }
 }
 

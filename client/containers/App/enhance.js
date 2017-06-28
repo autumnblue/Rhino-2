@@ -17,11 +17,15 @@ const authHOC = UserAuthWrapper({
 
 const reduxAsyncConnect = asyncConnect([{
     promise: async ({ store: { dispatch, getState } }) => {
-      await dispatch(refreshToken(cookie.load(token)));
+      const { me } = getState().users;
+
+      if(!me) {
+        await dispatch(refreshToken(cookie.load('token')));
+      }
     }
 }]);
 
 export default compose(
-  authHOC,
   reduxAsyncConnect,
+  authHOC,
 )
