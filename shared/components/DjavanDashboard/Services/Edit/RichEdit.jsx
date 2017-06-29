@@ -36,7 +36,6 @@ export default class RichEdit extends Component {
       <ReactQuill
         className="quill-rich-edit"
         onChange={this.props.onChange}
-        onBlur={() => console.log('on blur') }
         value={this.props.value}
         modules={modules}
         formats={formats}
