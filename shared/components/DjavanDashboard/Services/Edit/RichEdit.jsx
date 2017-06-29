@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Editor } from 'react-draft-wysiwyg';
-
 
 export default class RichEdit extends Component {
   constructor(props) {
