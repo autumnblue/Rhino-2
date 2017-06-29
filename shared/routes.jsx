@@ -67,6 +67,7 @@ export default function configRoutes(store) {
           <Route path="assessments" component={Assessments} />
           <Route path="services" component={Services} />
           <Route path="services/edit/:id" component={ServicesEdit} />
+          <Route path="services/edit/:id/htmlbody" htmlbody={true} component={ServicesEdit} />
           <Route path="services/add/" component={ServicesEdit} />
         </Route>
       </Route>

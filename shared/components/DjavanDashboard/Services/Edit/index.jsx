@@ -17,6 +17,8 @@ const mapDispatchToProps = (dispatch) => ({
   goServicesPage: () =>  dispatch(push('/dashboard/services/')),
   dialogLeaveOpen: () => dispatch(EditActions.dialogLeaveOpen()),
   dialogLeaveClose: () => dispatch(EditActions.dialogLeaveClose()),
+  editHtmlBody: (id) => dispatch(push(`/dashboard/services/edit/${id}/htmlbody`)),
+  goBackToEntity: (id) => dispatch(push(`/dashboard/services/edit/${id}`))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Edit);

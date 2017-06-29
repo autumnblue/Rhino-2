@@ -7,6 +7,8 @@ import Paper from 'material-ui/Paper';
 import Dialog from 'material-ui/Dialog';
 import FontAwesome from 'react-fontawesome';
 import SortPriority from '../SortPriority';
+import RichEdit from './RichEdit';
+import {debounce} from 'throttle-debounce';
 
 export default class Services extends Component {
   componentDidMount() {
@@ -39,6 +41,12 @@ export default class Services extends Component {
     }
   }
 
+  handleChangeHtmlBody(value) {
+    if (this.props.service.id && value) {
+      this.saveServiceValue('html_body', value, true);
+    }
+  }
+
   saveServiceValue(name, value, shouldSave) {
     let newValue = {};
     newValue[name] = value;
@@ -59,6 +67,10 @@ export default class Services extends Component {
 
 
   safeExit() {
+    if (this.props.route.htmlbody) {
+      this.props.goBackToEntity(this.props.service.id || '');
+      return;
+    }
     if (this.props.service.id) {
       this.props.goServicesPage();
     } else {
@@ -87,6 +99,23 @@ export default class Services extends Component {
       />,
     ];
 
+    let headerBreadcrumbs = '';
+    if (this.props.service) {
+      if (this.props.route.htmlbody) {
+        let entityLink = '/dashboard/services/edit';
+        if (this.props.service.id) {
+          entityLink += '/' + this.props.service.id;
+        }
+        headerBreadcrumbs = <span>
+          <Link to={entityLink}>{this.props.service.name || 'Entity'}</Link>
+          >
+          Html Body
+        </span>
+      } else {
+        headerBreadcrumbs = this.props.service.name || '';
+      }
+    }
+
     return (
       <div className="services-edit-block">
 
@@ -94,7 +123,9 @@ export default class Services extends Component {
 
         <div className="services-edit-header">
           {this.props.service != null && <div className="services-edit-links">
-            <Link to="/dashboard/services/">Services</Link> > {this.props.service.name || ''}
+            <Link to="/dashboard/services/">Services</Link>
+            >
+            {headerBreadcrumbs}
           </div>}
           <FontAwesome
             className='services-edit-link-services'
@@ -108,6 +139,10 @@ export default class Services extends Component {
         {this.props.service != null &&
         <Paper className="services-edit-paper">
         <Validation.components.Form onSubmit={(event) => false} ref={form => { this.form = form }}>
+
+          {this.props.route.htmlbody && <RichEdit value={this.props.service.html_body} onChange={debounce(500, this.handleChangeHtmlBody.bind(this))} />}
+
+          {!this.props.route.htmlbody && <div>
           <div className="services-edit-left">
             <h2>Service</h2>
             <SortPriority
@@ -133,17 +168,15 @@ export default class Services extends Component {
                 onBlur={this.handleChange.bind(this)}
               />
             </div>
+            <div className="clear-fix"></div>
             <div className="services-edit-html">
-              <Validation.components.Textarea
-                name='html_body'
-                value={this.props.service.html_body || ''}
-                validations={['required']}
-                onBlur={this.handleChange.bind(this)}
-              />
+              <div className="services-edit-html-container"
+                   dangerouslySetInnerHTML={{__html: this.props.service.html_body || ''}}>
+              </div>
               <RaisedButton
                 label="Edit"
                 secondary={true}
-                onClick={() => {}}
+                onClick={() => {this.props.editHtmlBody(this.props.service.id)}}
               />
             </div>
             <RaisedButton
@@ -158,6 +191,7 @@ export default class Services extends Component {
             {this.props.service.feature_image && <img src={this.props.service.feature_image.file} className="services-edit-image" />}
             <input type="file" className="services-edit-uplaod-button" onChange={this.handleFileUpload.bind(this)} disabled={!this.props.service.id} />
           </div>
+          </div>}
         </Validation.components.Form>
           <Dialog
             actions={dialogLeaveActions}

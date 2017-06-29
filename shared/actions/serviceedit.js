@@ -86,11 +86,15 @@ const Actions = {
         .then((response) => {
           if (response.body) {
             dispatch({type: Constants.SERVICES_EDIT_LOADED});
-            dispatch({
-              type: Constants.SERVICES_EDIT_SET_VALUE,
-              name: name,
-              value: response.body.service[name]
-            });
+
+            // do we really need update value that server is returned?
+            //
+            // dispatch({
+            //  type: Constants.SERVICES_EDIT_SET_VALUE,
+            //  name: name,
+            //  value: response.body.service[name]
+            //});
+
           } else {
             dispatch(Actions.handleError(error.response));
           }
