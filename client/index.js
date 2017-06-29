@@ -7,7 +7,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-
 import configureStore from './configureStore'; // Configure Redux store
 import Routes from './Routes'; // Import routes
 
@@ -20,10 +19,7 @@ if (false && process.env.NODE_ENV !== 'production') { // eslint-disable-line no-
     whyDidYouUpdate(React);
 }
 
-
-
 const rootEl = document.getElementById('react-view');
-
 
 const renderApp = (routes) => (
     <AppContainer>

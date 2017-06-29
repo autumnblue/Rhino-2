@@ -8,6 +8,8 @@ import { useScroll } from 'react-router-scroll';
 import App from './containers/App';
 import LoginPage from './containers/LoginPage';
 import MainLayout from './containers/MainLayout';
+import ClientListPage from './containers/ClientListPage';
+import ClientEditPage from './containers/ClientEditPage';
 
 function reduxAsyncConnect(props) {
     return (
@@ -24,12 +26,14 @@ export default ({ history }) => (
     render={reduxAsyncConnect}
     history={history}
   >
-  <Route path="/" component={MainLayout}>
-      <IndexRoute component={App} />
-
-      <Route path="login"  component={LoginPage}>
+    <Redirect from="/" to="/clients/list" />
+    <Route path="/" component={MainLayout}>
+      <Route component={App}>
+        <Route path="/clients/list" component={ClientListPage} />
+        <Route path="/clients/edit/:clientId" component={ClientEditPage} />
       </Route>
-  </Route>
+      <Route path="login" component={LoginPage} />
+    </Route>
   </Router>
 
 )

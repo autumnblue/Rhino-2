@@ -16,11 +16,11 @@ const authHOC = UserAuthWrapper({
 });
 
 const reduxAsyncConnect = asyncConnect([{
-    promise: async ({ store: { dispatch, getState } }) => {
+    promise: ({ store: { dispatch, getState } }) => {
       const { me } = getState().users;
 
       if(!me) {
-        await dispatch(refreshToken(cookie.load('token')));
+        return dispatch(refreshToken(cookie.load('token')));
       }
     }
 }]);

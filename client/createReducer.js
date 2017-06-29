@@ -4,7 +4,7 @@ import { reducer as reduxAsyncConnect } from 'redux-connect';
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
-import users from './redux/users';
+import * as reducers from './redux/reducers';
 
 import { COMBINE_RELATIONSHIPS } from './middlewares/apiMiddleware';
 import { combineRelationships } from './helpers/combineRelationships';
@@ -23,9 +23,9 @@ export default function createReducer() {
     rootReducer,
     combineReducers({
         routing: routerReducer,
-        reduxAsyncConnect,
-        users,
         form: formReducer,
+        reduxAsyncConnect,
+        ...reducers,
     })
   )
 }
