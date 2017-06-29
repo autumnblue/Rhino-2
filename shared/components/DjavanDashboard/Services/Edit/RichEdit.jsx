@@ -12,11 +12,15 @@ export default class RichEdit extends Component {
     const ReactQuill = this.ReactQuill;
     const modules = {
       toolbar: [
-        [{'header': [1, 2, false]}],
-        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-        [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-        ['link', 'image'],
-        ['clean']
+        [{ font: [] }, { size: [] }],
+        [{ align: [] }, 'direction' ],
+        [ 'bold', 'italic', 'underline', 'strike' ],
+        [{ color: [] }, { background: [] }],
+        [{ script: 'super' }, { script: 'sub' }],
+        ['blockquote', 'code-block' ],
+        [{ list: 'ordered' }, { list: 'bullet'}, { indent: '-1' }, { indent: '+1' }],
+        [ 'link', 'image', 'video' ],
+        [ 'clean' ]
       ],
     };
 
