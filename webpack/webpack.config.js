@@ -20,13 +20,40 @@ const entry = {
   ],
 }
 
+const plugins = [
+  // hot reload
+  new webpack.DefinePlugin({
+    __CLIENT__: true,
+    __DEVELOPMENT__: true,
+    __DEVTOOLS__: true,
+    'process.env': {
+      NODE_ENV: '"development"',
+      API_URL: JSON.stringify(process.env.API_URL),
+    },
+  }),
+  new HtmlWebpackPlugin({
+        template: 'src/IndexHTML.js',
+      filename: './index.html'
+    }),
+    new CopyWebpackPlugin([
+        { from: 'static', to: './assets' },
+    ]),
+    new webpack.ProvidePlugin({
+    'React': 'react'
+  })
+];
+
 if(process.env.NODE_ENV === 'development') {
   entry.main.unshift(
     'react-hot-loader/patch',
     `webpack-dev-server/client?http://${webpackHost}:${webpackPort}`,
     'webpack/hot/only-dev-server'
-  )
+  );
+
+  plugins.push(new webpack.HotModuleReplacementPlugin())
 }
+
+console.log(entry.main)
 
 const autoprefixer = require('autoprefixer');
 
@@ -34,6 +61,7 @@ module.exports = {
   devtool: 'inline-source-map',
   context: path.resolve(__dirname, '..'),
   entry,
+  plugins,
   output: {
     path: outputPath,
     filename: 'assets/[name]-[hash].js',
@@ -106,29 +134,6 @@ module.exports = {
     modules: [path.resolve('./src'), 'node_modules'],
     extensions: ['.json', '.js', '.jsx'],
   },
-  plugins: [
-    // hot reload
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      __CLIENT__: true,
-      __DEVELOPMENT__: true,
-      __DEVTOOLS__: true,
-      'process.env': {
-        NODE_ENV: '"development"',
-        API_URL: JSON.stringify(process.env.API_URL),
-      },
-    }),
-    new HtmlWebpackPlugin({
-          template: 'src/IndexHTML.js',
-        filename: './index.html'
-      }),
-      new CopyWebpackPlugin([
-          { from: 'static', to: './assets' },
-      ]),
-      new webpack.ProvidePlugin({
-      'React': 'react'
-    })
-  ],
   devServer: {
     hot: true,
     inline: true,

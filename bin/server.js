@@ -22,7 +22,7 @@ app.use('/api', (req, res) => {
   proxy.web(req, res, { target: `${targetUrl}/api` });
 });*/
 
-if(process.env.NODE_ENV == 'production') {
+if(process.env.NODE_ENV != 'development') {
   var staticFile = require('connect-static-file');
   app.use(express.static(path.join(__dirname, '../dist')));
   app.use('*', staticFile(path.join(__dirname, '../dist/index.html')));
