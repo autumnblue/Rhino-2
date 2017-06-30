@@ -64,7 +64,7 @@ Explanation:
 
 ## Redux
 
-All the manipulations with store (reducers, actions etc) lives there. Every folder named as corresponding entity (users, customers, unicorns, `/app` is the only exception).
+All the manipulations with store (reducers, actions etc) live there. Every folder named as a corresponding entity (users, customers, unicorns, `/app` is the only exception).
 
 `constants.js` exports constants (note that they need to be prefixed).
 
@@ -80,7 +80,7 @@ export const loadClients = ({ contains }) => ({
   api: ({ get }) => get('clients/', { // get, post, del, put, patch
     // the second parameter is request options which can include everything what
     // fetch function accepts like "headers" or "body"
-    // there ate two custom keys: "params" and "data"
+    // there are two custom keys: "params" and "data"
     params: { // params are serialized to query string
       include: ['departments', 'umbrella'],
       page: 1,
@@ -104,7 +104,7 @@ export const loadClients = ({ contains }) => ({
 
 At this section "components" and "containers" mean the same.
 
-For every component we're going to use stateless (non-class) components improved by so-called enhancers. Enhancer is a function which returns high order component (please read about HOC first). We use them to extend component features vertically and put to it only properties.
+For every component we're going to use stateless (non-class) components improved by so-called enhancers. Enhancer is a function which returns high order component (please google about HOC first). We use them to extend component features vertically and put extra properties there.
 
 For as enhancers we're going to use already known `connect` from 'react-redux', `asyncConnect` from [redux-connect](https://github.com/makeomatic/redux-connect), various enhancers created by helpers exported from [recompose](https://github.com/acdlite/recompose), `UserAuthWrapper` from [redux-auth-wrapper](https://github.com/mjrussell/redux-auth-wrapper) (rarely), `reduxForm` from [redux-form](https://github.com/erikras/redux-form) and other.
 
@@ -140,7 +140,7 @@ export default reduxConnect(Users);
 // User.js
 import { withHandlers } from 'recompose';
 
-// since onChooseUser needs clicker user ID we override onChooseUser so it's called with id
+// since onChooseUser needs and ID of a clicked user we override onChooseUser
 // read docs for withHandlers helper from recompose
 const handlersEnhancer = withHandlers({
   onChooseUser: ({ onChooseUser, id }) => onChooseUser(id)
@@ -153,7 +153,7 @@ const User = ({ name, onChooseUser }) => (
 export default handlersEnhancer(User)
 ```
 
-This is very basic example. In real life there will be more ehnahcers. The difference between class components and this approach is that class approach makes components grows in breadth and forces to think about how to add more logic and to not break what's already done. Enhancers approach allows to add logic vertically which doesn't conflict with other things.
+This is very basic example. In real life there will be more ehnahcers. The difference between class components and this approach is that class approach makes components grow in breadth and forces to think about how to add more logic and to not break what's already done. Enhancers approach allows to add logic vertically which doesn't conflict with other things.
 
 ```js
 reduxConnect(addExtraProperty(addExtraHandler(callAnotherHandlerWithArg(Component))))
@@ -175,7 +175,7 @@ export default enhance(Component);
 
 ## Code conventions
 
-1. Props need to be distructed clearly:
+1. Props need to be distructed and put to clearly:
 
 ```js
 const Users = ({ users, onChooseUser }) => <div>
