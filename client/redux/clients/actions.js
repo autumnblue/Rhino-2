@@ -9,7 +9,7 @@ export const loadClients = () => ({
       per_page:10,
       sort: ['id'],
       filter: {
-        'name.icontains': ''
+        'name.icontains': 'foo'
       }
     }
   })

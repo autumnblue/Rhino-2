@@ -4,10 +4,10 @@ import { reducer as reduxAsyncConnect } from 'redux-connect';
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
-import * as reducers from './redux/reducers';
+import * as reducers from '../redux/reducers';
 
-import { COMBINE_RELATIONSHIPS } from './middlewares/apiMiddleware';
-import { combineRelationships } from './helpers/combineRelationships';
+import { COMBINE_RELATIONSHIPS } from '../middlewares/apiMiddleware';
+import { combineRelationships } from '../helpers/combineRelationships';
 
 const rootReducer = (state = {}, action) => {
   switch(action.type) {

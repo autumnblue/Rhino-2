@@ -10,7 +10,13 @@ function data(state = initialState.data) {
 }
 
 function me(state = initialState.me) {
-  return state;
+  switch(action.type) {
+    case c.LOGIN_SUCCESS:
+    case c.REFRESH_TOKEN_SUCCESS:
+      return action.response.data.user.id;
+    default:
+      return state;
+  }
 }
 
 export default combineReducers({
