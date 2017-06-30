@@ -16,7 +16,7 @@ const { webpackHost, webpackPort } = require('../config/env');
 const entry = {
   main: [
     'babel-polyfill',
-    './client',
+    './src',
   ],
 }
 
@@ -101,9 +101,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-       client: path.resolve(__dirname, '../client/'),
+       src: path.resolve(__dirname, '../src/'),
    },
-    modules: [path.resolve('./client'), 'node_modules'],
+    modules: [path.resolve('./src'), 'node_modules'],
     extensions: ['.json', '.js', '.jsx'],
   },
   plugins: [
@@ -119,7 +119,7 @@ module.exports = {
       },
     }),
     new HtmlWebpackPlugin({
-          template: 'client/IndexHTML.js',
+          template: 'src/IndexHTML.js',
         filename: './index.html'
       }),
       new CopyWebpackPlugin([

@@ -4,7 +4,7 @@ import { asyncConnect } from 'redux-connect';
 import { push, replace } from 'react-router-redux';
 import cookie from 'react-cookie';
 
-import { refreshToken } from 'client/redux/users/actions';
+import { refreshToken } from 'src/redux/users/actions';
 
 const authHOC = UserAuthWrapper({
   authSelector: state => state.users,

@@ -29,7 +29,7 @@ We use flat structure for the store splitted into entities: users, clients, repo
 
 ## File structure
 
-Client-side of the application is stored at `/client` folder.
+Client-side of the application is stored at `/src` folder.
 
 `/components` contains components which are:
 

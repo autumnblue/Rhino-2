@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { compose, pure } from 'recompose';
 
-import { loginSubmit } from 'client/redux/users/actions';
+import { loginSubmit } from 'src/redux/users/actions';
 
 const reduxConnect = connect(
   null,

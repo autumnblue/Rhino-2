@@ -2,8 +2,8 @@ import { asyncConnect } from 'redux-connect';
 import { compose, pure } from 'recompose';
 import { connect } from 'react-redux';
 
-import { loadClients } from 'client/redux/clients/actions';
-import { getClients } from 'client/redux/clients/selectors';
+import { loadClients } from 'src/redux/clients/actions';
+import { getClients } from 'src/redux/clients/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
   promise: ({ store: { dispatch } }) => dispatch(loadClients()),

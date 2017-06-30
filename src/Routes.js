@@ -9,6 +9,7 @@ import App from './containers/App';
 import LoginPage from './containers/LoginPage';
 import MainLayout from './containers/MainLayout';
 import ClientListPage from './containers/ClientListPage';
+import ClientEditPage from './containers/ClientEditPage'
 
 function reduxAsyncConnect(props) {
   return (
@@ -33,7 +34,7 @@ const Routes = ({ history }) => (
     <Route path="/" component={MainLayout}>
       <Route component={App}>
         <Route path="/clients/list" component={ClientListPage} />
-        <Route path="/clients/edit/:clientId" component={() => <div>Hello edit</div>} />
+        <Route path="/clients/edit/:clientId" component={ClientEditPage} />
       </Route>
       <Route path="login" component={LoginPage} />
     </Route>
