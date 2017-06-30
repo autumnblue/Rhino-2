@@ -47,8 +47,6 @@
     "jimp": "^0.2.27",
     "json-loader": "^0.5.4",
     "jwt-decode": "^2.1.0",
-    "less": "^2.7.1",
-    "less-loader": "^4.0.4",
     "lodash": "^4.14.2",
     "moment": "^2.14.1",
     "node-libs-browser": "^1.0.0",
@@ -120,7 +118,6 @@
     "with": "^5.1.1"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "^3.0.8",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
@@ -164,7 +161,6 @@
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0",
     "source-map-loader": "^0.1.6",
-    "typescript": "^2.2.1",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-dev-server": "^2.5.0",
     "webpack-hot-middleware": "^2.6.0",

@@ -71,10 +71,6 @@ module.exports = {
         ],
       },
       {
-        test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader'],
-      },
-      {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
         use: 'url-loader?limit=10000&mimetype=application/font-woff&name=assets/fonts/[name].[ext]',
       },
@@ -101,12 +97,7 @@ module.exports = {
       {
         test: /(\.jpeg|\.jpg|\.png|\.gif)$/,
         use: 'url-loader?limit=10240',
-      },
-      {
-        test: /\.tsx?$/,
-        loaders: ['babel-loader'],
-        exclude: [/node_modules/]
-      },
+      }
     ]
   },
   resolve: {
@@ -114,7 +105,7 @@ module.exports = {
        client: path.resolve(__dirname, '../client/'),
    },
     modules: [path.resolve('./client'), 'node_modules'],
-    extensions: ['.json', '.js', '.jsx', '.ts', '.tsx'],
+    extensions: ['.json', '.js', '.jsx'],
   },
   plugins: [
     // hot reload
@@ -145,7 +136,7 @@ module.exports = {
     stats: 'normal',
     headers: { 'Access-Control-Allow-Origin': '*' },
     port: webpackPort,
-    
+
     /*proxy: [{
         context: ['/**'],
         target: `http://localhost:${apiDevPort}`,
