@@ -1,6 +1,6 @@
 # Project structure and architecture
 
-A project of such size needs to be built with strict conventions to keep it healthy every moment of time. To make that every programmer of a team needs to know where and how to implement one or another feature. Every programmer who knows the basics of React/Redux asks a question "OK, but what if I need to do X? Where and how should I do that?". The new structure gives a answer on 99.9% of all questions of this kind.
+A project of such size needs to be built with strict conventions to keep it healthy every moment of time. To solve that every programmer of a team needs to know where and how to implement one or another feature. Every programmer who knows the basics of React/Redux asks a question "OK, but what if I need to do X? Where and how should I do that?". The new structure gives a answer on 99.9% of all questions of this kind.
 
 ## The Redux store
 
@@ -32,6 +32,7 @@ We use flat structure for the store splitted into entities: users, clients, repo
 Client-side of the application is stored at `/client` folder.
 
 `/components` contains components which are:
+
 1. Not connected to the store.
 2. They are common and can be imported.
 
