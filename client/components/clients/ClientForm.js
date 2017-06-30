@@ -8,6 +8,7 @@ import Validation from 'react-validation';
 import 'client/legacy/validations';
 import { DashboardCard } from 'client/components';
 
+
 function getColumns() {
     let columns = [{
         header: 'Client Name',
@@ -31,7 +32,6 @@ function getColumns() {
 
 const Client = (props) =>
   <DashboardCard className="clientEdit-Block">
-
       <Validation.components.Form onSubmit={(event) => props.onFinish(event)}>
 
             <div className="header">{(props = { client: {
@@ -39,6 +39,7 @@ const Client = (props) =>
               focal_name: '',
               name: ''
             }, departments: [] }), ''}
+
                 <div className="leftBlock">
                     <a href="/dashboard/clients/list">Clients</a>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
