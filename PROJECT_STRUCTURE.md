@@ -57,6 +57,7 @@ Explanation:
 `/configureStore` is a store configuration.
 
 `/middlewares` contains custom middlewares.
+
 - `apiMiddleware` allows to nicely call API methods. See below.
 
 `/redux` folder is described at next section.
