@@ -16,6 +16,7 @@ const { webpackHost, webpackPort } = require('../config/env');
 const entry = {
   main: [
     'babel-polyfill',
+    './static/styles/app.less',
     './client',
   ],
 }
@@ -144,6 +145,7 @@ module.exports = {
     stats: 'normal',
     headers: { 'Access-Control-Allow-Origin': '*' },
     port: webpackPort,
+    
     /*proxy: [{
         context: ['/**'],
         target: `http://localhost:${apiDevPort}`,

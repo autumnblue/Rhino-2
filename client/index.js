@@ -1,37 +1,62 @@
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
+import React from 'react';
+import { Provider } from 'react-redux';
+import Router from 'react-router/es/Router';
+import browserHistory from 'react-router/es/browserHistory';
+import { syncHistoryWithStore } from 'react-router-redux';
+import { AppContainer } from 'react-hot-loader';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import configureStore from './configureStore'; // Configure Redux store
+import Routes from './Routes'; // Import routes
+
+const initialState = {};
+const store = configureStore(browserHistory, initialState);
+const history = syncHistoryWithStore(browserHistory, store);
+
+if (false && process.env.NODE_ENV !== 'production') { // eslint-disable-line no-constant-condition
+    const { whyDidYouUpdate } = require('why-did-you-update'); // eslint-disable-line global-require
+    whyDidYouUpdate(React);
+}
+
+const rootEl = document.getElementById('react-view');
+
+const renderApp = (routes) => (
+    <AppContainer>
+        <Provider store={store} key="provider">
+            {routes}
+        </Provider>
+    </AppContainer>
+);
+
+injectTapEventPlugin();
+ReactDOM.render(renderApp(<Routes history={history} />), rootEl);
+
+if (module.hot) {
+    module.hot.accept('./Routes', () => {
+        const {default: Routes} = require('./Routes'); // eslint-disable-line global-require
+        injectTapEventPlugin();
+        ReactDOM.render(renderApp(<Routes history={history} />), rootEl);
+    });
+}
+
+
+/*import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-
 import createHistory from 'history/createBrowserHistory'
-
+import configureStore from './configureStore'
 import Routes from './Routes'
-
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
-
-import reducers from './reducers' // Or wherever you keep your reducers
-
+import { ConnectedRouter, push } from 'react-router-redux'
 
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()
 
-// Build the middleware for intercepting and dispatching navigation actions
-const middleware = routerMiddleware(history)
-
-// Add the reducer to your store on the `router` key
-// Also apply our middleware for navigating
-const store = createStore(
-  combineReducers({
-    ...reducers,
-    router: routerReducer
-  }),
-  applyMiddleware(middleware)
-)
+const store = configureStore(history);
 
 const rootEl = document.getElementById('react-view');
 const renderApp = (children) => (
   <Provider store={store}>
-    { /* ConnectedRouter will use the store from Provider automatically */ }
+    { /* ConnectedRouter will use the store from Provider automatically * / }
     <ConnectedRouter history={history}>
       <div>
         {children}
@@ -40,6 +65,37 @@ const renderApp = (children) => (
   </Provider>
 );
 
+/*
+
+userLoginRequest: (data) =>
+  ((dispatch) =>
+    (httpPost('token/', data)
+    .then((response) => {
+      if (response.status == 200) {
+        cookie.save('token', response.body.token, { path: '/' });
+        // dispatch(Actions.setLoginMethod('email'));
+        // dispatch(Actions.currentUser());
+        // const role = response.data.result.role;
+        // if (role === 'DRIVER') {
+        //   dispatch(push('/driver'));
+        // } else if (role === 'COMPANY_ADMIN') {
+        //   dispatch(push('/company'));
+        // }
+        dispatch(push('/dashboard'));
+      } else {
+        dispatch({
+          type: Constants.LOGIN_FAILURE,
+          error: handleInternalErrors(response.data),
+        });
+      }
+    })
+    .catch((error) => {
+      logger(error);
+    })
+  )
+)
+
+* /
 ReactDOM.render(renderApp(<Routes />), rootEl);
 
 
@@ -49,3 +105,4 @@ if (module.hot) {
         ReactDOM.render(renderApp(<Routes />), rootEl);
     });
 }
+*/
