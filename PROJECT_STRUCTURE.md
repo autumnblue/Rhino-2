@@ -43,6 +43,7 @@ The folder contains smaller categorizing folders like `/clients` (contains compo
 All the components need to be exported from `/components/index.js` and must be imported only from there.
 
 Explanation:
+
 1. It allows to change component path any time. For example if you want to move FooBar.js from `/baz`  to `/qux` you need to change index.js only and no application file.
 2. It makes possible to nicely import needed components `import { Foo, Bar, Baz } from 'client/components'`.
 
