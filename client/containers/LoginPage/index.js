@@ -1,32 +1,31 @@
-import PropTypes from 'prop-types';
-import { Link } from 'react-router';
+import { string, func } from 'prop-types';
 import Helmet from 'react-helmet';
-import makeBem from 'bem-cx';
-import { withRouter } from 'react-router'
-
-import {
-  DashboardForm,
-  DashboardFormCard,
-} from 'client/components';
 
 import LoginForm from './LoginForm';
 import enhance from './enhance';
 
-const bem = makeBem('login');
+
+const propTypes = {
+  title: string.isRequired,
+  onSubmit: func.isRequired,
+  backLink: string,
+};
 
 const LoginPage = ({
   title,
   onSubmit,
-  backLink
+  backLink,
 }) => (
-  <DashboardForm>
+  <div>
     <Helmet title={title} titleTemplate="%s | DJAVAN - RSL" />
-    <DashboardFormCard title="Log In" backLink={backLink}>
-      <div className={bem}>
+    <div title="Log In" backLink={backLink}>
+      <div>
         <LoginForm onSubmit={onSubmit} />
       </div>
-    </DashboardFormCard>
-  </DashboardForm>
+    </div>
+  </div>
 );
+
+LoginPage.propTypes = propTypes;
 
 export default enhance(LoginPage);

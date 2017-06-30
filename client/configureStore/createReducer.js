@@ -10,22 +10,22 @@ import { COMBINE_RELATIONSHIPS } from '../middlewares/apiMiddleware';
 import { combineRelationships } from '../helpers/combineRelationships';
 
 const rootReducer = (state = {}, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case COMBINE_RELATIONSHIPS:
       return combineRelationships(state, action.response);
     default:
       return state;
   }
-}
+};
 
 export default function createReducer() {
   return reduceReducers(
     rootReducer,
     combineReducers({
-        routing: routerReducer,
-        form: formReducer,
-        reduxAsyncConnect,
-        ...reducers,
-    })
-  )
+      routing: routerReducer,
+      form: formReducer,
+      reduxAsyncConnect,
+      ...reducers,
+    }),
+  );
 }

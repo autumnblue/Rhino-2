@@ -173,9 +173,9 @@ export default enhance(Component);
 
 ```
 
-## Code conventions
+## Conventions
 
-1. Props need to be distructed and put to clearly:
+Props need to be distructed and put to clearly:
 
 ```js
 const Users = ({ users, onChooseUser }) => <div>
@@ -198,3 +198,5 @@ const Users = (props) => <div>
   />)))
 </div>;
 ```
+
+Disabled rules at .eslintrc must be explained.

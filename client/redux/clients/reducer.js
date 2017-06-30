@@ -13,7 +13,7 @@ function data(state = initialState.data) {
 }
 
 function ids(state = initialState.ids, action) {
-  switch(action.type) {
+  switch (action.type) {
     case c.LOAD_CLIENTS_SUCCESS:
       return map(action.response.data.clients, 'id');
     default:

@@ -9,10 +9,10 @@ const reduxConnect = connect(
     onSubmit: loginSubmit,
   },
   null,
-  { pure: true }
-)
+  { pure: true },
+);
 
 export default compose(
   reduxConnect,
-  pure
-)
+  pure,
+);

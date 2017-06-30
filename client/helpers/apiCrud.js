@@ -2,20 +2,20 @@ import { omit } from 'lodash';
 import cookie from 'react-cookie';
 
 function serializeParams(params) {
-  if(!params) {
+  if (!params) {
     return '';
   }
 
   const query = [];
 
-  for(const [key, value] of Object.entries(params)) {
-    if(value && typeof value === 'object') {
-      if(value instanceof Array) {
-        for(const item of value) {
+  for (const [key, value] of Object.entries(params)) {
+    if (value && typeof value === 'object') {
+      if (value instanceof Array) {
+        for (const item of value) {
           query.push(`${key}[]=${item}`);
         }
       } else {
-        for(const [objKey, objValue] of Object.entries(value)) {
+        for (const [objKey, objValue] of Object.entries(value)) {
           query.push(`${key}{${objKey}}=${objValue}`);
         }
       }
@@ -37,14 +37,14 @@ async function fetchResource(method, url, options = {}) {
     headers: {
       ...options.headers,
       'Content-Type': 'application/json',
-    }
+    },
   };
 
-  if(useToken) {
+  if (useToken) {
     reqOptions.headers.Authorization = `JWT ${token}`;
   }
 
-  if(data) {
+  if (data) {
     reqOptions.body = JSON.stringify(data);
   }
 
@@ -52,13 +52,13 @@ async function fetchResource(method, url, options = {}) {
 
   return {
     data: await resp.json(),
-    status: resp.status
-  }
+    status: resp.status,
+  };
 }
 
 export default {
   get: (url, options) => fetchResource('get', url, options),
   post: (url, options) => fetchResource('post', url, options),
   del: (url, options) => fetchResource('delete', url, options),
-  put: (url, options) => fetchResource('put', url, options)
-}
+  put: (url, options) => fetchResource('put', url, options),
+};

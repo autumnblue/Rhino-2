@@ -3,40 +3,39 @@ import pluralize from 'pluralize';
 
 
 function place(object, result) {
-  if(object && typeof object === 'object' && object.entity_type) {
+  if (object && typeof object === 'object' && object.entity_type) {
     const { id, entity_type: entityType } = object;
 
-    result[entityType] = result[entityType] || {};
-    result[entityType][id] = result[entityType][id]
+    result[entityType] = result[entityType] || {}; // eslint-disable-line no-param-reassign
+    result[entityType][id] = result[entityType][id] // eslint-disable-line no-param-reassign
       ? Object.assign(result[entityType][id], object)
       : object;
 
     return object.id;
-  } else {
-    return object;
   }
+  return object;
 }
 
 function normalizer(object, result) {
-  if(object && typeof object === 'object') {
+  if (object && typeof object === 'object') {
     const clone = {};
 
-    for(const [key, value] of Object.entries(object)) {
+    for (const [key, value] of Object.entries(object)) {
       clone[key] = normalizer(value, result);
     }
 
     return place(clone, result);
   }
 
-  if(object instanceof Array) {
+  if (object instanceof Array) {
     const ids = [];
-    for(const item of object) {
+    for (const item of object) {
       ids.push(place(item));
     }
     return ids;
   }
 
-  else return object;
+  return object;
 }
 
 function normalize(data = {}) {
@@ -54,15 +53,14 @@ export function combineRelationships(state, response) {
   const newState = Object.assign({}, state);
 
 
-
-  for(const [key, branch] of Object.entries(newState)) {
-    if(key in normalized) {
+  for (const [key, branch] of Object.entries(newState)) {
+    if (key in normalized) {
       const newBranch = Object.assign({}, branch);
       newState[key] = newBranch;
       newBranch.data = Object.assign({}, branch.data);
 
-      for(const [id, entity] of Object.entries(normalized[key])) {
-        if(id in newBranch.data) {
+      for (const [id, entity] of Object.entries(normalized[key])) {
+        if (id in newBranch.data) {
           newBranch.data[id] = Object.assign({}, branch[id], entity);
         } else {
           newBranch.data[id] = entity;

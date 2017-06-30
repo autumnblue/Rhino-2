@@ -12,7 +12,7 @@ function data(state = initialState.data) {
 }
 
 function me(state = initialState.me, action) {
-  switch(action.type) {
+  switch (action.type) {
     case c.LOGIN_SUCCESS:
     case c.REFRESH_TOKEN_SUCCESS:
       return action.response.data.user.id;

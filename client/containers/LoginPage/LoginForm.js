@@ -1,13 +1,11 @@
 import { reduxForm, Field } from 'redux-form';
 import { compose, pure, withHandlers } from 'recompose';
-import RaisedButton from 'material-ui/RaisedButton';
-import makeBem from 'bem-cx';
-import { connect } from 'react-redux';
+import { func } from 'prop-types';
 
-import {
-  DashboardFormCardAction,
-  DashboardCardActionCenter
-} from 'client/components';
+
+const propTypes = {
+  onSubmit: func.isRequired,
+};
 
 const reduxFormEnhancer = reduxForm({
   pure: true,
@@ -15,37 +13,34 @@ const reduxFormEnhancer = reduxForm({
 });
 
 const onSubmitEnhancer = withHandlers({
-    onSubmit: ({ handleSubmit, onSubmit }) => handleSubmit(onSubmit),
+  onSubmit: ({ handleSubmit, onSubmit }) => handleSubmit(onSubmit),
 });
 
 const enhance = compose(
   reduxFormEnhancer,
   onSubmitEnhancer,
-  pure
+  pure,
 );
 
-const bem = makeBem('login');
 
 const LoginForm = ({
-  onSubmit
+  onSubmit,
 }) => (
   <form onSubmit={onSubmit}>
     <Field name="username" component="input" type="text" placeholder="email@example.com" />
     <br />
     <Field name="password" component="input" type="password" placeholder="Password" />
 
-    <DashboardFormCardAction>
-      <DashboardCardActionCenter>
-        <RaisedButton primary label="Login" onTouchTap={onSubmit}  />
-      </DashboardCardActionCenter>
-    </DashboardFormCardAction>
+    <button>Log in</button>
 
-    <label className={bem.el('bottom')}>
+    <label>
       <input type="checkbox" name="rememberMe" />
       Remember me
     </label>
 
   </form>
-)
+);
 
-export default enhance(LoginForm)
+LoginForm.propTypes = propTypes;
+
+export default enhance(LoginForm);

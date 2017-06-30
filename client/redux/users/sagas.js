@@ -3,17 +3,16 @@ import cookie from 'react-cookie';
 import { formValueSelector } from 'redux-form';
 import { push } from 'react-router-redux';
 
-import isTokenActual from 'client/helpers/isTokenActual';
 import * as c from './constants';
-import { load, login, refreshToken } from './actions';
+import { login } from './actions';
 
 function* submitLoginForm() {
-  while(true) {
+  while (true) {
     yield take(c.SUBMIT_LOGIN_FORM);
     const { username, password } = yield select(
       formValueSelector('loginForm'),
       'username',
-      'password'
+      'password',
     );
 
     yield put(login({ username, password }));
@@ -27,7 +26,7 @@ function setToken(response) {
 }
 
 function* loginSuccess() {
-  while(true) {
+  while (true) {
     const { response } = yield take(c.LOGIN_SUCCESS);
 
     yield setToken(response);
@@ -37,7 +36,7 @@ function* loginSuccess() {
 }
 
 function* tokenSuccess() {
-  while(true) {
+  while (true) {
     const { response } = yield take(c.REFRESH_TOKEN_SUCCESS);
 
     yield setToken(response);
@@ -48,6 +47,6 @@ export default function* createSaga() {
   yield all([
     fork(loginSuccess),
     fork(submitLoginForm),
-    fork(tokenSuccess)
-  ])
+    fork(tokenSuccess),
+  ]);
 }

@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import { Provider } from 'react-redux';
-import Router from 'react-router/es/Router';
 import browserHistory from 'react-router/es/browserHistory';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
@@ -15,33 +14,34 @@ const store = configureStore(browserHistory, initialState);
 const history = syncHistoryWithStore(browserHistory, store);
 
 if (false && process.env.NODE_ENV !== 'production') { // eslint-disable-line no-constant-condition
-    const { whyDidYouUpdate } = require('why-did-you-update'); // eslint-disable-line global-require
-    whyDidYouUpdate(React);
+  const { whyDidYouUpdate } = require('why-did-you-update'); // eslint-disable-line global-require
+  whyDidYouUpdate(React);
 }
 
 const rootEl = document.getElementById('react-view');
 
-const renderApp = (routes) => (
-    <AppContainer>
-        <Provider store={store} key="provider">
-            {routes}
-        </Provider>
-    </AppContainer>
+const renderApp = routes => (
+  <AppContainer>
+    <Provider store={store} key="provider">
+      {routes}
+    </Provider>
+  </AppContainer>
 );
 
 injectTapEventPlugin();
 ReactDOM.render(renderApp(<Routes history={history} />), rootEl);
 
 if (module.hot) {
-    module.hot.accept('./Routes', () => {
-        const {default: Routes} = require('./Routes'); // eslint-disable-line global-require
-        injectTapEventPlugin();
-        ReactDOM.render(renderApp(<Routes history={history} />), rootEl);
-    });
+  module.hot.accept('./Routes', () => {
+    // eslint-disable-next-line global-require, no-shadow
+    const { default: Routes } = require('./Routes');
+    injectTapEventPlugin();
+    ReactDOM.render(renderApp(<Routes history={history} />), rootEl);
+  });
 }
 
 
-/*import ReactDOM from 'react-dom'
+/* import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
 import configureStore from './configureStore'

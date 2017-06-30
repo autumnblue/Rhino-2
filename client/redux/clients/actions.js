@@ -6,11 +6,11 @@ export const loadClients = () => ({
     params: {
       include: ['departments', 'umbrella'],
       page: 1,
-      per_page:10,
+      per_page: 10,
       sort: ['id'],
       filter: {
-        'name.icontains': 'foo'
-      }
-    }
-  })
+        'name.icontains': '',
+      },
+    },
+  }),
 });

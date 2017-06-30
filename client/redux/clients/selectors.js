@@ -5,5 +5,5 @@ const getClientsData = state => state.clients.data;
 
 export const getClients = createSelector(
     [getClientsIds, getClientsData],
-    (ids, data) => ids.map(id => data[id])
+    (ids, data) => ids.map(id => data[id]),
 );

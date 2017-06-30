@@ -3,7 +3,6 @@ import List from './List';
 
 const ClientListPage = ({ clients }) => (
   <div>
-    {console.log(clients)}
     <List clients={clients} />
   </div>
 );
