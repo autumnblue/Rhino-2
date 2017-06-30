@@ -16,7 +16,6 @@ const { webpackHost, webpackPort } = require('../config/env');
 const entry = {
   main: [
     'babel-polyfill',
-    './static/styles/app.less',
     './client',
   ],
 }

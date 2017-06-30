@@ -27,19 +27,20 @@ const LoginForm = ({
   onSubmit,
 }) => (
   <form onSubmit={onSubmit}>
-    <Field name="username" component="input" type="text" placeholder="email@example.com" />
-    <br />
-    <Field name="password" component="input" type="password" placeholder="Password" />
+  <div className="form-group">
+    <label className="sr-only" htmlFor="inputName">Username</label>
+    <Field name="username" className="form-control" component="input" type="text" placeholder="email@example.com" />
+  </div>
+  <div className="form-group">
+    <label className="sr-only" htmlFor="inputPassword">Password</label>
+      <Field name="password" className="form-control" component="input" type="password" placeholder="Password" />
+  </div>
 
-    <button>Log in</button>
-
-    <label>
-      <input type="checkbox" name="rememberMe" />
-      Remember me
-    </label>
+  <button type="submit" className="btn btn-primary btn-block">Sign in</button>
 
   </form>
 );
+
 
 LoginForm.propTypes = propTypes;
 

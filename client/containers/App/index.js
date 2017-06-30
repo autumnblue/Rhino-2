@@ -1,4 +1,6 @@
+import BodyClassName from 'react-body-classname';
 import enhance from './enhance';
+import Menu from './Menu';
 
 const menu = [
   { id: 1, text: 'Clients', path: '/clients/list' },
@@ -12,8 +14,10 @@ const App = ({
   location,
 }) => (
   <div>
+    <BodyClassName className="site-menubar-unfold" />
     {/*<DashboardMenu menu={menu} location={location} />*/}
-    <div>{children}</div>
+    <Menu />
+    <div className="page">{children}</div>
   </div>
 );
 

@@ -6,6 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
+import './global-style';
 import configureStore from './configureStore'; // Configure Redux store
 import Routes from './Routes'; // Import routes
 
