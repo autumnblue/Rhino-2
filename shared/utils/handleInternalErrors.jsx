@@ -23,7 +23,6 @@ export function handleInternalErrors(data, type) {
   //     return 'An unknown error occurred. Please try again later.';
   // }
   let errormessage = '';
-  console.log(data.response.body);
   errormessage = _.reduce(data.response.body, (errormessage, key, msg) => { console.log(key + msg); return errormessage.concat(key + " " + msg + `<br />`)} )  ;
   console.log(errormessage);
   return errormessage;

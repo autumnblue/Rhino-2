@@ -4,11 +4,18 @@ import { loadingStatus } from '../constants/loadingStatus';
 
 export const initialState = {
   error: null,
+
+  client: null,
+  umbrella: null,
+  clientStatus: loadingStatus.UNINITIALIZED,
+  umbdepStatus: loadingStatus.UNINITIALIZED,
+
   clients: [],
   clientsStatus: loadingStatus.UNINITIALIZED,
   loadingMore: false,
   hasMore: true,
   page: 0,
+  meta: null,
   possibleUmbrellas: [],
   umbrellasStatus: loadingStatus.UNINITIALIZED,
 };
@@ -28,7 +35,8 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         error: null,
-        clients: state.clients.concat(action.clients),
+        clients: action.clients,
+        meta: action.meta,
         loadingMore: action.loadingMore,
         clientsStatus: loadingStatus.LOADED,
         hasMore: action.hasMore,
@@ -104,6 +112,14 @@ export default function reducer(state = initialState, action) {
       };
     }
 
+    case Constants.FETCH_CLIENT_UMBRELLA: {
+      return {
+        ...state,
+        umbrella: action.client.umbrella,
+        umbdepStatus: loadingStatus.LOADED
+      }
+    }
+
     case Constants.FETCH_CLIENTS_POSSIBLE_UMBRELLAS: {
 
       return {
@@ -143,6 +159,28 @@ export default function reducer(state = initialState, action) {
         // }, clients: action.clients,
         //_.set(state.clients, 'clients[' + action.id + ']', action.client),
         umbrellasStatus: loadingStatus.LOADED,
+      };
+    }
+
+    case Constants.VIEW_CLIENT_REQUEST: {
+      return {
+        ...state,
+        clientStatus: loadingStatus.LOADING,
+      }
+    }
+
+    case Constants.VIEW_CLIENT_SUCCESS: {
+      return {
+        ...state,
+        client: action.client,
+        clientStatus: loadingStatus.LOADED,
+      };
+    }
+
+    case Constants.FETCH_TOTALCOUNTS: {
+      return {
+        ...state,
+        meta: action.meta,
       };
     }
 

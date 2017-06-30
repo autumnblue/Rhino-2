@@ -10,7 +10,18 @@ html {
   background-size: cover;
 }
 
+.clear-fix::after {
+  content:"";
+  display:table;
+  clear:both;
+}
+
 @import "dashboard";
 @import "dashboardBar";
 @import "djavanDashboardCard";
 @import "djavanDashboardContent";
+@import "./DjavanDashboard/Clients/ClientEdit";
+@import "./DjavanDashboard/Clients/ClientList";
+@import "./DjavanDashboard/Common/index";
+@import "./DjavanDashboard/services";
+@import "../../../node_modules/react-quill/dist/quill.snow.css";

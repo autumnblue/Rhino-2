@@ -1,10 +1,10 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import makeBem from 'bem-cx';
 // import { Card, CardText } from 'material-ui/Card'
 import TextField from 'material-ui/TextField'
 
 const bem = makeBem('djavanDashboardCardTextField');
-
 
 const DashboardCardTextField = ({ children }) =>
     <TextField className={bem}>
