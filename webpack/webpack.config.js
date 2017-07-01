@@ -53,12 +53,10 @@ if(process.env.NODE_ENV === 'development') {
   plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 
-console.log(entry.main)
-
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   context: path.resolve(__dirname, '..'),
   entry,
   plugins,

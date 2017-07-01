@@ -17,6 +17,14 @@ function place(object, result) {
 }
 
 function normalizer(object, result) {
+  if (object instanceof Array) {
+    const ids = [];
+    for (const item of object) {
+      ids.push(normalizer(item, result));
+    }
+    return ids;
+  }
+
   if (object && typeof object === 'object') {
     const clone = {};
 
@@ -25,14 +33,6 @@ function normalizer(object, result) {
     }
 
     return place(clone, result);
-  }
-
-  if (object instanceof Array) {
-    const ids = [];
-    for (const item of object) {
-      ids.push(place(item));
-    }
-    return ids;
   }
 
   return object;

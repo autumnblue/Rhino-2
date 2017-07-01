@@ -17,7 +17,7 @@ export default function apiMiddleware() {
     try {
       const response = await api(apiCrud);
 
-      if (response.status !== 200) {
+      if (response.status < 200 || response.status > 299) {
         return next({ ...rest, response, type: FAILURE });
       }
 

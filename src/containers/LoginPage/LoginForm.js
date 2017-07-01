@@ -1,7 +1,8 @@
 import { reduxForm, Field } from 'redux-form';
 import { compose, pure, withHandlers } from 'recompose';
 import { func } from 'prop-types';
-
+import { FormGroup, Form, Label } from 'reactstrap';
+import { ReduxInput, Button } from 'src/components';
 
 const propTypes = {
   onSubmit: func.isRequired,
@@ -26,19 +27,26 @@ const enhance = compose(
 const LoginForm = ({
   onSubmit,
 }) => (
-  <form onSubmit={onSubmit}>
-  <div className="form-group">
-    <label className="sr-only" htmlFor="inputName">Username</label>
-    <Field name="username" className="form-control" component="input" type="text" placeholder="email@example.com" />
-  </div>
-  <div className="form-group">
-    <label className="sr-only" htmlFor="inputPassword">Password</label>
-      <Field name="password" className="form-control" component="input" type="password" placeholder="Password" />
-  </div>
+  <Form onSubmit={onSubmit}>
+    <FormGroup>
+      <Field
+        name="username"
+        component={ReduxInput}
+        type="text"
+        placeholder="email@example.com"
+      />
+    </FormGroup>
+    <FormGroup>
+      <Field
+        name="password"
+        component={ReduxInput}
+        type="password"
+        placeholder="Password"
+      />
+    </FormGroup>
 
-  <button type="submit" className="btn btn-primary btn-block">Sign in</button>
-
-  </form>
+    <Button color="primary" type="submit" block>Sign in</Button>
+  </Form>
 );
 
 

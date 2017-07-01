@@ -17,7 +17,9 @@ const App = ({
     <BodyClassName className="site-menubar-unfold" />
     {/*<DashboardMenu menu={menu} location={location} />*/}
     <Menu />
-    <div className="page">{children}</div>
+    <div>
+      {children}
+    </div>
   </div>
 );
 

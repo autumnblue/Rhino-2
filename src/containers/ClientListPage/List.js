@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 
 const List = ({ clients }) => (
-  <table class="table">
+  <table className="table">
     <tbody>
       {clients.map(({
         id,
@@ -14,9 +14,9 @@ const List = ({ clients }) => (
         focal_email,
         focal_phone
       }) => (
-        <tr>
+        <tr key={id}>
           <td>
-            <Link to={`/clients/edit/${id}`}>
+            <Link to={`/clients/${id}`}>
               <div className="main-info">
                     <div>
                         {name}
@@ -31,7 +31,7 @@ const List = ({ clients }) => (
                         {assessment_count + " Assessments"}
                     </div>
                     <div className="row">
-                        {departments.length + " Departments"}
+                        {departments && departments.length + " Departments"}
                     </div>
                 </div>
                 <div className="focal-info">
@@ -39,7 +39,7 @@ const List = ({ clients }) => (
                         {focal_name}
                     </div>
                     <div>
-                        <a href={"mailto:" + focal_email}>{focal_email}</a>
+                        <span>{focal_email}</span>
                     </div>
                     <div>
                         {focal_phone}

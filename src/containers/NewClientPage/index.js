@@ -1,19 +1,30 @@
+import { Link } from 'react-router';
 import { ClientForm, Page, PageContent, PageHeader, Button } from 'src/components';
 import enhance from './enhance';
 
-const ClientEditPage = ({
+const breadcrumbs = [{
+  label: 'Clients',
+  url: '/clients/list'
+}, {
+  label: 'New Client'
+}];
+
+const NewClientPage = ({
   parents,
   issuers,
   users,
 
-  breadcrumbs,
+  onBlur,
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
-      <Button color="danger">Delete</Button>
+      <Link to="/clients">
+        <Button color="default">Cancel</Button>
+      </Link>
     </PageHeader>
     <PageContent>
       <ClientForm
+        onBlur={onBlur}
         parents={parents}
         issuers={issuers}
         users={users}
@@ -22,4 +33,4 @@ const ClientEditPage = ({
   </Page>
 )
 
-export default enhance(ClientEditPage);
+export default enhance(NewClientPage);

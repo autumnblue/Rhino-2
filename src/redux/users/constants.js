@@ -11,3 +11,7 @@ export const REFRESH_TOKEN_FAIL = `${prefix}/REFRESH_TOKEN_FAIL`;
 export const LOGIN = `${prefix}/LOGIN`;
 export const LOGIN_SUCCESS = `${prefix}/LOGIN_SUCCESS`;
 export const LOGIN_FAIL = `${prefix}/LOGIN_FAIL`;
+
+export const LOAD_USERS = `${prefix}/LOAD_USERS`;
+export const LOAD_USERS_SUCCESS = `${prefix}/LOAD_USERS_SUCCESS`;
+export const LOAD_USERS_FAIL = `${prefix}/LOAD_USERS_FAIL`;

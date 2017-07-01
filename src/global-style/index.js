@@ -1,3 +1,5 @@
+import '!style-loader!css-loader!react-select/dist/react-select.css';
+
 import '!style-loader!css-loader!./remark-classic/global/css/bootstrap.css';
 import '!style-loader!css-loader!./remark-classic/global/css/bootstrap-extend.css';
 import '!style-loader!css-loader!./remark-classic/base/assets/css/site.css';

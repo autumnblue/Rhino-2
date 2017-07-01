@@ -5,11 +5,13 @@ import applyRouterMiddleware from 'react-router/es/applyRouterMiddleware';
 import { ReduxAsyncConnect } from 'redux-connect';
 import { useScroll } from 'react-router-scroll';
 import { func } from 'prop-types';
+
 import App from './containers/App';
 import LoginPage from './containers/LoginPage';
 import MainLayout from './containers/MainLayout';
 import ClientListPage from './containers/ClientListPage';
-import ClientEditPage from './containers/ClientEditPage'
+import ClientEditPage from './containers/ClientEditPage';
+import NewClientPage from './containers/NewClientPage';
 
 function reduxAsyncConnect(props) {
   return (
@@ -30,11 +32,12 @@ const Routes = ({ history }) => (
     render={reduxAsyncConnect}
     history={history}
   >
-    <Redirect from="/" to="/clients/list" />
+    <Redirect from="/" to="/clients" />
     <Route path="/" component={MainLayout}>
       <Route component={App}>
-        <Route path="/clients/list" component={ClientListPage} />
-        <Route path="/clients/edit/:clientId" component={ClientEditPage} />
+        <Route path="/clients" component={ClientListPage} />
+        <Route path="/clients/new" component={NewClientPage} />
+        <Route path="/clients/:clientId" component={ClientEditPage} />
       </Route>
       <Route path="login" component={LoginPage} />
     </Route>

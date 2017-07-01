@@ -6,6 +6,7 @@ import * as c from './constants';
 const initialState = {
   data: {},
   ids: [],
+  id: null,
 };
 
 function data(state = initialState.data) {
@@ -21,7 +22,17 @@ function ids(state = initialState.ids, action) {
   }
 }
 
+function id(state = initialState.id, action) {
+  switch (action.type) {
+    case c.LOAD_SINGLE_CLIENT_SUCCESS:
+      return action.response.data.client.id;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   data,
   ids,
+  id,
 });

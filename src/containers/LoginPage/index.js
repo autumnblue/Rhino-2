@@ -2,6 +2,8 @@ import { string, func } from 'prop-types';
 import Helmet from 'react-helmet';
 import BodyClassName from 'react-body-classname';
 
+import { Page, PageContent } from 'src/components';
+
 import LoginForm from './LoginForm';
 import enhance from './enhance';
 
@@ -18,31 +20,20 @@ const LoginPage = ({
   onSubmit,
   backLink,
 }) => (
-  <div className="page animsition vertical-align text-center">&gt;
-    <Helmet title={title} titleTemplate="%s | DJAVAN - RSL" />
-    <BodyClassName className="page-login layout-full page-dark" />
-        <div className="page-content vertical-align-middle">
+  <Page className="vertical-align text-center">
+      <Helmet title={title} titleTemplate="%s | DJAVAN - RSL" />
+      <BodyClassName className="page-login layout-full page-dark" />
+      <PageContent className="vertical-align-middle">
           <div className="brand">
             <h2 className="brand-text">Rhino Security Labs</h2>
           </div>
-          <p>Sign in</p>
-          <LoginForm onSubmit={onSubmit} />
-        </div>
-      </div>
-
-
+          <LoginForm
+            onSubmit={onSubmit}
+          />
+        </PageContent>
+      </Page>
 );
 
-/*
-<div>
-
-  <div title="Log In" backLink={backLink}>
-    <div>
-      <LoginForm onSubmit={onSubmit} />
-    </div>
-  </div>
-</div>
-*/
 
 LoginPage.propTypes = propTypes;
 
