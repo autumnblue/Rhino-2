@@ -10,7 +10,7 @@
     "webpack-dev-server": "NODE_ENV=development webpack-dev-server --config webpack/webpack.config.js",
     "start": "concurrently --kill-others \"npm run start-server\"",
     "start-server": "NODE_ENV=production babel-node ./bin/server.js",
-    "lint": "eslint ./src",
+    "lint": "eslint './src/**'",
     "coverage": "NODE_ENV=test nyc --reporter=lcov --reporter=text mocha mochaSetup.js './test/**/**/*.test.@(js|jsx)' --compilers js:babel-register --require babel-polyfill --recursive",
     "test": "NODE_ENV=test mocha mochaSetup.js './test/**/**/*.test.@(js|jsx)' --compilers js:babel-register --require babel-polyfill --recursive",
     "debug": "NODE_ENV=test mocha debug mochaSetup.js './test/**/**/*.test.@(js|jsx)' --compilers js:babel-register --require babel-polyfill --recursive",

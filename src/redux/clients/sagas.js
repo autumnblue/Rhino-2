@@ -1,5 +1,5 @@
 import { all, fork, take, select, put } from 'redux-saga/effects';
-import { isEmpty } from 'lodash';
+import { isEmpty, pick } from 'lodash';
 import { formValueSelector } from 'redux-form';
 import { push } from 'react-router-redux'
 
@@ -29,14 +29,21 @@ function* editClientFormChange() {
   while (true) {
     const { id } = yield take(c.EDIT_CLIENT_FORM_CHANGE);
     const state = yield select();
-    const { values, syncErrors } = state.form.editClientForm;
+    const { values, syncErrors, registeredFields } = state.form.editClientForm;
     const client = yield select(getCurrentClient);
 
     if(isEmpty(syncErrors)) {
-      yield put(editClient(id, {
-        commit: true,
-        ...simpleObjectDiff(values, client)
-      }));
+      // since we put entire client to reduxForm using initialValues
+      // we need to extract only those properties which are rendered on the page
+      const keys = Object.keys(registeredFields);
+      const diff = simpleObjectDiff(pick(values, keys), client);
+
+      if(!isEmpty(diff)) {
+        yield put(editClient(id, {
+          commit: true,
+          ...diff
+        }));
+      }
     }
   }
 }
