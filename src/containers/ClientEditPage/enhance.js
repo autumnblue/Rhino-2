@@ -7,7 +7,7 @@ import { reduxForm } from 'redux-form';
 import { validate } from 'src/components/clients/ClientForm';
 
 // actions
-import { loadClients, loadSingleClient, deleteClientTrigger } from 'src/redux/clients/actions';
+import { loadClients, loadSingleClient, deleteClientTrigger, editClientFormChange } from 'src/redux/clients/actions';
 import { loadIssuers } from 'src/redux/issuers/actions';
 import { loadUsers } from 'src/redux/users/actions';
 
@@ -34,6 +34,7 @@ const reduxConnect = connect((state) => ({
   client: getCurrentClient(state),
 }), {
   onDelete: deleteClientTrigger,
+  onBlur: editClientFormChange
 });
 
 const propsEnhancer = withPropsOnChange(['client'], ({ client }) => ({
@@ -54,7 +55,8 @@ const reduxFormEnhancer = reduxForm({
 });
 
 const handlersEnhancer = withHandlers({
-  onDelete: ({ onDelete, client }) => () => onDelete(client.id)
+  onDelete: ({ onDelete, client }) => () => onDelete(client.id),
+  onBlur: ({ onBlur, client }) => () => onBlur(client.id)
 });
 
 export default compose(

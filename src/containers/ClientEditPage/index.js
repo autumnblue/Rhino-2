@@ -10,6 +10,7 @@ const ClientEditPage = ({
   breadcrumbs,
 
   onDelete,
+  onBlur,
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
@@ -17,6 +18,7 @@ const ClientEditPage = ({
     </PageHeader>
     <PageContent>
       <ClientForm
+        onBlur={onBlur}
         parents={parents}
         issuers={issuers}
         users={users}

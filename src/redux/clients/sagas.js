@@ -2,7 +2,11 @@ import { all, fork, take, select, put } from 'redux-saga/effects';
 import { isEmpty } from 'lodash';
 import { formValueSelector } from 'redux-form';
 import { push } from 'react-router-redux'
-import { createClient, deleteClient } from './actions';
+
+import simpleObjectDiff from 'src/helpers/simpleObjectDiff';
+
+import { createClient, deleteClient, editClient } from './actions';
+import { getCurrentClient } from './selectors';
 
 import * as c from './constants';
 
@@ -12,10 +16,26 @@ function* newClientFormChange() {
     const state = yield select();
     const { values, syncErrors } = state.form.newClientForm;
 
-    if(isEmpty(state.form.newClientForm.syncErrors)) {
+    if(isEmpty(syncErrors)) {
       yield put(createClient({
         commit: true,
         ...values,
+      }));
+    }
+  }
+}
+
+function* editClientFormChange() {
+  while (true) {
+    const { id } = yield take(c.EDIT_CLIENT_FORM_CHANGE);
+    const state = yield select();
+    const { values, syncErrors } = state.form.editClientForm;
+    const client = yield select(getCurrentClient);
+
+    if(isEmpty(syncErrors)) {
+      yield put(editClient(id, {
+        commit: true,
+        ...simpleObjectDiff(values, client)
       }));
     }
   }
@@ -37,7 +57,6 @@ function* deleteClientTrigger() {
     if(confirm('Are you sure want to delete the client')) {
       yield put(deleteClient(id));
     }
-
   }
 }
 
@@ -49,11 +68,10 @@ function* deleteClientSuccess() {
   }
 }
 
-
-
 export default function* createSaga() {
   yield all([
     fork(newClientFormChange),
+    fork(editClientFormChange),
     fork(createClientSuccess),
     fork(deleteClientTrigger),
     fork(deleteClientSuccess)

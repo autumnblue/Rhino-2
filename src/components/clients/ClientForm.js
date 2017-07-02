@@ -1,4 +1,4 @@
-import { Col, Row, FormGroup, Form } from 'reactstrap';
+import { Col, Row, FormGroup, Form, Label } from 'reactstrap';
 import { Field } from 'redux-form';
 import { compose, pure, withPropsOnChange } from 'recompose';
 import { ReduxInput, ReduxSelect } from 'src/components';
@@ -58,15 +58,19 @@ const ClientForm = ({
       <FormGroup tag="fieldset">
         <legend>Client</legend>
         <FormGroup>
+        <Label>Name</Label>
         <Field component={ReduxInput} type="text" name="name" placeholder="Name" onBlur={onBlur} />
         </FormGroup>
         <FormGroup>
+        <Label>Short Name</Label>
         <Field component={ReduxInput} type="text" name="short_name" placeholder="Short Name" onBlur={onBlur} />
         </FormGroup>
         <FormGroup>
+        <Label>URL</Label>
         <Field component={ReduxInput} type="text" name="url" placeholder="URL" onBlur={onBlur} />
         </FormGroup>
         <FormGroup>
+        <Label>Address</Label>
         <Field component={ReduxInput} type="textarea" name="address" placeholder="Address" onBlur={onBlur} />
         </FormGroup>
       </FormGroup>
@@ -75,18 +79,23 @@ const ClientForm = ({
       <FormGroup tag="fieldset">
         <legend>Focal</legend>
         <FormGroup>
-        <Field component={ReduxInput} type="text" name="focal_first_name" placeholder="Focal first name" onBlur={onBlur} />
+        <Label>Focal First Name</Label>
+        <Field component={ReduxInput} type="text" name="focal_first_name" placeholder="Focal First Name" onBlur={onBlur} />
         </FormGroup>
         <FormGroup>
-        <Field component={ReduxInput} type="text" name="focal_last_name" placeholder="Focal last name" onBlur={onBlur} />
+        <Label>Focal Last Name</Label>
+        <Field component={ReduxInput} type="text" name="focal_last_name" placeholder="Focal Last Name" onBlur={onBlur} />
         </FormGroup>
         <FormGroup>
+        <Label>Focal Title</Label>
         <Field component={ReduxInput} type="text" name="focal_title" placeholder="Focal Title" onBlur={onBlur} />
         </FormGroup>
         <FormGroup>
+        <Label>Focal Phone</Label>
         <Field component={ReduxInput} type="text" name="focal_phone" placeholder="Focal Phone" onBlur={onBlur} />
         </FormGroup>
         <FormGroup>
+        <Label>Focal Email</Label>
         <Field component={ReduxInput} type="text" name="focal_email" placeholder="Focal Email" onBlur={onBlur} />
         </FormGroup>
       </FormGroup>
@@ -110,6 +119,11 @@ const ClientForm = ({
           <label>Parent</label>
           <Field component={ReduxSelect} name="umbrella" options={parentsOptions} placeholder="Parent" />
         </FormGroup>
+      </FormGroup>
+
+      <FormGroup>
+        <Label>Notes</Label>
+        <Field component={ReduxInput} name="notes" type="textarea" placeholder="Notes" onBlur={onBlur} />
       </FormGroup>
     </Col>
   </Row>

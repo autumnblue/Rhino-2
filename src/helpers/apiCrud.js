@@ -66,9 +66,9 @@ async function fetchResource(method, url, options = {}) {
 }
 
 export default {
-  get: (url, options) => fetchResource('get', url, options),
-  post: (url, options) => fetchResource('post', url, options),
-  del: (url, options) => fetchResource('delete', url, options),
-  put: (url, options) => fetchResource('put', url, options),
-  patch: (url, options) => fetchResource('patch', url, options),
+  get: (url, options) => fetchResource('GET', url, options),
+  post: (url, options) => fetchResource('POST', url, options),
+  del: (url, options) => fetchResource('DELETE', url, options),
+  put: (url, options) => fetchResource('PUT', url, options),
+  patch: (url, options) => fetchResource('PATCH', url, options),
 };
