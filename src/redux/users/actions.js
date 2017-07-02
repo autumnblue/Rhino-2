@@ -9,7 +9,7 @@ export const refreshToken = token => ({
   api: ({ post }) => post('token/refresh/', {
     data: { token },
     useToken: false,
-  })
+  }),
 });
 
 export const login = ({ username, password }) => ({

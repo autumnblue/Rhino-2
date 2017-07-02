@@ -14,7 +14,7 @@ const ClientListPage = ({ clients }) => (
       </Link>
     </PageHeader>
     <PageContent>
-    <List clients={clients} />
+      <List clients={clients} />
     </PageContent>
   </Page>
 );

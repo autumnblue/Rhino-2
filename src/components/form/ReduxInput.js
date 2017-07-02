@@ -16,4 +16,4 @@ export default ({
     />
     {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
-)
+);

@@ -6,8 +6,8 @@ import {
 import { pure } from 'recompose';
 
 const propTypes = {
-    className: string,
-    children: any,
+  className: string,
+  children: any,
 };
 
 const enhance = pure;
@@ -17,9 +17,9 @@ const PageContent = ({
     children,
     ...props
 }) => (
-    <div className={`page-content${className ? ` ${className}` : ''}`} {...props}>
-        {children}
-    </div>
+  <div className={`page-content${className ? ` ${className}` : ''}`} {...props}>
+    {children}
+  </div>
 );
 
 PageContent.propTypes = propTypes;

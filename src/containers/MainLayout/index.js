@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const MainLayout = ({ children }) =>
  (<div>
-     {children}
+   {children}
  </div>);
 
 MainLayout.propTypes = {

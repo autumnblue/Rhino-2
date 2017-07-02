@@ -21,28 +21,28 @@ const reduxAsyncConnect = asyncConnect([{
     dispatch(loadClients()),
     dispatch(loadIssuers()),
     dispatch(loadUsers()),
-    dispatch(loadSingleClient(clientId))
+    dispatch(loadSingleClient(clientId)),
   ]),
 }]);
 
-console.log(deleteClientTrigger)
+console.log(deleteClientTrigger);
 
-const reduxConnect = connect((state) => ({
+const reduxConnect = connect(state => ({
   parents: getPotentialParents(state),
   issuers: getIssuers(state),
   users: getUsers(state),
   client: getCurrentClient(state),
 }), {
   onDelete: deleteClientTrigger,
-  onBlur: editClientFormChange
+  onBlur: editClientFormChange,
 });
 
 const propsEnhancer = withPropsOnChange(['client'], ({ client }) => ({
   breadcrumbs: [{
     label: 'Clients',
-    url: '/clients'
+    url: '/clients',
   }, {
-    label: client.name
+    label: client.name,
   }],
   // initialValues used by reduxForm
   initialValues: client,
@@ -56,7 +56,7 @@ const reduxFormEnhancer = reduxForm({
 
 const handlersEnhancer = withHandlers({
   onDelete: ({ onDelete, client }) => () => onDelete(client.id),
-  onBlur: ({ onBlur, client }) => () => onBlur(client.id)
+  onBlur: ({ onBlur, client }) => () => onBlur(client.id),
 });
 
 export default compose(
@@ -66,4 +66,4 @@ export default compose(
   reduxFormEnhancer,
   handlersEnhancer,
   pure,
-)
+);

@@ -8,8 +8,8 @@ import { pure } from 'recompose';
 import css from './style.css';
 
 const propTypes = {
-    className: string,
-    children: any,
+  className: string,
+  children: any,
 };
 
 const enhance = pure;
@@ -20,10 +20,10 @@ export const Page = ({
     ...props
 }) =>
     (<div
-        className={`page ${css.page} ${!!className ? className : ''}`}
-        {...props}
+      className={`page ${css.page} ${className || ''}`}
+      {...props}
     >
-        {children}
+      {children}
     </div>)
 ;
 

@@ -20,17 +20,17 @@ const LoginPage = ({
   backLink,
 }) => (
   <Page className="vertical-align text-center">
-      <Helmet title={title} titleTemplate="%s | DJAVAN - RSL" />
-      <BodyClassName className="page-login layout-full page-dark" />
-      <PageContent className="vertical-align-middle">
-          <div className="brand">
-            <h2 className="brand-text">Rhino Security Labs</h2>
-          </div>
-          <LoginForm
-            onSubmit={onSubmit}
-          />
-        </PageContent>
-      </Page>
+    <Helmet title={title} titleTemplate="%s | DJAVAN - RSL" />
+    <BodyClassName className="page-login layout-full page-dark" />
+    <PageContent className="vertical-align-middle">
+      <div className="brand">
+        <h2 className="brand-text">Rhino Security Labs</h2>
+      </div>
+      <LoginForm
+        onSubmit={onSubmit}
+      />
+    </PageContent>
+  </Page>
 );
 
 

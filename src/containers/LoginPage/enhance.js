@@ -10,7 +10,7 @@ const reduxConnect = connect(
   null,
   {
     onSubmit: loginSubmit,
-    onInitialize: initialize
+    onInitialize: initialize,
   },
   null,
   { pure: true },

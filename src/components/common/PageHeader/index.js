@@ -14,18 +14,18 @@ import { compose, pure, defaultProps } from 'recompose';
 import css from './style.css';
 
 const propTypes = {
-    title: string,
-    children: any,
+  title: string,
+  children: any,
     // privatePropTypes
 };
 
 export const getDefaultPropsEnhancer = defaultProps({
-    breadcrumbs: [],
+  breadcrumbs: [],
 });
 
 export const enhance = compose(
     getDefaultPropsEnhancer,
-    pure
+    pure,
 );
 
 export const PageHeader = ({
@@ -34,20 +34,20 @@ export const PageHeader = ({
     breadcrumbs,
     className,
 }) =>
-    (<div className={`page-header ${className ? className : ''}`}>
-        <ol className={`breadcrumb ${css.breadcrumbs}`}>
-          {breadcrumbs.map(({
+    (<div className={`page-header ${className || ''}`}>
+      <ol className={`breadcrumb ${css.breadcrumbs}`}>
+        {breadcrumbs.map(({
             label,
-            url
+            url,
           }) => (
             <li className="breadcrumb-item" key={url + label}>
               {url ? <Link to={url}>{label}</Link> : label}
             </li>
           ))}
-        </ol>
-        <div className="page-header-actions">
-            {children}
-        </div>
+      </ol>
+      <div className="page-header-actions">
+        {children}
+      </div>
     </div>)
 ;
 

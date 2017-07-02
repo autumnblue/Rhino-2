@@ -4,9 +4,9 @@ import enhance from './enhance';
 
 const breadcrumbs = [{
   label: 'Clients',
-  url: '/clients/list'
+  url: '/clients/list',
 }, {
-  label: 'New Client'
+  label: 'New Client',
 }];
 
 const NewClientPage = ({
@@ -31,6 +31,6 @@ const NewClientPage = ({
       />
     </PageContent>
   </Page>
-)
+);
 
 export default enhance(NewClientPage);

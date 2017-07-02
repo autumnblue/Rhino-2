@@ -7,7 +7,7 @@ function* initialize() {
 
     const loader = document.querySelector('.page-loader');
 
-    if(loader) {
+    if (loader) {
       loader.parentNode.removeChild(loader);
     }
   }
@@ -15,6 +15,6 @@ function* initialize() {
 
 export default function* createSaga() {
   yield all([
-    fork(initialize)
+    fork(initialize),
   ]);
 }

@@ -20,7 +20,7 @@ if (true && process.env.NODE_ENV !== 'production') { // eslint-disable-line no-c
   Object.defineProperty(React, 'createClass', {
     set: (nextCreateClass) => {
       createClass = nextCreateClass;
-    }
+    },
   });
   whyDidYouUpdate(React);
 }

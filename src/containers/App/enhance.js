@@ -31,9 +31,9 @@ const reduxAsyncConnect = asyncConnect([{
 const reduxConnect = connect(
   null,
   {
-    onInitialize: initialize
-  }
-)
+    onInitialize: initialize,
+  },
+);
 
 export default compose(
   reduxAsyncConnect,

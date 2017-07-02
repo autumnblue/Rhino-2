@@ -25,6 +25,6 @@ const ClientEditPage = ({
       />
     </PageContent>
   </Page>
-)
+);
 
 export default enhance(ClientEditPage);

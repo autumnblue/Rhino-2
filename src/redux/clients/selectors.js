@@ -11,10 +11,10 @@ export const getClients = createSelector(
 
 export const getPotentialParents = createSelector(
   [getClients],
-  clients => clients.filter(({ umbrella }) => !umbrella)
-)
+  clients => clients.filter(({ umbrella }) => !umbrella),
+);
 
 export const getCurrentClient = createSelector(
   [getCurrentClientId, getClientsData],
   (id, data) => data[id],
-)
+);

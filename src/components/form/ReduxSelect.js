@@ -2,7 +2,7 @@ import Select from 'react-select';
 import { compose, pure, withHandlers } from 'recompose';
 
 const handlersEnhancer = withHandlers({
-  onChange: ({ input: { onChange } }) => ({ value }) => onChange(value)
+  onChange: ({ input: { onChange } }) => ({ value }) => onChange(value),
 });
 
 const enhance = compose(

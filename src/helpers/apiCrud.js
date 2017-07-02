@@ -55,8 +55,8 @@ async function fetchResource(method, url, options = {}) {
   try {
     // DELETE requests don't send response body
     respData = await resp.json();
-  } catch(e) {
-    respData = null
+  } catch (e) {
+    respData = null;
   }
 
   return {

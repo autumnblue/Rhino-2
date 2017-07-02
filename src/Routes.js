@@ -12,7 +12,7 @@ import LoginPage from './containers/LoginPage';
 import MainLayout from './containers/MainLayout';
 import ClientListPage from './containers/ClientListPage';
 import ClientEditPage from './containers/ClientEditPage';
-import NewClientPage from './containers/NewClientPage'
+import NewClientPage from './containers/NewClientPage';
 
 function reduxAsyncConnect(props) {
   return (
@@ -25,7 +25,7 @@ function reduxAsyncConnect(props) {
 }
 
 const propTypes = {
-  //history: func.isRequired,
+  // history: func.isRequired,
 };
 
 const Routes = ({ history }) => (
@@ -34,7 +34,7 @@ const Routes = ({ history }) => (
     history={history}
   >
     <Redirect from="/" to="/clients" />
-    <Route  component={MainLayout}>
+    <Route component={MainLayout}>
       <Route path="/" component={App}>
         <Route path="clients" component={ClientListPage} />
         <Route path="clients/new" component={NewClientPage} />

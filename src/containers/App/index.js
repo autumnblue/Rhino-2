@@ -15,7 +15,7 @@ const App = ({
 }) => (
   <div>
     <BodyClassName className="site-menubar-unfold" />
-    {/*<DashboardMenu menu={menu} location={location} />*/}
+    {/* <DashboardMenu menu={menu} location={location} />*/}
     <Menu />
     <div>
       {children}

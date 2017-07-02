@@ -70,8 +70,8 @@ const IndexHTML = () => (
       <div id="react-view" />
       <div className="page-loader">
         <div className="spinner">
-          <div className="double-bounce1"></div>
-          <div className="double-bounce2"></div>
+          <div className="double-bounce1" />
+          <div className="double-bounce2" />
         </div>
       </div>
     </body>

@@ -24,12 +24,12 @@ const reduxAsyncConnect = asyncConnect([{
   ]),
 }]);
 
-const reduxConnect = connect((state) => ({
+const reduxConnect = connect(state => ({
   parents: getPotentialParents(state),
   issuers: getIssuers(state),
   users: getUsers(state),
 }), {
-  onBlur: newClientFormChange
+  onBlur: newClientFormChange,
 });
 
 const reduxFormEnhancer = reduxForm({
@@ -43,4 +43,4 @@ export default compose(
   reduxConnect,
   reduxFormEnhancer,
   pure,
-)
+);

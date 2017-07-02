@@ -1,7 +1,7 @@
 import { all, fork, take, select, put } from 'redux-saga/effects';
 import { isEmpty, pick } from 'lodash';
 import { formValueSelector } from 'redux-form';
-import { push } from 'react-router-redux'
+import { push } from 'react-router-redux';
 
 import simpleObjectDiff from 'src/helpers/simpleObjectDiff';
 
@@ -16,7 +16,7 @@ function* newClientFormChange() {
     const state = yield select();
     const { values, syncErrors } = state.form.newClientForm;
 
-    if(isEmpty(syncErrors)) {
+    if (isEmpty(syncErrors)) {
       yield put(createClient({
         commit: true,
         ...values,
@@ -32,16 +32,16 @@ function* editClientFormChange() {
     const { values, syncErrors, registeredFields } = state.form.editClientForm;
     const client = yield select(getCurrentClient);
 
-    if(isEmpty(syncErrors)) {
+    if (isEmpty(syncErrors)) {
       // since we put entire client to reduxForm using initialValues
       // we need to extract only those properties which are rendered on the page
       const keys = Object.keys(registeredFields);
       const diff = simpleObjectDiff(pick(values, keys), client);
 
-      if(!isEmpty(diff)) {
+      if (!isEmpty(diff)) {
         yield put(editClient(id, {
           commit: true,
-          ...diff
+          ...diff,
         }));
       }
     }
@@ -61,7 +61,7 @@ function* deleteClientTrigger() {
   while (true) {
     const { id } = yield take(c.DELETE_CLIENT_TRIGGER);
 
-    if(confirm('Are you sure want to delete the client')) {
+    if (confirm('Are you sure want to delete the client')) {
       yield put(deleteClient(id));
     }
   }
@@ -71,7 +71,7 @@ function* deleteClientSuccess() {
   while (true) {
     const { id } = yield take(c.DELETE_CLIENT_SUCCESS);
 
-    yield put(push(`/clients`));
+    yield put(push('/clients'));
   }
 }
 
@@ -81,6 +81,6 @@ export default function* createSaga() {
     fork(editClientFormChange),
     fork(createClientSuccess),
     fork(deleteClientTrigger),
-    fork(deleteClientSuccess)
+    fork(deleteClientSuccess),
   ]);
 }
