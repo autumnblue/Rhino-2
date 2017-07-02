@@ -2,6 +2,7 @@ const prefix = 'clients';
 
 // UI actions
 export const NEW_CLIENT_FORM_CHANGE = `${prefix}/NEW_CLIENT_FORM_CHANGE`;
+export const DELETE_CLIENT_TRIGGER = `${prefix}/DELETE_CLIENT_TRIGGER`;
 
 // API actions
 export const LOAD_CLIENTS = `${prefix}/LOAD_CLIENTS`;
@@ -15,3 +16,7 @@ export const LOAD_SINGLE_CLIENT_FAIL = `${prefix}/LOAD_SINGLE_CLIENT_FAIL`;
 export const CREATE_CLIENT = `${prefix}/CREATE_CLIENT`;
 export const CREATE_CLIENT_SUCCESS = `${prefix}/CREATE_CLIENT_SUCCESS`;
 export const CREATE_CLIENT_FAIL = `${prefix}/CREATE_CLIENT_FAIL`;
+
+export const DELETE_CLIENT = `${prefix}/DELETE_CLIENT`;
+export const DELETE_CLIENT_SUCCESS = `${prefix}/DELETE_CLIENT_SUCCESS`;
+export const DELETE_CLIENT_FAIL = `${prefix}/DELETE_CLIENT_FAIL`;

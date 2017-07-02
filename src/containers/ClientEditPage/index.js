@@ -1,5 +1,6 @@
-import { ClientForm, Page, PageContent, PageHeader, Button } from 'src/components';
+import { ClientForm, Page, PageContent, PageHeader } from 'src/components';
 import enhance from './enhance';
+import { Button } from 'reactstrap';
 
 const ClientEditPage = ({
   parents,
@@ -7,10 +8,12 @@ const ClientEditPage = ({
   users,
 
   breadcrumbs,
+
+  onDelete,
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
-      <Button color="danger">Delete</Button>
+      <Button color="danger" onClick={onDelete}>Delete</Button>
     </PageHeader>
     <PageContent>
       <ClientForm

@@ -9,7 +9,6 @@ import enhance from './enhance';
 
 
 const propTypes = {
-  title: string.isRequired,
   onSubmit: func.isRequired,
   backLink: string,
 };

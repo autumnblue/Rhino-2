@@ -2,7 +2,7 @@ import { all, fork, take, select, put } from 'redux-saga/effects';
 import { isEmpty } from 'lodash';
 import { formValueSelector } from 'redux-form';
 import { push } from 'react-router-redux'
-import { createClient } from './actions';
+import { createClient, deleteClient } from './actions';
 
 import * as c from './constants';
 
@@ -30,9 +30,32 @@ function* createClientSuccess() {
   }
 }
 
+function* deleteClientTrigger() {
+  while (true) {
+    const { id } = yield take(c.DELETE_CLIENT_TRIGGER);
+
+    if(confirm('Are you sure want to delete the client')) {
+      yield put(deleteClient(id));
+    }
+
+  }
+}
+
+function* deleteClientSuccess() {
+  while (true) {
+    const { id } = yield take(c.DELETE_CLIENT_SUCCESS);
+
+    yield put(push(`/clients`));
+  }
+}
+
+
+
 export default function* createSaga() {
   yield all([
     fork(newClientFormChange),
-    fork(createClientSuccess)
+    fork(createClientSuccess),
+    fork(deleteClientTrigger),
+    fork(deleteClientSuccess)
   ]);
 }

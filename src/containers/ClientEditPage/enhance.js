@@ -1,4 +1,4 @@
-import { compose, pure, withPropsOnChange } from 'recompose';
+import { compose, pure, withPropsOnChange, withHandlers } from 'recompose';
 import { asyncConnect } from 'redux-connect';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
@@ -7,7 +7,7 @@ import { reduxForm } from 'redux-form';
 import { validate } from 'src/components/clients/ClientForm';
 
 // actions
-import { loadClients, loadSingleClient } from 'src/redux/clients/actions';
+import { loadClients, loadSingleClient, deleteClientTrigger } from 'src/redux/clients/actions';
 import { loadIssuers } from 'src/redux/issuers/actions';
 import { loadUsers } from 'src/redux/users/actions';
 
@@ -25,12 +25,16 @@ const reduxAsyncConnect = asyncConnect([{
   ]),
 }]);
 
+console.log(deleteClientTrigger)
+
 const reduxConnect = connect((state) => ({
   parents: getPotentialParents(state),
   issuers: getIssuers(state),
   users: getUsers(state),
   client: getCurrentClient(state),
-}));
+}), {
+  onDelete: deleteClientTrigger,
+});
 
 const propsEnhancer = withPropsOnChange(['client'], ({ client }) => ({
   breadcrumbs: [{
@@ -49,10 +53,15 @@ const reduxFormEnhancer = reduxForm({
   form: 'editClientForm',
 });
 
+const handlersEnhancer = withHandlers({
+  onDelete: ({ onDelete, client }) => () => onDelete(client.id)
+});
+
 export default compose(
   reduxAsyncConnect,
   reduxConnect,
   propsEnhancer,
   reduxFormEnhancer,
+  handlersEnhancer,
   pure,
 )

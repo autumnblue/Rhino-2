@@ -2,10 +2,17 @@ import * as c from './constants';
 
 const endpoint = 'clients/';
 
+// UI Actions
 export const newClientFormChange = () => ({
   type: c.NEW_CLIENT_FORM_CHANGE
-})
+});
 
+export const deleteClientTrigger = (id) => ({
+  type: c.DELETE_CLIENT_TRIGGER,
+  id,
+});
+
+// API actions
 export const loadClients = () => ({
   types: [c.LOAD_CLIENTS, c.LOAD_CLIENTS_SUCCESS, c.LOAD_CLIENTS_FAIL],
   api: ({ get }) => get(endpoint, {
@@ -36,3 +43,8 @@ export const createClient = (data) => ({
     data
   }),
 })
+
+export const deleteClient = (id) => ({
+  types: [c.DELETE_CLIENT, c.DELETE_CLIENT_SUCCESS, c.DELETE_CLIENT_FAIL],
+  api: ({ del }) => del(`${endpoint}${id}`),
+});

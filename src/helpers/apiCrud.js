@@ -50,8 +50,17 @@ async function fetchResource(method, url, options = {}) {
 
   const resp = await fetch(process.env.API_URL + url + serializeParams(params), reqOptions);
 
+  let respData;
+
+  try {
+    // DELETE requests don't send response body
+    respData = await resp.json();
+  } catch(e) {
+    respData = null
+  }
+
   return {
-    data: await resp.json(),
+    data: respData,
     status: resp.status,
   };
 }
@@ -61,4 +70,5 @@ export default {
   post: (url, options) => fetchResource('post', url, options),
   del: (url, options) => fetchResource('delete', url, options),
   put: (url, options) => fetchResource('put', url, options),
+  patch: (url, options) => fetchResource('patch', url, options),
 };
