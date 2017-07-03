@@ -4,7 +4,6 @@ import Router from 'react-router/es/Router';
 import IndexRoute from 'react-router/es/Router';
 import applyRouterMiddleware from 'react-router/es/applyRouterMiddleware';
 import { ReduxAsyncConnect } from 'redux-connect';
-import { useScroll } from 'react-router-scroll';
 import { func } from 'prop-types';
 
 import App from './containers/App';
@@ -19,7 +18,6 @@ function reduxAsyncConnect(props) {
     <ReduxAsyncConnect
       {...props}
       filter={item => !item.deferred}
-      render={applyRouterMiddleware(useScroll())}
     />
   );
 }
