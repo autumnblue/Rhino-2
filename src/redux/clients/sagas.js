@@ -32,7 +32,6 @@ function* editClientFormChange() {
     const { values, syncErrors, registeredFields } = state.form.editClientForm;
     const client = yield select(getCurrentClient);
 
-    //if (isEmpty(syncErrors)) {
       // since we put entire client to reduxForm using initialValues
       // we need to extract only those properties which are rendered on the page
       const keys = Object.keys(registeredFields);
@@ -44,39 +43,9 @@ function* editClientFormChange() {
           ...diff,
         }));
       }
-    //s}
   }
 }
 
-/*function* setTouched(formName) {
-  const state = yield select();
-  const form = state.form[formName];
-  const { registeredFields } = form;
-
-  yield put(touch(formName, ...Object.keys(registeredFields)));
-}
-
-function* newClientEnd() {
-  while(true) {
-    yield take([
-      c.CREATE_CLIENT_FAIL,
-      c.CREATE_CLIENT_SUCCESS,
-    ]);
-
-    yield* setTouched('newClientForm');
-  }
-}
-
-function* editClientEnd() {
-  while(true) {
-    yield take([
-      c.EDIT_CLIENT_FAIL,
-      c.EDIT_CLIENT_SUCCESS,
-    ]);
-
-    yield* setTouched('editClientForm');
-  }
-}*/
 
 function* createClientSuccess() {
   while (true) {
@@ -109,8 +78,6 @@ export default function* createSaga() {
   yield all([
     fork(newClientFormChange),
     fork(editClientFormChange),
-    //fork(newClientEnd),
-    //fork(editClientEnd),
     fork(createClientSuccess),
     fork(deleteClientTrigger),
     fork(deleteClientSuccess),

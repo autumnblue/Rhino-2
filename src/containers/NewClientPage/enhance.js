@@ -3,9 +3,6 @@ import { asyncConnect } from 'redux-connect';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-// TODO: Can we move validate somewhere else?
-// import { validate } from 'src/components/clients/ClientForm';
-
 // actions
 import { loadClients, loadSingleClient, newClientFormChange } from 'src/redux/clients/actions';
 import { loadIssuers } from 'src/redux/issuers/actions';

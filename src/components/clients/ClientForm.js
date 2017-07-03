@@ -3,8 +3,6 @@ import { Field } from 'redux-form';
 import { compose, pure, withPropsOnChange } from 'recompose';
 import { ReduxInput, ReduxSelect } from 'src/components';
 
-// export const validate = (values, { validationErrors }) => validationErrors;
-
 const selectsOptionsEnhancer = withPropsOnChange([
   'parents',
   'issuers',
