@@ -38,5 +38,6 @@
   apt:
     pkg:
       - nodejs
-      - npm
+      # npm gets installed at the time nodejs is installed
+      #- npm
     state: installed
