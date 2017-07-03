@@ -8,6 +8,7 @@ const ClientEditPage = ({
   users,
 
   breadcrumbs,
+  validationErrors,
 
   onDelete,
   onBlur,
@@ -22,6 +23,7 @@ const ClientEditPage = ({
         parents={parents}
         issuers={issuers}
         users={users}
+        validationErrors={validationErrors}
       />
     </PageContent>
   </Page>

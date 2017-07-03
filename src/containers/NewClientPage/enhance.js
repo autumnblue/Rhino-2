@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 // TODO: Can we move validate somewhere else?
-import { validate } from 'src/components/clients/ClientForm';
+// import { validate } from 'src/components/clients/ClientForm';
 
 // actions
 import { loadClients, loadSingleClient, newClientFormChange } from 'src/redux/clients/actions';
@@ -25,6 +25,7 @@ const reduxAsyncConnect = asyncConnect([{
 }]);
 
 const reduxConnect = connect(state => ({
+  validationErrors: state.clients.validationErrors,
   parents: getPotentialParents(state),
   issuers: getIssuers(state),
   users: getUsers(state),
@@ -33,7 +34,7 @@ const reduxConnect = connect(state => ({
 });
 
 const reduxFormEnhancer = reduxForm({
-  validate,
+  // validate,
   pure: true,
   form: 'newClientForm',
 });

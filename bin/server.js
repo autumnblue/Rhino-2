@@ -6,9 +6,8 @@ const http = require( 'http');
 const httpProxy = require( 'http-proxy');
 const path = require( 'path');
 const PrettyError = require( 'pretty-error');
-const { port, apiHost, apiPort, webpackHost, webpackPort } = require( '../config/env');
+const { port, host, webpackHost, webpackPort } = require( '../config/env');
 
-const targetUrl = `http://${apiHost}:${apiPort}`;
 const pretty = new PrettyError();
 const app = express();
 const server = new http.Server(app);
@@ -27,9 +26,9 @@ if(process.env.NODE_ENV != 'development') {
   app.use(express.static(path.join(__dirname, '../dist')));
   app.use('*', staticFile(path.join(__dirname, '../dist/index.html')));
 } else {
-  const targetUrl = `http://${webpackHost}:${webpackPort}`
+  const webpackUrl = `http://${webpackHost}:${webpackPort}`
   const proxy = httpProxy.createProxyServer({
-    target: targetUrl,
+    target: webpackUrl,
     ws: true,
   });
 
@@ -48,16 +47,26 @@ if(process.env.NODE_ENV != 'development') {
   });
 
   app.use('*', (req, res) => {
-    proxy.web(req, res, { target: `${targetUrl}` });
+    proxy.web(req, res, { target: webpackUrl });
   });
 
+  server.on('upgrade', (req, socket, head) => {
+    proxy.ws(req, socket, head);
+  });
 
+  /*if(process.env.API_URL) {
+    const proxy = httpProxy.createProxyServer({
+      target: process.env.API_URL,
+    });
+
+    app.use('/api/', (req, res) => {
+      proxy.web(req, res, { target: webpackUrl });
+    });
+  }*/
 }
 
 
-server.on('upgrade', (req, socket, head) => {
-  proxy.ws(req, socket, head);
-});
+
 
 
 

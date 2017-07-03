@@ -1,10 +1,10 @@
 import { Input } from 'reactstrap';
 import { omit } from 'lodash';
+import css from './style.css';
 
 export default ({
   input: { value, onChange, onBlur },
-  meta: { touched, error, warning },
-  meta,
+  error,
   ...props
 }) => (
   <div>
@@ -14,6 +14,6 @@ export default ({
       onBlur={onBlur}
       {...omit(props, 'meta')}
     />
-    {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+    {error && <span className={css.error}>{error}</span>}
   </div>
 );

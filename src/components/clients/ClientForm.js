@@ -3,21 +3,7 @@ import { Field } from 'redux-form';
 import { compose, pure, withPropsOnChange } from 'recompose';
 import { ReduxInput, ReduxSelect } from 'src/components';
 
-export const validate = (values) => {
-  const requiredFields = [
-    'name', 'short_name', 'url', 'address', 'focal_first_name',
-    'focal_last_name', 'focal_title', 'focal_phone', 'focal_email',
-  ];
-  const errors = {};
-
-  for (const fieldName of requiredFields) {
-    if (!values[fieldName]) {
-      errors[fieldName] = `${fieldName} is required`;
-    }
-  }
-
-  return errors;
-};
+// export const validate = (values, { validationErrors }) => validationErrors;
 
 const selectsOptionsEnhancer = withPropsOnChange([
   'parents',
@@ -49,6 +35,7 @@ const ClientForm = ({
   parentsOptions,
   issuersOptions,
   projectManagerOptions,
+  validationErrors,
 
   onBlur,
 }) => (
@@ -59,19 +46,19 @@ const ClientForm = ({
           <legend>Client</legend>
           <FormGroup>
             <Label>Name</Label>
-            <Field component={ReduxInput} type="text" name="name" placeholder="Name" onBlur={onBlur} />
+            <Field component={ReduxInput} type="text" name="name" placeholder="Name" onBlur={onBlur} error={validationErrors.name} />
           </FormGroup>
           <FormGroup>
             <Label>Short Name</Label>
-            <Field component={ReduxInput} type="text" name="short_name" placeholder="Short Name" onBlur={onBlur} />
+            <Field component={ReduxInput} type="text" name="short_name" placeholder="Short Name" onBlur={onBlur} error={validationErrors.short_name} />
           </FormGroup>
           <FormGroup>
             <Label>URL</Label>
-            <Field component={ReduxInput} type="text" name="url" placeholder="URL" onBlur={onBlur} />
+            <Field component={ReduxInput} type="text" name="url" placeholder="URL" onBlur={onBlur} error={validationErrors.url} />
           </FormGroup>
           <FormGroup>
             <Label>Address</Label>
-            <Field component={ReduxInput} type="textarea" name="address" placeholder="Address" onBlur={onBlur} />
+            <Field component={ReduxInput} type="textarea" name="address" placeholder="Address" onBlur={onBlur} error={validationErrors.address} />
           </FormGroup>
         </FormGroup>
       </Col>
@@ -80,23 +67,23 @@ const ClientForm = ({
           <legend>Focal</legend>
           <FormGroup>
             <Label>Focal First Name</Label>
-            <Field component={ReduxInput} type="text" name="focal_first_name" placeholder="Focal First Name" onBlur={onBlur} />
+            <Field component={ReduxInput} type="text" name="focal_first_name" placeholder="Focal First Name" onBlur={onBlur} error={validationErrors.focal_first_name} />
           </FormGroup>
           <FormGroup>
             <Label>Focal Last Name</Label>
-            <Field component={ReduxInput} type="text" name="focal_last_name" placeholder="Focal Last Name" onBlur={onBlur} />
+            <Field component={ReduxInput} type="text" name="focal_last_name" placeholder="Focal Last Name" onBlur={onBlur} error={validationErrors.focal_last_name} />
           </FormGroup>
           <FormGroup>
             <Label>Focal Title</Label>
-            <Field component={ReduxInput} type="text" name="focal_title" placeholder="Focal Title" onBlur={onBlur} />
+            <Field component={ReduxInput} type="text" name="focal_title" placeholder="Focal Title" onBlur={onBlur} error={validationErrors.focal_title} />
           </FormGroup>
           <FormGroup>
             <Label>Focal Phone</Label>
-            <Field component={ReduxInput} type="text" name="focal_phone" placeholder="Focal Phone" onBlur={onBlur} />
+            <Field component={ReduxInput} type="text" name="focal_phone" placeholder="Focal Phone" onBlur={onBlur} error={validationErrors.focal_phone} />
           </FormGroup>
           <FormGroup>
             <Label>Focal Email</Label>
-            <Field component={ReduxInput} type="text" name="focal_email" placeholder="Focal Email" onBlur={onBlur} />
+            <Field component={ReduxInput} type="text" name="focal_email" placeholder="Focal Email" onBlur={onBlur} error={validationErrors.focal_email} />
           </FormGroup>
         </FormGroup>
       </Col>

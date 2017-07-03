@@ -14,6 +14,8 @@ const NewClientPage = ({
   issuers,
   users,
 
+  validationErrors,
+
   onBlur,
 }) => (
   <Page>
@@ -28,6 +30,7 @@ const NewClientPage = ({
         parents={parents}
         issuers={issuers}
         users={users}
+        validationErrors={validationErrors}
       />
     </PageContent>
   </Page>

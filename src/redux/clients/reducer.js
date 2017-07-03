@@ -7,6 +7,7 @@ const initialState = {
   data: {},
   ids: [],
   id: null,
+  validationErrors: {}
 };
 
 function data(state = initialState.data) {
@@ -31,8 +32,23 @@ function id(state = initialState.id, action) {
   }
 }
 
+function validationErrors(state = initialState.validationErrors, action) {
+  switch (action.type) {
+    case c.EDIT_CLIENT_FAIL:
+    case c.CREATE_CLIENT_FAIL:
+      const { status, data } = action.response;
+      return status === 400 ? data || {} : state;
+    case c.EDIT_CLIENT_SUCCESS:
+    case c.CREATE_CLIENT_SUCCESS:
+      return {};
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   data,
   ids,
   id,
+  validationErrors,
 });
