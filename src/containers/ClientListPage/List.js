@@ -1,8 +1,11 @@
 import { Link } from 'react-router';
+import { Table } from 'reactstrap';
+import { Button } from 'src/components';
 
 const List = ({ clients }) => (
-  <table className="table">
+  <Table striped>
     <tbody>
+      {console.log(clients)}
       {clients.map(({
         id,
         name,
@@ -10,50 +13,40 @@ const List = ({ clients }) => (
         service_order_count,
         assessment_count,
         departments,
-        focal_name,
+        focal_first_name,
+        focal_last_name,
         focal_email,
         focal_phone,
       }) => (
         <tr key={id}>
           <td>
+            {name}
+            <br /><br />
+            {address}
+          </td>
+          <td>
+            {service_order_count}&nbsp;Service&nbsp;Orders
+            <br /><br />
+            {assessment_count}&nbsp;Assessments
+            <br /><br />
+            {departments.length}&nbsp;Departments
+          </td>
+          <td>
+              {focal_first_name} {focal_last_name}
+              <br /><br />
+              {focal_email}
+              <br /><br />
+              {focal_phone}
+          </td>
+          <td>
             <Link to={`/clients/${id}`}>
-              <div className="main-info">
-                <div>
-                  {name}
-                </div>
-                <div>
-                  {address}
-                </div>
-              </div>
-              <div className="order-info">
-                <div className="row">
-                  {`${service_order_count} Service Orders`}
-                  {`${assessment_count} Assessments`}
-                </div>
-                <div className="row">
-                  {departments && `${departments.length} Departments`}
-                </div>
-              </div>
-              <div className="focal-info">
-                <div>
-                  {focal_name}
-                </div>
-                <div>
-                  <span>{focal_email}</span>
-                </div>
-                <div>
-                  {focal_phone}
-                </div>
-              </div>
-              <div className="nav-container">
-                    &rarr;
-                </div>
+              <Button color="primary" outline>&rarr;</Button>
             </Link>
           </td>
         </tr>
       ))}
     </tbody>
-  </table>
+  </Table>
 );
 
 export default List;

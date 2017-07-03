@@ -5,6 +5,8 @@ import {
 
 import { pure } from 'recompose';
 
+import css from './style.css'
+
 const propTypes = {
   className: string,
   children: any,
@@ -17,7 +19,7 @@ const PageContent = ({
     children,
     ...props
 }) => (
-  <div className={`page-content${className ? ` ${className}` : ''}`} {...props}>
+  <div className={`page-content${className ? ` ${className}` : ''} ${css.pageContent}`} {...props}>
     {children}
   </div>
 );

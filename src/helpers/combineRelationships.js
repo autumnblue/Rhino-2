@@ -61,7 +61,7 @@ export function combineRelationships(state, response) {
 
       for (const [id, entity] of Object.entries(normalized[key])) {
         if (id in newBranch.data) {
-          newBranch.data[id] = Object.assign({}, branch[id], entity);
+          newBranch.data[id] = Object.assign({}, branch.data[id], entity);
         } else {
           newBranch.data[id] = entity;
         }
