@@ -5,7 +5,7 @@ import {
 
 import { pure } from 'recompose';
 
-import css from './style.css'
+import css from './style.css';
 
 const propTypes = {
   className: string,

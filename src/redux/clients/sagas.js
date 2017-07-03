@@ -34,15 +34,15 @@ function* editClientFormChange() {
 
       // since we put entire client to reduxForm using initialValues
       // we need to extract only those properties which are rendered on the page
-      const keys = Object.keys(registeredFields);
-      const diff = simpleObjectDiff(pick(values, keys), client);
+    const keys = Object.keys(registeredFields);
+    const diff = simpleObjectDiff(pick(values, keys), client);
 
-      if (!isEmpty(diff)) {
-        yield put(editClient(id, {
-          commit: true,
-          ...diff,
-        }));
-      }
+    if (!isEmpty(diff)) {
+      yield put(editClient(id, {
+        commit: true,
+        ...diff,
+      }));
+    }
   }
 }
 

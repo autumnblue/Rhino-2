@@ -32,11 +32,11 @@ const List = ({ clients }) => (
             {departments.length}&nbsp;Departments
           </td>
           <td>
-              {focal_first_name} {focal_last_name}
-              <br /><br />
-              {focal_email}
-              <br /><br />
-              {focal_phone}
+            {focal_first_name} {focal_last_name}
+            <br /><br />
+            {focal_email}
+            <br /><br />
+            {focal_phone}
           </td>
           <td>
             <Link to={`/clients/${id}`}>

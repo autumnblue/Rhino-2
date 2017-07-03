@@ -7,7 +7,7 @@ const initialState = {
   data: {},
   ids: [],
   id: null,
-  validationErrors: {}
+  validationErrors: {},
 };
 
 function data(state = initialState.data) {

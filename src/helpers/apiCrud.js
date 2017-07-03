@@ -36,7 +36,7 @@ async function fetchResource(method, url, options = {}) {
     ...omit(['params', 'data']),
     headers: {
       ...options.headers,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
   };
 
