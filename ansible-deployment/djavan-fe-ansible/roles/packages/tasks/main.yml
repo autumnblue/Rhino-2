@@ -19,6 +19,7 @@
     - git
     - curl
     - libssl-dev
+    - python-software-properties
 
 - name: packages | create group "{{ project.group }}"
   group:
