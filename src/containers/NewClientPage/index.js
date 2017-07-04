@@ -16,7 +16,7 @@ const NewClientPage = ({
 
   validationErrors,
 
-  onBlur,
+  onFieldChange,
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
@@ -26,7 +26,7 @@ const NewClientPage = ({
     </PageHeader>
     <PageContent>
       <ClientForm
-        onBlur={onBlur}
+        onFieldChange={onFieldChange}
         parents={parents}
         issuers={issuers}
         users={users}

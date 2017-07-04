@@ -4,18 +4,25 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 // actions
-import { loadClients, loadSingleClient, deleteClientTrigger, editClientFormChange } from 'src/redux/clients/actions';
+import { loadPotentialParents, loadClients, loadSingleClient, deleteClientTrigger, editClientFormChange } from 'src/redux/clients/actions';
 import { loadIssuers } from 'src/redux/issuers/actions';
 import { loadUsers } from 'src/redux/users/actions';
 
 // selectors
 import { getIssuers } from 'src/redux/issuers/selectors';
-import { getPotentialParents, getCurrentClient } from 'src/redux/clients/selectors';
+import { getClients, getCurrentClient } from 'src/redux/clients/selectors';
 import { getUsers } from 'src/redux/users/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
   promise: ({ store: { dispatch }, params: { clientId } }) => Promise.all([
-    dispatch(loadClients()),
+    dispatch(loadClients({
+      filter: {
+        // include clients which has no umbrella
+        // exclude client with given id
+        umbrella: { isnull: true },
+        '-id': { eq: clientId }
+      }
+    })),
     dispatch(loadIssuers()),
     dispatch(loadUsers()),
     dispatch(loadSingleClient(clientId)),
@@ -24,13 +31,13 @@ const reduxAsyncConnect = asyncConnect([{
 
 const reduxConnect = connect(state => ({
   validationErrors: state.clients.validationErrors,
-  parents: getPotentialParents(state),
+  parents: getClients(state),
   issuers: getIssuers(state),
   users: getUsers(state),
   client: getCurrentClient(state),
 }), {
   onDelete: deleteClientTrigger,
-  onBlur: editClientFormChange,
+  onFieldChange: editClientFormChange,
 });
 
 const propsEnhancer = withPropsOnChange(['client'], ({ client }) => ({
@@ -51,7 +58,7 @@ const reduxFormEnhancer = reduxForm({
 
 const handlersEnhancer = withHandlers({
   onDelete: ({ onDelete, client }) => () => onDelete(client.id),
-  onBlur: ({ onBlur, client }) => () => onBlur(client.id),
+  onFieldChange: ({ onFieldChange, client }) => () => onFieldChange(client.id),
 });
 
 export default compose(

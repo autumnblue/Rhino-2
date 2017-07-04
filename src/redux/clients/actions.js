@@ -18,16 +18,31 @@ export const deleteClientTrigger = id => ({
 });
 
 // API actions
-export const loadClients = () => ({
+export const loadClients = ({
+  filter
+} = {}) => ({
   types: [c.LOAD_CLIENTS, c.LOAD_CLIENTS_SUCCESS, c.LOAD_CLIENTS_FAIL],
   api: ({ get }) => get(endpoint, {
     params: {
       include: ['departments', 'umbrella'],
       page: 1,
-      per_page: 10,
+      per_page: 1000,
+      sort: ['id'],
+      filter,
+    },
+  }),
+});
+
+export const loadPotentialParents = () => ({
+  types: [c.LOAD_CLIENTS, c.LOAD_CLIENTS_SUCCESS, c.LOAD_CLIENTS_FAIL],
+  api: ({ get }) => get(endpoint, {
+    params: {
+      include: ['departments', 'umbrella'],
+      page: 1,
+      per_page: 1000,
       sort: ['id'],
       filter: {
-        'name.icontains': '',
+        'umbrella.isnull': 'True',
       },
     },
   }),

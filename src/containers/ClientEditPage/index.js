@@ -11,7 +11,7 @@ const ClientEditPage = ({
   validationErrors,
 
   onDelete,
-  onBlur,
+  onFieldChange,
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
@@ -19,7 +19,7 @@ const ClientEditPage = ({
     </PageHeader>
     <PageContent>
       <ClientForm
-        onBlur={onBlur}
+        onFieldChange={onFieldChange}
         parents={parents}
         issuers={issuers}
         users={users}

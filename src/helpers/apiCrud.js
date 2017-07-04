@@ -14,6 +14,8 @@ function serializeParams(params) {
         for (const item of value) {
           query.push(`${key}[]=${item}`);
         }
+      } else if(key === 'filter') {
+        query.push(serializeFilter(value));
       } else {
         for (const [objKey, objValue] of Object.entries(value)) {
           query.push(`${key}{${objKey}}=${objValue}`);
@@ -25,6 +27,34 @@ function serializeParams(params) {
   }
 
   return `?${query.join('&')}`;
+}
+
+function stringifyFilterValue(value) {
+  if(value === true) {
+    return 'True';
+  }
+
+  if(value === false) {
+    return 'False'
+  }
+
+  return value;
+}
+
+function serializeFilter(filter) {
+  const query = [];
+
+  for(const [key, value] of Object.entries(filter)) {
+    if(typeof value !== 'object') {
+      query.push(`filter{${key}}=${stringifyFilterValue(value)}`);
+    } else {
+      for (const [objKey, objValue] of Object.entries(value)) {
+        query.push(`filter{${key}.${objKey}}=${stringifyFilterValue(objValue)}`);
+      }
+    }
+  }
+
+  return query.join('&')
 }
 
 async function fetchResource(method, url, options = {}) {

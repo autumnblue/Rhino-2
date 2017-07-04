@@ -27,7 +27,7 @@ const reduxConnect = connect(state => ({
   issuers: getIssuers(state),
   users: getUsers(state),
 }), {
-  onBlur: newClientFormChange,
+  onFieldChange: newClientFormChange,
 });
 
 const reduxFormEnhancer = reduxForm({
