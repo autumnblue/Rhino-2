@@ -1,7 +1,9 @@
-import { all, fork, take, select, put } from 'redux-saga/effects';
-import { isEmpty, pick } from 'lodash';
+import { all, fork, take, select, put, takeLatest, call } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+import { isEmpty, pick, pickBy } from 'lodash';
 import { formValueSelector, touch } from 'redux-form';
 import { push } from 'react-router-redux';
+import qs from 'qs';
 
 import simpleObjectDiff from 'src/helpers/simpleObjectDiff';
 
@@ -9,6 +11,23 @@ import { createClient, deleteClient, editClient } from './actions';
 import { getCurrentClient } from './selectors';
 
 import * as c from './constants';
+
+function* listFiltersChange() {
+  // will cancel current running handleInput task
+  yield takeLatest(c.LIST_FILTERS_CHANGE, function* handle() {
+    yield call(delay, 500)
+    const params = yield select(
+      formValueSelector('clientListFilterForm'),
+      'contains',
+      'per_page',
+      'sort'
+    );
+
+    const query = qs.stringify(pickBy(params));
+
+    yield put(push(`/clients/?${query}`));
+  });
+}
 
 function* newClientFormChange() {
   while (true) {
@@ -76,6 +95,7 @@ function* deleteClientSuccess() {
 
 export default function* createSaga() {
   yield all([
+    fork(listFiltersChange),
     fork(newClientFormChange),
     fork(editClientFormChange),
     fork(createClientSuccess),

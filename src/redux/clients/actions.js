@@ -17,18 +17,24 @@ export const deleteClientTrigger = id => ({
   id,
 });
 
+export const listFiltersChange = () => ({
+  type: c.LIST_FILTERS_CHANGE
+});
+
 // API actions
 export const loadClients = ({
-  filter
+  filter = {},
+  per_page = 1000,
+  sort = ['id']
 } = {}) => ({
   types: [c.LOAD_CLIENTS, c.LOAD_CLIENTS_SUCCESS, c.LOAD_CLIENTS_FAIL],
   api: ({ get }) => get(endpoint, {
     params: {
+      filter,
+      sort,
+      per_page,
       include: ['departments', 'umbrella'],
       page: 1,
-      per_page: 1000,
-      sort: ['id'],
-      filter,
     },
   }),
 });

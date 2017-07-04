@@ -3,10 +3,16 @@ import { Link } from 'react-router';
 
 import enhance from './enhance';
 import List from './List';
+import Filters from './Filters';
 
 const breadcrumbs = [{ label: 'Clients' }];
 
-const ClientListPage = ({ clients }) => (
+const ClientListPage = ({
+  clients,
+  filters,
+
+  onFiltersChange
+}) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
       <Link to="/clients/new">
@@ -14,6 +20,7 @@ const ClientListPage = ({ clients }) => (
       </Link>
     </PageHeader>
     <PageContent>
+      <Filters onChange={onFiltersChange} initialValues={filters} />
       <List clients={clients} />
     </PageContent>
   </Page>
