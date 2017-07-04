@@ -10,5 +10,6 @@ import '!style-loader!css-loader!./remark-classic/global/fonts/font-awesome/font
 // login page
 import '!style-loader!css-loader!./remark-classic/mmenu/assets/examples/css/pages/login-v2.css';
 
+import '!style-loader!css-loader!nprogress/nprogress.css'
 
-import './global.css';
+import '!style-loader!css-loader!./global.css';

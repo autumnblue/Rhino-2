@@ -1,3 +1,20 @@
 body {
   padding-top: 0;
 }
+
+#nprogress {
+
+}
+
+#nprogress .bar {
+  z-index: 1500 !important;
+}
+
+#nprogress .spinner {
+  top: 15px;
+  right: 15px;
+  position: fixed;
+  margin: 0;
+  width: auto;
+  height: auto;
+}
