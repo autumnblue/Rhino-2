@@ -78,6 +78,7 @@ async function fetchResource(method, url, options = {}) {
     reqOptions.body = JSON.stringify(data);
   }
 
+  console.log('API_URL is ' + process.env.API_URL);
   const resp = await fetch(process.env.API_URL + url + serializeParams(params), reqOptions);
 
   let respData;

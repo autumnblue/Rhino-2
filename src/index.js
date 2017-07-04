@@ -14,7 +14,7 @@ const initialState = {};
 const store = configureStore(browserHistory, initialState);
 const history = syncHistoryWithStore(browserHistory, store);
 
-if (process.env.NODE_ENV !== 'production') { // eslint-disable-line no-constant-condition
+if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-constant-condition
   const { whyDidYouUpdate } = require('why-did-you-update'); // eslint-disable-line global-require
   let createClass = React.createClass;
   Object.defineProperty(React, 'createClass', {
