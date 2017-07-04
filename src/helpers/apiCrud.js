@@ -57,6 +57,8 @@ function serializeFilter(filter) {
   return query.join('&');
 }
 
+  console.log('API_URL is ' + process.env.API_URL);
+
 async function fetchResource(method, url, options = {}) {
   const { params, data, useToken = true } = options;
   const token = cookie.load('token');
@@ -78,7 +80,7 @@ async function fetchResource(method, url, options = {}) {
     reqOptions.body = JSON.stringify(data);
   }
 
-  console.log('API_URL is ' + process.env.API_URL);
+
   const resp = await fetch(process.env.API_URL + url + serializeParams(params), reqOptions);
 
   let respData;
