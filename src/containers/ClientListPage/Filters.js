@@ -5,11 +5,11 @@ import { Col, Row, FormGroup } from 'reactstrap';
 import { ReduxInput, ReduxSelect } from 'src/components';
 
 const sortOptions = [
-  { value: 'date_created' , label: 'Date Created' },
-  { value: 'name' , label: 'Company Name' },
-  { value: 'focal_name' , label: 'Focal Name' },
-  { value: 'service' , label: 'Number of Service Orders' },
-  { value: 'assessments' , label: 'Number of Assessments' },
+  { value: 'date_created', label: 'Date Created' },
+  { value: 'name', label: 'Company Name' },
+  { value: 'focal_name', label: 'Focal Name' },
+  { value: 'service', label: 'Number of Service Orders' },
+  { value: 'assessments', label: 'Number of Assessments' },
 ];
 
 const perPageOptions = [
@@ -21,49 +21,49 @@ const perPageOptions = [
 
 const reduxFormEnhancer = reduxForm({
   form: 'clientListFilterForm',
-})
+});
 
 const enhance = compose(
   reduxFormEnhancer,
-  pure
+  pure,
 );
 
 const Filters = ({
-  onFiltersChange
+  onFiltersChange,
 }) => (<Row>
   <Col md="4">
-  <FormGroup>
-    <Field
-      component={ReduxSelect}
-      name="sort"
-      options={sortOptions}
-      placeholder="Sort"
-      onChange={onFiltersChange}
-    />
-  </FormGroup>
+    <FormGroup>
+      <Field
+        component={ReduxSelect}
+        name="sort"
+        options={sortOptions}
+        placeholder="Sort"
+        onChange={onFiltersChange}
+      />
+    </FormGroup>
   </Col>
   <Col md="4">
-  <FormGroup>
-    <Field
-      component={ReduxSelect}
-      name="per_page"
-      options={perPageOptions}
-      placeholder="Items Per Page"
-      onChange={onFiltersChange}
-    />
-  </FormGroup>
+    <FormGroup>
+      <Field
+        component={ReduxSelect}
+        name="per_page"
+        options={perPageOptions}
+        placeholder="Items Per Page"
+        onChange={onFiltersChange}
+      />
+    </FormGroup>
   </Col>
   <Col md="4">
-  <FormGroup>
-    <Field
-      component={ReduxInput}
-      name="contains"
-      type="text"
-      placeholder="Filter..."
-      onBlur={onFiltersChange}
-    />
-  </FormGroup>
+    <FormGroup>
+      <Field
+        component={ReduxInput}
+        name="contains"
+        type="text"
+        placeholder="Filter..."
+        onBlur={onFiltersChange}
+      />
+    </FormGroup>
   </Col>
 </Row>);
 
-export default enhance(Filters)
+export default enhance(Filters);

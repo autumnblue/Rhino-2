@@ -15,12 +15,12 @@ import * as c from './constants';
 function* listFiltersChange() {
   // will cancel current running handleInput task
   yield takeLatest(c.LIST_FILTERS_CHANGE, function* handle() {
-    yield call(delay, 500)
+    yield call(delay, 500);
     const params = yield select(
       formValueSelector('clientListFilterForm'),
       'contains',
       'per_page',
-      'sort'
+      'sort',
     );
 
     const query = qs.stringify(pickBy(params));

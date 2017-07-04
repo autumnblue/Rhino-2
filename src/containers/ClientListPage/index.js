@@ -11,7 +11,7 @@ const ClientListPage = ({
   clients,
   filters,
 
-  onFiltersChange
+  onFiltersChange,
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>

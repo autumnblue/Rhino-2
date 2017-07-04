@@ -18,14 +18,14 @@ export const deleteClientTrigger = id => ({
 });
 
 export const listFiltersChange = () => ({
-  type: c.LIST_FILTERS_CHANGE
+  type: c.LIST_FILTERS_CHANGE,
 });
 
 // API actions
 export const loadClients = ({
   filter = {},
   per_page = 1000,
-  sort = ['id']
+  sort = ['id'],
 } = {}) => ({
   types: [c.LOAD_CLIENTS, c.LOAD_CLIENTS_SUCCESS, c.LOAD_CLIENTS_FAIL],
   api: ({ get }) => get(endpoint, {

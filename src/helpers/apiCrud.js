@@ -14,7 +14,7 @@ function serializeParams(params) {
         for (const item of value) {
           query.push(`${key}[]=${item}`);
         }
-      } else if(key === 'filter') {
+      } else if (key === 'filter') {
         query.push(serializeFilter(value));
       } else {
         for (const [objKey, objValue] of Object.entries(value)) {
@@ -30,12 +30,12 @@ function serializeParams(params) {
 }
 
 function stringifyFilterValue(value) {
-  if(value === true) {
+  if (value === true) {
     return 'True';
   }
 
-  if(value === false) {
-    return 'False'
+  if (value === false) {
+    return 'False';
   }
 
   return value;
@@ -44,8 +44,8 @@ function stringifyFilterValue(value) {
 function serializeFilter(filter) {
   const query = [];
 
-  for(const [key, value] of Object.entries(filter)) {
-    if(typeof value !== 'object') {
+  for (const [key, value] of Object.entries(filter)) {
+    if (typeof value !== 'object') {
       query.push(`filter{${key}}=${stringifyFilterValue(value)}`);
     } else {
       for (const [objKey, objValue] of Object.entries(value)) {
@@ -54,7 +54,7 @@ function serializeFilter(filter) {
     }
   }
 
-  return query.join('&')
+  return query.join('&');
 }
 
 async function fetchResource(method, url, options = {}) {

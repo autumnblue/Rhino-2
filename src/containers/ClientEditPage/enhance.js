@@ -20,8 +20,8 @@ const reduxAsyncConnect = asyncConnect([{
         // include clients which has no umbrella
         // exclude client with given id
         umbrella: { isnull: true },
-        '-id': { eq: clientId }
-      }
+        '-id': { eq: clientId },
+      },
     })),
     dispatch(loadIssuers()),
     dispatch(loadUsers()),
