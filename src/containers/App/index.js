@@ -11,12 +11,11 @@ const menu = [
 
 const App = ({
   children,
-  location,
+  activeCategory,
 }) => (
   <div>
     <BodyClassName className="site-menubar-unfold" />
-    {/* <DashboardMenu menu={menu} location={location} />*/}
-    <Menu />
+    <Menu activeCategory={activeCategory} />
     <div>
       {children}
     </div>

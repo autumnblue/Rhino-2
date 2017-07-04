@@ -1,5 +1,5 @@
 import { UserAuthWrapper } from 'redux-auth-wrapper';
-import { compose } from 'recompose';
+import { compose, withPropsOnChange, pure } from 'recompose';
 import { asyncConnect } from 'redux-connect';
 import { push, replace } from 'react-router-redux';
 import cookie from 'react-cookie';
@@ -36,9 +36,16 @@ const reduxConnect = connect(
   },
 );
 
+const propsEnhancer = withPropsOnChange(['location'], ({ location }) => ({
+  x: console.log(location.pathname.split('/')[1]),
+  activeCategory: location.pathname.split('/')[1]
+}))
+
 export default compose(
   reduxAsyncConnect,
   authHOC,
   reduxConnect,
+  propsEnhancer,
   pageMountEnhancer,
+  pure,
 );

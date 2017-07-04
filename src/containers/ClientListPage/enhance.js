@@ -1,5 +1,5 @@
 import { asyncConnect } from 'redux-connect';
-import { compose, pure } from 'recompose';
+import { compose, pure, withPropsOnChange } from 'recompose';
 import { connect } from 'react-redux';
 import { pick } from 'lodash';
 
@@ -27,16 +27,16 @@ const reduxConnect = connect(
   }),
   {
     onFiltersChange: listFiltersChange,
-  },
-  (stateProps, dispatchProps, { location: { query } }) => ({
-    ...stateProps,
-    ...dispatchProps,
-    filters: pick(query, ['contains', 'per_page', 'sort']),
-  }),
+  }
 );
+
+const propsEnhancer = withPropsOnChange(['location'], ({ location }) => ({
+  filters: pick(location.query, ['contains', 'per_page', 'sort']),
+}))
 
 export default compose(
   reduxAsyncConnect,
   reduxConnect,
+  propsEnhancer,
   pure,
 );
