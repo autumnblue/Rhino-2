@@ -1,16 +1,16 @@
-import { compose, pure, withPropsOnChange } from 'recompose';
+import { compose, pure } from 'recompose';
 import { asyncConnect } from 'redux-connect';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 // actions
-import { loadClients, loadSingleClient, newClientFormChange } from 'src/redux/clients/actions';
+import { loadClients, newClientFormChange } from 'src/redux/clients/actions';
 import { loadIssuers } from 'src/redux/issuers/actions';
 import { loadUsers } from 'src/redux/users/actions';
 
 // selectors
 import { getIssuers } from 'src/redux/issuers/selectors';
-import { getPotentialParents, getCurrentClient } from 'src/redux/clients/selectors';
+import { getPotentialParents } from 'src/redux/clients/selectors';
 import { getUsers } from 'src/redux/users/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
@@ -31,7 +31,6 @@ const reduxConnect = connect(state => ({
 });
 
 const reduxFormEnhancer = reduxForm({
-  // validate,
   pure: true,
   form: 'newClientForm',
 });

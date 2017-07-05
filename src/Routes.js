@@ -1,10 +1,8 @@
 import Route from 'react-router/es/Route';
 import Redirect from 'react-router/es/Redirect';
 import Router from 'react-router/es/Router';
-import IndexRoute from 'react-router/es/Router';
-import applyRouterMiddleware from 'react-router/es/applyRouterMiddleware';
 import { ReduxAsyncConnect } from 'redux-connect';
-import { func } from 'prop-types';
+import { object } from 'prop-types';
 
 import App from './containers/App';
 import LoginPage from './containers/LoginPage';
@@ -23,7 +21,7 @@ function reduxAsyncConnect(props) {
 }
 
 const propTypes = {
-  // history: func.isRequired,
+  history: object.isRequired,
 };
 
 const Routes = ({ history }) => (

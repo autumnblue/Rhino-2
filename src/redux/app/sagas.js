@@ -5,7 +5,7 @@ function* initialize() {
   while (true) {
     yield take(c.INITIALIZE);
 
-    const loader = document.querySelector('.page-loader');
+    const loader = window.document.querySelector('.page-loader');
 
     if (loader) {
       loader.parentNode.removeChild(loader);

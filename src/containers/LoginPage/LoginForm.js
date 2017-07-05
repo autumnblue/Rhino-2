@@ -1,7 +1,7 @@
 import { reduxForm, Field } from 'redux-form';
 import { compose, pure, withHandlers } from 'recompose';
 import { func } from 'prop-types';
-import { FormGroup, Form, Label } from 'reactstrap';
+import { FormGroup, Form } from 'reactstrap';
 import { ReduxInput, Button } from 'src/components';
 
 const propTypes = {

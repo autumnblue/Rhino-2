@@ -1,7 +1,7 @@
 import { lifecycle } from 'recompose';
 
 export default lifecycle({
-  componentDidMount(props) {
+  componentDidMount() {
     this.props.onInitialize();
   },
 });

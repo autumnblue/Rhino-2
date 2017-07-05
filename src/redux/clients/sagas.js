@@ -1,7 +1,7 @@
 import { all, fork, take, select, put, takeLatest, call } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { isEmpty, pick, pickBy } from 'lodash';
-import { formValueSelector, touch } from 'redux-form';
+import { formValueSelector } from 'redux-form';
 import { push } from 'react-router-redux';
 import qs from 'qs';
 
@@ -57,11 +57,11 @@ function* editClientFormChange() {
   while (true) {
     const { id } = yield take(c.EDIT_CLIENT_FORM_CHANGE);
     const state = yield select();
-    const { values, syncErrors, registeredFields } = state.form.editClientForm;
+    const { values, registeredFields } = state.form.editClientForm;
     const client = yield select(getCurrentClient);
 
-      // since we put entire client to reduxForm using initialValues
-      // we need to extract only those properties which are rendered on the page
+    // since we put entire client to reduxForm using initialValues
+    // we need to extract only those properties which are rendered on the page
     const keys = Object.keys(registeredFields);
     const diff = simpleObjectDiff(pick(values, keys), client);
 
@@ -88,7 +88,8 @@ function* deleteClientTrigger() {
   while (true) {
     const { id } = yield take(c.DELETE_CLIENT_TRIGGER);
 
-    if (confirm('Are you sure want to delete the client')) {
+    // eslint-disable-next-line no-alert
+    if (window.confirm('Are you sure want to delete the client')) {
       yield put(deleteClient(id));
     }
   }
@@ -96,7 +97,7 @@ function* deleteClientTrigger() {
 
 function* deleteClientSuccess() {
   while (true) {
-    const { id } = yield take(c.DELETE_CLIENT_SUCCESS);
+    yield take(c.DELETE_CLIENT_SUCCESS);
 
     yield put(push('/clients'));
   }

@@ -1,3 +1,5 @@
+/* eslint-disable import/no-webpack-loader-syntax */
+
 import '!style-loader!css-loader!react-select/dist/react-select.css';
 
 import '!style-loader!css-loader!./remark-classic/global/css/bootstrap.css';

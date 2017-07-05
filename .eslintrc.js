@@ -21,14 +21,16 @@ module.exports = {
     "import/prefer-default-export": 0,
 
     // we don/t use default props
-    "react/require-default-props": 0
+    "react/require-default-props": 0,
+
+    // identifiers like foo_bar are used as server request params
+    "camelcase": 0
   },
   globals: {
     __CLIENT__: true,
     __DEVELOPMENT__: true,
     __DEVTOOLS__: true,
-    document: true,
-    fetch: true,
+    window: true,
     Base: true
   }
 };

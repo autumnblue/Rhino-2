@@ -15,7 +15,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-constant-condition
   const { whyDidYouUpdate } = require('why-did-you-update'); // eslint-disable-line global-require
-  let createClass = React.createClass;
+  let createClass = React.createClass; // eslint-disable-line no-unused-vars
   Object.defineProperty(React, 'createClass', {
     set: (nextCreateClass) => {
       createClass = nextCreateClass;
@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-constant
   whyDidYouUpdate(React);
 }
 
-const rootEl = document.getElementById('react-view');
+const rootEl = window.document.getElementById('react-view');
 
 const renderApp = routes => (
   <AppContainer>
@@ -38,7 +38,7 @@ ReactDOM.render(renderApp(<Routes history={history} />), rootEl);
 
 if (module.hot) {
   module.hot.accept('./Routes', () => {
-    // eslint-disable-next-line no-shadow
+    // eslint-disable-next-line no-shadow, global-require
     const { default: Routes } = require('./Routes');
     ReactDOM.render(renderApp(<Routes history={history} />), rootEl);
   });
