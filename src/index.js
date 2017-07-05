@@ -37,9 +37,9 @@ const renderApp = routes => (
 ReactDOM.render(renderApp(<Routes history={history} />), rootEl);
 
 if (module.hot) {
-  module.hot.accept('./Routes', async () => {
+  module.hot.accept('./Routes', () => {
     // eslint-disable-next-line no-shadow
-    const { default: Routes } = await import('./Routes');
+    const { default: Routes } = require('./Routes');
     ReactDOM.render(renderApp(<Routes history={history} />), rootEl);
   });
 }
