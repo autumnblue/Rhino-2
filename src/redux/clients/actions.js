@@ -21,11 +21,17 @@ export const listFiltersChange = () => ({
   type: c.LIST_FILTERS_CHANGE,
 });
 
+export const pageChange = page => ({
+  type: c.PAGE_CHANGE,
+  page,
+})
+
 // API actions
 export const loadClients = ({
   filter = {},
-  per_page = 1000,
+  per_page = 10,
   sort = ['id'],
+  page = 1,
 } = {}) => ({
   types: [c.LOAD_CLIENTS, c.LOAD_CLIENTS_SUCCESS, c.LOAD_CLIENTS_FAIL],
   api: ({ get }) => get(endpoint, {
@@ -33,8 +39,8 @@ export const loadClients = ({
       filter,
       sort,
       per_page,
+      page,
       include: ['departments', 'umbrella'],
-      page: 1,
     },
   }),
 });

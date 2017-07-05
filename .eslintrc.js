@@ -27,7 +27,8 @@ module.exports = {
     __CLIENT__: true,
     __DEVELOPMENT__: true,
     __DEVTOOLS__: true,
-    'document': true,
-    'fetch': true
+    document: true,
+    fetch: true,
+    Base: true
   }
 };

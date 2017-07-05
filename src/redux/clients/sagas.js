@@ -12,9 +12,12 @@ import { getCurrentClient } from './selectors';
 
 import * as c from './constants';
 
-function* listFiltersChange() {
+function* listParamsChange() {
   // will cancel current running handleInput task
-  yield takeLatest(c.LIST_FILTERS_CHANGE, function* handle() {
+  yield takeLatest([
+    c.LIST_FILTERS_CHANGE,
+    c.PAGE_CHANGE
+  ], function* handle() {
     yield call(delay, 500);
     const params = yield select(
       formValueSelector('clientListFilterForm'),
@@ -22,6 +25,12 @@ function* listFiltersChange() {
       'per_page',
       'sort',
     );
+    const { clients } = yield select();
+    const { page } = clients;
+
+    if(page > 1) {
+      params.page = page;
+    }
 
     const query = qs.stringify(pickBy(params));
 
@@ -95,7 +104,7 @@ function* deleteClientSuccess() {
 
 export default function* createSaga() {
   yield all([
-    fork(listFiltersChange),
+    fork(listParamsChange),
     fork(newClientFormChange),
     fork(editClientFormChange),
     fork(createClientSuccess),

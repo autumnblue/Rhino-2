@@ -1,8 +1,7 @@
 import { Link } from 'react-router';
 import ReactPaginate from 'react-paginate';
 
-import { Page, PageContent, PageHeader, Button } from 'src/components';
-
+import { Page, PageContent, PageHeader, Button, Paginate } from 'src/components';
 
 import enhance from './enhance';
 import List from './List';
@@ -14,7 +13,11 @@ const ClientListPage = ({
   clients,
   filters,
 
+  page,
+  pageCount,
+
   onFiltersChange,
+  onPageChange
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
@@ -25,12 +28,11 @@ const ClientListPage = ({
     <PageContent>
       <Filters onChange={onFiltersChange} initialValues={filters} />
       <List clients={clients} />
-      {/*<ReactPaginate
-        pageCount={10}
-        pageRangeDisplayed={2}
-        marginPagesDisplayed={3}
-        onPageChange={(p) => conaole.log('page', p)}
-      />*/}
+      <Paginate
+        pageCount={pageCount}
+        page={page}
+        onChange={onPageChange}
+      />
     </PageContent>
   </Page>
 );

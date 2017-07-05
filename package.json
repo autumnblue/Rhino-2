@@ -30,6 +30,7 @@
   "dependencies": {
     "@types/react": "^15.0.13",
     "@types/react-dom": "^0.14.23",
+    "babel-plugin-jsx-base-component": "^0.1.2",
     "classnames": "^2.2.5",
     "css-loader": "^0.28.4",
     "express": "^4.13.3",

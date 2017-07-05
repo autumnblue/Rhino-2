@@ -135,7 +135,7 @@ module.exports = {
   devServer: {
     hot: true,
     inline: true,
-    stats: { colors: true },
+    stats: { colors: true, modules: false, assets: false },
     headers: { 'Access-Control-Allow-Origin': '*' },
     port: webpackPort,
   }

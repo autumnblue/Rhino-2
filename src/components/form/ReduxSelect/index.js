@@ -3,7 +3,7 @@ import { compose, pure, withHandlers } from 'recompose';
 import css from './style.css';
 
 const handlersEnhancer = withHandlers({
-  onChange: ({ input: { onChange } }) => ({ value } = { value: null }) => onChange(value),
+  onChange: ({ input: { onChange } }) => (v) => onChange(v ? v.value : null),
 });
 
 const enhance = compose(

@@ -5,6 +5,7 @@ export const NEW_CLIENT_FORM_CHANGE = `${prefix}/NEW_CLIENT_FORM_CHANGE`;
 export const EDIT_CLIENT_FORM_CHANGE = `${prefix}/EDIT_CLIENT_FORM_CHANGE`;
 export const DELETE_CLIENT_TRIGGER = `${prefix}/DELETE_CLIENT_TRIGGER`;
 export const LIST_FILTERS_CHANGE = `${prefix}/LIST_FILTERS_CHANGE`;
+export const PAGE_CHANGE = `${prefix}/PAGE_CHANGE`;
 
 // API actions
 export const LOAD_CLIENTS = `${prefix}/LOAD_CLIENTS`;

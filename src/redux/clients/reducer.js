@@ -7,6 +7,8 @@ const initialState = {
   data: {},
   ids: [],
   id: null,
+  page: 1,
+  pageCount: 1,
   validationErrors: {},
 };
 
@@ -32,6 +34,24 @@ function id(state = initialState.id, action) {
   }
 }
 
+function page(state = initialState.page, action) {
+  switch (action.type) {
+    case c.PAGE_CHANGE:
+      return action.page;
+    default:
+      return state;
+  }
+}
+
+function pageCount(state = initialState.pageCount, action) {
+  switch (action.type) {
+    case c.LOAD_CLIENTS_SUCCESS:
+      return action.response.data.meta.total_pages;
+    default:
+      return state;
+  }
+}
+
 function validationErrors(state = initialState.validationErrors, action) {
   switch (action.type) {
     case c.EDIT_CLIENT_FAIL:
@@ -50,5 +70,7 @@ export default combineReducers({
   data,
   ids,
   id,
+  page,
+  pageCount,
   validationErrors,
 });
