@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import browserHistory from 'react-router/es/browserHistory';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import './global-style';
 import configureStore from './configureStore';
@@ -35,14 +34,12 @@ const renderApp = routes => (
   </AppContainer>
 );
 
-injectTapEventPlugin();
 ReactDOM.render(renderApp(<Routes history={history} />), rootEl);
 
 if (module.hot) {
-  module.hot.accept('./Routes', () => {
-    // eslint-disable-next-line global-require, no-shadow
-    const { default: Routes } = require('./Routes');
-    injectTapEventPlugin();
+  module.hot.accept('./Routes', async () => {
+    // eslint-disable-next-line no-shadow
+    const { default: Routes } = await import('./Routes');
     ReactDOM.render(renderApp(<Routes history={history} />), rootEl);
   });
 }

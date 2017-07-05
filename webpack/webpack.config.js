@@ -69,8 +69,8 @@ module.exports = {
   module: {
     rules:  [
       {
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
+        test: /\.js$/,
+        exclude: /node_modules/,
         use: 'babel-loader',
       },
       {
@@ -130,18 +130,13 @@ module.exports = {
        src: path.resolve(__dirname, '../src/'),
    },
     modules: [path.resolve('./src'), 'node_modules'],
-    extensions: ['.json', '.js', '.jsx'],
+    extensions: ['.json', '.js'],
   },
   devServer: {
     hot: true,
     inline: true,
-    stats: 'normal',
+    stats: { colors: true },
     headers: { 'Access-Control-Allow-Origin': '*' },
     port: webpackPort,
-
-    /*proxy: [{
-        context: ['/**'],
-        target: `http://localhost:${apiDevPort}`,
-    }],*/
   }
 };
