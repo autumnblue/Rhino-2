@@ -31,15 +31,15 @@ const reduxConnect = connect(
   }),
   {
     onFiltersChange: listFiltersChange,
-    onPageChange: pageChange
+    onPageChange: pageChange,
   },
   null,
-  { pure: true }
+  { pure: true },
 );
 
 const propsEnhancer = withPropsOnChange(['location'], ({ location }) => ({
   filters: pick(location.query, ['contains', 'per_page', 'sort']),
-}))
+}));
 
 export default compose(
   reduxAsyncConnect,

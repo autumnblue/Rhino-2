@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import css from './style.css';
 
 const Nav = ({
-  activeCategory
+  activeCategory,
 }) => (
   <div className="site-menubar" style={{ top: 0 }}>
     <div className="site-menubar-body scrollable scrollable-inverse scrollable-vertical is-disabled" style={{ position: 'relative' }}>

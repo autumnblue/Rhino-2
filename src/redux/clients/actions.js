@@ -24,7 +24,7 @@ export const listFiltersChange = () => ({
 export const pageChange = page => ({
   type: c.PAGE_CHANGE,
   page,
-})
+});
 
 // API actions
 export const loadClients = ({

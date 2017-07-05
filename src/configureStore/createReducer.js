@@ -3,7 +3,7 @@ import reduceReducers from 'reduce-reducers';
 import { reducer as reduxAsyncConnect } from 'redux-connect';
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import nprogress from 'nprogress'
+import nprogress from 'nprogress';
 
 import * as reducers from '../redux/reducers';
 

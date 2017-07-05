@@ -38,8 +38,8 @@ const reduxConnect = connect(
 
 const propsEnhancer = withPropsOnChange(['location'], ({ location }) => ({
   x: console.log(location.pathname.split('/')[1]),
-  activeCategory: location.pathname.split('/')[1]
-}))
+  activeCategory: location.pathname.split('/')[1],
+}));
 
 export default compose(
   reduxAsyncConnect,

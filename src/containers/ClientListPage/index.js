@@ -17,7 +17,7 @@ const ClientListPage = ({
   pageCount,
 
   onFiltersChange,
-  onPageChange
+  onPageChange,
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
