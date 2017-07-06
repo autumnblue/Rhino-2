@@ -1,8 +1,20 @@
 import { Col, Row, FormGroup, Form, Label } from 'reactstrap';
 import { Field } from 'redux-form';
+import { object, func } from 'prop-types';
+
 import { ReduxInput, ReduxSelect } from 'src/components';
+import { selectOptionsType } from 'src/prop-types';
 
 import enhance from './enhance';
+
+const propTypes = {
+  parentsOptions: selectOptionsType.isRequired,
+  issuersOptions: selectOptionsType.isRequired,
+  projectManagerOptions: selectOptionsType.isRequired,
+  validationErrors: object,
+
+  onFieldChange: func.isRequired,
+};
 
 const ClientForm = ({
   parentsOptions,
@@ -180,5 +192,7 @@ const ClientForm = ({
     </Row>
   </Form>
 );
+
+ClientForm.propTypes = propTypes;
 
 export default enhance(ClientForm);

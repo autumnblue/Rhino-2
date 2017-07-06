@@ -1,7 +1,6 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux';
-import { sagaMiddleware } from 'redux-saga';
 import createSagaMiddleware from 'redux-saga';
 
 import createReducer from './createReducer'; // Or wherever you keep your reducers

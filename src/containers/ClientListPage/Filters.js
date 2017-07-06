@@ -1,8 +1,13 @@
 import { compose, pure } from 'recompose';
 import { Field, reduxForm } from 'redux-form';
 import { Col, Row, FormGroup } from 'reactstrap';
+import { func } from 'prop-types';
 
 import { ReduxInput, ReduxSelect } from 'src/components';
+
+const propTypes = {
+  onFiltersChange: func.isRequired,
+};
 
 const sortOptions = [
   { value: 'date_created', label: 'Date Created' },
@@ -65,5 +70,7 @@ const Filters = ({
     </FormGroup>
   </Col>
 </Row>);
+
+Filters.propTypes = propTypes;
 
 export default enhance(Filters);

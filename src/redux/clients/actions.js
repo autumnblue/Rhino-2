@@ -45,21 +45,6 @@ export const loadClients = ({
   }),
 });
 
-export const loadPotentialParents = () => ({
-  types: [c.LOAD_CLIENTS, c.LOAD_CLIENTS_SUCCESS, c.LOAD_CLIENTS_FAIL],
-  api: ({ get }) => get(endpoint, {
-    params: {
-      include: ['departments', 'umbrella'],
-      page: 1,
-      per_page: 1000,
-      sort: ['id'],
-      filter: {
-        'umbrella.isnull': 'True',
-      },
-    },
-  }),
-});
-
 export const loadSingleClient = id => ({
   types: [c.LOAD_SINGLE_CLIENT, c.LOAD_SINGLE_CLIENT_SUCCESS, c.LOAD_SINGLE_CLIENT_FAIL],
   api: ({ get }) => get(endpoint + id, {

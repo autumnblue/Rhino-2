@@ -1,13 +1,12 @@
 import BodyClassName from 'react-body-classname';
+import { element, string } from 'prop-types';
 import enhance from './enhance';
 import Menu from './Menu';
 
-const menu = [
-  { id: 1, text: 'Clients', path: '/clients/list' },
-  { id: 2, text: 'Assessments', path: '/assessments' },
-  { id: 3, text: 'Services', path: '/services' },
-  { id: 4, text: 'Log out', path: '/logout' },
-];
+const propTypes = {
+  children: element.isRequired,
+  activeCategory: string.isRequired,
+};
 
 const App = ({
   children,
@@ -21,5 +20,7 @@ const App = ({
     </div>
   </div>
 );
+
+App.propTypes = propTypes;
 
 export default enhance(App);

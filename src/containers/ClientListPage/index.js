@@ -1,11 +1,27 @@
 import { Link } from 'react-router';
-import ReactPaginate from 'react-paginate';
+import { arrayOf, shape, string, number, func } from 'prop-types';
 
 import { Page, PageContent, PageHeader, Button, Paginate } from 'src/components';
+import { clientType } from 'src/prop-types';
 
 import enhance from './enhance';
 import List from './List';
 import Filters from './Filters';
+
+const propTypes = {
+  clients: arrayOf(clientType),
+  filters: shape({
+    contains: string,
+    per_page: number,
+    sort: string,
+  }).isRequired,
+
+  page: number.isRequired,
+  pageCount: number.isRequired,
+
+  onFiltersChange: func.isRequired,
+  onPageChange: func.isRequired,
+};
 
 const breadcrumbs = [{ label: 'Clients' }];
 
@@ -26,7 +42,7 @@ const ClientListPage = ({
       </Link>
     </PageHeader>
     <PageContent>
-      <Filters onChange={onFiltersChange} initialValues={filters} />
+      <Filters onFiltersChange={onFiltersChange} initialValues={filters} />
       <List clients={clients} />
       <Paginate
         pageCount={pageCount}
@@ -36,5 +52,7 @@ const ClientListPage = ({
     </PageContent>
   </Page>
 );
+
+ClientListPage.propTypes = propTypes;
 
 export default enhance(ClientListPage);

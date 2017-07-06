@@ -1,7 +1,6 @@
 import { asyncConnect } from 'redux-connect';
 import { compose, pure, withPropsOnChange } from 'recompose';
 import { connect } from 'react-redux';
-import { pick } from 'lodash';
 
 import { loadClients, listFiltersChange, pageChange } from 'src/redux/clients/actions';
 import { getClients } from 'src/redux/clients/selectors';
@@ -37,8 +36,14 @@ const reduxConnect = connect(
   { pure: true },
 );
 
-const propsEnhancer = withPropsOnChange(['location'], ({ location }) => ({
-  filters: pick(location.query, ['contains', 'per_page', 'sort']),
+const propsEnhancer = withPropsOnChange(['location'], ({
+  location: { query: { contains, sort, per_page } },
+}) => ({
+  filters: {
+    contains,
+    sort,
+    per_page: +per_page,
+  },
 }));
 
 export default compose(

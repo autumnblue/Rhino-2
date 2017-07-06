@@ -1,11 +1,17 @@
 import { Link } from 'react-router';
 import { Table } from 'reactstrap';
+import { arrayOf } from 'prop-types';
+
 import { Button } from 'src/components';
+import { clientType } from 'src/prop-types';
+
+const propTypes = {
+  clients: arrayOf(clientType).isRequired,
+};
 
 const List = ({ clients }) => (
   <Table striped>
     <tbody>
-      {console.log(clients)}
       {clients.map(({
         id,
         name,
@@ -48,5 +54,7 @@ const List = ({ clients }) => (
     </tbody>
   </Table>
 );
+
+List.propTypes = propTypes;
 
 export default List;

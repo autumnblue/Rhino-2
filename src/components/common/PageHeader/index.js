@@ -1,12 +1,4 @@
-import {
-    string,
-    object,
-    arrayOf,
-    array,
-    shape,
-    node,
-    any,
-} from 'prop-types';
+import { string, arrayOf, shape, node } from 'prop-types';
 import { Link } from 'react-router';
 
 import { compose, pure, defaultProps } from 'recompose';
@@ -14,9 +6,12 @@ import { compose, pure, defaultProps } from 'recompose';
 import css from './style.css';
 
 const propTypes = {
-  title: string,
-  children: any,
-    // privatePropTypes
+  children: node,
+  breadcrumbs: arrayOf(shape({
+    label: string.isRequired,
+    url: string,
+  })).isRequired,
+  className: string,
 };
 
 export const getDefaultPropsEnhancer = defaultProps({
@@ -24,32 +19,31 @@ export const getDefaultPropsEnhancer = defaultProps({
 });
 
 export const enhance = compose(
-    getDefaultPropsEnhancer,
-    pure,
+  getDefaultPropsEnhancer,
+  pure,
 );
 
 export const PageHeader = ({
-    title,
-    children,
-    breadcrumbs,
-    className,
-}) =>
-    (<div className={`page-header ${className || ''}`}>
-      <ol className={`breadcrumb ${css.breadcrumbs}`}>
-        {breadcrumbs.map(({
-            label,
-            url,
-          }) => (
-            <li className="breadcrumb-item" key={url + label}>
-              {url ? <Link to={url}>{label}</Link> : label}
-            </li>
-          ))}
-      </ol>
-      <div className="page-header-actions">
-        {children}
-      </div>
-    </div>)
-;
+  children,
+  breadcrumbs,
+  className,
+}) => (
+  <div className={`page-header ${className || ''}`}>
+    <ol className={`breadcrumb ${css.breadcrumbs}`}>
+      {breadcrumbs.map(({
+          label,
+          url,
+        }) => (
+          <li className="breadcrumb-item" key={url + label}>
+            {url ? <Link to={url}>{label}</Link> : label}
+          </li>
+        ))}
+    </ol>
+    <div className="page-header-actions">
+      {children}
+    </div>
+  </div>
+);
 
 PageHeader.propTypes = propTypes;
 

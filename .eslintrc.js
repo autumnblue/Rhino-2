@@ -12,9 +12,8 @@ module.exports = {
     // allow to use for..of
     "no-restricted-syntax": 0,
 
-    // allow to use package-like dependency "client"
+    // allow to use package-like dependency "src"
     "import/extensions": 0,
-    "import/no-extraneous-dependencies": 0,
     "import/no-unresolved": 0,
 
     // we can export and import both default and named
@@ -24,7 +23,13 @@ module.exports = {
     "react/require-default-props": 0,
 
     // identifiers like foo_bar are used as server request params
-    "camelcase": 0
+    "camelcase": 0,
+
+    // allow to use meta-component Base
+    "react/jsx-no-undef": [1, { "allowGlobals": true }],
+
+    // disable for now
+    "jsx-a11y/label-has-for": 0
   },
   globals: {
     __CLIENT__: true,

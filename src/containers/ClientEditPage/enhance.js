@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 // actions
-import { loadPotentialParents, loadClients, loadSingleClient, deleteClientTrigger, editClientFormChange } from 'src/redux/clients/actions';
+import { loadClients, loadSingleClient, deleteClientTrigger, editClientFormChange } from 'src/redux/clients/actions';
 import { loadIssuers } from 'src/redux/issuers/actions';
 import { loadUsers } from 'src/redux/users/actions';
 

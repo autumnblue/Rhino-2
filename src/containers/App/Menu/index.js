@@ -1,8 +1,13 @@
 import { Link } from 'react-router';
+import { string } from 'prop-types';
 
 import css from './style.css';
 
-const Nav = ({
+const propTypes = {
+  activeCategory: string.isRequired,
+};
+
+const Menu = ({
   activeCategory,
 }) => (
   <div className="site-menubar" style={{ top: 0 }}>
@@ -22,13 +27,16 @@ const Nav = ({
       </div>
       <div className="scrollable-bar scrollable-bar-vertical scrollable-bar-hide" draggable="false"><div className="scrollable-bar-handle" style={{ height: '805.792px' }} /></div></div>
     <div className="site-menubar-footer">
+      {
+        /* eslint-disable no-script-url */
+      }
       <a href="javascript: alert('to be implemented');" title="Logout" className={css.logout}>
         <span className="icon wb-power" aria-hidden="true" />
       </a>
     </div>
   </div>
-
-
 );
 
-export default Nav;
+Menu.propTypes = propTypes;
+
+export default Menu;

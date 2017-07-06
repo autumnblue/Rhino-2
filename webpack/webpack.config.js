@@ -128,9 +128,7 @@ module.exports = {
   resolve: {
     alias: {
        src: path.resolve(__dirname, '../src/'),
-   },
-    modules: [path.resolve('./src'), 'node_modules'],
-    extensions: ['.json', '.js'],
+     }
   },
   devServer: {
     hot: true,

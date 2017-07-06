@@ -1,7 +1,7 @@
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 import { compose, withPropsOnChange, pure } from 'recompose';
 import { asyncConnect } from 'redux-connect';
-import { push, replace } from 'react-router-redux';
+import { replace } from 'react-router-redux';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
 
@@ -13,7 +13,7 @@ import pageMountEnhancer from 'src/enhancers/pageMountEnhancer';
 const authHOC = UserAuthWrapper({
   authSelector: state => state.users,
   failureRedirectPath: '/login',
-  redirectAction: push,
+  redirectAction: replace,
   wrapperDisplayName: 'UserIsAuthenticated',
   predicate: users => users.me,
 });
@@ -26,6 +26,8 @@ const reduxAsyncConnect = asyncConnect([{
     if (!me && token) {
       return dispatch(refreshToken(token));
     }
+
+    return undefined;
   },
 }]);
 
@@ -37,7 +39,6 @@ const reduxConnect = connect(
 );
 
 const propsEnhancer = withPropsOnChange(['location'], ({ location }) => ({
-  x: console.log(location.pathname.split('/')[1]),
   activeCategory: location.pathname.split('/')[1],
 }));
 

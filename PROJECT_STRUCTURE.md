@@ -60,6 +60,8 @@ Explanation:
 
 - `apiMiddleware` allows to nicely call API methods. See below.
 
+`/prop-types` contains custom project-specific prop types like client object or breadcrumbs array. It allows us to not copy-paste complex prop types from file to file.
+
 `/redux` folder is described at next section.
 
 ## Redux

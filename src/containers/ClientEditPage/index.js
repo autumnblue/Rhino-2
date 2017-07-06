@@ -1,29 +1,19 @@
 import { Button } from 'reactstrap';
-import { shape, arrayOf, string, number, object, func } from 'prop-types';
+import { arrayOf, object, func } from 'prop-types';
+
 import { ClientForm, Page, PageContent, PageHeader } from 'src/components';
+import { clientType, issuerType, userType, breadcrumbsType } from 'src/prop-types';
+
 import enhance from './enhance';
 
 
 const propTypes = {
-  parents: arrayOf(shape({
-    id: number.isRequired,
-    name: string.isRequired,
-  })).isRequired,
-  issuers: arrayOf(shape({
-    id: number.isRequired,
-    name: string.isRequired,
-  })).isRequired,
-  users: arrayOf(shape({
-    id: number.isRequired,
-    first_name: string.isRequired,
-    last_name: string.isRequired,
-  })).isRequired,
+  parents: arrayOf(clientType).isRequired,
+  issuers: arrayOf(issuerType).isRequired,
+  users: arrayOf(userType).isRequired,
 
   validationErrors: object,
-  breadcrumbs: arrayOf(shape({
-    label: string.isRequired,
-    url: string,
-  })).isRequired,
+  breadcrumbs: breadcrumbsType.isRequired,
 
   onDelete: func.isRequired,
   onFieldChange: func.isRequired,

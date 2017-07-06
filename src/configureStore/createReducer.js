@@ -14,6 +14,7 @@ const rootReducer = (state = {}, action) => {
   switch (action.type) {
     case COMBINE_RELATIONSHIPS:
       return combineRelationships(state, action.response);
+    // TODO: Move these side-effects to app saga
     case '@redux-conn/BEGIN_GLOBAL_LOAD':
       nprogress.start();
       return state;
