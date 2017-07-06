@@ -7,7 +7,7 @@ const IndexHTML = () => (
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <title>Rhino Security - Djavan</title>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,300" />
+      {/* <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,300" />*/}
       {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.7.0/css/flag-icon.min.css" />*/}
       <style>
         {`

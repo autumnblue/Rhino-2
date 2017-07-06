@@ -10,12 +10,17 @@ import { loadUsers } from 'src/redux/users/actions';
 
 // selectors
 import { getIssuers } from 'src/redux/issuers/selectors';
-import { getPotentialParents } from 'src/redux/clients/selectors';
+import { getClients } from 'src/redux/clients/selectors';
 import { getUsers } from 'src/redux/users/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
   promise: ({ store: { dispatch } }) => Promise.all([
-    dispatch(loadClients()),
+    dispatch(loadClients({
+      filter: {
+        // include clients which has no umbrella
+        umbrella: { isnull: true },
+      },
+    })),
     dispatch(loadIssuers()),
     dispatch(loadUsers()),
   ]),
@@ -23,7 +28,7 @@ const reduxAsyncConnect = asyncConnect([{
 
 const reduxConnect = connect(state => ({
   validationErrors: state.clients.validationErrors,
-  parents: getPotentialParents(state),
+  parents: getClients(state),
   issuers: getIssuers(state),
   users: getUsers(state),
 }), {

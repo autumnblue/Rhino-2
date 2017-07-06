@@ -18,7 +18,7 @@ const propTypes = {
 
 const breadcrumbs = [{
   label: 'Clients',
-  url: '/clients/list',
+  url: '/clients',
 }, {
   label: 'New Client',
 }];

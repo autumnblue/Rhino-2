@@ -1,4 +1,4 @@
-import { number, string, shape, arrayOf, any } from 'prop-types';
+import { number, string, shape, arrayOf, any, node } from 'prop-types';
 // this module exports the most widely used custom prop types
 
 
@@ -10,7 +10,7 @@ export const breadcrumbsType = arrayOf(shape({
 }));
 
 export const selectOptionsType = arrayOf(shape({
-  label: string,
+  label: node,
   value: any.isRequired,
 }));
 
@@ -31,4 +31,10 @@ export const userType = shape({
   id: number.isRequired,
   first_name: string.isRequired,
   last_name: string.isRequired,
+});
+
+export const toolType = shape({
+  id: number.isRequired,
+  name: string.isRequired,
+  html_body: string.isRequired,
 });

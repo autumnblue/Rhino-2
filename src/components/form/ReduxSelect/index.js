@@ -1,13 +1,11 @@
 import Select from 'react-select';
 import { compose, pure, withHandlers } from 'recompose';
-import { shape, string, oneOf, number } from 'prop-types';
+import { string, object } from 'prop-types';
 
 import css from './style.css';
 
 const propTypes = {
-  input: shape({
-    value: oneOf([string, number]).isRequired,
-  }).isRequired,
+  input: object.isRequired,
   error: string,
 };
 

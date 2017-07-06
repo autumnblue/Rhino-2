@@ -9,11 +9,6 @@ export const getClients = createSelector(
   (ids, data) => ids.map(id => data[id]),
 );
 
-export const getPotentialParents = createSelector(
-  [getClients],
-  clients => clients.filter(({ umbrella }) => !umbrella),
-);
-
 export const getCurrentClient = createSelector(
   [getCurrentClientId, getClientsData],
   (id, data) => data[id],

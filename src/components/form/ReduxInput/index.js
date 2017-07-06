@@ -1,16 +1,12 @@
 import { Input } from 'reactstrap';
 import { omit } from 'lodash';
 import { pure } from 'recompose';
-import { shape, string, func, oneOf, number } from 'prop-types';
+import { string, object } from 'prop-types';
 
 import css from './style.css';
 
 const propTypes = {
-  input: shape({
-    value: oneOf([string, number]).isRequired,
-    onChange: func.isRequired,
-    onBlur: func.isRequired,
-  }).isRequired,
+  input: object.isRequired,
   error: string,
 };
 
