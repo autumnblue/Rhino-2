@@ -15,7 +15,7 @@
     "test": "NODE_ENV=test mocha mochaSetup.js './test/**/**/*.test.@(js|jsx)' --compilers js:babel-register --require babel-polyfill --recursive",
     "debug": "NODE_ENV=test mocha debug mochaSetup.js './test/**/**/*.test.@(js|jsx)' --compilers js:babel-register --require babel-polyfill --recursive",
     "test:watch": "npm test -- --watch",
-    "ci:": "npm run lint && npm test"
+    "ci-check": "npm run lint && npm test"
   },
   "keywords": [
     "React",
