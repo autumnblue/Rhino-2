@@ -28,6 +28,12 @@ const Menu = ({
                 <span className="site-menu-title">Settings &amp; Assets</span>
               </Link>
             </li>
+            <li className={`site-menu-item ${activeCategory === 'services' ? css.active : ''}`}>
+              <Link to="/services">
+                <i className="site-menu-icon wb-user" />
+                <span className="site-menu-title">Services</span>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
