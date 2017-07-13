@@ -36,7 +36,7 @@ const List = ({ services }) => (
             {tools.length} tools
           </td>
           <td>
-            {feature_image}
+            {feature_image ? <img src={feature_image.file} /> : null}
           </td>
           <td>
             {description}

@@ -11,3 +11,5 @@ export { default as Button } from './form/Button';
 
 // clients
 export { default as ClientForm } from './clients/ClientForm';
+
+export { default as ServiceForm } from './clients/ServiceForm';
