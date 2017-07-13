@@ -6,7 +6,7 @@ import { clientType } from 'src/prop-types';
 
 import enhance from './enhance';
 import ClientList from './ClientList';
-import Filters from './Filters';
+import ClientFilters from './ClientFilters';
 
 const propTypes = {
   clients: arrayOf(clientType),
@@ -42,7 +42,7 @@ const ClientListPage = ({
       </Link>
     </PageHeader>
     <PageContent>
-      <Filters onFiltersChange={onFiltersChange} initialValues={filters} />
+      <ClientFilters onFiltersChange={onFiltersChange} initialValues={filters} />
       <ClientList clients={clients} />
       <Paginate
         pageCount={pageCount}

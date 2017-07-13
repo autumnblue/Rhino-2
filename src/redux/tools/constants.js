@@ -1,7 +1,7 @@
 const prefix = 'tools';
 
 // UI actions
-// ...
+export const LIST_FILTERS_CHANGE = `${prefix}/LIST_FILTERS_CHANGE`;
 
 // API actions
 export const LOAD_TOOLS = `${prefix}/LOAD_TOOLS`;
