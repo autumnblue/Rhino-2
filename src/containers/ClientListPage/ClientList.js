@@ -2,14 +2,14 @@ import { Link } from 'react-router';
 import { Table } from 'reactstrap';
 import { arrayOf } from 'prop-types';
 
-import { Button } from 'src/components';
+import { Button, Icon } from 'src/components';
 import { clientType } from 'src/prop-types';
 
 const propTypes = {
   clients: arrayOf(clientType).isRequired,
 };
 
-const List = ({ clients }) => (
+const ClientList = ({ clients }) => (
   <Table striped>
     <tbody>
       {clients.map(({
@@ -46,7 +46,9 @@ const List = ({ clients }) => (
           </td>
           <td>
             <Link to={`/clients/${id}`}>
-              <Button color="primary" outline>&rarr;</Button>
+              <Button color="primary" outline className="btn-floating">
+                <Icon wb="arrow-right" />
+              </Button>
             </Link>
           </td>
         </tr>
@@ -55,6 +57,6 @@ const List = ({ clients }) => (
   </Table>
 );
 
-List.propTypes = propTypes;
+ClientList.propTypes = propTypes;
 
-export default List;
+export default ClientList;

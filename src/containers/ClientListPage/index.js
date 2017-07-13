@@ -5,7 +5,7 @@ import { Page, PageContent, PageHeader, Button, Paginate } from 'src/components'
 import { clientType } from 'src/prop-types';
 
 import enhance from './enhance';
-import List from './List';
+import ClientList from './ClientList';
 import Filters from './Filters';
 
 const propTypes = {
@@ -43,7 +43,7 @@ const ClientListPage = ({
     </PageHeader>
     <PageContent>
       <Filters onFiltersChange={onFiltersChange} initialValues={filters} />
-      <List clients={clients} />
+      <ClientList clients={clients} />
       <Paginate
         pageCount={pageCount}
         page={page}

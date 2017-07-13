@@ -2,6 +2,7 @@ const prefix = 'user';
 
 // UI actions
 export const SUBMIT_LOGIN_FORM = `${prefix}/SUBMIT_LOGIN_FORM`;
+export const LOGOUT = `${prefix}/LOGOUT`;
 
 // API actions
 export const REFRESH_TOKEN = `${prefix}/REFRESH_TOKEN`;

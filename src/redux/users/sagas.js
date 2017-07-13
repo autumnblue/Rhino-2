@@ -43,10 +43,19 @@ function* tokenSuccess() {
   }
 }
 
+function* logout() {
+  while (true) {
+    yield take(c.LOGOUT);
+
+    yield cookie.remove('token', { path: '/' });
+  }
+}
+
 export default function* createSaga() {
   yield all([
     fork(loginSuccess),
     fork(submitLoginForm),
     fork(tokenSuccess),
+    fork(logout),
   ]);
 }

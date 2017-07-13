@@ -4,6 +4,10 @@ export const loginSubmit = () => ({
   type: c.SUBMIT_LOGIN_FORM,
 });
 
+export const logout = () => ({
+  type: c.LOGOUT,
+});
+
 export const refreshToken = token => ({
   types: [c.REFRESH_TOKEN, c.REFRESH_TOKEN_SUCCESS, c.REFRESH_TOKEN_FAIL],
   api: ({ post }) => post('token/refresh/', {

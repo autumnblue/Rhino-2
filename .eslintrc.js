@@ -26,7 +26,7 @@ module.exports = {
     "camelcase": 0,
 
     // allow to use meta-component Base
-    "react/jsx-no-undef": [1, { "allowGlobals": true }],
+    "react/jsx-no-undef": [2, { "allowGlobals": true }],
 
     // disable for now
     "jsx-a11y/label-has-for": 0
