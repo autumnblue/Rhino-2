@@ -27,6 +27,8 @@ function me(state = initialState.me, action) {
     case c.LOGIN_SUCCESS:
     case c.REFRESH_TOKEN_SUCCESS:
       return action.response.data.user.id;
+    case c.LOGOUT:
+      return null;
     default:
       return state;
   }

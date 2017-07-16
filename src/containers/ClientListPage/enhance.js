@@ -6,20 +6,19 @@ import { loadClients, listFiltersChange, pageChange } from 'src/redux/clients/ac
 import { getClients } from 'src/redux/clients/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
-  promise: ({ store: { dispatch }, location: { query } }) => {
-    const { contains, per_page, sort, page } = query;
-
-    return dispatch(loadClients({
-      page,
-      per_page,
-      sort: sort ? [sort] : undefined,
-      filter: contains ? {
-        name: {
-          icontains: contains,
-        },
-      } : {},
-    }));
-  },
+  promise: ({
+    store: { dispatch },
+    location: { query: { contains, per_page, sort, page } },
+  }) => dispatch(loadClients({
+    page,
+    per_page,
+    sort: sort ? [sort] : undefined,
+    filter: contains ? {
+      name: {
+        icontains: contains,
+      },
+    } : {},
+  })),
 }]);
 
 

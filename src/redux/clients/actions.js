@@ -56,16 +56,12 @@ export const loadSingleClient = id => ({
 
 export const createClient = data => ({
   types: [c.CREATE_CLIENT, c.CREATE_CLIENT_SUCCESS, c.CREATE_CLIENT_FAIL],
-  api: ({ post }) => post(endpoint, {
-    data,
-  }),
+  api: ({ post }) => post(endpoint, { data }),
 });
 
 export const editClient = (id, data) => ({
   types: [c.EDIT_CLIENT, c.EDIT_CLIENT_SUCCESS, c.EDIT_CLIENT_FAIL],
-  api: ({ patch }) => patch(endpoint + id, {
-    data,
-  }),
+  api: ({ patch }) => patch(endpoint + id, { data }),
 });
 
 export const deleteClient = id => ({

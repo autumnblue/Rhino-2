@@ -1,18 +1,43 @@
-import { arrayOf } from 'prop-types';
+import { arrayOf, func, shape, string } from 'prop-types';
+import { Link } from 'react-router';
 
-import { Page, PageContent } from 'src/components';
+import { Page, PageContent, PageHeader, Button } from 'src/components';
 import { toolType } from 'src/prop-types';
 
+import ToolList from './ToolList';
+import ToolFilters from './ToolFilters';
 import enhance from './enhance';
 
 const propTypes = {
   tools: arrayOf(toolType).isRequired,
+  filters: shape({
+    contains: string.isRequired,
+  }).isRequired,
+  onEdit: func.isRequired,
+  onFiltersChange: func.isRequired,
 };
 
-const ToolListPage = ({ tools }) => (
+const breadcrumbs = [{ label: 'Tools' }];
+
+const ToolListPage = ({
+  tools,
+  filters,
+
+  onEdit,
+  onFiltersChange,
+}) => (
   <Page>
+    <PageHeader breadcrumbs={breadcrumbs}>
+      <Link to="/tools/new">
+        <Button color="primary" disabled>Create new tool</Button>
+      </Link>
+    </PageHeader>
     <PageContent>
-      Tool list page placeholder. There are {tools.length} tools in the database.
+      <ToolFilters onFiltersChange={onFiltersChange} initialValues={filters} />
+      <ToolList
+        tools={tools}
+        onEdit={onEdit}
+      />
     </PageContent>
   </Page>
 );

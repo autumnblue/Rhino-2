@@ -1,4 +1,5 @@
 import apiCrud from '../helpers/apiCrud';
+import { logout } from '../redux/users/actions';
 
 export const COMBINE_RELATIONSHIPS = 'djavan/COMBINE_RELATIONSHIPS';
 
@@ -16,6 +17,10 @@ export default function apiMiddleware() {
 
     try {
       const response = await api(apiCrud);
+
+      if (response.status === 403) {
+        return next(logout());
+      }
 
       if (response.status < 200 || response.status > 299) {
         return next({ ...rest, response, type: FAILURE });

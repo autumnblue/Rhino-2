@@ -1,0 +1,9 @@
+.vote {
+    text-align: center;
+}
+
+.voteButton {
+  font-size: 1.5em;
+  display: block;
+  cursor: pointer;
+}

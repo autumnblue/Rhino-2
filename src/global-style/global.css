@@ -18,3 +18,8 @@ body {
   width: auto;
   height: auto;
 }
+
+
+[disabled] {
+  cursor: not-allowed;
+}

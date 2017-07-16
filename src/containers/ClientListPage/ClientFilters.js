@@ -33,7 +33,7 @@ const enhance = compose(
   pure,
 );
 
-const Filters = ({
+const ClientFilters = ({
   onFiltersChange,
 }) => (<Row>
   <Col md="4">
@@ -71,6 +71,6 @@ const Filters = ({
   </Col>
 </Row>);
 
-Filters.propTypes = propTypes;
+ClientFilters.propTypes = propTypes;
 
-export default enhance(Filters);
+export default enhance(ClientFilters);

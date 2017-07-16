@@ -1,6 +1,6 @@
-import { number, string, shape, arrayOf, any, node } from 'prop-types';
-// this module exports the most widely used custom prop types
+import { number, string, shape, arrayOf, any, node, oneOfType } from 'prop-types';
 
+// this module exports the most widely used custom prop types
 
 // common types
 
@@ -33,8 +33,14 @@ export const userType = shape({
   last_name: string.isRequired,
 });
 
+export const serviceType = shape({
+  id: number.isRequired,
+  name: string.isRequired,
+});
+
 export const toolType = shape({
   id: number.isRequired,
   name: string.isRequired,
   html_body: string.isRequired,
+  services: arrayOf(oneOfType([number, serviceType])),
 });
