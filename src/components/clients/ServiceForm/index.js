@@ -18,49 +18,62 @@ const ServiceForm = ({
 }) => (
   <Form>
     <Row>
-      <Col md="6">
+      <legend>Service</legend>
+      <Col md="1">
+
+      </Col>
+      <Col md="5">
         <FormGroup tag="fieldset">
-          <legend>Service</legend>
           <FormGroup>
             <Label>Name</Label>
             <Field
               component={ReduxInput}
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder="Service Name"
               onBlur={onFieldChange}
               error={validationErrors.name}
             />
           </FormGroup>
           <FormGroup>
-            <Label>Short Name</Label>
+            <label>Default Engagment Type</label>
             <Field
-              component={ReduxInput}
-              type="text"
-              name="short_name"
-              placeholder="Short Name"
-              onBlur={onFieldChange}
-              error={validationErrors.short_name}
+              component={ReduxSelect}
+              name="engagement_type"
+              placeholder="Default Engagment Type"
+              onChange={onFieldChange}
+              error={validationErrors.engagement_type}
             />
           </FormGroup>
           <FormGroup>
-            <Label>URL</Label>
+            <Label>Description</Label>
             <Field
               component={ReduxInput}
               type="text"
-              name="url"
-              placeholder="URL"
+              name="desription"
+              placeholder="Description"
               onBlur={onFieldChange}
               error={validationErrors.url}
             />
           </FormGroup>
           <FormGroup>
-            <Label>Address</Label>
+            <Label>Scope text</Label>
             <Field
               component={ReduxInput}
               type="textarea"
-              name="address"
-              placeholder="Address"
+              name="engagement_type_description"
+              placeholder="Scope text"
+              onBlur={onFieldChange}
+              error={validationErrors.address}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label>Remediation text</Label>
+            <Field
+              component={ReduxInput}
+              type="textarea"
+              name="remediation_text"
+              placeholder="Recomendation text"
               onBlur={onFieldChange}
               error={validationErrors.address}
             />
@@ -71,111 +84,19 @@ const ServiceForm = ({
         <FormGroup tag="fieldset">
           <legend>Focal</legend>
           <FormGroup>
-            <Label>Focal First Name</Label>
-            <Field
-              component={ReduxInput}
-              type="text"
-              name="focal_first_name"
-              placeholder="Focal First Name"
-              onBlur={onFieldChange}
-              error={validationErrors.focal_first_name}
-            />
+            <Label>Featured Image</Label>
+            <img />
           </FormGroup>
           <FormGroup>
-            <Label>Focal Last Name</Label>
+            <Label>Service Body</Label>
             <Field
               component={ReduxInput}
-              type="text"
-              name="focal_last_name"
-              placeholder="Focal Last Name"
+              type="textarea"
+              name="html_body"
               onBlur={onFieldChange}
               error={validationErrors.focal_last_name}
             />
           </FormGroup>
-          <FormGroup>
-            <Label>Focal Title</Label>
-            <Field
-              component={ReduxInput}
-              type="text"
-              name="focal_title"
-              placeholder="Focal Title"
-              onBlur={onFieldChange}
-              error={validationErrors.focal_title}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>Focal Phone</Label>
-            <Field
-              component={ReduxInput}
-              type="text"
-              name="focal_phone"
-              placeholder="Focal Phone"
-              onBlur={onFieldChange}
-              error={validationErrors.focal_phone}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>Focal Email</Label>
-            <Field
-              component={ReduxInput}
-              type="text"
-              name="focal_email"
-              placeholder="Focal Email"
-              onBlur={onFieldChange}
-              error={validationErrors.focal_email}
-            />
-          </FormGroup>
-        </FormGroup>
-      </Col>
-    </Row>
-    <Row>
-      <Col md="12">
-        <FormGroup tag="fieldset">
-          <legend>Management</legend>
-          <FormGroup>
-            <label>Issuer</label>
-            <Field
-              component={ReduxSelect}
-              name="issuer"
-              placeholder="Issuer"
-              onChange={onFieldChange}
-              error={validationErrors.issuer}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <label>Project Manager</label>
-            <Field
-              component={ReduxSelect}
-              name="project_manager"
-              placeholder="Project Manager"
-              onChange={onFieldChange}
-              error={validationErrors.project_manager}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <label>Parent</label>
-            <Field
-              component={ReduxSelect}
-              name="umbrella"
-              placeholder="Parent"
-              onChange={onFieldChange}
-              error={validationErrors.umbrella}
-            />
-          </FormGroup>
-        </FormGroup>
-
-        <FormGroup>
-          <Label>Notes</Label>
-          <Field
-            component={ReduxInput}
-            name="notes"
-            type="textarea"
-            placeholder="Notes"
-            onBlur={onFieldChange}
-            error={validationErrors.notes}
-          />
         </FormGroup>
       </Col>
     </Row>
