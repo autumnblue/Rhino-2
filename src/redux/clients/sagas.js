@@ -42,14 +42,12 @@ function* newClientFormChange() {
   while (true) {
     yield take(c.NEW_CLIENT_FORM_CHANGE);
     const state = yield select();
-    const { values, syncErrors } = state.form.newClientForm;
+    const { values } = state.form.newClientForm;
 
-    if (isEmpty(syncErrors)) {
-      yield put(createClient({
-        commit: true,
-        ...values,
-      }));
-    }
+    yield put(createClient({
+      commit: true,
+      ...values,
+    }));
   }
 }
 

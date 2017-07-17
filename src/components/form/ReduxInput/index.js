@@ -3,11 +3,12 @@ import { omit } from 'lodash';
 import { pure } from 'recompose';
 import { string, object } from 'prop-types';
 
-import css from './style.css';
+import { FieldError } from 'src/components';
 
 const propTypes = {
   input: object.isRequired,
   error: string,
+  wrapperClassName: string,
 };
 
 const enhance = pure;
@@ -15,16 +16,17 @@ const enhance = pure;
 const ReduxInput = ({
   input: { value, onChange, onBlur },
   error,
+  wrapperClassName,
   ...props
 }) => (
-  <div>
+  <div className={wrapperClassName || ''}>
     <Input
       value={value}
       onChange={onChange}
       onBlur={onBlur}
       {...omit(props, 'meta')}
     />
-    {error && <span className={css.error}>{error}</span>}
+    <FieldError error={error} />
   </div>
 );
 

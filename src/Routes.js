@@ -11,6 +11,8 @@ import ClientListPage from './containers/ClientListPage';
 import ClientEditPage from './containers/ClientEditPage';
 import NewClientPage from './containers/NewClientPage';
 import ToolListPage from './containers/ToolListPage';
+import NewToolPage from './containers/NewToolPage';
+import ToolEditPage from './containers/ToolEditPage';
 
 function reduxAsyncConnect(props) {
   return (
@@ -38,6 +40,8 @@ const Routes = ({ history }) => (
         <Route path="clients/:clientId" component={ClientEditPage} />
 
         <Route path="tools" component={ToolListPage} />
+        <Route path="tools/new" component={NewToolPage} />
+        <Route path="tools/:toolId" component={ToolEditPage} />
       </Route>
       <Route path="/login" component={LoginPage} />
     </Route>
