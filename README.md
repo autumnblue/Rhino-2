@@ -1,118 +1,80 @@
 # Djavan - Rhino Security Assessment and Reporting Tool
 
-## [Code Style](wikis/home)
-
-## About the project
-
-This is the Rhino Security Labs Djavan Tool.
-
-## Development Team Obligation
-
-Any developer (contractor or employee) working on this project must be using one of the development environmnet specified below. The possibilities are: Docker or Vagrant.
-
-*Please, do not use your own operating system's local environment for development.*
-
-Doing so could result in unknown errors, package incompatibility or many other issues that could cause breakages when deployed to our staging or production environmnet.
-
-By using the encapsulated environments of Docker or Vagrant, we are able to guarantee that every developer is using the same environment during the development phase, resulting in code that runs on a system which closely mimics the production environment.
-
-If you have any questions about how to bring the environment up contact our DevOps team either by email (xxxx) or slack channel #xxxxx
-
-## Development Environment
-
-Below you will find all the details and instructions about how to setup your development environment.
-
-Basically you will have a VM running [NodeJS](https://nodejs.org/) serving the website content.
-
-As an alternative to Vagrant you can use Docker. The instructions can be found in the section below.
-
-The local website will be available through the url http://localhost:6001.
-
-Thanks to the port forward feature from Vagrant you don't need to worry about the VM ip address or changing you local hosts file.
-
-Make sure you don't have any other service running on your local machine that uses port 6001. Otherwise there will be conflicts and the service will not start.
+For project structure see [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md).
 
 ### Requirements
 
-Before you start check if you have the latest version of the below applications. They are available for all platforms. Don't use VirtualBox 5.1.x on Mac OS, it's not compatible with Vagrant. Use virtualBox 5.0.x instead!
+- NodeJS 8+
+- NPM 5+
 
-* [Vagrant](https://www.vagrantup.com)
-* [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
+### Install and run the app
+
+- Install deps with `npm install`
+- Run development server with `npm run dev`
+- Open http://localhost:6001 (port is specified via `PORT` env variable)
+
 
 ### Environment Variables
 
-There are some environment variables that must be specified that will guarantee integration with external services. That variables are set using the `.env` file located in the root folder. An example of a possible list of values are:
+- `PORT=6001` port of a server which serves index.html for any paths.
+- `WEBPACK_PORT=6002` port of webpack-dev-server.
+- `API_URL=https://djavan-server-dev.rsl.host/api/v1/` API root endpoint
+
+## Conventions
+
+### Trello
+
+We use [Trello](https://trello.com/b/ceoqc9LQ/djavan-front-end) as a task manager.
+
+Anybody can assign a card to Anybody. Anybody can create cards.
+
+- Created card can be assigned to nobody. At this case anybody can start doing the task.
+- Created card can be self-assigned.
+- Created card can be assigned to another team member. It makes sense when the assignee is the best candidate to do the task.
+
+When you start doing a task, a card should be moved to "IN DEVELOPMENT" list. Make sure that the card is assigned to you. When the task is done, it should be moved to "IN TESTING" list.
+
+Every work that is going to take more than 30 minutes should be followed by a Trello card. For example you want to make minor refactoring and you think it will take an hour, then create a card and assign it to yourself.
+
+When a commit is made it should be connected to a corresponding Trello card (you don't need to do it if you make a change which doesn't belong to any card and the change is took less than 30 minutes). There should be one commit per one feature/fix/chore etc. and you can attach few commits to one Trello card (e. g. one card requires to make 2 features). This can be done via Trello UI: open a card -> Power-Ups -> Bitbucket.
+
+When you write a comment to a card, don't forget to mention a person who should get a notification.
+
+
+### Rules and guidelines for commit messages
+
+#### TL;DR
+
+1. Use git's file staging: `git add` rather than `git commit -a`.
+1. Use `npm run commit` instead of `git commit`.
+
+#### Details
+
+This repository uses [semantic-release](https://github.com/semantic-release/semantic-release) for a clearer, more useful changelog, and for automatic [semantic versioning](http://semver.org).
+
+This means commit messages must be in a special format with a structured summary line and a body. If you use `npm run commit`, you're prompted for everything. If you don't, the format's simple enough to get right manually -- and if you get it wrong, the commit fails anyway as a githook enforces the format.
+
+How it works:
+
+1. Make repository changes as usual.
+1. Stage files for commit using `git add`.
+1. Instead of `git commit`, use `npm run commit`.
+1. Follow the instructions.
+
+Commit messages are stored in git in this format:
 
 ```
-# Defines the backend endpoint
-API_URL="http://example.me/v1/"
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
 ```
 
-If you decide by changing any of value within the `.env` file remember that the process must be restarted.
-
-If for any reason any environment variables must be included for a proper operation of the application don't hesitate and contact the DevOps team through Slack or E-Mail. They will take care and guarantee that during the deployment process those values will be filled properly.
-
-### Vagrant
-
-The steps below demonstrates how to setup your VM and start the nodejs process to serve the website. The Vagrant box will use 2GB of your available RAM. Depending of the amount of RAM available on your physical machine that could cause some slowness. If that is the case check if you have any other VM or process that could be stopped.
-
-1) Clone project repository via ssh:
-
- * `git clone git@bitbucket.org:xander-sereda/djavan-front-end.git`
-
-
-2) Start VM:
-
-* If it is the first time you run this VM use `vagrant up --provision`. The next time you need to bring the VM up you can just run `vagrant up`.
-
-* `vagrant ssh` - Get access to VM terminal.
-
-
-3) Launch the project:
-
-Once logged into the VM via ssh you can run the development server by running the following command:
-
-* `cd /var/www/djavan_site/`
-* `npm run dev`
-
-
-4) Useful Vagrant commands:
-
-* `vagrant halt` - switch VM off and release your allocated RAM.
-* `vagrant destroy -f` - completely destroy the current VM. You must run `vagrant up --provision` again to re-create the VM if necessary.
-
-
-### Docker
-
-If you don't know what is docker check the official site at [docker.com](https://www.docker.com/what-docker). You can find instructions about how to install docker on different platforms (OSX, Linux and Windows) accessing [https://docs.docker.com/](https://docs.docker.com/)
-
-The command bellow will start a nodejs 6.3 container passing the `entrypoint.sh` file as the command to be executed just after the boot. If you look into that file content you will see that it calls `npm install` and `npm run dev` commands.
-
-`docker run -it --rm --name djavan_web -p 6001:6001 -v $PWD:/usr/src/app -w /usr/src/app node:6.3 ./entrypoint.sh`
-
-The npm packages installation process will take some time to be completed and then you will see the message `Listening on port 6001. Open up http://0.0.0.0:6001/ in your browser.`
-
-Press `Ctrl+C` to stop the container execution and consequently the node process.
-
-
-Structure
----------
+For example:
 
 ```
-|-- client
-|   |-- index.jsx
-|   |-- webpack-assets.json
-|-- shared
-|   |-- actions
-|   |-- components
-|   |-- constants
-|   |-- lib
-|   |-- reducers
-|   |-- translations
-|   |-- routes.jsx
-|-- static
-|   |-- img
-|   |-- styles
-|   |-- favicon.ico
-|-- Other config files
+feat(services): Add foo field
+
+This lets us show the foo.
 ```
+
+For more info read about [AngularJS Commit Message Conventions](https://github.com/conventional-changelog/conventional-changelog-angular/blob/master/convention.md). We require to use `type` and `subject`; `scope` is desirable. Other commit text components are optional.

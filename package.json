@@ -15,7 +15,30 @@
     "test": "NODE_ENV=test mocha mochaSetup.js './test/**/**/*.test.@(js|jsx)' --compilers js:babel-register --require babel-polyfill --recursive",
     "debug": "NODE_ENV=test mocha debug mochaSetup.js './test/**/**/*.test.@(js|jsx)' --compilers js:babel-register --require babel-polyfill --recursive",
     "test:watch": "npm test -- --watch",
-    "ci-test": "npm run lint && npm test"
+    "ci-test": "npm run lint && npm test",
+    "commit": "git-cz"
+  },
+  "config": {
+    "validate-commit-msg": {
+      "types": [
+        "feat",
+        "fix",
+        "refactor",
+        "perf",
+        "test",
+        "chore",
+        "revert",
+        "docs",
+        "ci"
+      ],
+      "maxSubjectLength": 150
+    },
+    "ghooks": {
+      "commit-msg": "validate-commit-msg"
+    },
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "keywords": [
     "React",
@@ -103,11 +126,6 @@
     "react-hot-loader": "^3.0.0-beta.7"
   },
   "devDependencies": {
-    "dotenv": "^2.0.0",
-    "why-did-you-update": "^0.0.8",
-    "style-loader": "^0.18.2",
-    "url-loader": "^0.5.9",
-    "webpack": "3.0.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
@@ -124,9 +142,12 @@
     "chai-as-promised": "^5.3.0",
     "chai-enzyme": "^0.5.1",
     "chai-spies": "^0.7.1",
+    "commitizen": "^2.9.6",
     "concurrently": "^2.1.0",
     "connect-static-file": "^1.2.0",
     "copy-webpack-plugin": "^4.0.1",
+    "cz-conventional-changelog": "^2.0.0",
+    "dotenv": "^2.0.0",
     "enzyme": "^2.4.1",
     "eslint": "3",
     "eslint-config-airbnb": "^15.0.1",
@@ -134,6 +155,7 @@
     "eslint-plugin-import": "^2.6.1",
     "eslint-plugin-jsx-a11y": "5",
     "eslint-plugin-react": "^7.1.0",
+    "ghooks": "^2.0.0",
     "html-webpack-plugin": "^2.29.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.0.2",
@@ -151,7 +173,12 @@
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0",
     "source-map-loader": "^0.1.6",
-    "webpack-dev-server": "^2.5.0"
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
+    "validate-commit-msg": "^2.12.2",
+    "webpack": "3.0.0",
+    "webpack-dev-server": "^2.5.0",
+    "why-did-you-update": "^0.0.8"
   },
   "peerDependencies": {
     "src": "0.0.0"
