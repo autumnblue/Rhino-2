@@ -53,7 +53,10 @@ if(process.env.NODE_ENV === 'development') {
   plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 
-const autoprefixer = require('autoprefixer');
+const autoprefixerPlugin = require('autoprefixer');
+const importPlugin = require('postcss-import');
+const cssNextPlugin = require('postcss-cssnext');
+const calcPlugin = require('postcss-calc');
 
 module.exports = {
   devtool: 'source-map',
@@ -90,7 +93,14 @@ module.exports = {
           {
               loader: 'postcss-loader',
               options: {
-                  plugins: () => [autoprefixer],
+                  plugins: (wp) => [
+                    autoprefixerPlugin(),
+                    importPlugin({
+                         addDependencyTo: wp,
+                    }),
+                    cssNextPlugin(),
+                    calcPlugin(),
+                  ],
               },
           },
         ],
