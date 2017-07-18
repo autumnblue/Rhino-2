@@ -5,6 +5,7 @@ import { pick } from 'lodash';
 
 import { loadServices } from 'src/redux/services/actions';
 import { getServices } from 'src/redux/services/selectors';
+import { getAssets } from 'src/redux/assets/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
   promise: ({ store: { dispatch } }) => dispatch(loadServices()),
@@ -13,6 +14,7 @@ const reduxAsyncConnect = asyncConnect([{
 const reduxConnect = connect(
   store => ({
     services: getServices(store),
+    assets: getAssets(store),
   }),
   {
 

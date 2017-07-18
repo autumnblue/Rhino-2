@@ -1,15 +1,40 @@
 import { Link } from 'react-router';
 import { Table } from 'reactstrap';
 import { arrayOf } from 'prop-types';
+import { compose, pure, withHandlers } from 'recompose';
 
-import { Button } from 'src/components';
+import { Button, Vote } from 'src/components';
 import { clientType } from 'src/prop-types';
+
+import css from './style.css';
 
 const propTypes = {
   services: arrayOf(clientType).isRequired,
 };
 
-const List = ({ services }) => (
+const handlersEnhancer = withHandlers({
+  onVoteUp: ({ onEdit, id, default_sort_priority }) => () => onEdit(id, {
+    default_sort_priority: default_sort_priority - 1,
+    commit: true,
+  }),
+  onVoteDown: ({ onEdit, id, default_sort_priority }) => () => onEdit(id, {
+    default_sort_priority: default_sort_priority + 1,
+    commit: true,
+  }),
+});
+
+const enhance = compose(
+  handlersEnhancer,
+  pure,
+);
+
+const List = ({
+  services,
+  assets,
+
+  onVoteUp,
+  onVoteDown
+}) => (
   <Table striped>
     <tbody>
       {services.map(({
@@ -28,7 +53,11 @@ const List = ({ services }) => (
       }) => (
         <tr key={id}>
           <td>
-            {default_sort_priority}
+            <Vote
+              onVoteUp={onVoteUp}
+              onVoteDown={onVoteDown}
+              value={default_sort_priority}
+            />
           </td>
           <td>
             {name}
@@ -36,7 +65,7 @@ const List = ({ services }) => (
             {tools.length} tools
           </td>
           <td>
-            {feature_image ? <img src={feature_image.file} /> : null}
+            {feature_image ? <img src={assets[feature_image].file} className={css.image}/> : null}
           </td>
           <td>
             {description}
@@ -54,4 +83,4 @@ const List = ({ services }) => (
 
 List.propTypes = propTypes;
 
-export default List;
+export default enhance(List);

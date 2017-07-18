@@ -2,7 +2,7 @@ import { Col, Row, FormGroup, Form, Label } from 'reactstrap';
 import { Field } from 'redux-form';
 import { object, func } from 'prop-types';
 
-import { ReduxInput, ReduxSelect } from 'src/components';
+import { ReduxInput, ReduxSelect, Vote } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
 
 import enhance from './enhance';
@@ -15,12 +15,19 @@ const propTypes = {
 const ServiceForm = ({
   validationErrors,
   onFieldChange,
+
+  onVoteUp,
+  onVoteDown
 }) => (
   <Form>
     <Row>
       <legend>Service</legend>
       <Col md="1">
-
+        <Vote
+          onVoteUp={onVoteUp}
+          onVoteDown={onVoteDown}
+          value={default_sort_priority}
+        />
       </Col>
       <Col md="5">
         <FormGroup tag="fieldset">
@@ -82,9 +89,8 @@ const ServiceForm = ({
       </Col>
       <Col md="6">
         <FormGroup tag="fieldset">
-          <legend>Focal</legend>
+          <legend>Featured Image</legend>
           <FormGroup>
-            <Label>Featured Image</Label>
             <img />
           </FormGroup>
           <FormGroup>
