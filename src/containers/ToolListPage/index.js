@@ -11,7 +11,7 @@ import enhance from './enhance';
 const propTypes = {
   tools: arrayOf(toolType).isRequired,
   filters: shape({
-    contains: string.isRequired,
+    contains: string,
   }).isRequired,
   onEdit: func.isRequired,
   onFiltersChange: func.isRequired,
@@ -29,7 +29,7 @@ const ToolListPage = ({
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
       <Link to="/tools/new">
-        <Button color="primary" disabled>Create new tool</Button>
+        <Button color="primary">Create new tool</Button>
       </Link>
     </PageHeader>
     <PageContent>

@@ -1,0 +1,10 @@
+.vote {
+  display: inline-block;
+  width: 40px;
+  vertical-align: middle;
+}
+
+.name {
+  display: inline-block;
+  width: calc(100% - 40px);
+}

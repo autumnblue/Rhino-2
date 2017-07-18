@@ -2,7 +2,7 @@ import Select from 'react-select';
 import { compose, pure, withHandlers } from 'recompose';
 import { string, object } from 'prop-types';
 
-import css from './style.css';
+import { FieldError } from 'src/components';
 
 const propTypes = {
   input: object.isRequired,
@@ -28,7 +28,7 @@ const ReduxSelect = ({
       value={value}
       {...props}
     />
-    {error && <span className={css.error}>{error}</span>}
+    <FieldError error={error} />
   </div>
 );
 
