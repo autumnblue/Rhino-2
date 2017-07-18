@@ -5,7 +5,7 @@ import { replace } from 'react-router-redux';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
 
-import { refreshToken } from 'src/redux/users/actions';
+import { refreshToken, logout } from 'src/redux/users/actions';
 import { initialize } from 'src/redux/app/actions';
 
 import pageMountEnhancer from 'src/enhancers/pageMountEnhancer';
@@ -35,6 +35,7 @@ const reduxConnect = connect(
   null,
   {
     onInitialize: initialize,
+    onLogoutRequest: logout,
   },
 );
 

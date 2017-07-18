@@ -3,6 +3,6 @@
   padding-bottom: 1rem;
 
   & a {
-    line-height: 6rem;
+    padding: 3rem 0;
   }
 }

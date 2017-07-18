@@ -28,10 +28,11 @@ function setToken(response) {
 function* loginSuccess() {
   while (true) {
     const { response } = yield take(c.LOGIN_SUCCESS);
+    const { routing } = yield select();
+    const { redirect } = routing.locationBeforeTransitions.query;
 
     yield setToken(response);
-
-    yield put(push('/'));
+    yield put(push(redirect || '/'));
   }
 }
 
