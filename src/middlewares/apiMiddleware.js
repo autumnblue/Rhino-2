@@ -18,8 +18,8 @@ export default function apiMiddleware() {
     try {
       const response = await api(apiCrud);
 
-      // FORBIDDEN of UNAUTHORIZED
-      if (response.status === 403 || response.status === 401) {
+      // UNAUTHORIZED
+      if (response.status === 401) {
         next({ ...rest, response, type: FAILURE });
         return next(logout());
       }
