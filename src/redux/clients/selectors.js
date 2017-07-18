@@ -13,3 +13,8 @@ export const getCurrentClient = createSelector(
   [getCurrentClientId, getClientsData],
   (id, data) => data[id],
 );
+
+export const getDepartmentClients = createSelector(
+  [getCurrentClient, getClientsData],
+  ({ departments }, data) => departments.map(id => data[id]),
+);

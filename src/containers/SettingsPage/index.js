@@ -38,7 +38,7 @@ const SettingsPage = () => (
     <PageContent>
       <Row>
         {categories.map(({ label, url }) => (
-          <Col md="3" className={css.category}>
+          <Col md="3" key={label + url} className={css.category}>
             <Button
               tag={Link}
               to={url}
