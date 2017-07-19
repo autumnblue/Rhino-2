@@ -14,6 +14,7 @@ const ReduxImage = ({
 }) => (
   <img
     src={props.assets[value].file}
+    style={{maxWidth: "100%", maxHeight: "100%"}}
   />
 );
 
