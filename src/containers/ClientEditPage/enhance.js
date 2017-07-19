@@ -56,6 +56,7 @@ const propsEnhancer = withPropsOnChange(['client'], ({ client }) => ({
 
 const reduxFormEnhancer = reduxForm({
   pure: true,
+  enableReinitialize: true,
   form: 'editClientForm',
 });
 
