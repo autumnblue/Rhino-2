@@ -2,7 +2,7 @@ import { Col, Row, FormGroup, Form } from 'reactstrap';
 import { Field } from 'redux-form';
 import { object, func, bool } from 'prop-types';
 
-import { ReduxInput, ReduxPriorityVote, ReduxSimpleList } from 'src/components';
+import { ReduxInput, ReduxPriorityVote, ReduxAssociations } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
 
 import enhance from './enhance';
@@ -63,7 +63,7 @@ const ClientForm = ({
         <FormGroup tag="fieldset">
           <legend>Associated findings</legend>
           <Field
-            component={ReduxSimpleList}
+            component={ReduxAssociations}
             name="associated_findings"
             options={findingsOptions}
             onChange={onFieldChange}
@@ -73,7 +73,7 @@ const ClientForm = ({
         <FormGroup tag="fieldset">
           <legend>Associated services</legend>
           <Field
-            component={ReduxSimpleList}
+            component={ReduxAssociations}
             name="services"
             options={servicesOptions}
             onChange={onFieldChange}
