@@ -3,17 +3,12 @@ import { asyncConnect } from 'redux-connect';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-// // actions
-// import { loadClients, loadSingleClient, deleteClientTrigger, editClientFormChange } from 'src/redux/clients/actions';
-// import { loadIssuers } from 'src/redux/issuers/actions';
-// import { loadUsers } from 'src/redux/users/actions';
+// actions
 import { loadService, deleteServiceTrigger, editServiceFormChange } from 'src/redux/services/actions';
 
-// // selectors
-// import { getIssuers } from 'src/redux/issuers/selectors';
-// import { getClients, getCurrentClient } from 'src/redux/clients/selectors';
-// import { getUsers } from 'src/redux/users/selectors';
+// selectors
 import { getService } from 'src/redux/services/selectors';
+import { getAssets } from 'src/redux/assets/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
   promise: ({ store: { dispatch }, params: { serviceId } }) => Promise.all([
@@ -24,6 +19,7 @@ const reduxAsyncConnect = asyncConnect([{
 const reduxConnect = connect(state => ({
   validationErrors: state.services.validationErrors,
   service: getService(state),
+  assets: getAssets(state),
 }), {
   onDelete: deleteServiceTrigger,
   onFieldChange: editServiceFormChange,

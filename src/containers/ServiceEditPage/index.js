@@ -6,7 +6,6 @@ import { clientType, issuerType, userType, breadcrumbsType } from 'src/prop-type
 
 import enhance from './enhance';
 
-
 const propTypes = {
   validationErrors: object,
   breadcrumbs: breadcrumbsType.isRequired,
@@ -15,9 +14,10 @@ const propTypes = {
   onFieldChange: func.isRequired,
 };
 
-const ClientEditPage = ({
+const ServiceEditPage = ({
   breadcrumbs,
   validationErrors,
+  assets,
 
   onDelete,
   onFieldChange,
@@ -30,6 +30,7 @@ const ClientEditPage = ({
       <ServiceForm
         onFieldChange={onFieldChange}
         validationErrors={validationErrors}
+        assets={assets}
       />
     </PageContent>
   </Page>
@@ -37,4 +38,4 @@ const ClientEditPage = ({
 
 // ClientEditPage.propTypes = propTypes;
 
-export default enhance(ClientEditPage);
+export default enhance(ServiceEditPage);

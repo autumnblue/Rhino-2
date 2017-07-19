@@ -38,6 +38,13 @@ export const editServiceFormChange = id => ({
   id,
 });
 
+export const editService = (id, data) => ({
+  types: [c.EDIT_SERVICE, c.EDIT_SERVICE_SUCCESS, c.EDIT_SERVICE_FAIL],
+  api: ({ patch }) => patch(endpoint + id, {
+    data,
+  }),
+});
+
 
 // // UI Actions
 // export const newClientFormChange = () => ({

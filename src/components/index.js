@@ -21,3 +21,5 @@ export { default as ReduxPriorityVote } from './form/ReduxPriorityVote';
 export { default as ReduxSimpleList } from './form/ReduxSimpleList';
 export { default as ServiceForm } from './clients/ServiceForm';
 export { default as ToolForm } from './tools/ToolForm';
+export { default as ReduxImage } from './form/ReduxImage';
+

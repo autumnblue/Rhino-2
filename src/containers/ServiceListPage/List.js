@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 import { arrayOf } from 'prop-types';
 import { compose, pure, withHandlers } from 'recompose';
 
-import { Button, Vote } from 'src/components';
+import { Button, PriorityVote } from 'src/components';
 import { clientType } from 'src/prop-types';
 
 import css from './style.css';
@@ -53,7 +53,7 @@ const List = ({
       }) => (
         <tr key={id}>
           <td>
-            <Vote
+            <PriorityVote
               onVoteUp={onVoteUp}
               onVoteDown={onVoteDown}
               value={default_sort_priority}
