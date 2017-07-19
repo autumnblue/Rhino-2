@@ -39,6 +39,15 @@ function* newToolFormChange() {
   }
 }
 
+function* createToolSuccess() {
+  while (true) {
+    const { response } = yield take(c.CREATE_TOOL_SUCCESS);
+    const { id } = response.data.tool;
+
+    yield put(push(`/tools/${id}`));
+  }
+}
+
 function* editToolFormChange() {
   while (true) {
     const { id } = yield take(c.EDIT_TOOL_FORM_CHANGE);
@@ -57,15 +66,6 @@ function* editToolFormChange() {
         ...diff,
       }));
     }
-  }
-}
-
-function* createToolSuccess() {
-  while (true) {
-    const { response } = yield take(c.CREATE_TOOL_SUCCESS);
-    const { id } = response.data.tool;
-
-    yield put(push(`/tools/${id}`));
   }
 }
 
@@ -92,8 +92,8 @@ export default function* createSaga() {
   yield all([
     fork(listParamsChange),
     fork(newToolFormChange),
-    fork(editToolFormChange),
     fork(createToolSuccess),
+    fork(editToolFormChange),
     fork(deleteToolTrigger),
     fork(deleteToolSuccess),
   ]);

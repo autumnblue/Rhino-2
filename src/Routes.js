@@ -8,12 +8,18 @@ import App from './containers/App';
 import LoginPage from './containers/LoginPage';
 import MainLayout from './containers/MainLayout';
 import SettingsPage from './containers/SettingsPage';
+
 import ClientListPage from './containers/ClientListPage';
 import ClientEditPage from './containers/ClientEditPage';
-import NewClientPage from './containers/NewClientPage';
+import ClientCreatePage from './containers/ClientCreatePage';
+
 import ToolListPage from './containers/ToolListPage';
-import NewToolPage from './containers/NewToolPage';
+import ToolCreatePage from './containers/ToolCreatePage';
 import ToolEditPage from './containers/ToolEditPage';
+
+import IssuerListPage from './containers/IssuerListPage';
+import IssuerCreatePage from './containers/IssuerCreatePage';
+import IssuerEditPage from './containers/IssuerEditPage';
 
 function reduxAsyncConnect(props) {
   return (
@@ -39,12 +45,16 @@ const Routes = ({ history }) => (
         <Route path="settings" component={SettingsPage} />
 
         <Route path="clients" component={ClientListPage} />
-        <Route path="clients/new" component={NewClientPage} />
+        <Route path="clients/new" component={ClientCreatePage} />
         <Route path="clients/:clientId" component={ClientEditPage} />
 
         <Route path="tools" component={ToolListPage} />
-        <Route path="tools/new" component={NewToolPage} />
+        <Route path="tools/new" component={ToolCreatePage} />
         <Route path="tools/:toolId" component={ToolEditPage} />
+
+        <Route path="issuers" component={IssuerListPage} />
+        <Route path="issuers/new" component={IssuerCreatePage} />
+        <Route path="issuers/:issuerId" component={IssuerEditPage} />
       </Route>
       <Route path="/login" component={LoginPage} />
     </Route>

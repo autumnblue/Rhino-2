@@ -13,12 +13,16 @@ export { default as Associations } from './common/Associations';
 export { default as ClientForm } from './clients/ClientForm';
 
 // form
-export { default as ReduxInput } from './form/ReduxInput';
-export { default as ReduxSelect } from './form/ReduxSelect';
 export { default as Button } from './form/Button';
 export { default as FieldError } from './form/FieldError';
-export { default as ReduxPriorityVote } from './form/ReduxPriorityVote';
 export { default as ReduxAssociations } from './form/ReduxAssociations';
+export { default as ReduxCheckbox } from './form/ReduxCheckbox';
+export { default as ReduxInput } from './form/ReduxInput';
+export { default as ReduxPriorityVote } from './form/ReduxPriorityVote';
+export { default as ReduxSelect } from './form/ReduxSelect';
+
+// issuers
+export { default as IssuerForm } from './issuers/IssuerForm';
 
 // tools
 export { default as ToolForm } from './tools/ToolForm';

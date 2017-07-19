@@ -8,7 +8,7 @@ import css from './style.css';
 
 
 const breadcrumbs = [{
-  label: 'Settings',
+  label: 'Settings & Assets',
 }];
 
 const categories = [{
@@ -20,6 +20,7 @@ const categories = [{
   label: 'Assets',
 }, {
   label: 'Issuers',
+  url: '/issuers',
 }, {
   label: 'Services',
 }, {
