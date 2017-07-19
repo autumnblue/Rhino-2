@@ -2,6 +2,7 @@ import { compose, pure, withPropsOnChange, withHandlers } from 'recompose';
 import { asyncConnect } from 'redux-connect';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
+import { push } from 'react-router-redux';
 
 // actions
 import { loadClients, loadSingleClient, deleteClientTrigger, editClientFormChange } from 'src/redux/clients/actions';
@@ -10,7 +11,7 @@ import { loadUsers } from 'src/redux/users/actions';
 
 // selectors
 import { getIssuers } from 'src/redux/issuers/selectors';
-import { getClients, getCurrentClient } from 'src/redux/clients/selectors';
+import { getClients, getCurrentClient, getDepartmentClients } from 'src/redux/clients/selectors';
 import { getUsers } from 'src/redux/users/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
@@ -35,9 +36,11 @@ const reduxConnect = connect(state => ({
   issuers: getIssuers(state),
   users: getUsers(state),
   client: getCurrentClient(state),
+  departmentClients: getDepartmentClients(state),
 }), {
   onDelete: deleteClientTrigger,
   onFieldChange: editClientFormChange,
+  onRedirect: push,
 });
 
 const propsEnhancer = withPropsOnChange(['client'], ({ client }) => ({
@@ -53,6 +56,7 @@ const propsEnhancer = withPropsOnChange(['client'], ({ client }) => ({
 
 const reduxFormEnhancer = reduxForm({
   pure: true,
+  enableReinitialize: true,
   form: 'editClientForm',
 });
 

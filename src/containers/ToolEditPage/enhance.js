@@ -34,6 +34,7 @@ const propsEnhancer = withPropsOnChange(['tool'], ({ tool }) => ({
 
 const reduxFormEnhancer = reduxForm({
   pure: true,
+  enableReinitialize: true,
   form: 'editToolForm',
 });
 

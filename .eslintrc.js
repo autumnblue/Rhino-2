@@ -28,8 +28,12 @@ module.exports = {
     // allow to use meta-component Base
     "react/jsx-no-undef": [2, { "allowGlobals": true }],
 
-    // disable for now
-    "jsx-a11y/label-has-for": 0
+    // disable some jsx-a11y rules for now
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+
+    // we should avoid long JS files
+    "max-lines": ["error", {"max": 150, "skipBlankLines": true}]
   },
   globals: {
     __CLIENT__: true,
