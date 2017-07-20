@@ -7,7 +7,7 @@ import { Icon, Button } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
 
 import css from './style.css';
-import SimpleListItem from './SimpleListItem';
+import AssociationsItem from './AssociationsItem';
 
 const propTypes = {
   items: selectOptionsType.isRequired,
@@ -62,7 +62,7 @@ const enhance = compose(
   pure,
 );
 
-const SimpleList = ({
+const Associations = ({
   items,
   options,
   selectedValue,
@@ -73,7 +73,7 @@ const SimpleList = ({
 }) => (
   <div>
     {items.map(({ value, label }) => (
-      <SimpleListItem
+      <AssociationsItem
         key={value + label}
         value={value}
         label={label}
@@ -97,6 +97,6 @@ const SimpleList = ({
   </div>
 );
 
-SimpleList.propTypes = propTypes;
+Associations.propTypes = propTypes;
 
-export default enhance(SimpleList);
+export default enhance(Associations);

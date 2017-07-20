@@ -19,7 +19,7 @@ const enhance = compose(
   pure,
 );
 
-const SimpleListItem = ({
+const AssociationsItem = ({
   label,
 
   onRemove,
@@ -33,6 +33,6 @@ const SimpleListItem = ({
   </div>
 );
 
-SimpleListItem.propTypes = propTypes;
+AssociationsItem.propTypes = propTypes;
 
-export default enhance(SimpleListItem);
+export default enhance(AssociationsItem);

@@ -18,7 +18,7 @@ const breadcrumbs = [{
   label: 'New Client',
 }];
 
-const NewClientPage = ({
+const ToolCreatePage = ({
   validationErrors,
 
   onFieldChange,
@@ -39,6 +39,6 @@ const NewClientPage = ({
   </Page>
 );
 
-NewClientPage.propTypes = propTypes;
+ToolCreatePage.propTypes = propTypes;
 
-export default enhance(NewClientPage);
+export default enhance(ToolCreatePage);

@@ -2,7 +2,7 @@ import { omit } from 'lodash';
 import { compose, pure } from 'recompose';
 import { string, object } from 'prop-types';
 
-import { SimpleList, FieldError } from 'src/components';
+import { Associations, FieldError } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
 
 const propTypes = {
@@ -16,7 +16,7 @@ const enhance = compose(
   pure,
 );
 
-const ReduxSimpleList = ({
+const ReduxAssociations = ({
   input: { value, onChange },
   options,
   error,
@@ -25,7 +25,7 @@ const ReduxSimpleList = ({
   ...props
 }) => (
   <div className={wrapperClassName || ''}>
-    <SimpleList
+    <Associations
       onChange={onChange}
       values={value}
       options={options}
@@ -35,6 +35,6 @@ const ReduxSimpleList = ({
   </div>
 );
 
-ReduxSimpleList.propTypes = propTypes;
+ReduxAssociations.propTypes = propTypes;
 
-export default enhance(ReduxSimpleList);
+export default enhance(ReduxAssociations);

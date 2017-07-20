@@ -23,7 +23,7 @@ const breadcrumbs = [{
   label: 'New Client',
 }];
 
-const NewClientPage = ({
+const ClientCreatePage = ({
   parents,
   issuers,
   users,
@@ -50,6 +50,6 @@ const NewClientPage = ({
   </Page>
 );
 
-NewClientPage.propTypes = propTypes;
+ClientCreatePage.propTypes = propTypes;
 
-export default enhance(NewClientPage);
+export default enhance(ClientCreatePage);

@@ -39,9 +39,15 @@ const reduxConnect = connect(
   },
 );
 
-const propsEnhancer = withPropsOnChange(['location'], ({ location }) => ({
-  activeCategory: location.pathname.split('/')[1],
-}));
+const propsEnhancer = withPropsOnChange(['location'], ({ location }) => {
+  const category = location.pathname.split('/')[1];
+
+  if (['tools', 'issuers'].includes(category)) {
+    return { activeCategory: 'settings' };
+  }
+
+  return { activeCategory: category };
+});
 
 export default compose(
   reduxAsyncConnect,
