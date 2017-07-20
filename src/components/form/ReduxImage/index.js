@@ -1,9 +1,9 @@
-import { omit } from 'lodash';
 import { pure } from 'recompose';
-import { string, object } from 'prop-types';
+import { object } from 'prop-types';
 
 const propTypes = {
   input: object.isRequired,
+  assets: object,
 };
 
 const enhance = pure;
@@ -12,10 +12,14 @@ const ReduxImage = ({
   input: { value, onChange },
   ...props
 }) => (
-  <img
-    src={props.assets[value].file}
-    style={{maxWidth: "100%", maxHeight: "100%"}}
-  />
+  <div>
+    <img
+      src={props.assets[value].file}
+      style={{ maxWidth: '100%', maxHeight: '100%' }}
+      onChange={onChange}
+      alt=""
+    />
+  </div>
 );
 
 ReduxImage.propTypes = propTypes;

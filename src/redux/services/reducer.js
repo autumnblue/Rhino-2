@@ -49,10 +49,9 @@ function validationErrors(state = initialState.validationErrors, action) {
 }
 
 
-
 export default combineReducers({
   data,
   ids,
   id,
-  validationErrors
+  validationErrors,
 });

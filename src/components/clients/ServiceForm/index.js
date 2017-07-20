@@ -1,16 +1,18 @@
 import { Col, Row, FormGroup, Form, Label } from 'reactstrap';
 import { Field } from 'redux-form';
-import { object, func } from 'prop-types';
-
+import { object, func, bool } from 'prop-types';
 
 import { ReduxInput, ReduxSelect, ReduxPriorityVote, ReduxImage, ReduxQuill } from 'src/components';
-import { selectOptionsType } from 'src/prop-types';
+
 
 import enhance from './enhance';
 
 const propTypes = {
+  isNew: bool,
+  assets: object.isRequired,
   validationErrors: object,
   onFieldChange: func.isRequired,
+
 };
 
 const ServiceForm = ({
@@ -18,9 +20,6 @@ const ServiceForm = ({
   onFieldChange,
   isNew,
   assets,
-
-  onVoteUp,
-  onVoteDown
 }) => (
   <Form>
     <Row>

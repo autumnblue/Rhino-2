@@ -3,14 +3,13 @@ import * as c from './constants';
 const endpoint = 'services/';
 
 // API actions
-export const loadServices = ({
-} = {}) => ({
+export const loadServices = () => ({
   types: [c.LOAD_SERVICES, c.LOAD_SERVICES_SUCCESS, c.LOAD_SERVICES_FAIL],
   api: ({ get }) => get(endpoint, {
     params: {
       per_page: 1000,
       sort: ['default_sort_priority'],
-      include: ['feature_image']
+      include: ['feature_image'],
     },
   }),
 });

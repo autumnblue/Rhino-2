@@ -1,7 +1,6 @@
 import { asyncConnect } from 'redux-connect';
-import { compose, pure, withPropsOnChange } from 'recompose';
+import { compose, pure } from 'recompose';
 import { connect } from 'react-redux';
-import { pick } from 'lodash';
 
 import { loadServices, editService } from 'src/redux/services/actions';
 import { getServices } from 'src/redux/services/selectors';
@@ -17,17 +16,12 @@ const reduxConnect = connect(
     assets: getAssets(store),
   }),
   {
-    onEdit: editService
-  }
+    onEdit: editService,
+  },
 );
-
-const propsEnhancer = withPropsOnChange(['location'], ({ location }) => ({
-  filters: pick(location.query, ['contains', 'per_page', 'sort']),
-}))
 
 export default compose(
   reduxAsyncConnect,
   reduxConnect,
-  // propsEnhancer,
   pure,
 );

@@ -1,5 +1,5 @@
 import { Button } from 'reactstrap';
-import { arrayOf, object, func } from 'prop-types';
+import { object, func } from 'prop-types';
 
 import { ServiceForm, Page, PageContent, PageHeader } from 'src/components';
 import { breadcrumbsType } from 'src/prop-types';
@@ -9,6 +9,7 @@ import enhance from './enhance';
 const propTypes = {
   validationErrors: object,
   breadcrumbs: breadcrumbsType.isRequired,
+  assets: object.isRequired,
 
   onDelete: func.isRequired,
   onFieldChange: func.isRequired,

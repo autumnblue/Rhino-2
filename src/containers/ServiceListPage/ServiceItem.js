@@ -1,6 +1,6 @@
 import { compose, pure, withHandlers } from 'recompose';
 import { Link } from 'react-router';
-import { number, string, func, arrayOf, object } from 'prop-types';
+import { number, string, func, object, array } from 'prop-types';
 import { Button, PriorityVote } from 'src/components';
 
 import css from './style.css';
@@ -11,6 +11,8 @@ const propTypes = {
   assets: object.isRequired,
   default_sort_priority: number.isRequired,
   description: string.isRequired,
+  feature_image: number,
+  tools: array,
 
   onVote: func.isRequired,
 };
@@ -27,7 +29,7 @@ const enhance = compose(
   pure,
 );
 
-const  ServiceItem = ({
+const ServiceItem = ({
                 id,
                 name,
                 assets,
@@ -38,30 +40,33 @@ const  ServiceItem = ({
 
                 onVote,
               }) => (
-  <tr key={id}>
-    <td>
-      <PriorityVote
-        onChange={onVote}
-        value={default_sort_priority}
-      />
-    </td>
-    <td>
-      {name}
-      <br /><br />
-      {tools.length} tools
-    </td>
-    <td>
-      {feature_image ? <img src={assets[feature_image].file} className={css.image}/> : null}
-    </td>
-    <td>
-      {description}
-    </td>
-    <td>
-      <Link to={`/services/${id}`}>
-        <Button color="primary" outline>&rarr;</Button>
-      </Link>
-    </td>
-  </tr>
+                <tr key={id}>
+                  <td>
+                    <PriorityVote
+                      onChange={onVote}
+                      value={default_sort_priority}
+                    />
+                  </td>
+                  <td>
+                    {name}
+                    <br /><br />
+                    {tools.length} tools
+                  </td>
+                  <td>
+                    {feature_image ?
+                      <img src={assets[feature_image].file} className={css.image} alt="" /> :
+                      null
+                    }
+                  </td>
+                  <td>
+                    {description}
+                  </td>
+                  <td>
+                    <Link to={`/services/${id}`}>
+                      <Button color="primary" outline>&rarr;</Button>
+                    </Link>
+                  </td>
+                </tr>
 );
 
 ServiceItem.propTypes = propTypes;

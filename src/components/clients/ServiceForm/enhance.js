@@ -1,4 +1,4 @@
-import { compose, pure, withPropsOnChange, withHandlers } from 'recompose';
+import { compose, pure, withHandlers } from 'recompose';
 
 const handlersEnhancer = withHandlers({
   // this little trick allows to call onFieldChange after redux-form updates the store
