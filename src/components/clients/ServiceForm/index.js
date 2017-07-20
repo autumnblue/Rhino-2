@@ -9,7 +9,7 @@ import enhance from './enhance';
 
 const propTypes = {
   isNew: bool,
-  assets: object.isRequired,
+  assets: object,
   validationErrors: object,
   onFieldChange: func.isRequired,
 
@@ -17,9 +17,10 @@ const propTypes = {
 
 const ServiceForm = ({
   validationErrors,
-  onFieldChange,
   isNew,
   assets,
+
+  onFieldChange,
 }) => (
   <Form>
     <Row>
@@ -97,7 +98,7 @@ const ServiceForm = ({
             <Field
               component={ReduxImage}
               name="feature_image"
-              onBlur={onFieldChange}
+              onChange={onFieldChange}
               assets={assets}
             />
           </FormGroup>
@@ -105,6 +106,7 @@ const ServiceForm = ({
             <Label>Service Body</Label>
             <Field
               component={ReduxQuill}
+              disabled={isNew}
               name="html_body"
               onChange={onFieldChange}
               error={validationErrors.html_body}

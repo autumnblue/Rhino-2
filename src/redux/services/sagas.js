@@ -1,9 +1,9 @@
-import { all, fork, take, select, put } from 'redux-saga/effects';
+import { all, fork, take, select, put, push } from 'redux-saga/effects';
 import { isEmpty, pick } from 'lodash';
 
 import simpleObjectDiff from 'src/helpers/simpleObjectDiff';
 import { getService } from './selectors';
-import { editService } from './actions';
+import { editService, createService } from './actions';
 import * as c from './constants';
 
 
@@ -14,8 +14,6 @@ function* editServiceFormChange() {
     const { values, registeredFields } = state.form.editServiceForm;
     const service = yield select(getService);
 
-    // since we put entire client to reduxForm using initialValues
-    // we need to extract only those properties which are rendered on the page
     const keys = Object.keys(registeredFields);
     const diff = simpleObjectDiff(pick(values, keys), service);
 
@@ -28,8 +26,34 @@ function* editServiceFormChange() {
   }
 }
 
+function* newServiceFormChange() {
+  while (true) {
+    yield take(c.NEW_SERVICE_FORM_CHANGE);
+    const state = yield select();
+    const { values } = state.form.newServiceForm;
+
+    yield put(createService({
+      commit: true,
+      // tools: [],
+      ...values,
+    }));
+  }
+}
+
+function* createToolSuccess() {
+  while (true) {
+    const { response } = yield take(c.CREATE_SERVICE_SUCCESS);
+    const { id } = response.data.tool;
+
+    yield put(push(`/services/${id}`));
+  }
+}
+
 export default function* createSaga() {
   yield all([
     fork(editServiceFormChange),
+    fork(newServiceFormChange),
+    fork(createToolSuccess),
   ]);
 }
+

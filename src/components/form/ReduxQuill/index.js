@@ -1,16 +1,18 @@
 import { pure } from 'recompose';
-import { object } from 'prop-types';
+import { object, bool } from 'prop-types';
 import React from 'react';
 import ReactQuill from 'react-quill';
 
 const propTypes = {
   input: object.isRequired,
+  disabled: bool,
 };
 
 const enhance = pure;
 
 const ReduxQuill = ({
                       input: { value, onChange },
+                      ...props
                     }) => {
   const modules = {
     toolbar: [
@@ -34,6 +36,7 @@ const ReduxQuill = ({
   ];
 
   return (<ReactQuill
+    readOnly={props.disabled}
     onChange={onChange}
     value={value}
     modules={modules}

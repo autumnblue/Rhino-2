@@ -22,6 +22,12 @@ export const loadService = id => ({
   }),
 });
 
+export const createService = data => ({
+  types: [c.CREATE_SERVICE, c.CREATE_SERVICE_SUCCESS, c.CREATE_SERVICE_FAIL],
+  api: ({ post }) => post(endpoint, { data }),
+});
+
+
 export const deleteServiceTrigger = id => ({
   type: c.DELETE_SERVICE_TRIGGER,
   id,
@@ -42,4 +48,8 @@ export const editService = (id, data) => ({
   api: ({ patch }) => patch(endpoint + id, {
     data,
   }),
+});
+
+export const newServiceFormChange = () => ({
+  type: c.NEW_SERVICE_FORM_CHANGE,
 });

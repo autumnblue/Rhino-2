@@ -1,16 +1,8 @@
 import { compose, pure, withHandlers } from 'recompose';
 
 const handlersEnhancer = withHandlers({
-  // this little trick allows to call onFieldChange after redux-form updates the store
-  onFieldChange: ({ onFieldChange }) => () => setTimeout(() => onFieldChange()),
-  onVoteUp: ({ onEdit, id, default_sort_priority }) => () => onEdit(id, {
-    default_sort_priority: default_sort_priority - 1,
-    commit: true,
-  }),
-  onVoteDown: ({ onEdit, id, default_sort_priority }) => () => onEdit(id, {
-    default_sort_priority: default_sort_priority + 1,
-    commit: true,
-  }),
+  // makes a short delay which runs onFieldChange after the store is updated
+  onFieldChange: ({ onFieldChange }) => (...args) => setTimeout(() => onFieldChange(...args)),
 });
 
 export default compose(
