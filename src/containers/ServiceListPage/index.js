@@ -1,7 +1,7 @@
 import { Page, PageContent, PageHeader, Button } from 'src/components';
 import { Link } from 'react-router';
 
-import { array, object, func } from 'src/prop-types';
+import { array, object, func } from 'prop-types';
 import enhance from './enhance';
 import List from './List';
 
