@@ -2,7 +2,7 @@ import { Button } from 'reactstrap';
 import { arrayOf, object, func } from 'prop-types';
 
 import { ServiceForm, Page, PageContent, PageHeader } from 'src/components';
-import { clientType, issuerType, userType, breadcrumbsType } from 'src/prop-types';
+import { breadcrumbsType } from 'src/prop-types';
 
 import enhance from './enhance';
 
@@ -36,6 +36,6 @@ const ServiceEditPage = ({
   </Page>
 );
 
-// ClientEditPage.propTypes = propTypes;
+ServiceEditPage.propTypes = propTypes;
 
 export default enhance(ServiceEditPage);

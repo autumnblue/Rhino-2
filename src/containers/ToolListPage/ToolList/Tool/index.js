@@ -60,3 +60,4 @@ const Tool = ({
 Tool.propTypes = propTypes;
 
 export default enhance(Tool);
+

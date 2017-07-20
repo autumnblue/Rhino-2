@@ -5,6 +5,7 @@ import { compose, pure, withHandlers } from 'recompose';
 
 import { Button, PriorityVote } from 'src/components';
 import { clientType } from 'src/prop-types';
+import ServiceItem from './ServiceItem';
 
 import css from './style.css';
 
@@ -12,19 +13,7 @@ const propTypes = {
   services: arrayOf(clientType).isRequired,
 };
 
-const handlersEnhancer = withHandlers({
-  onVoteUp: ({ onEdit, id, default_sort_priority }) => () => onEdit(id, {
-    default_sort_priority: default_sort_priority - 1,
-    commit: true,
-  }),
-  onVoteDown: ({ onEdit, id, default_sort_priority }) => () => onEdit(id, {
-    default_sort_priority: default_sort_priority + 1,
-    commit: true,
-  }),
-});
-
 const enhance = compose(
-  handlersEnhancer,
   pure,
 );
 
@@ -32,8 +21,7 @@ const List = ({
   services,
   assets,
 
-  onVoteUp,
-  onVoteDown
+  onEdit,
 }) => (
   <Table striped>
     <tbody>
@@ -51,31 +39,20 @@ const List = ({
         remediation_text,
         tools,
       }) => (
-        <tr key={id}>
-          <td>
-            <PriorityVote
-              onVoteUp={onVoteUp}
-              onVoteDown={onVoteDown}
-              value={default_sort_priority}
-            />
-          </td>
-          <td>
-            {name}
-            <br /><br />
-            {tools.length} tools
-          </td>
-          <td>
-            {feature_image ? <img src={assets[feature_image].file} className={css.image}/> : null}
-          </td>
-          <td>
-            {description}
-          </td>
-          <td>
-            <Link to={`/services/${id}`}>
-              <Button color="primary" outline>&rarr;</Button>
-            </Link>
-          </td>
-        </tr>
+        <ServiceItem
+          key={id}
+          {...{
+            id,
+            name,
+            assets,
+            default_sort_priority,
+            feature_image,
+            description,
+            tools,
+
+            onEdit,
+          }}
+        />
       ))}
     </tbody>
   </Table>

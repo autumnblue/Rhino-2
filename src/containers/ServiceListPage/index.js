@@ -8,7 +8,9 @@ const breadcrumbs = [{ label: 'Services' }];
 
 const ServiceListPage = ({
   services,
-  assets
+  assets,
+
+  onEdit,
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
@@ -17,7 +19,7 @@ const ServiceListPage = ({
       </Link>
     </PageHeader>
     <PageContent>
-      <List services={services} assets={assets}/>
+      <List services={services} assets={assets} onEdit={onEdit} />
     </PageContent>
   </Page>
 );

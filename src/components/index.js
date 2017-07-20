@@ -22,4 +22,5 @@ export { default as ReduxSimpleList } from './form/ReduxSimpleList';
 export { default as ServiceForm } from './clients/ServiceForm';
 export { default as ToolForm } from './tools/ToolForm';
 export { default as ReduxImage } from './form/ReduxImage';
+export { default as ReduxQuill } from './form/ReduxQuill';
 

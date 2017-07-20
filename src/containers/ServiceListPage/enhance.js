@@ -3,7 +3,7 @@ import { compose, pure, withPropsOnChange } from 'recompose';
 import { connect } from 'react-redux';
 import { pick } from 'lodash';
 
-import { loadServices } from 'src/redux/services/actions';
+import { loadServices, editService } from 'src/redux/services/actions';
 import { getServices } from 'src/redux/services/selectors';
 import { getAssets } from 'src/redux/assets/selectors';
 
@@ -17,7 +17,7 @@ const reduxConnect = connect(
     assets: getAssets(store),
   }),
   {
-
+    onEdit: editService
   }
 );
 

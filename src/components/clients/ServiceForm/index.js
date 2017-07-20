@@ -2,7 +2,8 @@ import { Col, Row, FormGroup, Form, Label } from 'reactstrap';
 import { Field } from 'redux-form';
 import { object, func } from 'prop-types';
 
-import { ReduxInput, ReduxSelect, ReduxPriorityVote, ReduxImage } from 'src/components';
+
+import { ReduxInput, ReduxSelect, ReduxPriorityVote, ReduxImage, ReduxQuill } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
 
 import enhance from './enhance';
@@ -104,11 +105,10 @@ const ServiceForm = ({
           <FormGroup>
             <Label>Service Body</Label>
             <Field
-              component={ReduxInput}
-              type="textarea"
+              component={ReduxQuill}
               name="html_body"
-              onBlur={onFieldChange}
-              error={validationErrors.focal_last_name}
+              onChange={onFieldChange}
+              error={validationErrors.html_body}
             />
           </FormGroup>
         </FormGroup>
