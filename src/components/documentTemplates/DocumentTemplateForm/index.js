@@ -3,7 +3,7 @@ import { Field } from 'redux-form';
 import { object, func, string } from 'prop-types';
 import moment from 'moment';
 
-import { ReduxInput, ReduxCheckbox, ReduxSelect } from 'src/components';
+import { ReduxInput, ReduxCheckbox, ReduxSelect, ReduxQuill } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
 
 import enhance from './enhance';
@@ -61,11 +61,8 @@ const DocumentTemplateForm = ({
         <FormGroup>
           <label>Template Body</label>
           <Field
-            component={ReduxInput}
-            type="textarea"
+            component={ReduxQuill}
             name="html_body"
-            rows={10}
-            placeholder="Todo: WYSIWYG"
             onBlur={onFieldChange}
             error={validationErrors.html_body}
           />

@@ -45,7 +45,7 @@ const Menu = ({
                 <Icon fa="file-text" className="site-menu-icon" />
                 <span className="site-menu-title">Document Templates</span>
               </Link>
-            </li>            
+            </li>
           </ul>
         </div>
       </div>
