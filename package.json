@@ -55,6 +55,7 @@
     "@types/react-dom": "^0.14.23",
     "babel-plugin-jsx-base-component": "^0.1.2",
     "bootstrap": "^4.0.0-alpha.6",
+    "camelcase": "^4.1.0",
     "classnames": "^2.2.5",
     "css-loader": "^0.28.4",
     "express": "^4.13.3",

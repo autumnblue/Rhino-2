@@ -34,6 +34,12 @@ const Menu = ({
                 <span className="site-menu-title">Settings &amp; Assets</span>
               </Link>
             </li>
+            <li className={`site-menu-item ${activeCategory === 'document-templates' ? css.active : ''}`}>
+              <Link to="/document-templates?is_default=default&issuer=default">
+                <Icon fa="file-text" className="site-menu-icon" />
+                <span className="site-menu-title">Document Templates</span>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

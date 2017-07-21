@@ -1,16 +1,20 @@
 // components are sorted alphabetically
 
 // common
+export { default as Associations } from './common/Associations';
 export { default as Icon } from './common/Icon';
+export { default as EntityLink } from './common/EntityLink';
 export { default as Page } from './common/Page';
 export { default as PageContent } from './common/PageContent';
-export { default as Paginate } from './common/Paginate';
 export { default as PageHeader } from './common/PageHeader';
+export { default as Paginate } from './common/Paginate';
 export { default as PriorityVote } from './common/PriorityVote';
-export { default as Associations } from './common/Associations';
 
 // clients
 export { default as ClientForm } from './clients/ClientForm';
+
+// document templates
+export { default as DocumentTemplateForm } from './documentTemplates/DocumentTemplateForm';
 
 // form
 export { default as Button } from './form/Button';

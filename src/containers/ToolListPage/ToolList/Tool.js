@@ -1,9 +1,6 @@
 import { compose, pure, withHandlers } from 'recompose';
-import { Link } from 'react-router';
 import { number, string, func, arrayOf } from 'prop-types';
-import { Icon, Button, PriorityVote } from 'src/components';
-
-import css from './style.css';
+import { PriorityVote, EntityLink } from 'src/components';
 
 const propTypes = {
   id: number.isRequired,
@@ -47,12 +44,8 @@ const Tool = ({
       <br />
       {services.length}&nbsp;Services
     </td>
-    <td className={css.lastCell}>
-      <Link to={`/tools/${id}`}>
-        <Button color="primary" outline className="btn-floating">
-          <Icon wb="arrow-right" />
-        </Button>
-      </Link>
+    <td>
+      <EntityLink to={`/tools/${id}`} />
     </td>
   </tr>
 );

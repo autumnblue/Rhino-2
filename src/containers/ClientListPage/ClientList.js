@@ -1,8 +1,7 @@
-import { Link } from 'react-router';
 import { Table } from 'reactstrap';
 import { arrayOf } from 'prop-types';
 
-import { Button, Icon } from 'src/components';
+import { EntityLink } from 'src/components';
 import { clientType } from 'src/prop-types';
 
 const propTypes = {
@@ -45,11 +44,7 @@ const ClientList = ({ clients }) => (
             {focal_phone}
           </td>
           <td>
-            <Link to={`/clients/${id}`}>
-              <Button color="primary" outline className="btn-floating">
-                <Icon wb="arrow-right" />
-              </Button>
-            </Link>
+            <EntityLink to={`/clients/${id}`} />
           </td>
         </tr>
       ))}

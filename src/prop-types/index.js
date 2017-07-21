@@ -1,11 +1,11 @@
-import { number, string, shape, arrayOf, any, node, oneOfType } from 'prop-types';
+import { number, string, shape, arrayOf, any, node, bool } from 'prop-types';
 
 // this module exports the most widely used custom prop types
 
 // common types
 
 export const breadcrumbsType = arrayOf(shape({
-  label: string.isRequired,
+  label: node.isRequired,
   url: string,
 }));
 
@@ -25,6 +25,7 @@ export const clientType = shape({
 export const issuerType = shape({
   id: number.isRequired,
   name: string.isRequired,
+  is_default: bool.isRequired,
 });
 
 export const userType = shape({
@@ -42,5 +43,10 @@ export const toolType = shape({
   id: number.isRequired,
   name: string.isRequired,
   html_body: string.isRequired,
-  services: arrayOf(oneOfType([number, serviceType])),
+});
+
+export const documentTemplateType = shape({
+  id: number.isRequired,
+  is_default: bool.isRequired,
+  html_body: string.isRequired,
 });

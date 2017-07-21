@@ -28,40 +28,40 @@ const ClientForm = ({
   <Form>
     <Row>
       <Col md="6">
-        <FormGroup tag="fieldset">
-          <FormGroup>
-            <Field
-              disabled={isNew}
-              component={ReduxPriorityVote}
-              className={css.vote}
-              onChange={onFieldChange}
-              name="default_sort_priority"
-            />
+        <FormGroup>
+          <Field
+            disabled={isNew}
+            component={ReduxPriorityVote}
+            className={css.vote}
+            onChange={onFieldChange}
+            name="default_sort_priority"
+          />
 
-            <Field
-              wrapperClassName={css.name}
-              component={ReduxInput}
-              name="name"
-              placeholder="Tool Name"
-              onBlur={onFieldChange}
-              error={validationErrors.name}
-            />
-
-            <Field
-              component={ReduxInput}
-              type="textarea"
-              name="html_body"
-              rows={10}
-              placeholder="Todo: WYSIWYG"
-              onBlur={onFieldChange}
-              error={validationErrors.html_body}
-            />
-          </FormGroup>
+          <Field
+            wrapperClassName={css.name}
+            component={ReduxInput}
+            name="name"
+            placeholder="Tool Name"
+            onBlur={onFieldChange}
+            error={validationErrors.name}
+          />
+        </FormGroup>
+        <FormGroup>
+          <label>HTML Body</label>
+          <Field
+            component={ReduxInput}
+            type="textarea"
+            name="html_body"
+            rows={10}
+            placeholder="Todo: WYSIWYG"
+            onBlur={onFieldChange}
+            error={validationErrors.html_body}
+          />
         </FormGroup>
       </Col>
       <Col md="6">
-        <FormGroup tag="fieldset">
-          <legend>Associated findings</legend>
+        <FormGroup>
+          <label>Associated findings</label>
           <Field
             component={ReduxAssociations}
             name="associated_findings"
@@ -70,8 +70,8 @@ const ClientForm = ({
             error={validationErrors.associated_findings}
           />
         </FormGroup>
-        <FormGroup tag="fieldset">
-          <legend>Associated services</legend>
+        <FormGroup>
+          <label>Associated services</label>
           <Field
             component={ReduxAssociations}
             name="services"
