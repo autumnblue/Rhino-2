@@ -87,7 +87,7 @@ function* deleteClientTrigger() {
     const { id } = yield take(c.DELETE_CLIENT_TRIGGER);
 
     // eslint-disable-next-line no-alert
-    if (window.confirm('Are you sure want to delete the client')) {
+    if (window.confirm('Are you sure want to delete the client?')) {
       yield put(deleteClient(id));
     }
   }

@@ -1,5 +1,6 @@
 import { Button } from 'reactstrap';
 import { arrayOf, object, func } from 'prop-types';
+import { Link } from 'react-router';
 
 import { ClientForm, Page, PageContent, PageHeader } from 'src/components';
 import { clientType, issuerType, userType, breadcrumbsType } from 'src/prop-types';
@@ -38,7 +39,7 @@ const ClientEditPage = ({
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
-      <Button color="danger" onClick={onDelete}>Delete</Button>
+      <Button tag={Link} to="/clients" color="success">Done</Button>
     </PageHeader>
     <PageContent>
       <ClientForm {...{
@@ -53,6 +54,7 @@ const ClientEditPage = ({
         onFieldChange,
       }}
       />
+      <Button color="danger" onClick={onDelete}>Delete</Button>
     </PageContent>
   </Page>
 );

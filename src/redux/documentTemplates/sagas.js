@@ -76,7 +76,7 @@ function* deleteDocumentTemplateTrigger() {
     const { id } = yield take(c.DELETE_DOCUMENT_TEMPLATE_TRIGGER);
 
     // eslint-disable-next-line no-alert
-    if (window.confirm('Are you sure want to delete the template')) {
+    if (window.confirm('Are you sure want to delete the template?')) {
       yield put(deleteDocumentTemplate(id));
     }
   }

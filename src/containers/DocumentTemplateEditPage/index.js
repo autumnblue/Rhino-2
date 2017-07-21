@@ -1,5 +1,6 @@
 import { Button } from 'reactstrap';
 import { object, func, arrayOf } from 'prop-types';
+import { Link } from 'react-router';
 
 import { DocumentTemplateForm, Page, PageContent, PageHeader } from 'src/components';
 import { breadcrumbsType, issuerType, documentTemplateType } from 'src/prop-types';
@@ -30,7 +31,7 @@ const DocumentTemplateEditPage = ({
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
-      <Button color="danger" onClick={onDelete}>Delete</Button>
+      <Button tag={Link} to="/document-templates" color="success">Done</Button>
     </PageHeader>
     <PageContent>
       <DocumentTemplateForm
@@ -41,6 +42,7 @@ const DocumentTemplateEditPage = ({
         validationErrors={validationErrors}
         onFieldChange={onFieldChange}
       />
+      <Button color="danger" onClick={onDelete}>Delete</Button>
     </PageContent>
   </Page>
 );
