@@ -24,6 +24,10 @@ import IssuerListPage from './containers/IssuerListPage';
 import IssuerCreatePage from './containers/IssuerCreatePage';
 import IssuerEditPage from './containers/IssuerEditPage';
 
+import DocumentTemplateListPage from './containers/DocumentTemplateListPage';
+import DocumentTemplateCreatePage from './containers/DocumentTemplateCreatePage';
+import DocumentTemplateEditPage from './containers/DocumentTemplateEditPage';
+
 function reduxAsyncConnect(props) {
   return (
     <ReduxAsyncConnect
@@ -60,6 +64,10 @@ const Routes = ({ history }) => (
         <Route path="issuers" component={IssuerListPage} />
         <Route path="issuers/new" component={IssuerCreatePage} />
         <Route path="issuers/:issuerId" component={IssuerEditPage} />
+
+        <Route path="document-templates" component={DocumentTemplateListPage} />
+        <Route path="document-templates/new" component={DocumentTemplateCreatePage} />
+        <Route path="document-templates/:templateId" component={DocumentTemplateEditPage} />
       </Route>
       <Route path="/login" component={LoginPage} />
     </Route>

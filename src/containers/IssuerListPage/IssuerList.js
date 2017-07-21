@@ -3,8 +3,7 @@ import { pure } from 'recompose';
 import { arrayOf } from 'prop-types';
 
 import { issuerType } from 'src/prop-types';
-
-import Issuer from './Issuer';
+import { EntityLink } from 'src/components';
 
 const propTypes = {
   issuers: arrayOf(issuerType).isRequired,
@@ -22,14 +21,17 @@ const IssuerList = ({
         name,
         clients,
       }) => (
-        <Issuer
-          key={id}
-          {...{
-            id,
-            name,
-            clients,
-          }}
-        />
+        <tr key={id}>
+          <td>
+            {name}
+          </td>
+          <td>
+            {clients.length}&nbsp;Clients
+          </td>
+          <td>
+            <EntityLink to={`/issuers/${id}`} />
+          </td>
+        </tr>
       ))}
     </tbody>
   </Table>

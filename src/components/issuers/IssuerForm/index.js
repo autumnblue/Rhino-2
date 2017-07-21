@@ -13,7 +13,7 @@ const propTypes = {
 };
 
 const ClientForm = ({
-  validationErrors = {},
+  validationErrors,
 
   onFieldChange,
 }) => (

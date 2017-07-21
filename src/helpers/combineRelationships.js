@@ -1,5 +1,6 @@
 import { mapKeys } from 'lodash';
 import pluralize from 'pluralize';
+import camelCase from 'camelcase';
 
 
 function place(object, result) {
@@ -45,13 +46,15 @@ function normalize(data = {}) {
 }
 
 function pluralizeKeys(object) {
-  return mapKeys(object, (value, key) => pluralize(key));
+  return mapKeys(object, (value, key) => camelCase(
+    // TODO: This is tmp hotfix before server fix
+    pluralize(key.replace('documenttemplate', 'document_template')),
+  ));
 }
 
 export function combineRelationships(state, response) {
   const normalized = pluralizeKeys(normalize(response));
   const newState = Object.assign({}, state);
-
 
   for (const [key, branch] of Object.entries(newState)) {
     if (key in normalized) {

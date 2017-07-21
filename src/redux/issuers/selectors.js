@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 
 const getIssuersIds = state => state.issuers.ids;
 const getCurrentIssuerId = state => state.issuers.id;
-const getIssuersData = state => state.issuers.data;
+export const getIssuersData = state => state.issuers.data;
 
 export const getIssuers = createSelector(
     [getIssuersIds, getIssuersData],
