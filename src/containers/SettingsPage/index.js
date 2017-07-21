@@ -23,6 +23,7 @@ const categories = [{
   url: '/issuers',
 }, {
   label: 'Services',
+  url: '/services',
 }, {
   label: 'Shortcodes',
 }, {

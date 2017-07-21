@@ -34,12 +34,6 @@ const Menu = ({
                 <span className="site-menu-title">Settings &amp; Assets</span>
               </Link>
             </li>
-            <li className={`site-menu-item ${activeCategory === 'services' ? css.active : ''}`}>
-              <Link to="/services">
-                <i className="site-menu-icon wb-user" />
-                <span className="site-menu-title">Services</span>
-              </Link>
-            </li>
             <li className={`site-menu-item ${activeCategory === 'document-templates' ? css.active : ''}`}>
               <Link to="/document-templates?is_default=default&issuer=default">
                 <Icon fa="file-text" className="site-menu-icon" />
