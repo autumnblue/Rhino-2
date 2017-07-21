@@ -5,6 +5,7 @@ import { reduxForm } from 'redux-form';
 
 // actions
 import { loadService, deleteServiceTrigger, editServiceFormChange } from 'src/redux/services/actions';
+import { createAsset } from 'src/redux/assets/actions';
 
 // selectors
 import { getService } from 'src/redux/services/selectors';
@@ -23,6 +24,7 @@ const reduxConnect = connect(state => ({
 }), {
   onDelete: deleteServiceTrigger,
   onFieldChange: editServiceFormChange,
+  upload: createAsset,
 });
 
 const propsEnhancer = withPropsOnChange(['service'], ({ service }) => ({
@@ -44,6 +46,7 @@ const reduxFormEnhancer = reduxForm({
 const handlersEnhancer = withHandlers({
   onDelete: ({ onDelete, service }) => () => onDelete(service.id),
   onFieldChange: ({ onFieldChange, service }) => () => onFieldChange(service.id),
+  upload: ({ upload, service }) => file => upload(file, service),
 });
 
 export default compose(

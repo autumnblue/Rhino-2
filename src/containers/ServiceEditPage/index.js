@@ -13,6 +13,7 @@ const propTypes = {
 
   onDelete: func.isRequired,
   onFieldChange: func.isRequired,
+  upload: func.isRequired,
 };
 
 const ServiceEditPage = ({
@@ -22,6 +23,7 @@ const ServiceEditPage = ({
 
   onDelete,
   onFieldChange,
+  upload,
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
@@ -32,6 +34,7 @@ const ServiceEditPage = ({
         onFieldChange={onFieldChange}
         validationErrors={validationErrors}
         assets={assets}
+        upload={upload}
       />
     </PageContent>
   </Page>

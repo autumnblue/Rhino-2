@@ -12,7 +12,7 @@ const propTypes = {
   assets: object,
   validationErrors: object,
   onFieldChange: func.isRequired,
-
+  upload: func.isRequired,
 };
 
 const ServiceForm = ({
@@ -21,6 +21,7 @@ const ServiceForm = ({
   assets,
 
   onFieldChange,
+  upload,
 }) => (
   <Form>
     <Row>
@@ -98,7 +99,7 @@ const ServiceForm = ({
             <Field
               component={ReduxImage}
               name="feature_image"
-              onChange={onFieldChange}
+              upload={upload}
               assets={assets}
             />
           </FormGroup>

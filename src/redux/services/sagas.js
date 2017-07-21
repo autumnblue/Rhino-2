@@ -1,4 +1,5 @@
-import { all, fork, take, select, put, push } from 'redux-saga/effects';
+import { all, fork, take, select, put } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 import { isEmpty, pick } from 'lodash';
 
 import simpleObjectDiff from 'src/helpers/simpleObjectDiff';
@@ -40,7 +41,7 @@ function* newServiceFormChange() {
   }
 }
 
-function* createToolSuccess() {
+function* createServiceSuccess() {
   while (true) {
     const { response } = yield take(c.CREATE_SERVICE_SUCCESS);
     const { id } = response.data.tool;
@@ -53,7 +54,7 @@ export default function* createSaga() {
   yield all([
     fork(editServiceFormChange),
     fork(newServiceFormChange),
-    fork(createToolSuccess),
+    fork(createServiceSuccess),
   ]);
 }
 
