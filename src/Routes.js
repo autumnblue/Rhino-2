@@ -14,6 +14,9 @@ import ClientEditPage from './containers/ClientEditPage';
 import ClientCreatePage from './containers/ClientCreatePage';
 
 import ToolListPage from './containers/ToolListPage';
+import ServiceListPage from './containers/ServiceListPage';
+import ServiceEditPage from './containers/ServiceEditPage';
+import ServiceCreatePage from './containers/ServiceCreatePage';
 import ToolCreatePage from './containers/ToolCreatePage';
 import ToolEditPage from './containers/ToolEditPage';
 
@@ -51,8 +54,10 @@ const Routes = ({ history }) => (
         <Route path="clients" component={ClientListPage} />
         <Route path="clients/new" component={ClientCreatePage} />
         <Route path="clients/:clientId" component={ClientEditPage} />
-
         <Route path="tools" component={ToolListPage} />
+        <Route path="services" component={ServiceListPage} />
+        <Route path="services/new" component={ServiceCreatePage} />
+        <Route path="services/:serviceId" component={ServiceEditPage} />
         <Route path="tools/new" component={ToolCreatePage} />
         <Route path="tools/:toolId" component={ToolEditPage} />
 

@@ -5,3 +5,5 @@ export { default as documentTemplates } from './documentTemplates/sagas';
 export { default as issuers } from './issuers/sagas';
 export { default as tools } from './tools/sagas';
 export { default as users } from './users/sagas';
+export { default as services } from './services/sagas';
+

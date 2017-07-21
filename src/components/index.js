@@ -23,6 +23,7 @@ export { default as ReduxAssociations } from './form/ReduxAssociations';
 export { default as ReduxCheckbox } from './form/ReduxCheckbox';
 export { default as ReduxInput } from './form/ReduxInput';
 export { default as ReduxPriorityVote } from './form/ReduxPriorityVote';
+export { default as ServiceForm } from './clients/ServiceForm';
 export { default as ReduxSelect } from './form/ReduxSelect';
 
 // issuers
@@ -30,3 +31,6 @@ export { default as IssuerForm } from './issuers/IssuerForm';
 
 // tools
 export { default as ToolForm } from './tools/ToolForm';
+export { default as ReduxImage } from './form/ReduxImage';
+export { default as ReduxQuill } from './form/ReduxQuill';
+

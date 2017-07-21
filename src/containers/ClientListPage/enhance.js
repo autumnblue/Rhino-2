@@ -21,6 +21,7 @@ const reduxAsyncConnect = asyncConnect([{
   })),
 }]);
 
+
 const reduxConnect = connect(
   store => ({
     clients: getClients(store),
