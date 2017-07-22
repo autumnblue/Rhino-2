@@ -3,7 +3,6 @@ import reduceReducers from 'reduce-reducers';
 import { reducer as reduxAsyncConnect } from 'redux-connect';
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import nprogress from 'nprogress';
 
 import * as reducers from '../redux/reducers';
 
@@ -14,13 +13,6 @@ const rootReducer = (state = {}, action) => {
   switch (action.type) {
     case COMBINE_RELATIONSHIPS:
       return combineRelationships(state, action.response);
-    // TODO: Move these side-effects to app saga
-    case '@redux-conn/BEGIN_GLOBAL_LOAD':
-      nprogress.start();
-      return state;
-    case '@redux-conn/END_GLOBAL_LOAD':
-      nprogress.done();
-      return state;
     default:
       return state;
   }
