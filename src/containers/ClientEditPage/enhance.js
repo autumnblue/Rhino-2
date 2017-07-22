@@ -47,16 +47,30 @@ const reduxConnect = connect(state => ({
   onRedirect: push,
 });
 
-const propsEnhancer = withPropsOnChange(['client'], ({ client }) => ({
-  breadcrumbs: [{
+const propsEnhancer = withPropsOnChange(['client'], ({ client }) => {
+  const breadcrumbs = [{
     label: 'Clients',
     url: '/clients',
-  }, {
+  }];
+
+  const { umbrella } = client;
+
+  if (umbrella) {
+    breadcrumbs.push({
+      label: umbrella.name,
+      url: `/clients/${umbrella.id}`,
+    });
+  }
+
+  breadcrumbs.push({
     label: client.name,
-  }],
-  // initialValues used by reduxForm
-  initialValues: client,
-}));
+  });
+
+  return {
+    breadcrumbs,
+    initialValues: client,
+  };
+});
 
 const reduxFormEnhancer = reduxForm({
   pure: true,

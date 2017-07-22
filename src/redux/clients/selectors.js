@@ -11,7 +11,10 @@ export const getClients = createSelector(
 
 export const getCurrentClient = createSelector(
   [getCurrentClientId, getClientsData],
-  (id, data) => data[id],
+  (id, data) => ({
+    ...data[id],
+    umbrella: data[data[id].umbrella],
+  }),
 );
 
 export const getDepartmentClients = createSelector(
