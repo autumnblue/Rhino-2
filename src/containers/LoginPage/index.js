@@ -1,4 +1,4 @@
-import { func } from 'prop-types';
+import { func, object } from 'prop-types';
 import Helmet from 'react-helmet';
 import BodyClassName from 'react-body-classname';
 
@@ -9,11 +9,15 @@ import enhance from './enhance';
 
 
 const propTypes = {
+  validationErrors: object,
+
   onSubmit: func.isRequired,
 };
 
 // the following styling will be reviewed
 const LoginPage = ({
+  validationErrors,
+
   onSubmit,
 }) => (
   <Page className="vertical-align text-center">
@@ -24,6 +28,7 @@ const LoginPage = ({
         <h2 className="brand-text">Rhino Security Labs</h2>
       </div>
       <LoginForm
+        validationErrors={validationErrors}
         onSubmit={onSubmit}
       />
     </PageContent>

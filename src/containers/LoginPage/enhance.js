@@ -7,7 +7,9 @@ import { initialize } from 'src/redux/app/actions';
 import pageMountEnhancer from 'src/enhancers/pageMountEnhancer';
 
 const reduxConnect = connect(
-  null,
+  state => ({
+    validationErrors: state.users.validationErrors,
+  }),
   {
     onSubmit: loginSubmit,
     onInitialize: initialize,

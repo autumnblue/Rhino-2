@@ -1,10 +1,12 @@
 import { reduxForm, Field } from 'redux-form';
 import { compose, pure, withHandlers } from 'recompose';
-import { func } from 'prop-types';
+import { func, object } from 'prop-types';
 import { FormGroup, Form } from 'reactstrap';
 import { ReduxInput, Button } from 'src/components';
 
 const propTypes = {
+  validationErrors: object,
+
   onSubmit: func.isRequired,
 };
 
@@ -25,6 +27,8 @@ const enhance = compose(
 
 
 const LoginForm = ({
+  validationErrors,
+
   onSubmit,
 }) => (
   <Form onSubmit={onSubmit}>
@@ -34,6 +38,7 @@ const LoginForm = ({
         component={ReduxInput}
         type="text"
         placeholder="email@example.com"
+        error={validationErrors.username}
       />
     </FormGroup>
     <FormGroup>
@@ -42,6 +47,7 @@ const LoginForm = ({
         component={ReduxInput}
         type="password"
         placeholder="Password"
+        error={validationErrors.password}
       />
     </FormGroup>
 

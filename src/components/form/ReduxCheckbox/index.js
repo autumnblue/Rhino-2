@@ -1,5 +1,5 @@
 import { compose, pure, withPropsOnChange, withHandlers } from 'recompose';
-import { string, object, func } from 'prop-types';
+import { string, object, func, oneOfType, arrayOf } from 'prop-types';
 import classNames from 'classnames';
 
 import { FieldError } from 'src/components';
@@ -8,7 +8,7 @@ const propTypes = {
   input: object.isRequired,
   id: string.isRequired,
   label: string.isRequired,
-  error: string,
+  error: oneOfType([string, arrayOf(string)]),
   wrapperClassName: string,
 
   onChange: func.isRequired,

@@ -1,6 +1,6 @@
 import { omit } from 'lodash';
 import { compose, pure } from 'recompose';
-import { string, object } from 'prop-types';
+import { string, object, oneOfType, arrayOf } from 'prop-types';
 
 import { Associations, FieldError } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
@@ -9,7 +9,7 @@ const propTypes = {
   input: object.isRequired,
   options: selectOptionsType.isRequired,
   wrapperClassName: string,
-  error: string,
+  error: oneOfType([string, arrayOf(string)]),
 };
 
 const enhance = compose(

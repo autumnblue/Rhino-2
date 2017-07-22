@@ -1,5 +1,5 @@
 import { compose, pure, lifecycle, toClass, withState } from 'recompose';
-import { object, bool, func, string } from 'prop-types';
+import { object, bool, func, string, arrayOf, oneOfType } from 'prop-types';
 import React from 'react';
 import ReactQuill from 'react-quill';
 
@@ -8,7 +8,7 @@ import { FieldError } from 'src/components';
 const propTypes = {
   input: object.isRequired,
   disabled: bool,
-  error: string,
+  error: oneOfType([string, arrayOf(string)]),
 
   onSetRef: func.isRequired,
 };

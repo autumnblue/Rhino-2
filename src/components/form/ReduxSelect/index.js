@@ -1,12 +1,12 @@
 import Select from 'react-select';
 import { compose, pure, withHandlers } from 'recompose';
-import { string, object } from 'prop-types';
+import { string, object, oneOfType, arrayOf } from 'prop-types';
 
 import { FieldError } from 'src/components';
 
 const propTypes = {
   input: object.isRequired,
-  error: string,
+  error: oneOfType([string, arrayOf(string)]),
 };
 
 const handlersEnhancer = withHandlers({
