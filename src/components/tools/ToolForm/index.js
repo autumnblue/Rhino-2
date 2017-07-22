@@ -2,7 +2,7 @@ import { Col, Row, FormGroup, Form } from 'reactstrap';
 import { Field } from 'redux-form';
 import { object, func, bool } from 'prop-types';
 
-import { ReduxInput, ReduxPriorityVote, ReduxAssociations } from 'src/components';
+import { ReduxInput, ReduxPriorityVote, ReduxAssociations, ReduxQuill } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
 
 import enhance from './enhance';
@@ -18,7 +18,7 @@ const propTypes = {
 };
 
 const ClientForm = ({
-  validationErrors = {},
+  validationErrors,
   findingsOptions,
   servicesOptions,
   isNew,
@@ -49,11 +49,8 @@ const ClientForm = ({
         <FormGroup>
           <label>HTML Body</label>
           <Field
-            component={ReduxInput}
-            type="textarea"
+            component={ReduxQuill}
             name="html_body"
-            rows={10}
-            placeholder="Todo: WYSIWYG"
             onBlur={onFieldChange}
             error={validationErrors.html_body}
           />

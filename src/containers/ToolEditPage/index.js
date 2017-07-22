@@ -1,15 +1,16 @@
 import { Button } from 'reactstrap';
-import { object, func } from 'prop-types';
+import { object, func, arrayOf } from 'prop-types';
 import { Link } from 'react-router';
 
 import { ToolForm, Page, PageContent, PageHeader } from 'src/components';
-import { breadcrumbsType } from 'src/prop-types';
+import { breadcrumbsType, serviceType } from 'src/prop-types';
 
 import enhance from './enhance';
 
 
 const propTypes = {
   validationErrors: object,
+  services: arrayOf(serviceType).isRequired,
   breadcrumbs: breadcrumbsType.isRequired,
 
   onDelete: func.isRequired,
@@ -18,6 +19,7 @@ const propTypes = {
 
 const ToolEditPage = ({
   breadcrumbs,
+  services,
   validationErrors,
 
   onDelete,
@@ -29,8 +31,9 @@ const ToolEditPage = ({
     </PageHeader>
     <PageContent>
       <ToolForm
-        onFieldChange={onFieldChange}
         validationErrors={validationErrors}
+        services={services}
+        onFieldChange={onFieldChange}
       />
       <Button color="danger" onClick={onDelete}>Delete</Button>
     </PageContent>

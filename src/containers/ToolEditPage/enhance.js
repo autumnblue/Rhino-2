@@ -5,17 +5,23 @@ import { reduxForm } from 'redux-form';
 
 // actions
 import { loadSingleTool, deleteToolTrigger, editToolFormChange } from 'src/redux/tools/actions';
+import { loadServices } from 'src/redux/services/actions';
 
 // selectors
 import { getCurrentTool } from 'src/redux/tools/selectors';
+import { getServices } from 'src/redux/services/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
-  promise: ({ store: { dispatch }, params: { toolId } }) => dispatch(loadSingleTool(toolId)),
+  promise: ({ store: { dispatch }, params: { toolId } }) => Promise.all([
+    dispatch(loadSingleTool(toolId)),
+    dispatch(loadServices()),
+  ]),
 }]);
 
 const reduxConnect = connect(state => ({
   validationErrors: state.tools.validationErrors,
   tool: getCurrentTool(state),
+  services: getServices(state),
 }), {
   onDelete: deleteToolTrigger,
   onFieldChange: editToolFormChange,

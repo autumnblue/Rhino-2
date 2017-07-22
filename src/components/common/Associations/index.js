@@ -1,7 +1,7 @@
 import { compose, pure, withPropsOnChange, withHandlers, withState } from 'recompose';
 import Select from 'react-select';
 import { without } from 'lodash';
-import { string, func } from 'prop-types';
+import { string, number, func, oneOfType } from 'prop-types';
 
 import { Icon, Button } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
@@ -12,21 +12,21 @@ import AssociationsItem from './AssociationsItem';
 const propTypes = {
   items: selectOptionsType.isRequired,
   options: selectOptionsType.isRequired,
-  selectedValue: string,
+  selectedValue: oneOfType([string, number]),
 
   onSelect: func.isRequired,
   onAdd: func.isRequired,
   onRemove: func.isRequired,
 };
 
-const valueEnhancer = withState('selectedValue', 'onSelect', null);
+const valueEnhancer = withState('selectedOption', 'onSelect', null);
 
 const handlersEnhancer = withHandlers({
-  onAdd: ({ values, onChange, onSelect, selectedValue }) => () => {
-    if (selectedValue) {
+  onAdd: ({ values, onChange, onSelect, selectedOption }) => () => {
+    if (selectedOption) {
       onChange([
         ...values,
-        selectedValue.value,
+        selectedOption.value,
       ]);
 
       onSelect(null);
@@ -36,8 +36,8 @@ const handlersEnhancer = withHandlers({
 });
 
 const propsEnhancer = withPropsOnChange(
-  ['values', 'options'],
-  ({ values, options }) => ({
+  ['values', 'options', 'selectedOption'],
+  ({ values, options, selectedOption }) => ({
     items: values.map((val) => {
       const option = options.find(({ value }) => value === val);
 
@@ -51,7 +51,9 @@ const propsEnhancer = withPropsOnChange(
       return option;
     }),
     options: options.filter(({ value }) => !values.includes(value)),
+    selectedValue: selectedOption ? selectedOption.value : null,
   }),
+
 );
 
 
@@ -80,7 +82,6 @@ const Associations = ({
         onRemove={onRemove}
       />
     ))}
-
     <div className={css.selectContainer}>
       <Select
         className={css.select}

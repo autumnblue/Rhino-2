@@ -1,11 +1,13 @@
 import { Link } from 'react-router';
-import { object, func } from 'prop-types';
+import { object, func, arrayOf } from 'prop-types';
 
 import { ToolForm, Page, PageContent, PageHeader, Button } from 'src/components';
+import { serviceType } from 'src/prop-types';
 
 import enhance from './enhance';
 
 const propTypes = {
+  services: arrayOf(serviceType).isRequired,
   validationErrors: object,
 
   onFieldChange: func.isRequired,
@@ -19,6 +21,7 @@ const breadcrumbs = [{
 }];
 
 const ToolCreatePage = ({
+  services,
   validationErrors,
 
   onFieldChange,
@@ -32,8 +35,10 @@ const ToolCreatePage = ({
     <PageContent>
       <ToolForm
         isNew
-        onFieldChange={onFieldChange}
+        services={services}
         validationErrors={validationErrors}
+
+        onFieldChange={onFieldChange}
       />
     </PageContent>
   </Page>

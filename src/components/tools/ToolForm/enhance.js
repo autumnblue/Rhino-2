@@ -2,9 +2,9 @@ import { compose, pure, withPropsOnChange, withHandlers } from 'recompose';
 import findings from 'src/data/findings';
 
 
-const propsEnhancer = withPropsOnChange(['services'], () => ({
+const propsEnhancer = withPropsOnChange(['services'], ({ services }) => ({
   findingsOptions: Object.entries(findings).map(([value, label]) => ({ value, label })),
-  servicesOptions: [/* TODO */],
+  servicesOptions: services.map(({ id, name }) => ({ value: id, label: name })),
 }));
 
 const handlersEnhancer = withHandlers({
