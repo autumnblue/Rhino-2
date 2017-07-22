@@ -86,7 +86,7 @@
 
       &:first-child {
 
-        margin-left: (2 * $site-menu-top-font-size);
+        margin-left: (2 * $site-menu-top-font-size) + 4px; // +4px for r-v4 Issue #371
       }
     }
 

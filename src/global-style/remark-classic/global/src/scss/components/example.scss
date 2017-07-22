@@ -28,7 +28,7 @@ $example-well-bg:               $page-bg !default;
   margin-top: 20px;
   margin-bottom: 20px;
 
-  &:before {   // add 
+  &:before {
     content: "";
     display: table;
   }

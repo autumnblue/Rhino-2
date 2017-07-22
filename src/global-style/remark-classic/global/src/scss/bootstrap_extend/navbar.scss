@@ -554,7 +554,7 @@ $navbar-toolbar-float-max-height: pxToRem(400px) !default;
 // ========================================================================
 .navbar-mega {
   // propagate menu position under container for fw navbars
-  
+
   @include media-breakpoint-up(sm) {
     .container, .container-fluid {
       position: relative;
@@ -702,6 +702,7 @@ $navbar-toolbar-float-max-height: pxToRem(400px) !default;
   top: 0;
   position: absolute !important;
   background-color: $inverse;
+  z-index: 1;
 
   .form-group, .form-control {
     display: block !important;
@@ -955,7 +956,7 @@ $navbar-toolbar-float-max-height: pxToRem(400px) !default;
   // Dropdown menu items
   .navbar-nav {
     // Remove background color from open dropdown
-    > .open > .nav-link,// v4a6-use .show instead
+    > .open > .nav-link,
     > .show > .nav-link {
       &,
       &:hover,
@@ -967,7 +968,7 @@ $navbar-toolbar-float-max-height: pxToRem(400px) !default;
 
     @include media-breakpoint-down(sm) {
       // Dropdowns get custom display when collapsed
-      .open .dropdown-menu,// v4a6-use .show instead
+      .open .dropdown-menu,
       .show .dropdown-menu {
         .dropdown-item {
           color: $navbar-default-link-color;
@@ -1256,6 +1257,7 @@ $navbar-toolbar-float-max-height: pxToRem(400px) !default;
 .navbar > .containers,
 .navbar > .container-fluid {
   margin: 0;
+  -ms-flex: 1 1 0%;
   flex: 1 1 0;
   justify-content: flex-start;
 

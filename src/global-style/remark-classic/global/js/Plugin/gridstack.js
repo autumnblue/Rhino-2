@@ -51,8 +51,8 @@
       key: 'getDefaults',
       value: function getDefaults() {
         return {
-          cell_height: 80,
-          vertical_margin: 20
+          cellHeight: 80,
+          verticalMargin: 20
         };
       }
     }]);

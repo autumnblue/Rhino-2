@@ -79,7 +79,7 @@
 .cm-s-dracula span.cm-builtin {
   color: #50fa7b;
 }
-.cm-s-dracula span.cm-variable-3 {
+.cm-s-dracula span.cm-variable-3, .cm-s-dracula span.cm-type {
   color: #ffb86c;
 }
 

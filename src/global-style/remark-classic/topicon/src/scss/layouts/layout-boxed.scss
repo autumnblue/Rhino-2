@@ -3,10 +3,22 @@
   @include media-breakpoint-up(xl) {
     background: $layout-boxed-bg;
 
-    &, & .site-navbar {
+    &, 
+    & .site-navbar,
+    & .site-menubar {
         max-width: $layout-boxed-width;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    & .site-menubar {
+      padding-left: 30px !important;
+      padding-right: 30px !important;
+    }
+
+    & .site-navbar {
+      padding-left: 10px !important;
+      padding-right: 30px !important;
     }
   }
 

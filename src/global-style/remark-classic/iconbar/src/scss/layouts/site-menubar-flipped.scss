@@ -59,13 +59,18 @@
   @include media-breakpoint-up(md) {
     // site-navbar
     .site-navbar {
-      .navbar-header {
-        float: right;
-      }
+      flex-direction: row-reverse;
+    }
+
+    .site-navbar {
+      // .navbar-header {
+      //   float: right;
+      // }
 
       .navbar-container {
         margin-left: auto;
-        margin-right: $site-menubar-unfold-width;
+        // margin-right: $site-menubar-unfold-width;
+        margin-right: 0;
       }
     }
   }

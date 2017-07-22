@@ -82,7 +82,6 @@ class Menu extends Plugin {
 
       e.stopPropagation();
     }).on('tap.site.menu', '> .site-menu-item > a', function() {
-      alert("test 11111");
       let link = $(this).attr('href');
 
       if (link) {

@@ -8,7 +8,7 @@
 {
     display: block;
 
-    height: 40px;
+    height: 42px;
     margin-top: 1px;
 
     border: 1px dashed #e4eaec; 
@@ -19,4 +19,9 @@
 .sortable-with-handle.list-group-gap .sortable-placeholder
 {
     margin-bottom: 2px;
+}
+
+.sortable.list-task .sortable-placeholder
+{
+    height: 65px;
 }

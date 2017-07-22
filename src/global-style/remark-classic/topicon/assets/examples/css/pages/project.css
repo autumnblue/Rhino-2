@@ -7,6 +7,10 @@
   border-top: none;
 }
 
+.page-project .card .card-block + .card-block {
+  padding: 25px;
+}
+
 .page-project .btn-pure.btn-trash:hover, .page-project .btn-pure.btn-trash:focus {
   color: #f96868;
 }
@@ -30,7 +34,7 @@
 }
 
 .project-option-title {
-  margin-top: 0;
+  margin-top: 0px;
   margin-bottom: 20px;
 }
 

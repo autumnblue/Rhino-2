@@ -50,7 +50,7 @@
 .cm-s-the-matrix span.cm-variable-2 {
   color: #c6f;
 }
-.cm-s-the-matrix span.cm-variable-3 {
+.cm-s-the-matrix span.cm-variable-3, .cm-s-the-matrix span.cm-type {
   color: #96f;
 }
 .cm-s-the-matrix span.cm-property {

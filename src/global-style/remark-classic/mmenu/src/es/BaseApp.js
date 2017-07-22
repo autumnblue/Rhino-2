@@ -33,7 +33,7 @@ class BaseApp extends Site {
       },
       afterShow() {
         $(document).on('click.slidePanelShow', (e) => {
-          if ($(e.target).closest('.slidePanel').length === 0 && $(e.target).closest('body').length === 1) {
+          if ($(e.target).closest('.slidePanel').length === 0 && $(e.target).closest('html').length === 1) {
             this.hide();
           }
         });

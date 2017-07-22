@@ -338,7 +338,7 @@
       <div>
         <h5>GENERAL SETTINGS</h5>
         <ul class="list-group">
-          <li class="list-group-item justify-content-between">
+          <li class="list-group-item d-flex flex-row flex-wrap align-items-center justify-content-between">
             <h5>Notifications</h5>
             <div>
               <input type="checkbox" class="js-switch-small" data-plugin="switchery" data-size="small"
@@ -346,7 +346,7 @@
             </div>
             <p>Our very own image-less pure CSS and retina compatible check box.</p>
           </li>
-          <li class="list-group-item justify-content-between">
+          <li class="list-group-item d-flex flex-row flex-wrap align-items-center justify-content-between">
             <h5>Show your emails</h5>
             <div>
               <input type="checkbox" class="js-switch-small" data-plugin="switchery" data-size="small"
@@ -354,7 +354,7 @@
             </div>
             <p>Our very own image-less pure CSS and retina .</p>
           </li>
-          <li class="list-group-item justify-content-between">
+          <li class="list-group-item d-flex flex-row flex-wrap align-items-center justify-content-between">
             <h5>Show recent activity</h5>
             <div>
               <input type="checkbox" class="js-switch-small" data-plugin="switchery" data-size="small"
@@ -362,7 +362,7 @@
             </div>
             <p>Our very own image-less pure CSS and retina compatible check box.</p>
           </li>
-          <li class="list-group-item justify-content-between">
+          <li class="list-group-item d-flex flex-row flex-wrap align-items-center justify-content-between">
             <h5>Show Task statistics</h5>
             <div>
               <input type="checkbox" class="js-switch-small" data-plugin="switchery" data-size="small"

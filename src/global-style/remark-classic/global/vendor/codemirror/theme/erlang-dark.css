@@ -88,7 +88,7 @@
 .cm-s-erlang-dark span.cm-variable-2 {
   color: #e0e;
 }
-.cm-s-erlang-dark span.cm-variable-3 {
+.cm-s-erlang-dark span.cm-variable-3, .cm-s-erlang-dark span.cm-type {
   color: #ccc;
 }
 .cm-s-erlang-dark span.cm-error {

@@ -366,10 +366,10 @@ $dropdown-menu-media-footer-btn-hover-color:             $link-hover-color !defa
   }
 
   .list-group-item {
+    margin: 0;
     padding: 0 $dropdown-menu-media-padding-horizontal;
     border-radius: 0 !important;
     border: none;
-    margin: 0;
 
     .media {
       padding: 15px 0;

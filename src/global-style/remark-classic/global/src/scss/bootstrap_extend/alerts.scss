@@ -103,6 +103,7 @@ $alert-social-text: $color-white !default;
 
   h4 {
     margin-top: 0;
+    margin-bottom: 5px;
     color: inherit;
   }
 
@@ -135,20 +136,24 @@ $alert-social-text: $color-white !default;
   .close {
     padding: 0;
   }
+
   padding-right: ($alert-padding-horizontal + 20);
   .close {
     top: 0;
     text-decoration: none;
     opacity: $alert-close-opacity;
+
     &:hover,
     &:focus {
       opacity: $alert-close-hover-opacity;
     }
   }
+
   &.alert-alt {
     .close {
       color: $alert-alt-close-color;
       opacity: $alert-alt-close-opacity;
+
       &:hover,
       &:focus {
         color: $alert-alt-close-color;
@@ -165,6 +170,7 @@ $alert-social-text: $color-white !default;
 .alert-icon {
   position: relative;
   padding-left: $alert-icon-padding-left;
+
   > .icon {
     position: absolute;
     top: $alert-padding;

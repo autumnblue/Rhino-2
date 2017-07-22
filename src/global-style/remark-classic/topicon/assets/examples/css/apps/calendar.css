@@ -3,7 +3,7 @@
 .fc td.fc-widget-header {
   padding-top: 20px;
   padding-bottom: 20px;
-  border-width: 0;
+  border-width: 0px;
   font-size: 14px;
   text-transform: uppercase;
 }
@@ -45,7 +45,7 @@
   box-shadow: none;
   background-image: none;
   background-color: transparent;
-  border: 0 solid transparent;
+  border: 0px solid transparent;
 }
 
 .fc-button.fc-month-button, .fc-button.fc-agendaWeek-button, .fc-button.fc-agendaDay-button {

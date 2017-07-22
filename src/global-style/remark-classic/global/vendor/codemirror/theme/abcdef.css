@@ -50,7 +50,7 @@
 .cm-s-abcdef span.cm-variable-2 {
   color: #cacbcc;
 }
-.cm-s-abcdef span.cm-variable-3 {
+.cm-s-abcdef span.cm-variable-3, .cm-s-abcdef span.cm-type {
   color: #def;
 }
 .cm-s-abcdef span.cm-property {

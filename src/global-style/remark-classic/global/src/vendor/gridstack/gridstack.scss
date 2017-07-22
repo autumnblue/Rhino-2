@@ -78,16 +78,16 @@ $animation_speed: .3s;
             padding: 2px 3px 0 0;
             margin: 0;
 
-            font: normal normal normal 10px/1 FontAwesome;
+            font: normal normal normal 10px/1 $wb-font-family;
             font-size: inherit;
             text-rendering: auto;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             
-            &::before { content: "\f065"; }
+            &::before { content: $wb-var-arrow-expand; }
         }
         
-        > .ui-resizable-se {
+        > .ui-resizable-sw {
             display: inline-block;
             filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
             @include vendor(transform, rotate(90deg));

@@ -2,7 +2,7 @@
   "name": "remark",
   "title": "Remark",
   "description": "The best backend-end framework for developing responsive, mobile first projects on the web.",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "homepage": "http://getbootstrapadmin.com/remark",
   "private": true,
   "keywords": [

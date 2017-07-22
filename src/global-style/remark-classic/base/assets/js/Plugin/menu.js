@@ -117,7 +117,6 @@
 
           e.stopPropagation();
         }).on('tap.site.menu', '> .site-menu-item > a', function () {
-          alert("test 11111");
           var link = $(this).attr('href');
 
           if (link) {

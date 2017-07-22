@@ -54,6 +54,10 @@
               activing: 'activing',
               loading: 'loading'
             },
+            pane: {
+              active: 'active',
+              activing: 'activing'
+            },
             button: {
               hide: 'hidden-xs-up',
               disabled: 'disabled'

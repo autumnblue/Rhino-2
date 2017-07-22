@@ -354,8 +354,8 @@
 .app-work .line-chart .chartist-tooltip::after {
   content: "";
   display: block;
-  width: 0;
-  height: 0;
+  width: 0px;
+  height: 0px;
   position: absolute;
   top: 100%;
   left: 50%;

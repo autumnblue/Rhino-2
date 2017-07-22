@@ -80,7 +80,7 @@
     margin-bottom: $line-height-computed;
   }
 
-  &::after {
+  &:after {
     position: relative;
     display: block;
     margin: $line-height-computed;
@@ -88,7 +88,7 @@
     border-bottom: 1px solid $gray-lighter;
   }
 
-  &:last-child::after {
+  &:last-child:after {
     display: none;
   }
 }
@@ -178,7 +178,6 @@
         color: $gray;
       }
 
-      //start fix v4a6-dev ---Kevin_y
       .list-content {
         width: 100%;
       }

@@ -49,7 +49,7 @@
 .cm-s-vibrant-ink span.cm-variable-2, .cm-s-vibrant span.cm-tag {
   color: #ffc66d;
 }
-.cm-s-vibrant-ink span.cm-variable-3, .cm-s-vibrant span.cm-def {
+.cm-s-vibrant-ink span.cm-variable-3, .cm-s-vibrant span.cm-def, .cm-s-vibrant span.cm-type {
   color: #ffc66d;
 }
 .cm-s-vibrant-ink .cm-operator {

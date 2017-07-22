@@ -181,7 +181,9 @@ $form-material-disabled-placeholder-color:      $gray-light !default;
   }
 
   &.form-group .form-control-label {
-    padding: 0;
+    // padding: 0;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .floating-label {
@@ -292,7 +294,7 @@ $form-material-disabled-placeholder-color:      $gray-light !default;
   }
 
   // States
-  &.form-group {
+  // &.form-group {
     &.has-warning {
       @include form-material-control-validation($form-material-warning-text, $form-material-underline-color);
     }
@@ -308,11 +310,11 @@ $form-material-disabled-placeholder-color:      $gray-light !default;
     &.has-info {
       @include form-material-control-validation($form-material-info-text, $form-material-underline-color);
     }
-  }
+  // }
 
   .input-group {
     .form-control-wrap {
-      flex: 1 1 auto;//fish170301
+      flex: 1 1 auto;
       .form-control {
         float: none;
         width: 100%;//fish170315

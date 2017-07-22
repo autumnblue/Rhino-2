@@ -266,10 +266,10 @@ body.stop-scrolling
         -ms-transform: rotate(-45deg);
          -o-transform: rotate(-45deg);
             transform: rotate(-45deg);
-    -webkit-transform-origin: 0 60px;
-        -ms-transform-origin: 0 60px;
-         -o-transform-origin: 0 60px;
-            transform-origin: 0 60px; 
+    -webkit-transform-origin: 0px 60px;
+        -ms-transform-origin: 0px 60px;
+         -o-transform-origin: 0px 60px;
+            transform-origin: 0px 60px; 
 
     border-radius: 0 120px 120px 0;
 }
@@ -515,7 +515,7 @@ body.stop-scrolling
 {
     0%
     {
-        top: 0;
+        top: 0%;
     }
     100%
     {
@@ -527,7 +527,7 @@ body.stop-scrolling
 {
     0%
     {
-        top: 0;
+        top: 0%;
     }
     100%
     {
@@ -539,7 +539,7 @@ body.stop-scrolling
 {
     0%
     {
-        top: 0;
+        top: 0%;
     }
     100%
     {
@@ -555,7 +555,7 @@ body.stop-scrolling
     }
     100%
     {
-        top: 0;
+        top: 0%;
     }
 }
 
@@ -567,7 +567,7 @@ body.stop-scrolling
     }
     100%
     {
-        top: 0;
+        top: 0%;
     }
 }
 
@@ -579,7 +579,7 @@ body.stop-scrolling
     }
     100%
     {
-        top: 0;
+        top: 0%;
     }
 }
 
@@ -841,7 +841,7 @@ body.stop-scrolling
     84%
     {
         top: 35px; 
-        right: 0;
+        right: 0px;
 
         width: 55px;
     }
@@ -873,7 +873,7 @@ body.stop-scrolling
     84%
     {
         top: 35px; 
-        right: 0;
+        right: 0px;
 
         width: 55px;
     }
@@ -905,7 +905,7 @@ body.stop-scrolling
     84%
     {
         top: 35px; 
-        right: 0;
+        right: 0px;
 
         width: 55px;
     }

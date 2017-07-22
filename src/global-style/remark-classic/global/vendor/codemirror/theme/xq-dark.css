@@ -72,7 +72,7 @@ THE SOFTWARE.
 .cm-s-xq-dark span.cm-variable-2 {
   color: #eee;
 }
-.cm-s-xq-dark span.cm-variable-3 {
+.cm-s-xq-dark span.cm-variable-3, .cm-s-xq-dark span.cm-type {
   color: #ddd;
 }
 

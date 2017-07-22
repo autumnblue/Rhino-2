@@ -491,7 +491,8 @@
         height: 30px;
         line-height: 16px;
         color: $color-blue-grey-500;
-        &:hover {
+        &:hover,
+        &:focus {
           color: #fff;
         }
       }

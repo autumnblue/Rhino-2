@@ -27,7 +27,7 @@ class TableSection extends Plugin {
       touch = typeof document.ontouchstart !== 'undefined';
 
     if (touch) {
-      type = 'touchstart|toggle';
+      api = 'touchstart|toggle';
     }
     return api;
   }

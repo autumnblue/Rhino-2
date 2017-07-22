@@ -1,11 +1,11 @@
 /*!
- * Cropper v3.0.0-rc.1
+ * Cropper v3.0.0-rc.3
  * https://github.com/fengyuanchen/cropper
  *
  * Copyright (c) 2017 Fengyuan Chen
  * Released under the MIT license
  *
- * Date: 2017-04-30T03:10:34.736Z
+ * Date: 2017-07-07T13:00:47.346Z
  */
 
 'use strict';
@@ -174,10 +174,6 @@ function addTimestamp(url) {
   return url + (url.indexOf('?') === -1 ? '?' : '&') + timestamp;
 }
 
-function getCrossOrigin(crossOrigin) {
-  return crossOrigin ? ' crossOrigin="' + crossOrigin + '"' : '';
-}
-
 function getImageSize(image, callback) {
   // Modern browsers (ignore Safari, #120 & #509)
   if (image.naturalWidth && !IS_SAFARI_OR_UIWEBVIEW) {
@@ -252,7 +248,7 @@ function getRotatedSizes(data, isReversed) {
   };
 }
 
-function getSourceCanvas(image, data) {
+function getSourceCanvas(image, data, options) {
   var canvas = $('<canvas>')[0];
   var context = canvas.getContext('2d');
   var dstX = 0;
@@ -292,6 +288,11 @@ function getSourceCanvas(image, data) {
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
 
+  if (options.fillColor) {
+    context.fillStyle = options.fillColor;
+    context.fillRect(0, 0, canvasWidth, canvasHeight);
+  }
+
   if (advanced) {
     dstX = -dstWidth / 2;
     dstY = -dstHeight / 2;
@@ -307,6 +308,12 @@ function getSourceCanvas(image, data) {
 
   if (scalable) {
     context.scale(scaleX, scaleY);
+  }
+
+  context.imageSmoothingEnabled = !!options.imageSmoothingEnabled;
+
+  if (options.imageSmoothingQuality) {
+    context.imageSmoothingQuality = options.imageSmoothingQuality;
   }
 
   context.drawImage(image, Math.floor(dstX), Math.floor(dstY), Math.floor(dstWidth), Math.floor(dstHeight));
@@ -477,7 +484,7 @@ var render$1 = {
     var image = self.image;
     var imageNaturalWidth = image.naturalWidth;
     var imageNaturalHeight = image.naturalHeight;
-    var is90Degree = Math.abs(image.rotate) === 90;
+    var is90Degree = Math.abs(image.rotate) % 180 === 90;
     var naturalWidth = is90Degree ? imageNaturalHeight : imageNaturalWidth;
     var naturalHeight = is90Degree ? imageNaturalWidth : imageNaturalHeight;
     var aspectRatio = naturalWidth / naturalHeight;
@@ -889,15 +896,24 @@ var DATA_PREVIEW = 'preview';
 var preview$1 = {
   initPreview: function initPreview() {
     var self = this;
-    var crossOrigin = getCrossOrigin(self.crossOrigin);
+    var crossOrigin = self.crossOrigin;
     var url = crossOrigin ? self.crossOriginUrl : self.url;
-    var $clone2 = void 0;
+    var image = document.createElement('img');
+
+    if (crossOrigin) {
+      image.crossOrigin = crossOrigin;
+    }
+
+    image.src = url;
+
+    var $clone2 = $(image);
 
     self.$preview = $(self.options.preview);
-    self.$clone2 = $clone2 = $('<img ' + crossOrigin + ' src="' + url + '">');
+    self.$clone2 = $clone2;
     self.$viewBox.html($clone2);
     self.$preview.each(function (i, element) {
       var $this = $(element);
+      var img = document.createElement('img');
 
       // Save the original size for recover
       $this.data(DATA_PREVIEW, {
@@ -906,12 +922,21 @@ var preview$1 = {
         html: $this.html()
       });
 
+      if (crossOrigin) {
+        img.crossOrigin = crossOrigin;
+      }
+
+      img.src = url;
+
       /**
        * Override img element styles
        * Add `display:block` to avoid margin top issue
+       * Add `height:auto` to override `height` attribute on IE8
        * (Occur only when margin-top <= -height)
        */
-      $this.html('<img ' + crossOrigin + ' src="' + url + '" style="' + 'display:block;width:100%;height:auto;' + 'min-width:0!important;min-height:0!important;' + 'max-width:none!important;max-height:none!important;' + 'image-orientation:0deg!important;">');
+      img.style.cssText = 'display:block;' + 'width:100%;' + 'height:auto;' + 'min-width:0!important;' + 'min-height:0!important;' + 'max-width:none!important;' + 'max-height:none!important;' + 'image-orientation:0deg!important;"';
+
+      $this.html(img);
     });
   },
   resetPreview: function resetPreview() {
@@ -2526,12 +2551,12 @@ var methods = {
       return null;
     }
 
-    if (!self.cropped) {
-      return getSourceCanvas(self.$clone[0], self.image);
-    }
-
     if (!$.isPlainObject(options)) {
       options = {};
+    }
+
+    if (!self.cropped) {
+      return getSourceCanvas(self.$clone[0], self.image, options);
     }
 
     var data = self.getData();
@@ -2572,7 +2597,7 @@ var methods = {
 
     // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.drawImage
     var parameters = function () {
-      var source = getSourceCanvas(self.$clone[0], self.image);
+      var source = getSourceCanvas(self.$clone[0], self.image, options);
       var sourceWidth = source.width;
       var sourceHeight = source.height;
       var canvasData = self.canvas;
@@ -2630,6 +2655,12 @@ var methods = {
 
       return params;
     }();
+
+    context.imageSmoothingEnabled = !!options.imageSmoothingEnabled;
+
+    if (options.imageSmoothingQuality) {
+      context.imageSmoothingQuality = options.imageSmoothingQuality;
+    }
 
     context.drawImage.apply(context, toConsumableArray(parameters));
 
@@ -2768,7 +2799,7 @@ var Cropper = function () {
       self.url = url;
       self.image = {};
 
-      if (!options.checkOrientation || !ArrayBuffer) {
+      if (!options.checkOrientation || !window.ArrayBuffer) {
         self.clone();
         return;
       }
@@ -2894,7 +2925,15 @@ var Cropper = function () {
       self.crossOrigin = crossOrigin;
       self.crossOriginUrl = crossOriginUrl;
 
-      var $clone = $('<img ' + getCrossOrigin(crossOrigin) + ' src="' + (crossOriginUrl || url) + '">');
+      var image = document.createElement('img');
+
+      if (crossOrigin) {
+        image.crossOrigin = crossOrigin;
+      }
+
+      image.src = crossOriginUrl || url;
+
+      var $clone = $(image);
 
       self.$clone = $clone;
 

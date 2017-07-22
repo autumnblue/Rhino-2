@@ -32,7 +32,7 @@
 
 .cm-s-3024-day .CodeMirror-gutters {
   background: #f7f7f7;
-  border-right: 0;
+  border-right: 0px;
 }
 .cm-s-3024-day .CodeMirror-guttermarker {
   color: #db2d20;

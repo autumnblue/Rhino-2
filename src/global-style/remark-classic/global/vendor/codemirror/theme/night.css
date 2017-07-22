@@ -54,7 +54,7 @@
 .cm-s-night span.cm-variable-2, .cm-s-night span.cm-tag {
   color: #99b2ff;
 }
-.cm-s-night span.cm-variable-3, .cm-s-night span.cm-def {
+.cm-s-night span.cm-variable-3, .cm-s-night span.cm-def, .cm-s-night span.cm-type {
   color: white;
 }
 .cm-s-night span.cm-bracket {

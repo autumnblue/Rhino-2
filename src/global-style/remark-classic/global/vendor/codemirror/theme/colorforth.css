@@ -48,7 +48,7 @@
 .cm-s-colorforth span.cm-variable-2 {
   color: #eee;
 }
-.cm-s-colorforth span.cm-variable-3 {
+.cm-s-colorforth span.cm-variable-3, .cm-s-colorforth span.cm-type {
   color: #ddd;
 }
 

@@ -3,10 +3,19 @@
 
 .site-menubar-flipped {
   // site-navbar
-  .navbar-header {
+  // .navbar-header {
+  //   @include media-breakpoint-up(md) {
+  //     float: right;
+  //   }
+  // }
+  .site-navbar {
     @include media-breakpoint-up(md) {
-      float: right;
+      &,
+      &.navbar-expand-md {
+        flex-direction: row-reverse;
+      }
     }
+    
   }
 
   // site-menubar
@@ -64,7 +73,8 @@
       .site-navbar {
         .navbar-container {
           @include media-breakpoint-up(md) {
-            margin-right: $site-menubar-unfold-width;
+            // margin-right: $site-menubar-unfold-width;
+            margin-right: 0;
             margin-left: 0;
           }
         }
@@ -79,7 +89,8 @@
       .site-navbar {
         .navbar-container {
           @include media-breakpoint-up(md) {
-            margin-right: $site-menubar-unfold-width;
+            // margin-right: $site-menubar-unfold-width;
+            margin-right: 0;
             margin-left: 0;
           }
         }
@@ -106,7 +117,8 @@
       .site-navbar {
         .navbar-container {
           @include media-breakpoint-up(md) {
-            margin-right: $site-menubar-unfold-width;
+            // margin-right: $site-menubar-unfold-width;
+            margin-right: 0;
             margin-left: 0;
           }
         }
@@ -156,7 +168,8 @@
       .site-navbar {
         .navbar-container {
           @include media-breakpoint-up(md) {
-            margin-right: $site-menubar-fold-width;
+            // margin-right: $site-menubar-fold-width;
+            margin-right: 0;
             margin-left: 0;
           }
         }
@@ -188,7 +201,8 @@
       .site-navbar {
         .navbar-container {
           @include media-breakpoint-up(md) {
-            margin-right: $site-menubar-fold-width;
+            // margin-right: $site-menubar-fold-width;
+            margin-right: 0;
             margin-left: 0;
           }
         }

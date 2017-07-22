@@ -26,7 +26,7 @@
 }
 .cm-s-tomorrow-night-eighties .CodeMirror-gutters {
   background: #000;
-  border-right: 0;
+  border-right: 0px;
 }
 .cm-s-tomorrow-night-eighties .CodeMirror-guttermarker {
   color: #f2777a;

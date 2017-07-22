@@ -99,7 +99,7 @@
 }
 
 #widgetWatchList .line-chart .ct-labels > foreignobject:first-child .ct-label.ct-horizontal {
-  margin-left: 0;
+  margin-left: 0px;
 }
 
 #widgetWatchList .line-chart .ct-label.ct-vertical, #widgetWatchList .line-chart .ct-label.ct-horizontal {

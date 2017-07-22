@@ -182,10 +182,6 @@ $nav-quick-border-color                     : $border-color-base !default;
       line-height: 1;
       margin-right: .5em;
     }
-
-    // @include hover-focus {
-    //   background-color: $nav-link-hover-bg;
-    // }
   }
 
   .nav-link.active,
@@ -202,7 +198,6 @@ $nav-quick-border-color                     : $border-color-base !default;
 
     @include border-bottom-radius(0);
   }
-
 }
 
 .nav-pills {
@@ -341,7 +336,6 @@ $nav-quick-border-color                     : $border-color-base !default;
   // Open dropdowns
   .nav-item.open > .nav-link,
   .nav-item.show > .nav-link {
-
     @include plain-hover-focus {
       border-bottom-color: $nav-tabs-active-border;
     }
@@ -374,6 +368,7 @@ $nav-quick-border-color                     : $border-color-base !default;
     }
   }
 }
+
 // CLASS [tab-line-top]
 // ========================================================================
 .tabs-line-top{
@@ -401,7 +396,6 @@ $nav-quick-border-color                     : $border-color-base !default;
     }
   }
 }
-
 
 // Modifier: `nav-tabs-vertical`
 // ========================================================================
@@ -477,7 +471,6 @@ $nav-quick-border-color                     : $border-color-base !default;
       &:hover {
         border-color: transparent;
       }
-
 
       &.active {
         &,

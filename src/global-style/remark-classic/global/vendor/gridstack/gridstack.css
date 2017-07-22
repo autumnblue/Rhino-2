@@ -1,3 +1,4 @@
+@charset 'UTF-8';
 :root .grid-stack-item > .ui-resizable-handle
 {
     -webkit-filter: none;
@@ -77,7 +78,7 @@
 .grid-stack > .grid-stack-item > .ui-resizable-se,
 .grid-stack > .grid-stack-item > .ui-resizable-sw
 {
-    font: normal normal normal 10px/1 FontAwesome;
+    font: normal normal normal 10px/1 'Web Icons';
     font-size: inherit;
 
     margin: 0;
@@ -94,9 +95,9 @@
 .grid-stack > .grid-stack-item > .ui-resizable-se::before,
 .grid-stack > .grid-stack-item > .ui-resizable-sw::before
 {
-    content: '\f065';
+    content: '';
 }
-.grid-stack > .grid-stack-item > .ui-resizable-se
+.grid-stack > .grid-stack-item > .ui-resizable-sw
 {
     display: inline-block;
 

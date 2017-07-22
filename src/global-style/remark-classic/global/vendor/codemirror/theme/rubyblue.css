@@ -54,7 +54,7 @@
 .cm-s-rubyblue span.cm-variable-2, .cm-s-rubyblue span.cm-tag {
   color: #7bd827;
 }
-.cm-s-rubyblue span.cm-variable-3, .cm-s-rubyblue span.cm-def {
+.cm-s-rubyblue span.cm-variable-3, .cm-s-rubyblue span.cm-def, .cm-s-rubyblue span.cm-type {
   color: white;
 }
 .cm-s-rubyblue span.cm-bracket {

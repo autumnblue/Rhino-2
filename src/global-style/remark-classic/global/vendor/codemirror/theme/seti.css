@@ -81,7 +81,7 @@
 .cm-s-seti span.cm-property {
   color: #a074c4;
 }
-.cm-s-seti span.cm-variable-3 {
+.cm-s-seti span.cm-variable-3, .cm-s-seti span.cm-type {
   color: #9fca56;
 }
 .cm-s-seti span.cm-builtin {

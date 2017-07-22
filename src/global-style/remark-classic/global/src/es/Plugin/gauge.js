@@ -13,10 +13,10 @@ class GaugePlugin extends Plugin {
   static getDefaults() {
     return {
       lines: 12,
-      angle: 0.12,
+      angle: 0.2,
       lineWidth: 0.4,
       pointer: {
-        length: 0.68,
+        length: 0.58,
         strokeWidth: 0.03,
         color: Config.colors('blue-grey', 400)
       },

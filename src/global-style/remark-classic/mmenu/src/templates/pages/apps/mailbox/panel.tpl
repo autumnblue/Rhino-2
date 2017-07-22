@@ -33,7 +33,7 @@
         </div>
         <div><a href="javascript:void(0)">Mazhesee@gmail.com</a> to <a href="javascript:void(0)">me</a>
           <span
-            class="identity"><i class="wb-medium-point red-600" aria-hidden="true"></i>Work</span>
+            class="identity"><i class="icon wb-medium-point red-600" aria-hidden="true"></i>Work</span>
         </div>
       </div>
       <div class="mail-header-right">
@@ -85,7 +85,7 @@
         </div>
         <div><a href="javascript:void(0)">Mazhesee@gmail.com</a> to <a href="javascript:void(0)">me</a>
           <span
-            class="identity"><i class="wb-medium-point red-600" aria-hidden="true"></i>Work</span>
+            class="identity"><i class="icon wb-medium-point red-600" aria-hidden="true"></i>Work</span>
         </div>
       </div>
       <div class="mail-header-right">
@@ -113,7 +113,7 @@
         </div>
         <div><a href="javascript:void(0)">Mazhesee@gmail.com</a> to <a href="javascript:void(0)">me</a>
           <span
-            class="identity"><i class="wb-medium-point red-600" aria-hidden="true"></i>Work</span>
+            class="identity"><i class="icon wb-medium-point red-600" aria-hidden="true"></i>Work</span>
         </div>
       </div>
       <div class="mail-header-right">

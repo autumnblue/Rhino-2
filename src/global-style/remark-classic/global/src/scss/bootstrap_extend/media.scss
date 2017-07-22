@@ -80,7 +80,6 @@ $media-list-spacing:       15px !default;
 
 @include media-breakpoint-down(xs) {
   .media {
-    //for v4a6-dev 20170302 ---Kevin_y
     flex-direction: column;
     > div:first-child {
       margin-bottom: 5px;

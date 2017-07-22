@@ -143,7 +143,7 @@ $dropify-font-path:        "./";
 
             &.dropify-error {
                 color: $dropify-error-color;
-                font-weight: bold;
+                font-weight: $font-weight-medium;
                 display: none;
             }
         }
@@ -162,7 +162,7 @@ $dropify-font-path:        "./";
         font-family: $dropify-font-family;
         font-size: 11px;
         padding: 4px 8px;
-        font-weight: bold;
+        font-weight: $font-weight-medium;
         color: $dropify-clear-color;
         transition: all 0.15s linear;
 
@@ -214,7 +214,7 @@ $dropify-font-path:        "./";
                 transform: translate(-50%, -50%);
                 margin-top: 10px;
                 text-transform: uppercase;
-                font-weight: 900;
+                font-weight: $font-weight-bold;
                 letter-spacing: -0.03em;
                 font-size: 13px;
                 width: 42px;
@@ -255,7 +255,7 @@ $dropify-font-path:        "./";
                     color: $dropify-infos-color;
                     text-align: center;
                     line-height: 25px;
-                    font-weight: bold;
+                    // font-weight: bold;
 
                     &.dropify-filename {
                         span.file-icon {
@@ -363,7 +363,7 @@ $dropify-font-path:        "./";
                         line-height: 25px;
 
                         &.dropify-filename {
-                            font-weight: bold;
+                            font-weight: $font-weight-medium;
                         }
 
                         &.dropify-infos-message {

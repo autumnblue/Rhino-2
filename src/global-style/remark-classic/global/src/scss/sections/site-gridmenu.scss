@@ -72,7 +72,7 @@ body.site-gridmenu-active {
 }
 
 .site-gridmenu-toggle {
-  &::after {
+  &:after {
     @include make-icon();
 
     position: relative;

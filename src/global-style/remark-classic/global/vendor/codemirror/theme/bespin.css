@@ -17,7 +17,7 @@
 }
 .cm-s-bespin .CodeMirror-gutters {
   background: #28211c;
-  border-right: 0;
+  border-right: 0px;
 }
 .cm-s-bespin .CodeMirror-linenumber {
   color: #666;

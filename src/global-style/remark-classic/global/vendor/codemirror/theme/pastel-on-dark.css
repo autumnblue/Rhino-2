@@ -27,7 +27,7 @@
 
 .cm-s-pastel-on-dark .CodeMirror-gutters {
   background: #34302f;
-  border-right: 0;
+  border-right: 0px;
   padding: 0 3px;
 }
 .cm-s-pastel-on-dark .CodeMirror-guttermarker {
@@ -69,7 +69,7 @@
 .cm-s-pastel-on-dark span.cm-variable-2 {
   color: #bebf55;
 }
-.cm-s-pastel-on-dark span.cm-variable-3 {
+.cm-s-pastel-on-dark span.cm-variable-3, .cm-s-pastel-on-dark span.cm-type {
   color: #de8e30;
 }
 .cm-s-pastel-on-dark span.cm-def {

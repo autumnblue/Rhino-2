@@ -21,7 +21,7 @@
 .cm-s-eclipse span.cm-variable-2 {
   color: #0000c0;
 }
-.cm-s-eclipse span.cm-variable-3 {
+.cm-s-eclipse span.cm-variable-3, .cm-s-eclipse span.cm-type {
   color: #0000c0;
 }
 .cm-s-eclipse span.cm-property {

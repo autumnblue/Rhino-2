@@ -80,14 +80,8 @@ $step-xs-number-size:              24px !default;
 // Component: steps
 // ========================================================================
 .steps {
-  // &.row {
-    // @if $enable-flex {
-      display: flex;
-      flex-wrap: wrap;
-    // } @else {
-    //   display: block;
-    // }
-  // }
+  display: flex;
+  flex-wrap: wrap;
   margin: 0 0 $steps-margin-bottom;
 }
 

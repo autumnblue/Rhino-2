@@ -476,7 +476,7 @@
   color: #76838f;
 }
 
-#recentActivityWidget .timeline-content .operates .btn:hover {
+#recentActivityWidget .timeline-content .operates .btn:hover, #recentActivityWidget .timeline-content .operates .btn:focus {
   color: #fff;
 }
 

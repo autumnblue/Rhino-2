@@ -52,7 +52,7 @@
 .cm-s-mdn-like span.cm-variable-2, .cm-s-mdn-like span.cm-tag {
   color: #690;
 }
-.cm-s-mdn-like span.cm-variable-3, .cm-s-mdn-like span.cm-def {
+.cm-s-mdn-like span.cm-variable-3, .cm-s-mdn-like span.cm-def, .cm-s-mdn-like span.cm-type {
   color: #07a;
 }
 

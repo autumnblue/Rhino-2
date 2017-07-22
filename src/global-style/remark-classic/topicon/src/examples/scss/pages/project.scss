@@ -8,6 +8,10 @@
     }
   }
 
+  .card .card-block + .card-block {
+    padding: 25px;
+  }
+
   .btn-pure.btn-trash {
     &:hover, &:focus {
       color: $color-red-600;

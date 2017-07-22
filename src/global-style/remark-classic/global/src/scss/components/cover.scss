@@ -36,7 +36,8 @@
 
 // Modifier: `cover-quote`
 // ========================================================================
-.cover-quote {
+.cover-quote,
+.blockquote.cover-quote {
   position: relative;
   margin-bottom: 0;
   padding-left: 35px;

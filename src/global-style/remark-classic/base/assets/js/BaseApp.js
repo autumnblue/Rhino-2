@@ -56,7 +56,7 @@
             var _this2 = this;
 
             (0, _jquery2.default)(document).on('click.slidePanelShow', function (e) {
-              if ((0, _jquery2.default)(e.target).closest('.slidePanel').length === 0 && (0, _jquery2.default)(e.target).closest('body').length === 1) {
+              if ((0, _jquery2.default)(e.target).closest('.slidePanel').length === 0 && (0, _jquery2.default)(e.target).closest('html').length === 1) {
                 _this2.hide();
               }
             });

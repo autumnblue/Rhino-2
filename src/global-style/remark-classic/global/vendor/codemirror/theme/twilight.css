@@ -47,7 +47,7 @@
 .cm-s-twilight span.cm-variable-2, .cm-s-twilight span.cm-tag {
   color: #607392;
 } /**/
-.cm-s-twilight span.cm-variable-3, .cm-s-twilight span.cm-def {
+.cm-s-twilight span.cm-variable-3, .cm-s-twilight span.cm-def, .cm-s-twilight span.cm-type {
   color: #607392;
 } /**/
 .cm-s-twilight .cm-operator {

@@ -17,7 +17,7 @@
 }
 .cm-s-isotope .CodeMirror-gutters {
   background: #000;
-  border-right: 0;
+  border-right: 0px;
 }
 .cm-s-isotope .CodeMirror-linenumber {
   color: #808080;

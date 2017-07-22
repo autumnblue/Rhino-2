@@ -14,7 +14,7 @@ CodeMirror template by Jan T. Sott (https://github.com/idleberg), adapted by Bra
 }
 .cm-s-duotone-dark .CodeMirror-gutters {
   background: #2a2734;
-  border-right: 0;
+  border-right: 0px;
 }
 .cm-s-duotone-dark .CodeMirror-linenumber {
   color: #545167;
@@ -56,7 +56,7 @@ CodeMirror template by Jan T. Sott (https://github.com/idleberg), adapted by Bra
   color: #6a51e6;
 }
 
-.cm-s-duotone-dark span.cm-variable-2, .cm-s-duotone-dark span.cm-variable-3, .cm-s-duotone-dark span.cm-string-2, .cm-s-duotone-dark span.cm-url {
+.cm-s-duotone-dark span.cm-variable-2, .cm-s-duotone-dark span.cm-variable-3, .cm-s-duotone-dark span.cm-type, .cm-s-duotone-dark span.cm-string-2, .cm-s-duotone-dark span.cm-url {
   color: #7a63ee;
 }
 .cm-s-duotone-dark span.cm-def, .cm-s-duotone-dark span.cm-tag, .cm-s-duotone-dark span.cm-builtin, .cm-s-duotone-dark span.cm-qualifier, .cm-s-duotone-dark span.cm-header, .cm-s-duotone-dark span.cm-em {

@@ -17,7 +17,7 @@
 }
 .cm-s-hopscotch .CodeMirror-gutters {
   background: #322931;
-  border-right: 0;
+  border-right: 0px;
 }
 .cm-s-hopscotch .CodeMirror-linenumber {
   color: #797379;

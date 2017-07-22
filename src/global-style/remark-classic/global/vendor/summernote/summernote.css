@@ -834,15 +834,15 @@
 .note-popover.note-air-popover .dropdown-menu > li,
 .note-editor .note-toolbar .dropdown-menu > li
 {
-    margin: 2px 0; 
-    padding: 0 5px;
+    margin: 2px 0px; 
+    padding: 0px 5px;
 }
 
 .note-popover.note-air-popover .note-color .dropdown-menu > li,
 .note-editor .note-toolbar .note-color .dropdown-menu > li
 {
-    margin: 0; 
-    padding: 0;
+    margin: 0px; 
+    padding: 0px;
 }
 
 .note-popover.note-air-popover .dropdown-menu > li.divider,

@@ -50,7 +50,7 @@
 .cm-s-material .cm-variable-2 {
   color: #80cbc4;
 }
-.cm-s-material .cm-variable-3 {
+.cm-s-material .cm-variable-3, .cm-s-material .cm-type {
   color: #82b1ff;
 }
 .cm-s-material .cm-builtin {
@@ -92,7 +92,7 @@
 .cm-s-material .cm-qualifier {
   color: #decb6b;
 }
-.cm-s-material .cm-variable-3 {
+.cm-s-material .cm-variable-3, .cm-s-material .cm-type {
   color: #decb6b;
 }
 .cm-s-material .cm-tag {

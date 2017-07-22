@@ -45,14 +45,11 @@ $list-group-hover-item-hover-bg          : $list-group-link-hover-bg !default;
 
 .list-group {
   margin-bottom: 20px;
-
-  // @if $enable-flex {
-    &-item {
-      & > .media:only-child {
-        margin: 0;
-      }
+  &-item {
+    & > .media:only-child {
+      margin: 0;
     }
-  // }
+  }
 
   .media {
     width: 100%;
@@ -103,8 +100,6 @@ a.list-group-item {
     margin-right: $list-group-item-icon-margin-right;
   }
 }
-
-
 
 // Modifier: `list-group.bg-inherit`
 // -------------------------

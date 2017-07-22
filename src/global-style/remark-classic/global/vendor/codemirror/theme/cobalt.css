@@ -52,7 +52,7 @@
 .cm-s-cobalt span.cm-variable-2, .cm-s-cobalt span.cm-tag {
   color: #9effff;
 }
-.cm-s-cobalt span.cm-variable-3, .cm-s-cobalt span.cm-def {
+.cm-s-cobalt span.cm-variable-3, .cm-s-cobalt span.cm-def, .cm-s-cobalt .cm-type {
   color: white;
 }
 .cm-s-cobalt span.cm-bracket {

@@ -40,7 +40,7 @@ THE SOFTWARE.
 .cm-s-xq-light span.cm-variable-2 {
   color: black;
 }
-.cm-s-xq-light span.cm-variable-3 {
+.cm-s-xq-light span.cm-variable-3, .cm-s-xq-light span.cm-type {
   color: black;
 }
 
