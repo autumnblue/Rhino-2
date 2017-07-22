@@ -3,7 +3,7 @@ import { arrayOf, object, func } from 'prop-types';
 import { Link } from 'react-router';
 
 import { ClientForm, Page, PageContent, PageHeader } from 'src/components';
-import { clientType, issuerType, userType, breadcrumbsType } from 'src/prop-types';
+import { clientType, issuerType, userType, industryType, breadcrumbsType } from 'src/prop-types';
 
 import enhance from './enhance';
 
@@ -11,6 +11,7 @@ import enhance from './enhance';
 const propTypes = {
   parents: arrayOf(clientType).isRequired,
   issuers: arrayOf(issuerType).isRequired,
+  industries: arrayOf(industryType).isRequired,
   users: arrayOf(userType).isRequired,
   departmentClients: arrayOf(clientType).isRequired,
   client: clientType.isRequired,
@@ -27,6 +28,7 @@ const ClientEditPage = ({
   parents,
   issuers,
   users,
+  industries,
   departmentClients,
   client,
 
@@ -46,6 +48,7 @@ const ClientEditPage = ({
         parents,
         issuers,
         users,
+        industries,
         validationErrors,
         departmentClients,
         created: client.created,

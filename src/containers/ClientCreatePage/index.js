@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import { arrayOf, object, func } from 'prop-types';
 
 import { ClientForm, Page, PageContent, PageHeader, Button } from 'src/components';
-import { clientType, issuerType, userType } from 'src/prop-types';
+import { clientType, issuerType, userType, industryType } from 'src/prop-types';
 
 import enhance from './enhance';
 
@@ -10,6 +10,7 @@ const propTypes = {
   parents: arrayOf(clientType).isRequired,
   issuers: arrayOf(issuerType).isRequired,
   users: arrayOf(userType).isRequired,
+  industries: arrayOf(industryType).isRequired,
 
   validationErrors: object,
 
@@ -27,6 +28,7 @@ const ClientCreatePage = ({
   parents,
   issuers,
   users,
+  industries,
 
   validationErrors,
 
@@ -40,11 +42,13 @@ const ClientCreatePage = ({
     </PageHeader>
     <PageContent>
       <ClientForm
-        onFieldChange={onFieldChange}
         parents={parents}
         issuers={issuers}
         users={users}
+        industries={industries}
         validationErrors={validationErrors}
+
+        onFieldChange={onFieldChange}
       />
     </PageContent>
   </Page>

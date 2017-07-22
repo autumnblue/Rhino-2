@@ -50,3 +50,9 @@ export const documentTemplateType = shape({
   is_default: bool.isRequired,
   html_body: string.isRequired,
 });
+
+export const industryType = shape({
+  id: number.isRequired,
+  name: string.isRequired,
+  html_body: string.isRequired,
+});

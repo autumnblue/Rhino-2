@@ -4,7 +4,8 @@ const selectsOptionsEnhancer = withPropsOnChange([
   'parents',
   'issuers',
   'users',
-], ({ parents, issuers, users }) => ({
+  'industries',
+], ({ parents, issuers, users, industries }) => ({
   parentsOptions: parents.map(({ id, name }) => ({
     value: id,
     label: name,
@@ -18,6 +19,10 @@ const selectsOptionsEnhancer = withPropsOnChange([
     label: first_name && last_name ?
       `${first_name} ${last_name}` :
       <em>Empty name</em>,
+  })),
+  industriesOptions: industries.map(({ id, name }) => ({
+    value: id,
+    label: name,
   })),
 }));
 

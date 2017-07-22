@@ -8,11 +8,13 @@ import { push } from 'react-router-redux';
 import { loadClients, loadSingleClient, deleteClientTrigger, editClientFormChange } from 'src/redux/clients/actions';
 import { loadIssuers } from 'src/redux/issuers/actions';
 import { loadUsers } from 'src/redux/users/actions';
+import { loadIndustries } from 'src/redux/industries/actions';
 
 // selectors
 import { getIssuers } from 'src/redux/issuers/selectors';
 import { getClients, getCurrentClient, getDepartmentClients } from 'src/redux/clients/selectors';
 import { getUsers } from 'src/redux/users/selectors';
+import { getIndustries } from 'src/redux/industries/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
   promise: ({ store: { dispatch }, params: { clientId } }) => Promise.all([
@@ -27,6 +29,7 @@ const reduxAsyncConnect = asyncConnect([{
     dispatch(loadIssuers()),
     dispatch(loadUsers()),
     dispatch(loadSingleClient(clientId)),
+    dispatch(loadIndustries()),
   ]),
 }]);
 
@@ -35,6 +38,7 @@ const reduxConnect = connect(state => ({
   parents: getClients(state),
   issuers: getIssuers(state),
   users: getUsers(state),
+  industries: getIndustries(state),
   client: getCurrentClient(state),
   departmentClients: getDepartmentClients(state),
 }), {

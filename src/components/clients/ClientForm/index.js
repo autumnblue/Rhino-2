@@ -2,7 +2,7 @@ import { Col, Row, FormGroup, Form } from 'reactstrap';
 import { Field } from 'redux-form';
 import { object, func, string, arrayOf } from 'prop-types';
 
-import { ReduxSelect } from 'src/components';
+import { ReduxSelect, ReduxAssociations } from 'src/components';
 import { selectOptionsType, clientType } from 'src/prop-types';
 
 import ClientFormGroup from './ClientFormGroup';
@@ -15,6 +15,7 @@ import enhance from './enhance';
 const propTypes = {
   parentsOptions: selectOptionsType.isRequired,
   issuersOptions: selectOptionsType.isRequired,
+  industriesOptions: selectOptionsType.isRequired,
   projectManagerOptions: selectOptionsType.isRequired,
   validationErrors: object,
   departmentClients: arrayOf(clientType),
@@ -27,6 +28,7 @@ const propTypes = {
 const ClientForm = ({
   parentsOptions,
   issuersOptions,
+  industriesOptions,
   projectManagerOptions,
   validationErrors,
   departmentClients,
@@ -69,6 +71,17 @@ const ClientForm = ({
             placeholder="Parent"
             onChange={onFieldChange}
             error={validationErrors.umbrella}
+          />
+        </FormGroup>
+
+        <FormGroup tag="fieldset">
+          <legend>Associated Industries</legend>
+          <Field
+            component={ReduxAssociations}
+            name="industries"
+            options={industriesOptions}
+            onChange={onFieldChange}
+            error={validationErrors.industries}
           />
         </FormGroup>
 

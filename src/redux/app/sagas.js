@@ -49,6 +49,6 @@ export default function* createSaga() {
     fork(initialize),
     fork(notySaga),
     fork(beginGlobalLoad),
-    fork(endGlobalLoad)
+    fork(endGlobalLoad),
   ]);
 }
