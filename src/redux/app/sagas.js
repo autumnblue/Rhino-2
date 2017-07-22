@@ -16,15 +16,24 @@ function* initialize() {
   }
 }
 
+let lastNotyTimeStamp;
+let lastNotyText;
+
 function* notySaga() {
   while (true) {
     const { options } = yield take(c.NOTY);
+    const now = Date.now();
 
-    new Noty({
-      layout: 'bottomRight',
-      timeout: 5000,
-      ...options,
-    }).show();
+    if (lastNotyText !== options.text || lastNotyTimeStamp + 1000 < now) {
+      new Noty({
+        layout: 'bottomRight',
+        timeout: 5000,
+        ...options,
+      }).show();
+
+      lastNotyText = options.text;
+      lastNotyTimeStamp = now;
+    }
   }
 }
 
