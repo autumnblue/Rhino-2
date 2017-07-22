@@ -4,6 +4,8 @@ import '!style-loader!css-loader!react-select/dist/react-select.css';
 
 import '!style-loader!css-loader!bootstrap/dist/css/bootstrap.css';
 
+import '!style-loader!css-loader!noty/lib/noty.css';
+
 import '!style-loader!css-loader!./remark-classic/global/css/bootstrap-extend.css';
 import '!style-loader!css-loader!./remark-classic/base/assets/css/site.css';
 import '!style-loader!css-loader!./remark-classic/global/fonts/web-icons/web-icons.css';

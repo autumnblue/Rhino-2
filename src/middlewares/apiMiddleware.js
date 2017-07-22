@@ -1,7 +1,21 @@
 import apiCrud from '../helpers/apiCrud';
+import { noty } from '../redux/app/actions';
 import { logout } from '../redux/users/actions';
 
 export const COMBINE_RELATIONSHIPS = 'djavan/COMBINE_RELATIONSHIPS';
+
+function showError(response, next) {
+  if (response.data) {
+    const { detail, non_field_errors } = response.data;
+
+    if (detail || non_field_errors) {
+      next(noty({
+        type: 'error',
+        text: detail || non_field_errors.join('\n'),
+      }));
+    }
+  }
+}
 
 export default function apiMiddleware() {
   return () => next => async (action) => {
@@ -20,11 +34,15 @@ export default function apiMiddleware() {
 
       // UNAUTHORIZED
       if (response.status === 401) {
+        showError(response, next);
         next({ ...rest, response, type: FAILURE });
+
         return next(logout());
       }
 
       if (response.status < 200 || response.status > 299) {
+        showError(response, next);
+
         return next({ ...rest, response, type: FAILURE });
       }
 
