@@ -53,12 +53,12 @@ const propsEnhancer = withPropsOnChange(['client'], ({ client }) => {
     url: '/clients',
   }];
 
-  const { umbrella } = client;
+  const { umbrella_obj } = client;
 
-  if (umbrella) {
+  if (umbrella_obj) {
     breadcrumbs.push({
-      label: umbrella.name,
-      url: `/clients/${umbrella.id}`,
+      label: umbrella_obj.name,
+      url: `/clients/${umbrella_obj.id}`,
     });
   }
 

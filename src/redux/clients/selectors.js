@@ -13,7 +13,7 @@ export const getCurrentClient = createSelector(
   [getCurrentClientId, getClientsData],
   (id, data) => ({
     ...data[id],
-    umbrella: data[data[id].umbrella],
+    umbrella_obj: data[data[id].umbrella],
   }),
 );
 
