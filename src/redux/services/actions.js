@@ -2,6 +2,22 @@ import * as c from './constants';
 
 const endpoint = 'services/';
 
+// UI actions
+export const deleteServiceTrigger = id => ({
+  type: c.DELETE_SERVICE_TRIGGER,
+  id,
+});
+
+
+export const newServiceFormChange = () => ({
+  type: c.NEW_SERVICE_FORM_CHANGE,
+});
+
+export const editServiceFormChange = id => ({
+  type: c.EDIT_SERVICE_FORM_CHANGE,
+  id,
+});
+
 // API actions
 export const loadServices = () => ({
   types: [c.LOAD_SERVICES, c.LOAD_SERVICES_SUCCESS, c.LOAD_SERVICES_FAIL],
@@ -45,20 +61,9 @@ export const createService = data => ({
   api: ({ post }) => post(endpoint, { data }),
 });
 
-
-export const deleteServiceTrigger = id => ({
-  type: c.DELETE_SERVICE_TRIGGER,
-  id,
-});
-
 export const deleteService = id => ({
   types: [c.DELETE_SERVICE, c.DELETE_SERVICE_SUCCESS, c.DELETE_SERVICE_FAIL],
   api: ({ del }) => del(endpoint + id),
-});
-
-export const editServiceFormChange = id => ({
-  type: c.EDIT_SERVICE_FORM_CHANGE,
-  id,
 });
 
 export const editService = (id, data) => ({
@@ -66,8 +71,4 @@ export const editService = (id, data) => ({
   api: ({ patch }) => patch(endpoint + id, {
     data,
   }),
-});
-
-export const newServiceFormChange = () => ({
-  type: c.NEW_SERVICE_FORM_CHANGE,
 });
