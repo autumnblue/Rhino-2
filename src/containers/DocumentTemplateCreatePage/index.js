@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { object, func, arrayOf } from 'prop-types';
+import { object, func, arrayOf, shape } from 'prop-types';
 
 import { Page, PageContent, PageHeader, Button, DocumentTemplateForm } from 'src/components';
 import { issuerType } from 'src/prop-types';
@@ -7,7 +7,9 @@ import { issuerType } from 'src/prop-types';
 import enhance from './enhance';
 
 const propTypes = {
-  categories: object.isRequired,
+  choices: shape({
+    category: object.isRequired,
+  }).isRequired,
   issuers: arrayOf(issuerType).isRequired,
   validationErrors: object.isRequired,
 
@@ -22,7 +24,7 @@ const breadcrumbs = [{
 }];
 
 const DocumentTemplateCreatePage = ({
-  categories,
+  choices,
   issuers,
   validationErrors,
 
@@ -36,7 +38,7 @@ const DocumentTemplateCreatePage = ({
     </PageHeader>
     <PageContent>
       <DocumentTemplateForm
-        categories={categories}
+        choices={choices}
         issuers={issuers}
         validationErrors={validationErrors}
 

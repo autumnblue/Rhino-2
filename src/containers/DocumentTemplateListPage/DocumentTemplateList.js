@@ -1,6 +1,6 @@
 import { Table } from 'reactstrap';
 import { pure } from 'recompose';
-import { arrayOf, object } from 'prop-types';
+import { arrayOf, object, shape } from 'prop-types';
 import moment from 'moment';
 
 import { EntityLink } from 'src/components';
@@ -9,7 +9,9 @@ import { documentTemplateType } from 'src/prop-types';
 
 const propTypes = {
   documentTemplates: arrayOf(documentTemplateType).isRequired,
-  categories: object.isRequired,
+  choices: shape({
+    category: object.isRequired,
+  }),
 };
 
 const formatTime = time => moment(time).format('h:mm:ss a MM/DD/YY');
@@ -18,7 +20,7 @@ const enhance = pure;
 
 const DocumentTemplateList = ({
   documentTemplates,
-  categories,
+  choices,
 }) => (
   <Table striped>
     <tbody>
@@ -32,7 +34,7 @@ const DocumentTemplateList = ({
       }) => (
         <tr key={id}>
           <td>
-            {categories[category]}
+            {choices.category[category]}
             <br /><br />
             Issuer: {issuer.name}
           </td>

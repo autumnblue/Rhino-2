@@ -27,7 +27,7 @@ const reduxAsyncConnect = asyncConnect([{
 
 const reduxConnect = connect(state => ({
   validationErrors: state.documentTemplates.validationErrors,
-  categories: state.documentTemplates.choices,
+  choices: state.documentTemplates.choices,
   issuers: getIssuers(state),
   documentTemplate: getCurrentDocumentTemplate(state),
 }), {

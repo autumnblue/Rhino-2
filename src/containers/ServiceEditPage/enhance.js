@@ -4,7 +4,12 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 // actions
-import { loadService, deleteServiceTrigger, editServiceFormChange } from 'src/redux/services/actions';
+import {
+  loadService,
+  deleteServiceTrigger,
+  editServiceFormChange,
+  loadServiceChoices,
+} from 'src/redux/services/actions';
 import { createAsset } from 'src/redux/assets/actions';
 
 // selectors
@@ -14,11 +19,13 @@ import { getAssets } from 'src/redux/assets/selectors';
 const reduxAsyncConnect = asyncConnect([{
   promise: ({ store: { dispatch }, params: { serviceId } }) => Promise.all([
     dispatch(loadService(serviceId)),
+    dispatch(loadServiceChoices()),
   ]),
 }]);
 
 const reduxConnect = connect(state => ({
   validationErrors: state.services.validationErrors,
+  choices: state.services.choices,
   service: getService(state),
   assets: getAssets(state),
 }), {

@@ -14,7 +14,7 @@ const propTypes = {
   onFiltersChange: func.isRequired,
 };
 
-const propsEnhancer = withPropsOnChange(['issuers'], ({ issuers, categories }) => ({
+const propsEnhancer = withPropsOnChange(['issuers'], ({ issuers, choices }) => ({
   issuerOptions: [
     {
       label: 'All issuers',
@@ -30,7 +30,7 @@ const propsEnhancer = withPropsOnChange(['issuers'], ({ issuers, categories }) =
       label: 'All categories',
       value: '',
     },
-    ...Object.entries(categories).map(([value, label]) => ({
+    ...Object.entries(choices.category).map(([value, label]) => ({
       value,
       label,
     })),

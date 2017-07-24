@@ -1,12 +1,14 @@
 import { Link } from 'react-router';
-import { object, func } from 'prop-types';
+import { object, func, shape } from 'prop-types';
 
 import { ServiceForm, Page, PageContent, PageHeader, Button } from 'src/components';
 
 import enhance from './enhance';
 
 const propTypes = {
-
+  choices: shape({
+    engagement_type: object.isRequired,
+  }).isRequired,
   validationErrors: object,
 
   onFieldChange: func.isRequired,
@@ -20,6 +22,7 @@ const breadcrumbs = [{
 }];
 
 const ServiceCreatePage = ({
+  choices,
   validationErrors,
 
   onFieldChange,
@@ -33,8 +36,10 @@ const ServiceCreatePage = ({
     <PageContent>
       <ServiceForm
         isNew
-        onFieldChange={onFieldChange}
+        choices={choices}
         validationErrors={validationErrors}
+
+        onFieldChange={onFieldChange}
       />
     </PageContent>
   </Page>

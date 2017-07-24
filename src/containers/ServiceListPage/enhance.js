@@ -1,5 +1,5 @@
 import { asyncConnect } from 'redux-connect';
-import { compose, pure } from 'recompose';
+import { compose, pure, withHandlers } from 'recompose';
 import { connect } from 'react-redux';
 
 import { loadServices, editService } from 'src/redux/services/actions';
@@ -17,11 +17,20 @@ const reduxConnect = connect(
   }),
   {
     onEdit: editService,
+    onLoadServices: loadServices,
   },
 );
+
+const handlersEnhancer = withHandlers({
+  onEdit: ({ onEdit, onLoadServices }) => async (...args) => {
+    await onEdit(...args);
+    onLoadServices();
+  },
+});
 
 export default compose(
   reduxAsyncConnect,
   reduxConnect,
+  handlersEnhancer,
   pure,
 );

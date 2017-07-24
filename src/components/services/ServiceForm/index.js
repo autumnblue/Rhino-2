@@ -3,7 +3,7 @@ import { Field } from 'redux-form';
 import { object, func, bool } from 'prop-types';
 
 import { ReduxInput, ReduxSelect, ReduxPriorityVote, ReduxImage, ReduxQuill } from 'src/components';
-
+import { selectOptionsType } from 'src/prop-types';
 
 import enhance from './enhance';
 
@@ -11,6 +11,7 @@ const propTypes = {
   isNew: bool,
   assets: object,
   validationErrors: object,
+  engagementTypeOptions: selectOptionsType.isRequired,
   onFieldChange: func.isRequired,
   upload: func.isRequired,
 };
@@ -19,13 +20,13 @@ const ServiceForm = ({
   validationErrors,
   isNew,
   assets,
+  engagementTypeOptions,
 
   onFieldChange,
   upload,
 }) => (
   <Form>
     <Row>
-      <legend>Service</legend>
       <Col md="1">
         <Field
           disabled={isNew}
@@ -52,6 +53,7 @@ const ServiceForm = ({
             <Field
               component={ReduxSelect}
               name="engagement_type"
+              options={engagementTypeOptions}
               placeholder="Default Engagment Type"
               onChange={onFieldChange}
               error={validationErrors.engagement_type}
@@ -61,7 +63,7 @@ const ServiceForm = ({
             <Label>Description</Label>
             <Field
               component={ReduxInput}
-              type="text"
+              type="textarea"
               name="desription"
               placeholder="Description"
               onBlur={onFieldChange}

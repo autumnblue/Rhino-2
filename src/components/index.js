@@ -23,7 +23,6 @@ export { default as ReduxAssociations } from './form/ReduxAssociations';
 export { default as ReduxCheckbox } from './form/ReduxCheckbox';
 export { default as ReduxInput } from './form/ReduxInput';
 export { default as ReduxPriorityVote } from './form/ReduxPriorityVote';
-export { default as ServiceForm } from './clients/ServiceForm';
 export { default as ReduxSelect } from './form/ReduxSelect';
 
 // industries
@@ -31,6 +30,9 @@ export { default as IndustryForm } from './industries/IndustryForm';
 
 // issuers
 export { default as IssuerForm } from './issuers/IssuerForm';
+
+// services
+export { default as ServiceForm } from './services/ServiceForm';
 
 // tools
 export { default as ToolForm } from './tools/ToolForm';

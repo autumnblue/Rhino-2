@@ -1,5 +1,5 @@
 import { Button } from 'reactstrap';
-import { object, func, arrayOf } from 'prop-types';
+import { object, func, arrayOf, shape } from 'prop-types';
 import { Link } from 'react-router';
 
 import { DocumentTemplateForm, Page, PageContent, PageHeader } from 'src/components';
@@ -10,7 +10,9 @@ import enhance from './enhance';
 
 const propTypes = {
   breadcrumbs: breadcrumbsType.isRequired,
-  categories: object.isRequired,
+  choices: shape({
+    category: object.isRequired,
+  }).isRequired,
   issuers: arrayOf(issuerType).isRequired,
   documentTemplate: documentTemplateType.isRequired,
   validationErrors: object.isRequired,
@@ -21,7 +23,7 @@ const propTypes = {
 
 const DocumentTemplateEditPage = ({
   breadcrumbs,
-  categories,
+  choices,
   issuers,
   documentTemplate,
   validationErrors,
@@ -37,7 +39,7 @@ const DocumentTemplateEditPage = ({
       <DocumentTemplateForm
         created={documentTemplate.created}
         modified={documentTemplate.last_modified}
-        categories={categories}
+        choices={choices}
         issuers={issuers}
         validationErrors={validationErrors}
         onFieldChange={onFieldChange}

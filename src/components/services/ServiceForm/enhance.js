@@ -5,15 +5,10 @@ const handlersEnhancer = withHandlers({
   onFieldChange: ({ onFieldChange }) => (...args) => setTimeout(() => onFieldChange(...args)),
 });
 
-
-const propsEnhancer = withPropsOnChange(['choices', 'issuers'], ({ choices, issuers }) => ({
-  categoryOptions: Object.entries(choices.category).map(([value, label]) => ({
+const propsEnhancer = withPropsOnChange(['choices'], ({ choices }) => ({
+  engagementTypeOptions: Object.entries(choices.engagement_type).map(([value, label]) => ({
     value,
     label,
-  })),
-  issuerOptions: issuers.map(({ name, id }) => ({
-    value: id,
-    label: name,
   })),
 }));
 

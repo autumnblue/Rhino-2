@@ -36,7 +36,7 @@ function id(state = initialState.id, action) {
 function choices(state = initialState.choices, action) {
   switch (action.type) {
     case c.LOAD_DOCUMENT_TEMPLATE_CHOICES_SUCCESS:
-      return mapValues(keyBy(action.response.data.category, '0'), '1');
+      return mapValues(action.response.data, value => mapValues(keyBy(value, '0'), '1'));
     default:
       return state;
   }

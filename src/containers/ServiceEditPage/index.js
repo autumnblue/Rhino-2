@@ -1,5 +1,5 @@
 import { Button } from 'reactstrap';
-import { object, func } from 'prop-types';
+import { object, func, shape } from 'prop-types';
 
 import { ServiceForm, Page, PageContent, PageHeader } from 'src/components';
 import { breadcrumbsType } from 'src/prop-types';
@@ -10,6 +10,9 @@ const propTypes = {
   validationErrors: object,
   breadcrumbs: breadcrumbsType.isRequired,
   assets: object.isRequired,
+  choices: shape({
+    engagement_type: object.isRequired,
+  }).isRequired,
 
   onDelete: func.isRequired,
   onFieldChange: func.isRequired,
@@ -20,6 +23,7 @@ const ServiceEditPage = ({
   breadcrumbs,
   validationErrors,
   assets,
+  choices,
 
   onDelete,
   onFieldChange,
@@ -35,6 +39,7 @@ const ServiceEditPage = ({
         validationErrors={validationErrors}
         assets={assets}
         upload={upload}
+        choices={choices}
       />
     </PageContent>
   </Page>

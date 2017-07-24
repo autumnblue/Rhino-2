@@ -10,7 +10,9 @@ import enhance from './enhance';
 
 const propTypes = {
   documentTemplates: arrayOf(documentTemplateType).isRequired,
-  categories: object.isRequired,
+  choices: shape({
+    category: object.isRequired,
+  }).isRequired,
   filters: shape({
     contains: string,
   }).isRequired,
@@ -23,7 +25,7 @@ const breadcrumbs = [{ label: 'Document Templates' }];
 
 const DocumentTemplateListPage = ({
   documentTemplates,
-  categories,
+  choices,
   filters,
   issuers,
 
@@ -40,11 +42,11 @@ const DocumentTemplateListPage = ({
         onFiltersChange={onFiltersChange}
         initialValues={filters}
         issuers={issuers}
-        categories={categories}
+        choices={choices}
       />
       <DocumentTemplateList
         documentTemplates={documentTemplates}
-        categories={categories}
+        choices={choices}
       />
     </PageContent>
   </Page>

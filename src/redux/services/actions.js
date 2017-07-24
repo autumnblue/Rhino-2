@@ -14,6 +14,24 @@ export const loadServices = () => ({
   }),
 });
 
+// load choices only once, they're hardcoded constants
+export const loadServiceChoices = () => (dispatch, getState) => {
+  const { choices } = getState().services;
+
+  if (!choices) {
+    return dispatch({
+      types: [
+        c.LOAD_SERVICE_CHOICES,
+        c.LOAD_SERVICE_CHOICES_SUCCESS,
+        c.LOAD_SERVICE_CHOICES_FAIL,
+      ],
+      api: ({ get }) => get(`${endpoint}choices/`),
+    });
+  }
+
+  return undefined;
+};
+
 export const loadService = id => ({
   types: [c.LOAD_SINGLE_SERVICE, c.LOAD_SINGLE_SERVICE_SUCCESS, c.LOAD_SINGLE_SERVICE_FAIL],
   api: ({ get }) => get(endpoint + id, {
