@@ -31,7 +31,7 @@ export const loadIssuers = ({
     params: {
       include,
       filter,
-      per_page: 100,
+      per_page: 1000,
     },
   }),
 });

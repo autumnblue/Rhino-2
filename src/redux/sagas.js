@@ -1,5 +1,6 @@
 // should be sorted alphabetically
 export { default as app } from './app/sagas';
+export { default as assets } from './assets/sagas';
 export { default as clients } from './clients/sagas';
 export { default as documentTemplates } from './documentTemplates/sagas';
 export { default as industries } from './industries/sagas';

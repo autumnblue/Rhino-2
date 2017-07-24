@@ -50,8 +50,12 @@ export default function apiMiddleware() {
 
       return next({ ...rest, response, type: SUCCESS });
     } catch (error) {
-      console.error(error); // eslint-disable-line no-console
-      return next({ ...rest, error, type: FAILURE });
+      next(noty({
+        type: 'error',
+        text: error.message,
+      }));
+
+      return next({ ...rest, response: {}, error, type: FAILURE });
     }
   };
 }

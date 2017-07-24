@@ -30,6 +30,9 @@ const categories = [{
   label: 'Snippets',
 }, {
   label: 'Site Settings',
+}, {
+  label: 'Industries',
+  url: '/industries',
 }];
 
 const enhance = pure;

@@ -6,6 +6,8 @@ import * as c from './constants';
 const initialState = {
   data: {},
   ids: [],
+  id: null,
+  validationErrors: {},
 };
 
 function data(state = initialState.data) {
@@ -21,7 +23,33 @@ function ids(state = initialState.ids, action) {
   }
 }
 
+function id(state = initialState.id, action) {
+  switch (action.type) {
+    case c.LOAD_SINGLE_INDUSTRY_SUCCESS:
+      return action.response.data.industry.id;
+    default:
+      return state;
+  }
+}
+
+function validationErrors(state = initialState.validationErrors, action) {
+  switch (action.type) {
+    case c.EDIT_INDUSTRY_FAIL:
+    case c.CREATE_INDUSTRY_FAIL: {
+      const { status, data: resp } = action.response;
+      return status === 400 ? resp || {} : state;
+    }
+    case c.EDIT_INDUSTRY_SUCCESS:
+    case c.CREATE_INDUSTRY_SUCCESS:
+      return {};
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   data,
   ids,
+  id,
+  validationErrors,
 });

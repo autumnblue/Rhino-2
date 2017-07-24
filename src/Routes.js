@@ -24,6 +24,10 @@ import IssuerListPage from './containers/IssuerListPage';
 import IssuerCreatePage from './containers/IssuerCreatePage';
 import IssuerEditPage from './containers/IssuerEditPage';
 
+import IndustryListPage from './containers/IndustryListPage';
+import IndustryCreatePage from './containers/IndustryCreatePage';
+import IndustryEditPage from './containers/IndustryEditPage';
+
 import DocumentTemplateListPage from './containers/DocumentTemplateListPage';
 import DocumentTemplateCreatePage from './containers/DocumentTemplateCreatePage';
 import DocumentTemplateEditPage from './containers/DocumentTemplateEditPage';
@@ -54,16 +58,22 @@ const Routes = ({ history }) => (
         <Route path="clients" component={ClientListPage} />
         <Route path="clients/new" component={ClientCreatePage} />
         <Route path="clients/:clientId" component={ClientEditPage} />
-        <Route path="tools" component={ToolListPage} />
+
         <Route path="services" component={ServiceListPage} />
         <Route path="services/new" component={ServiceCreatePage} />
         <Route path="services/:serviceId" component={ServiceEditPage} />
+
+        <Route path="tools" component={ToolListPage} />
         <Route path="tools/new" component={ToolCreatePage} />
         <Route path="tools/:toolId" component={ToolEditPage} />
 
         <Route path="issuers" component={IssuerListPage} />
         <Route path="issuers/new" component={IssuerCreatePage} />
         <Route path="issuers/:issuerId" component={IssuerEditPage} />
+
+        <Route path="industries" component={IndustryListPage} />
+        <Route path="industries/new" component={IndustryCreatePage} />
+        <Route path="industries/:industryId" component={IndustryEditPage} />
 
         <Route path="document-templates" component={DocumentTemplateListPage} />
         <Route path="document-templates/new" component={DocumentTemplateCreatePage} />

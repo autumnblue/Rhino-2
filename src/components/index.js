@@ -26,6 +26,9 @@ export { default as ReduxPriorityVote } from './form/ReduxPriorityVote';
 export { default as ServiceForm } from './clients/ServiceForm';
 export { default as ReduxSelect } from './form/ReduxSelect';
 
+// industries
+export { default as IndustryForm } from './industries/IndustryForm';
+
 // issuers
 export { default as IssuerForm } from './issuers/IssuerForm';
 
@@ -33,4 +36,3 @@ export { default as IssuerForm } from './issuers/IssuerForm';
 export { default as ToolForm } from './tools/ToolForm';
 export { default as ReduxImage } from './form/ReduxImage';
 export { default as ReduxQuill } from './form/ReduxQuill';
-
