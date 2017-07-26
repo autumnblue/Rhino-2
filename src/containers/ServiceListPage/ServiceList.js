@@ -2,11 +2,11 @@ import { Table } from 'reactstrap';
 import { compose, pure } from 'recompose';
 
 import { array, object, func } from 'prop-types';
-import ServiceItem from './ServiceItem';
+import ServiceListItem from './ServiceListItem';
 
 const propTypes = {
   services: array.isRequired,
-  assets: object.isRequired,
+  assetsData: object.isRequired,
   onEdit: func.isRequired,
 };
 
@@ -14,9 +14,9 @@ const enhance = compose(
   pure,
 );
 
-const List = ({
+const ServiceList = ({
   services,
-  assets,
+  assetsData,
 
   onEdit,
 }) => (
@@ -30,17 +30,17 @@ const List = ({
         feature_image,
         tools,
       }) => (
-        <ServiceItem
+        <ServiceListItem
           key={id}
           {...{
             id,
             name,
-            assets,
             default_sort_priority,
             feature_image,
             description,
             tools,
 
+            assetsData,
             onEdit,
           }}
         />
@@ -49,6 +49,6 @@ const List = ({
   </Table>
 );
 
-List.propTypes = propTypes;
+ServiceList.propTypes = propTypes;
 
-export default enhance(List);
+export default enhance(ServiceList);

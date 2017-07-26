@@ -1,5 +1,6 @@
 import { Button } from 'reactstrap';
 import { object, func, shape } from 'prop-types';
+import { Link } from 'react-router';
 
 import { ServiceForm, Page, PageContent, PageHeader } from 'src/components';
 import { breadcrumbsType } from 'src/prop-types';
@@ -7,40 +8,42 @@ import { breadcrumbsType } from 'src/prop-types';
 import enhance from './enhance';
 
 const propTypes = {
-  validationErrors: object,
   breadcrumbs: breadcrumbsType.isRequired,
-  assets: object.isRequired,
+  assetsData: object.isRequired,
   choices: shape({
     engagement_type: object.isRequired,
   }).isRequired,
+  validationErrors: object,
 
   onDelete: func.isRequired,
   onFieldChange: func.isRequired,
-  upload: func.isRequired,
+  onUploadAsset: func.isRequired,
 };
 
 const ServiceEditPage = ({
   breadcrumbs,
   validationErrors,
-  assets,
   choices,
+  assetsData,
 
   onDelete,
   onFieldChange,
-  upload,
+  onUploadAsset,
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
-      <Button color="danger" onClick={onDelete}>Delete</Button>
+      <Button tag={Link} to="/services" color="success">Done</Button>
     </PageHeader>
     <PageContent>
       <ServiceForm
-        onFieldChange={onFieldChange}
-        validationErrors={validationErrors}
-        assets={assets}
-        upload={upload}
         choices={choices}
+        assetsData={assetsData}
+        validationErrors={validationErrors}
+
+        onFieldChange={onFieldChange}
+        onUploadAsset={onUploadAsset}
       />
+      <Button color="danger" onClick={onDelete}>Delete</Button>
     </PageContent>
   </Page>
 );

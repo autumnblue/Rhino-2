@@ -14,7 +14,7 @@ import { createAsset } from 'src/redux/assets/actions';
 
 // selectors
 import { getService } from 'src/redux/services/selectors';
-import { getAssets } from 'src/redux/assets/selectors';
+import { getAssetsData } from 'src/redux/assets/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
   promise: ({ store: { dispatch }, params: { serviceId } }) => Promise.all([
@@ -27,11 +27,11 @@ const reduxConnect = connect(state => ({
   validationErrors: state.services.validationErrors,
   choices: state.services.choices,
   service: getService(state),
-  assets: getAssets(state),
+  assetsData: getAssetsData(state),
 }), {
   onDelete: deleteServiceTrigger,
   onFieldChange: editServiceFormChange,
-  upload: createAsset,
+  onUploadAsset: createAsset,
 });
 
 const propsEnhancer = withPropsOnChange(['service'], ({ service }) => ({

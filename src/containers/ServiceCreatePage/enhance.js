@@ -5,6 +5,10 @@ import { reduxForm } from 'redux-form';
 
 // actions
 import { newServiceFormChange, loadServiceChoices } from 'src/redux/services/actions';
+import { createAsset } from 'src/redux/assets/actions';
+
+// selectors
+import { getAssetsData } from 'src/redux/assets/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
   promise: ({ store: { dispatch } }) => dispatch(loadServiceChoices()),
@@ -12,9 +16,11 @@ const reduxAsyncConnect = asyncConnect([{
 
 const reduxConnect = connect(state => ({
   choices: state.services.choices,
+  assetsData: getAssetsData(state),
   validationErrors: state.services.validationErrors,
 }), {
   onFieldChange: newServiceFormChange,
+  onUploadAsset: createAsset,
 });
 
 const reduxFormEnhancer = reduxForm({

@@ -19,11 +19,13 @@ export { default as DocumentTemplateForm } from './documentTemplates/DocumentTem
 // form
 export { default as Button } from './form/Button';
 export { default as FieldError } from './form/FieldError';
+export { default as ReduxAsset } from './form/ReduxAsset';
 export { default as ReduxAssociations } from './form/ReduxAssociations';
 export { default as ReduxCheckbox } from './form/ReduxCheckbox';
 export { default as ReduxInput } from './form/ReduxInput';
 export { default as ReduxPriorityVote } from './form/ReduxPriorityVote';
 export { default as ReduxSelect } from './form/ReduxSelect';
+export { default as ReduxQuill } from './form/ReduxQuill';
 
 // industries
 export { default as IndustryForm } from './industries/IndustryForm';
@@ -36,5 +38,3 @@ export { default as ServiceForm } from './services/ServiceForm';
 
 // tools
 export { default as ToolForm } from './tools/ToolForm';
-export { default as ReduxImage } from './form/ReduxImage';
-export { default as ReduxQuill } from './form/ReduxQuill';

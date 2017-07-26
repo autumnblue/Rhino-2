@@ -9,9 +9,11 @@ const propTypes = {
   choices: shape({
     engagement_type: object.isRequired,
   }).isRequired,
+  assetsData: object.isRequired,
   validationErrors: object,
 
   onFieldChange: func.isRequired,
+  onUploadAsset: func.isRequired,
 };
 
 const breadcrumbs = [{
@@ -23,9 +25,11 @@ const breadcrumbs = [{
 
 const ServiceCreatePage = ({
   choices,
+  assetsData,
   validationErrors,
 
   onFieldChange,
+  onUploadAsset,
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
@@ -37,9 +41,11 @@ const ServiceCreatePage = ({
       <ServiceForm
         isNew
         choices={choices}
+        assetsData={assetsData}
         validationErrors={validationErrors}
 
         onFieldChange={onFieldChange}
+        onUploadAsset={onUploadAsset}
       />
     </PageContent>
   </Page>

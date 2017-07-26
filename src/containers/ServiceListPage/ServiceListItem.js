@@ -7,7 +7,7 @@ import css from './style.css';
 const propTypes = {
   id: number.isRequired,
   name: string.isRequired,
-  assets: object.isRequired,
+  assetsData: object.isRequired,
   default_sort_priority: number.isRequired,
   description: string.isRequired,
   feature_image: number,
@@ -28,14 +28,15 @@ const enhance = compose(
   pure,
 );
 
-const ServiceItem = ({
+const ServiceListItem = ({
   id,
   name,
-  assets,
   default_sort_priority,
   feature_image,
   description,
   tools,
+
+  assetsData,
 
   onVote,
 }) => (
@@ -55,7 +56,7 @@ const ServiceItem = ({
       <Base
         exists={feature_image}
         component="img"
-        src={assets[feature_image].file}
+        src={assetsData[feature_image].file}
         className={css.image}
         alt="Feature Image"
         title="Feature Image"
@@ -70,6 +71,6 @@ const ServiceItem = ({
   </tr>
 );
 
-ServiceItem.propTypes = propTypes;
+ServiceListItem.propTypes = propTypes;
 
-export default enhance(ServiceItem);
+export default enhance(ServiceListItem);

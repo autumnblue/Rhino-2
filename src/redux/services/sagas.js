@@ -3,10 +3,10 @@ import { push } from 'react-router-redux';
 import { isEmpty, pick } from 'lodash';
 
 import simpleObjectDiff from 'src/helpers/simpleObjectDiff';
-import { getService } from './selectors';
-import { editService, createService } from './actions';
-import * as c from './constants';
 
+import { getService } from './selectors';
+import { editService, createService, deleteService } from './actions';
+import * as c from './constants';
 
 function* editServiceFormChange() {
   while (true) {
@@ -35,7 +35,6 @@ function* newServiceFormChange() {
 
     yield put(createService({
       commit: true,
-      // tools: [],
       ...values,
     }));
   }
@@ -44,9 +43,28 @@ function* newServiceFormChange() {
 function* createServiceSuccess() {
   while (true) {
     const { response } = yield take(c.CREATE_SERVICE_SUCCESS);
-    const { id } = response.data.tool;
+    const { id } = response.data.service;
 
     yield put(push(`/services/${id}`));
+  }
+}
+
+function* deleteServiceTrigger() {
+  while (true) {
+    const { id } = yield take(c.DELETE_SERVICE_TRIGGER);
+
+    // eslint-disable-next-line no-alert
+    if (window.confirm('Are you sure want to delete the service')) {
+      yield put(deleteService(id));
+    }
+  }
+}
+
+function* deleteServiceSuccess() {
+  while (true) {
+    yield take(c.DELETE_SERVICE_SUCCESS);
+
+    yield put(push('/services'));
   }
 }
 
@@ -55,6 +73,7 @@ export default function* createSaga() {
     fork(editServiceFormChange),
     fork(newServiceFormChange),
     fork(createServiceSuccess),
+    fork(deleteServiceTrigger),
+    fork(deleteServiceSuccess),
   ]);
 }
-

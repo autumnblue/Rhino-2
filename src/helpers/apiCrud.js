@@ -60,18 +60,21 @@ function serializeParams(params) {
 const API_URL = process.env.API_URL;
 
 async function fetchResource(method, url, options = {}) {
-  const { params, data, useToken = true } = options;
+  const { params, data, useToken = true, jsonContentType = true } = options;
   const token = cookie.load('token');
 
   const reqOptions = {
     method,
-    ...omit(['params', 'data']),
+    ...omit(options, ['params', 'data']),
     headers: {
+
       ...options.headers,
-      'Content-Type': 'application/json',
     },
   };
 
+  if (jsonContentType) {
+    reqOptions.headers['Content-Type'] = 'application/json';
+  }
   if (useToken) {
     reqOptions.headers.Authorization = `JWT ${token}`;
   }
@@ -79,6 +82,7 @@ async function fetchResource(method, url, options = {}) {
   if (data) {
     reqOptions.body = JSON.stringify(data);
   }
+
 
   const resp = await window.fetch(API_URL + url + serializeParams(params), reqOptions);
 

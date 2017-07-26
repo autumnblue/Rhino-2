@@ -3,11 +3,11 @@ import { Link } from 'react-router';
 
 import { array, object, func } from 'prop-types';
 import enhance from './enhance';
-import List from './List';
+import ServiceList from './ServiceList';
 
 const propTypes = {
   services: array.isRequired,
-  assets: object.isRequired,
+  assetsData: object.isRequired,
 
   onEdit: func.isRequired,
 };
@@ -16,7 +16,7 @@ const breadcrumbs = [{ label: 'Services' }];
 
 const ServiceListPage = ({
   services,
-  assets,
+  assetsData,
 
   onEdit,
 }) => (
@@ -27,7 +27,11 @@ const ServiceListPage = ({
       </Link>
     </PageHeader>
     <PageContent>
-      <List services={services} assets={assets} onEdit={onEdit} />
+      <ServiceList
+        services={services}
+        assetsData={assetsData}
+        onEdit={onEdit}
+      />
     </PageContent>
   </Page>
 );

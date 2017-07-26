@@ -6,7 +6,6 @@ import { ReduxInput, ReduxPriorityVote, ReduxAssociations, ReduxQuill } from 'sr
 import { selectOptionsType } from 'src/prop-types';
 
 import enhance from './enhance';
-import css from './style.css';
 
 const propTypes = {
   validationErrors: object.isRequired,
@@ -29,22 +28,27 @@ const ClientForm = ({
     <Row>
       <Col md="6">
         <FormGroup>
-          <Field
-            disabled={isNew}
-            component={ReduxPriorityVote}
-            className={css.vote}
-            onChange={onFieldChange}
-            name="default_sort_priority"
-          />
+          <Row>
+            <Col md="2" sm="3">
+              <Field
+                disabled={isNew}
+                component={ReduxPriorityVote}
+                onChange={onFieldChange}
+                name="default_sort_priority"
+              />
+            </Col>
+            <Col md="10" sm="9">
 
-          <Field
-            wrapperClassName={css.name}
-            component={ReduxInput}
-            name="name"
-            placeholder="Tool Name"
-            onBlur={onFieldChange}
-            error={validationErrors.name}
-          />
+              <label>Tool Name</label>
+              <Field
+                component={ReduxInput}
+                name="name"
+                placeholder="Tool Name"
+                onBlur={onFieldChange}
+                error={validationErrors.name}
+              />
+            </Col>
+          </Row>
         </FormGroup>
         <FormGroup>
           <label>HTML Body</label>

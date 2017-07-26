@@ -8,7 +8,6 @@ export const deleteServiceTrigger = id => ({
   id,
 });
 
-
 export const newServiceFormChange = () => ({
   type: c.NEW_SERVICE_FORM_CHANGE,
 });

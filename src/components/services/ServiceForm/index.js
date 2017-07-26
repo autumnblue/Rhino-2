@@ -2,51 +2,55 @@ import { Col, Row, FormGroup, Form, Label } from 'reactstrap';
 import { Field } from 'redux-form';
 import { object, func, bool } from 'prop-types';
 
-import { ReduxInput, ReduxSelect, ReduxPriorityVote, ReduxImage, ReduxQuill } from 'src/components';
+import { ReduxInput, ReduxSelect, ReduxPriorityVote, ReduxQuill, ReduxAsset } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
 
 import enhance from './enhance';
 
 const propTypes = {
   isNew: bool,
-  assets: object,
+  assetsData: object,
   validationErrors: object,
   engagementTypeOptions: selectOptionsType.isRequired,
   onFieldChange: func.isRequired,
-  upload: func.isRequired,
+  onUploadAsset: func.isRequired,
 };
 
 const ServiceForm = ({
   validationErrors,
   isNew,
-  assets,
   engagementTypeOptions,
+  assetsData,
 
   onFieldChange,
-  upload,
+  onUploadAsset,
 }) => (
   <Form>
     <Row>
-      <Col md="1">
-        <Field
-          disabled={isNew}
-          component={ReduxPriorityVote}
-          onChange={onFieldChange}
-          name="default_sort_priority"
-        />
-      </Col>
-      <Col md="5">
+      <Col md="6">
         <FormGroup tag="fieldset">
           <FormGroup>
-            <Label>Name</Label>
-            <Field
-              component={ReduxInput}
-              type="text"
-              name="name"
-              placeholder="Service Name"
-              onBlur={onFieldChange}
-              error={validationErrors.name}
-            />
+            <Row>
+              <Col md="2" sm="3">
+                <Field
+                  disabled={isNew}
+                  component={ReduxPriorityVote}
+                  onChange={onFieldChange}
+                  name="default_sort_priority"
+                />
+              </Col>
+              <Col md="10" sm="2">
+                <label>Name</label>
+                <Field
+                  component={ReduxInput}
+                  type="text"
+                  name="name"
+                  placeholder="Service Name"
+                  onBlur={onFieldChange}
+                  error={validationErrors.name}
+                />
+              </Col>
+            </Row>
           </FormGroup>
           <FormGroup>
             <label>Default Engagment Type</label>
@@ -64,7 +68,7 @@ const ServiceForm = ({
             <Field
               component={ReduxInput}
               type="textarea"
-              name="desription"
+              name="description"
               placeholder="Description"
               onBlur={onFieldChange}
               error={validationErrors.url}
@@ -95,14 +99,17 @@ const ServiceForm = ({
         </FormGroup>
       </Col>
       <Col md="6">
-        <FormGroup tag="fieldset">
-          <legend>Featured Image</legend>
+        <FormGroup>
           <FormGroup>
+            <label>Featured Image</label>
             <Field
-              component={ReduxImage}
+              component={ReduxAsset}
               name="feature_image"
-              upload={upload}
-              assets={assets}
+              type="image"
+              assetsData={assetsData}
+              onChange={onFieldChange}
+              onUpload={onUploadAsset}
+              error={validationErrors.feature_image}
             />
           </FormGroup>
           <FormGroup>
