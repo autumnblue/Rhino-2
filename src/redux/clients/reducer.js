@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import { map } from 'lodash';
 
+import { validationErrorsHelper, choicesHelper } from 'src/helpers/reducerHelpers';
+
 import * as c from './constants';
 
 const initialState = {
@@ -55,10 +57,8 @@ function pageCount(state = initialState.pageCount, action) {
 function validationErrors(state = initialState.validationErrors, action) {
   switch (action.type) {
     case c.EDIT_CLIENT_FAIL:
-    case c.CREATE_CLIENT_FAIL: {
-      const { status, data: resp } = action.response;
-      return status === 400 ? resp || {} : state;
-    }
+    case c.CREATE_CLIENT_FAIL:
+      return validationErrorsHelper(state, action);
     case c.EDIT_CLIENT_SUCCESS:
     case c.CREATE_CLIENT_SUCCESS:
       return {};

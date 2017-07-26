@@ -36,5 +36,8 @@ export { default as IssuerForm } from './issuers/IssuerForm';
 // services
 export { default as ServiceForm } from './services/ServiceForm';
 
+// service orders
+export { default as ServiceOrderForm } from './serviceOrders/ServiceOrderForm';
+
 // tools
 export { default as ToolForm } from './tools/ToolForm';

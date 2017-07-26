@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import { map, mapValues, keyBy } from 'lodash';
 
+import { validationErrorsHelper, choicesHelper } from 'src/helpers/reducerHelpers';
+
 import * as c from './constants';
 
 const initialState = {
@@ -36,7 +38,7 @@ function id(state = initialState.id, action) {
 function choices(state = initialState.choices, action) {
   switch (action.type) {
     case c.LOAD_TOOL_CHOICES_SUCCESS:
-      return mapValues(action.response.data, value => mapValues(keyBy(value, '0'), '1'));
+      return choicesHelper(state, action);
     default:
       return state;
   }
@@ -45,10 +47,8 @@ function choices(state = initialState.choices, action) {
 function validationErrors(state = initialState.validationErrors, action) {
   switch (action.type) {
     case c.EDIT_TOOL_FAIL:
-    case c.CREATE_TOOL_FAIL: {
-      const { status, data: resp } = action.response;
-      return status === 400 ? resp || {} : state;
-    }
+    case c.CREATE_TOOL_FAIL:
+      return validationErrorsHelper(state, action);
     case c.EDIT_TOOL_SUCCESS:
     case c.CREATE_TOOL_SUCCESS:
       return {};

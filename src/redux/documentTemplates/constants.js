@@ -1,4 +1,4 @@
-const prefix = 'doc_templates';
+const prefix = 'doc-templates';
 
 // UI actions
 export const LIST_FILTERS_CHANGE = `${prefix}/LIST_FILTERS_CHANGE`;

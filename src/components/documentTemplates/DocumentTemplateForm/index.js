@@ -1,8 +1,8 @@
 import { Col, Row, FormGroup, Form } from 'reactstrap';
 import { Field } from 'redux-form';
 import { object, func, string } from 'prop-types';
-import moment from 'moment';
 
+import formatTime from 'src/helpers/formatTime';
 import { ReduxInput, ReduxCheckbox, ReduxSelect, ReduxQuill } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
 
@@ -18,8 +18,6 @@ const propTypes = {
   onFieldChange: func.isRequired,
 };
 
-const formatTime = time => (time ? moment(time).format('h:mm:ss a MM/DD/YY') : '-');
-
 
 const DocumentTemplateForm = ({
   created,
@@ -33,9 +31,9 @@ const DocumentTemplateForm = ({
   <Form>
     <Row>
       <Col md="6">
-      Created: {formatTime(created)}
+      Created: {formatTime(created).full() || '-'}
         <br /><br />
-      Modified: {formatTime(modified)}
+      Modified: {formatTime(modified).full() || '-'}
 
         <FormGroup>
           <Field

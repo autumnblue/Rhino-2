@@ -1,11 +1,10 @@
 import { Table } from 'reactstrap';
 import { pure } from 'recompose';
 import { arrayOf, object, shape } from 'prop-types';
-import moment from 'moment';
 
+import formatTime from 'src/helpers/formatTime';
 import { EntityLink } from 'src/components';
 import { documentTemplateType } from 'src/prop-types';
-
 
 const propTypes = {
   documentTemplates: arrayOf(documentTemplateType).isRequired,
@@ -13,8 +12,6 @@ const propTypes = {
     category: object.isRequired,
   }),
 };
-
-const formatTime = time => moment(time).format('h:mm:ss a MM/DD/YY');
 
 const enhance = pure;
 
@@ -39,9 +36,9 @@ const DocumentTemplateList = ({
             Issuer: {issuer.name}
           </td>
           <td>
-            Created: {formatTime(created)}
+            Created: {formatTime(created).full()}
             <br /><br />
-            Modified: {formatTime(modified)}
+            Modified: {formatTime(modified).full()}
           </td>
           <td>
             {description}

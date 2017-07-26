@@ -1,9 +1,9 @@
-import { compose, pure, withPropsOnChange } from 'recompose';
+import { pure } from 'recompose';
 import { FormGroup, Label } from 'reactstrap';
 import { Field } from 'redux-form';
 import { object, func, string } from 'prop-types';
-import moment from 'moment';
 
+import formatTime from 'src/helpers/formatTime';
 import { ReduxInput, ReduxSelect } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
 
@@ -16,14 +16,8 @@ const propTypes = {
   onFieldChange: func.isRequired,
 };
 
-const propsEnhancer = withPropsOnChange(['created'], ({ created }) => ({
-  created: created ? moment(created).format('l') : '-',
-}));
 
-const enhance = compose(
-  propsEnhancer,
-  pure,
-);
+const enhance = pure
 
 const ManagementFormGroup = ({
   issuersOptions,
@@ -35,7 +29,7 @@ const ManagementFormGroup = ({
 }) => (
   <FormGroup tag="fieldset">
     <legend>Management</legend>
-    <span>Created {created}</span>
+    <span>Created {formatTime(created).date() || '-'}</span>
     <FormGroup>
       <label>Issuer</label>
       <Field

@@ -13,10 +13,11 @@ import ClientListPage from './containers/ClientListPage';
 import ClientEditPage from './containers/ClientEditPage';
 import ClientCreatePage from './containers/ClientCreatePage';
 
-import ToolListPage from './containers/ToolListPage';
 import ServiceListPage from './containers/ServiceListPage';
 import ServiceEditPage from './containers/ServiceEditPage';
 import ServiceCreatePage from './containers/ServiceCreatePage';
+
+import ToolListPage from './containers/ToolListPage';
 import ToolCreatePage from './containers/ToolCreatePage';
 import ToolEditPage from './containers/ToolEditPage';
 
@@ -31,6 +32,10 @@ import IndustryEditPage from './containers/IndustryEditPage';
 import DocumentTemplateListPage from './containers/DocumentTemplateListPage';
 import DocumentTemplateCreatePage from './containers/DocumentTemplateCreatePage';
 import DocumentTemplateEditPage from './containers/DocumentTemplateEditPage';
+
+import ServiceOrderListPage from './containers/ServiceOrderListPage';
+import ServiceOrderCreatePage from './containers/ServiceOrderCreatePage';
+import ServiceOrderEditPage from './containers/ServiceOrderEditPage';
 
 function reduxAsyncConnect(props) {
   return (
@@ -78,6 +83,10 @@ const Routes = ({ history }) => (
         <Route path="document-templates" component={DocumentTemplateListPage} />
         <Route path="document-templates/new" component={DocumentTemplateCreatePage} />
         <Route path="document-templates/:templateId" component={DocumentTemplateEditPage} />
+
+        <Route path="service-orders" component={ServiceOrderListPage} />
+        <Route path="service-orders/new" component={ServiceOrderCreatePage} />
+        <Route path="service-orders/:issuerId" component={ServiceOrderEditPage} />
       </Route>
       <Route path="/login" component={LoginPage} />
     </Route>

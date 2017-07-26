@@ -11,6 +11,28 @@ const propTypes = {
   onLogoutRequest: func.isRequired,
 };
 
+const menuItems = [{
+  label: 'Clients',
+  url: '/clients',
+  wbIcon: 'users',
+  category: 'clients'
+}, {
+  label: 'Document Templates',
+  url: '/document-templates',
+  faIcon: 'file-text',
+  category: 'document-templates'
+}, {
+  label: 'Service Orders',
+  url: '/service-orders',
+  faIcon: 'magic',
+  category: 'service-orders'
+}, {
+  label: 'Settings & Assets',
+  url: '/settings',
+  wbIcon: 'settings',
+  category: 'settings'
+}]
+
 const Menu = ({
   activeCategory,
 
@@ -22,24 +44,14 @@ const Menu = ({
         <div className="scrollable-content">
           <ul className="site-menu">
             <li className="site-menu-category">Djavan</li>
-            <li className={`site-menu-item ${activeCategory === 'clients' ? css.active : ''}`}>
-              <Link to="/clients">
-                <Icon wb="user" className="site-menu-icon" />
-                <span className="site-menu-title">Clients</span>
-              </Link>
-            </li>
-            <li className={`site-menu-item ${activeCategory === 'settings' ? css.active : ''}`}>
-              <Link to="/settings">
-                <Icon wb="settings" className="site-menu-icon" />
-                <span className="site-menu-title">Settings &amp; Assets</span>
-              </Link>
-            </li>
-            <li className={`site-menu-item ${activeCategory === 'document-templates' ? css.active : ''}`}>
-              <Link to="/document-templates?is_default=default&issuer=default">
-                <Icon fa="file-text" className="site-menu-icon" />
-                <span className="site-menu-title">Document Templates</span>
-              </Link>
-            </li>
+            {menuItems.map(({ label, url, category, faIcon, wbIcon }) => (
+              <li key={url} className={`site-menu-item ${activeCategory === category ? css.active : ''}`}>
+                <Link to={url}>
+                  <Icon wb={wbIcon} fa={faIcon} className="site-menu-icon" />
+                  <span className="site-menu-title">{label}</span>
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

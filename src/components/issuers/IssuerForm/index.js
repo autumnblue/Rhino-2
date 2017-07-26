@@ -12,7 +12,7 @@ const propTypes = {
   onFieldChange: func.isRequired,
 };
 
-const ClientForm = ({
+const IssuerForm = ({
   validationErrors,
 
   onFieldChange,
@@ -45,6 +45,6 @@ const ClientForm = ({
   </Form>
 );
 
-ClientForm.propTypes = propTypes;
+IssuerForm.propTypes = propTypes;
 
-export default enhance(ClientForm);
+export default enhance(IssuerForm);
