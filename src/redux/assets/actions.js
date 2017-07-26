@@ -12,6 +12,7 @@ export const createAsset = ({
 
     body.append('file', file);
     body.append('data', JSON.stringify(data));
+    body.append('commit', true);
 
     return post(endpoint, {
       body,
