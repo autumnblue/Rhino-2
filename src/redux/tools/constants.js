@@ -11,6 +11,10 @@ export const LOAD_TOOLS = `${prefix}/LOAD_TOOLS`;
 export const LOAD_TOOLS_SUCCESS = `${prefix}/LOAD_TOOLS_SUCCESS`;
 export const LOAD_TOOLS_FAIL = `${prefix}/LOAD_TOOLS_FAIL`;
 
+export const LOAD_TOOL_CHOICES = `${prefix}/LOAD_TOOL_CHOICES`;
+export const LOAD_TOOL_CHOICES_SUCCESS = `${prefix}/LOAD_TOOL_CHOICES_SUCCESS`;
+export const LOAD_TOOL_CHOICES_FAIL = `${prefix}/LOAD_TOOL_CHOICES_FAIL`;
+
 export const LOAD_SINGLE_TOOL = `${prefix}/LOAD_SINGLE_TOOL`;
 export const LOAD_SINGLE_TOOL_SUCCESS = `${prefix}/LOAD_SINGLE_TOOL_SUCCESS`;
 export const LOAD_SINGLE_TOOL_FAIL = `${prefix}/LOAD_SINGLE_TOOL_FAIL`;

@@ -35,6 +35,24 @@ export const loadTools = ({
   }),
 });
 
+// load choices only once, they're hardcoded constants
+export const loadToolChoices = () => (dispatch, getState) => {
+  const { choices } = getState().tools;
+
+  if (!choices) {
+    return dispatch({
+      types: [
+        c.LOAD_TOOL_CHOICES,
+        c.LOAD_TOOL_CHOICES_SUCCESS,
+        c.LOAD_TOOL_CHOICES_FAIL,
+      ],
+      api: ({ get }) => get(`${endpoint}choices/`),
+    });
+  }
+
+  return undefined;
+};
+
 export const loadSingleTool = id => ({
   types: [c.LOAD_SINGLE_TOOL, c.LOAD_SINGLE_TOOL_SUCCESS, c.LOAD_SINGLE_TOOL_FAIL],
   api: ({ get }) => get(endpoint + id, {

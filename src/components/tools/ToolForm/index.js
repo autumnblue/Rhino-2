@@ -2,7 +2,12 @@ import { Col, Row, FormGroup, Form } from 'reactstrap';
 import { Field } from 'redux-form';
 import { object, func, bool } from 'prop-types';
 
-import { ReduxInput, ReduxPriorityVote, ReduxAssociations, ReduxQuill } from 'src/components';
+import {
+  ReduxInput,
+  ReduxPriorityVote,
+  ReduxAssociations,
+  ReduxQuill,
+} from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
 
 import enhance from './enhance';

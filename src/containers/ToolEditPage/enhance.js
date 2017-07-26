@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 // actions
-import { loadSingleTool, deleteToolTrigger, editToolFormChange } from 'src/redux/tools/actions';
+import { loadSingleTool, deleteToolTrigger, editToolFormChange, loadToolChoices } from 'src/redux/tools/actions';
 import { loadServices } from 'src/redux/services/actions';
 
 // selectors
@@ -13,15 +13,18 @@ import { getServices } from 'src/redux/services/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
   promise: ({ store: { dispatch }, params: { toolId } }) => Promise.all([
+    dispatch(loadToolChoices()),
     dispatch(loadSingleTool(toolId)),
     dispatch(loadServices()),
   ]),
 }]);
 
 const reduxConnect = connect(state => ({
-  validationErrors: state.tools.validationErrors,
+
   tool: getCurrentTool(state),
   services: getServices(state),
+  choices: state.tools.choices,
+  validationErrors: state.tools.validationErrors,
 }), {
   onDelete: deleteToolTrigger,
   onFieldChange: editToolFormChange,
