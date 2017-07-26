@@ -3,6 +3,10 @@ import * as c from './constants';
 const endpoint = 'services/';
 
 // UI actions
+export const listFiltersChange = () => ({
+  type: c.LIST_FILTERS_CHANGE,
+});
+
 export const deleteServiceTrigger = id => ({
   type: c.DELETE_SERVICE_TRIGGER,
   id,
@@ -18,10 +22,13 @@ export const editServiceFormChange = id => ({
 });
 
 // API actions
-export const loadServices = () => ({
+export const loadServices = ({
+  filter = {},
+} = {}) => ({
   types: [c.LOAD_SERVICES, c.LOAD_SERVICES_SUCCESS, c.LOAD_SERVICES_FAIL],
   api: ({ get }) => get(endpoint, {
     params: {
+      filter,
       per_page: 1000,
       sort: ['default_sort_priority'],
       include: ['feature_image'],

@@ -1,12 +1,30 @@
-import { all, fork, take, select, put } from 'redux-saga/effects';
+import { all, fork, take, select, put, takeLatest, call } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import { push } from 'react-router-redux';
-import { isEmpty, pick } from 'lodash';
+import { isEmpty, pick, pickBy } from 'lodash';
+import { formValueSelector } from 'redux-form';
+import qs from 'qs';
 
 import simpleObjectDiff from 'src/helpers/simpleObjectDiff';
 
 import { getService } from './selectors';
 import { editService, createService, deleteService } from './actions';
 import * as c from './constants';
+
+function* listParamsChange() {
+  // will cancel current running handleInput task
+  yield takeLatest(c.LIST_FILTERS_CHANGE, function* handle() {
+    yield call(delay, 500);
+    const contains = yield select(
+      formValueSelector('serviceListFilterForm'),
+      'contains',
+    );
+
+    const query = qs.stringify(pickBy({ contains }));
+
+    yield put(push(`/services/?${query}`));
+  });
+}
 
 function* editServiceFormChange() {
   while (true) {
@@ -70,6 +88,7 @@ function* deleteServiceSuccess() {
 
 export default function* createSaga() {
   yield all([
+    fork(listParamsChange),
     fork(editServiceFormChange),
     fork(newServiceFormChange),
     fork(createServiceSuccess),

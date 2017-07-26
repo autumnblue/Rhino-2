@@ -1,13 +1,22 @@
 import { asyncConnect } from 'redux-connect';
-import { compose, pure, withHandlers } from 'recompose';
+import { compose, pure, withHandlers, withPropsOnChange } from 'recompose';
 import { connect } from 'react-redux';
 
-import { loadServices, editService } from 'src/redux/services/actions';
+import { loadServices, editService, listFiltersChange } from 'src/redux/services/actions';
 import { getServices } from 'src/redux/services/selectors';
 import { getAssetsData } from 'src/redux/assets/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
-  promise: ({ store: { dispatch } }) => dispatch(loadServices()),
+  promise: ({
+    store: { dispatch },
+    location: { query: { contains } },
+  }) => dispatch(loadServices({
+    filter: contains ? {
+      name: {
+        icontains: contains,
+      },
+    } : {},
+  })),
 }]);
 
 const reduxConnect = connect(
@@ -18,6 +27,7 @@ const reduxConnect = connect(
   {
     onEdit: editService,
     onLoadServices: loadServices,
+    onFiltersChange: listFiltersChange,
   },
 );
 
@@ -28,9 +38,16 @@ const handlersEnhancer = withHandlers({
   },
 });
 
+const propsEnhancer = withPropsOnChange(['location'], ({
+  location: { query: { contains } },
+}) => ({
+  filters: { contains },
+}));
+
 export default compose(
   reduxAsyncConnect,
   reduxConnect,
   handlersEnhancer,
+  propsEnhancer,
   pure,
 );

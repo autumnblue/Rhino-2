@@ -1,6 +1,7 @@
 const prefix = 'services';
 
 // UI actions
+export const LIST_FILTERS_CHANGE = `${prefix}/LIST_FILTERS_CHANGE`;
 export const NEW_SERVICE_FORM_CHANGE = `${prefix}/NEW_SERVICE_FORM_CHANGE`;
 export const EDIT_SERVICE_FORM_CHANGE = `${prefix}/EDIT_SERVICE_FORM_CHANGE`;
 export const DELETE_SERVICE_TRIGGER = `${prefix}/DELETE_SERVICE_TRIGGER`;

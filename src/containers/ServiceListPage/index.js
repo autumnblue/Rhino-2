@@ -1,15 +1,20 @@
 import { Page, PageContent, PageHeader, Button } from 'src/components';
 import { Link } from 'react-router';
 
-import { array, object, func } from 'prop-types';
+import { array, object, func, string, shape } from 'prop-types';
 import enhance from './enhance';
 import ServiceList from './ServiceList';
+import ServiceFilters from './ServiceFilters';
 
 const propTypes = {
   services: array.isRequired,
   assetsData: object.isRequired,
+  filters: shape({
+    contains: string,
+  }).isRequired,
 
   onEdit: func.isRequired,
+  onFiltersChange: func.isRequired,
 };
 
 const breadcrumbs = [{ label: 'Services' }];
@@ -17,8 +22,10 @@ const breadcrumbs = [{ label: 'Services' }];
 const ServiceListPage = ({
   services,
   assetsData,
+  filters,
 
   onEdit,
+  onFiltersChange,
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
@@ -27,6 +34,7 @@ const ServiceListPage = ({
       </Link>
     </PageHeader>
     <PageContent>
+      <ServiceFilters onFiltersChange={onFiltersChange} initialValues={filters} />
       <ServiceList
         services={services}
         assetsData={assetsData}
