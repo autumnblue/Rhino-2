@@ -25,11 +25,10 @@ const sortOptions = [{
   value: 'client.name',
 }, {
   label: 'Sort: Number of Assessments',
-  value: 'assessment.count',
+  value: 'assessment_count',
 }];
 
 const perPageOptions = [
-  { value: '2', label: 'Display 2' },
   { value: '10', label: 'Display 10' },
   { value: '50', label: 'Display 50' },
   { value: '100', label: 'Display 100' },
