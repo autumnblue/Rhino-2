@@ -1,26 +1,14 @@
-import { Col, Row, FormGroup, Form } from 'reactstrap';
-import { Field } from 'redux-form';
-import { object, func } from 'prop-types';
-
-import { ReduxInput, ReduxCheckbox } from 'src/components';
+import { Col, Row, Form } from 'reactstrap';
 
 import enhance from './enhance';
 
-const propTypes = {
-  validationErrors: object.isRequired,
+const propTypes = {};
 
-  onFieldChange: func.isRequired,
-};
-
-const ServiceOrderForm = ({
-  validationErrors,
-
-  onFieldChange,
-}) => (
+const ServiceOrderForm = () => (
   <Form>
     <Row>
       <Col md="12">
-        <h2>SO form placeholder</h2>
+        <h2>Service order form placeholder</h2>
       </Col>
     </Row>
   </Form>

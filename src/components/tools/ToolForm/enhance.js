@@ -1,11 +1,9 @@
 import { compose, pure, withPropsOnChange, withHandlers } from 'recompose';
 
+import objectToOptions from 'src/helpers/objectToOptions';
 
 const propsEnhancer = withPropsOnChange(['choices', 'services'], ({ choices, services }) => ({
-  findingsOptions: Object.entries(choices.associated_findings).map(([value, label]) => ({
-    value,
-    label,
-  })),
+  findingsOptions: objectToOptions(choices.associated_findings),
   servicesOptions: services.map(({ id, name }) => ({
     value: id,
     label: name,

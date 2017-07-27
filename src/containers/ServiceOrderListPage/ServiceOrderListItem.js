@@ -1,27 +1,40 @@
-import { Table } from 'reactstrap';
 import { compose, pure, withPropsOnChange } from 'recompose';
-import { arrayOf } from 'prop-types';
+import { string, number, shape, object } from 'prop-types';
 
-import { serviceOrderType } from 'src/prop-types';
+import { clientType } from 'src/prop-types';
 import { EntityLink } from 'src/components';
-import formatTime from 'src/helpers/formatTime'
+import formatTime from 'src/helpers/formatTime';
 
 const propTypes = {
-  serviceOrders: arrayOf(serviceOrderType).isRequired,
+  id: number.isRequired,
+  composite_id: string.isRequired,
+  status: string.isRequired,
+  payment: string.isRequired,
+  signed_date: string,
+  start_date: string,
+  end_date: string,
+  total_due_str: string.isRequired,
+
+  client: clientType.isRequired,
+  assessment_count: number.isRequired,
+  choices: shape({
+    payment: object.isRequired,
+    status: object.isRequired,
+  }).isRequired,
 };
 
 const propsEnhancer = withPropsOnChange(
   ['client', 'clientsData', 'total_due'], ({ client, clientsData, total_due }) => ({
     client: clientsData[client] || {
-      name: 'Unknown Client'
+      name: 'Unknown Client',
     },
-    total_due_str: total_due < 0 ? `-$${-total_due}` : `$${total_due}`
-  })
-)
+    total_due_str: total_due < 0 ? `-$${-total_due}` : `$${total_due}`,
+  }),
+);
 
 const enhance = compose(
   propsEnhancer,
-  pure
+  pure,
 );
 
 const ServiceOrderListItem = ({
@@ -35,7 +48,8 @@ const ServiceOrderListItem = ({
   total_due_str,
 
   client,
-  assessment_count
+  assessment_count,
+  choices,
 }) => (
   <tr>
     <td>
@@ -51,9 +65,9 @@ const ServiceOrderListItem = ({
       {client.focal_phone}
     </td>
     <td>
-      Status:&nbsp;{status}
+      Status:&nbsp;{choices.status[status]}
       <br /><br />
-      Payment:&nbsp;{payment}
+      Payment:&nbsp;{choices.status[payment]}
       <br /><br />
       {assessment_count}&nbsp;Assessments
     </td>

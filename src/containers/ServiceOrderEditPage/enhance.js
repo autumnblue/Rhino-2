@@ -10,7 +10,10 @@ import { loadSingleServiceOrder, deleteServiceOrderTrigger, editServiceOrderForm
 import { getCurrentServiceOrder } from 'src/redux/serviceOrders/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
-  promise: ({ store: { dispatch }, params: { serviceOrderId } }) => dispatch(loadSingleServiceOrder(serviceOrderId)),
+  promise: ({
+    store: { dispatch },
+    params: { serviceOrderId },
+  }) => dispatch(loadSingleServiceOrder(serviceOrderId)),
 }]);
 
 const reduxConnect = connect(state => ({
@@ -26,7 +29,7 @@ const propsEnhancer = withPropsOnChange(['serviceOrder'], ({ serviceOrder }) => 
     label: 'Service Orders',
     url: '/service-orders',
   }, {
-    label: serviceOrder.name,
+    label: serviceOrder.id,
   }],
   // initialValues used by reduxForm
   initialValues: serviceOrder,

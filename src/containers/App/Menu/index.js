@@ -15,23 +15,23 @@ const menuItems = [{
   label: 'Clients',
   url: '/clients',
   wbIcon: 'users',
-  category: 'clients'
+  category: 'clients',
 }, {
   label: 'Document Templates',
   url: '/document-templates',
   faIcon: 'file-text',
-  category: 'document-templates'
+  category: 'document-templates',
 }, {
   label: 'Service Orders',
   url: '/service-orders',
   faIcon: 'magic',
-  category: 'service-orders'
+  category: 'service-orders',
 }, {
   label: 'Settings & Assets',
   url: '/settings',
   wbIcon: 'settings',
-  category: 'settings'
-}]
+  category: 'settings',
+}];
 
 const Menu = ({
   activeCategory,

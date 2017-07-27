@@ -25,7 +25,6 @@ const reduxAsyncConnect = asyncConnect([{
 const reduxConnect = connect(
   store => ({
     clients: getClients(store),
-    page: store.clients.page,
     pageCount: store.clients.pageCount,
   }),
   {
@@ -37,13 +36,14 @@ const reduxConnect = connect(
 );
 
 const propsEnhancer = withPropsOnChange(['location'], ({
-  location: { query: { contains, sort, per_page } },
+  location: { query: { contains, sort, per_page, page } },
 }) => ({
   filters: {
     contains,
     sort,
     per_page: +per_page,
   },
+  page: +page || 1,
 }));
 
 export default compose(

@@ -17,7 +17,7 @@ const propTypes = {
 };
 
 
-const enhance = pure
+const enhance = pure;
 
 const ManagementFormGroup = ({
   issuersOptions,

@@ -1,14 +1,18 @@
 import { Table } from 'reactstrap';
 import { pure } from 'recompose';
-import { arrayOf } from 'prop-types';
+import { arrayOf, object, shape } from 'prop-types';
 
 import { serviceOrderType } from 'src/prop-types';
-import { EntityLink } from 'src/components';
 
 import ServiceOrderListItem from './ServiceOrderListItem';
 
 const propTypes = {
   serviceOrders: arrayOf(serviceOrderType).isRequired,
+  clientsData: object.isRequired,
+  choices: shape({
+    payment: object.isRequired,
+    status: object.isRequired,
+  }).isRequired,
 };
 
 const enhance = pure;
@@ -16,6 +20,7 @@ const enhance = pure;
 const ServiceOrderList = ({
   serviceOrders,
   clientsData,
+  choices,
 }) => (
   <Table striped>
     <tbody>
@@ -28,7 +33,7 @@ const ServiceOrderList = ({
         start_date,
         end_date,
         total_due,
-        
+
         client,
         assessment_count,
       }) => (
@@ -47,7 +52,9 @@ const ServiceOrderList = ({
           assessment_count,
 
           clientsData,
-        }} />
+          choices,
+        }}
+        />
       ))}
     </tbody>
   </Table>

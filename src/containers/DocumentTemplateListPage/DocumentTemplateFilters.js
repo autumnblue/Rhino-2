@@ -5,6 +5,7 @@ import { func } from 'prop-types';
 
 import { ReduxSelect } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
+import objectToOptions from 'src/helpers/objectToOptions';
 
 const propTypes = {
   issuerOptions: selectOptionsType,
@@ -30,10 +31,7 @@ const propsEnhancer = withPropsOnChange(['issuers'], ({ issuers, choices }) => (
       label: 'All categories',
       value: '',
     },
-    ...Object.entries(choices.category).map(([value, label]) => ({
-      value,
-      label,
-    })),
+    ...objectToOptions(choices.category),
   ],
   isDefaultOptions: [{
     label: 'All',

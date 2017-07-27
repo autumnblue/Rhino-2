@@ -9,6 +9,9 @@ const initialState = {
   data: {},
   ids: [],
   id: null,
+  choices: null,
+  page: 1,
+  pageCount: 1,
   validationErrors: {},
 };
 
@@ -34,6 +37,33 @@ function id(state = initialState.id, action) {
   }
 }
 
+function choices(state = initialState.choices, action) {
+  switch (action.type) {
+    case c.LOAD_SERVICE_ORDER_CHOICES_SUCCESS:
+      return choicesHelper(state, action);
+    default:
+      return state;
+  }
+}
+
+function page(state = initialState.page, action) {
+  switch (action.type) {
+    case c.PAGE_CHANGE:
+      return action.page;
+    default:
+      return state;
+  }
+}
+
+function pageCount(state = initialState.pageCount, action) {
+  switch (action.type) {
+    case c.LOAD_SERVICE_ORDERS_SUCCESS:
+      return action.response.data.meta.total_pages;
+    default:
+      return state;
+  }
+}
+
 function validationErrors(state = initialState.validationErrors, action) {
   switch (action.type) {
     case c.EDIT_SERVICE_ORDER_FAIL:
@@ -51,5 +81,8 @@ export default combineReducers({
   data,
   ids,
   id,
+  choices,
+  page,
+  pageCount,
   validationErrors,
 });

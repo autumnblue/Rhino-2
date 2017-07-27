@@ -13,14 +13,21 @@ import { getCurrentServiceOrder } from './selectors';
 
 function* listParamsChange() {
   // will cancel current running handleInput task
-  yield takeLatest(c.LIST_FILTERS_CHANGE, function* handle() {
+  yield takeLatest([c.LIST_FILTERS_CHANGE, c.PAGE_CHANGE], function* handle() {
     yield call(delay, 500);
-    const contains = yield select(
+    const params = yield select(
       formValueSelector('serviceOrderListFilterForm'),
-      'contains',
+      'client', 'sort', 'per_page', 'status',
     );
 
-    const query = qs.stringify(pickBy({ contains }));
+    const { serviceOrders } = yield select();
+    const { page } = serviceOrders;
+
+    if (page > 1) {
+      params.page = page;
+    }
+
+    const query = qs.stringify(pickBy(params));
 
     yield put(push(`/service-orders/?${query}`));
   });
@@ -74,7 +81,7 @@ function* deleteServiceOrderTrigger() {
     const { id } = yield take(c.DELETE_SERVICE_ORDER_TRIGGER);
 
     // eslint-disable-next-line no-alert
-    if (window.confirm('Are you sure want to delete the serviceOrder')) {
+    if (window.confirm('Are you sure want to delete the service order')) {
       yield put(deleteServiceOrder(id));
     }
   }

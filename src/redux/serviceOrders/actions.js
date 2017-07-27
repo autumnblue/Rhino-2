@@ -7,6 +7,11 @@ export const listFiltersChange = () => ({
   type: c.LIST_FILTERS_CHANGE,
 });
 
+export const pageChange = page => ({
+  type: c.PAGE_CHANGE,
+  page,
+});
+
 export const newServiceOrderFormChange = () => ({
   type: c.NEW_SERVICE_ORDER_FORM_CHANGE,
 });
@@ -27,12 +32,12 @@ export const loadServiceOrders = ({
   per_page = 10,
   sort = undefined,
   include = [],
-  filter = {}
+  filter = {},
 } = {}) => ({
   types: [
     c.LOAD_SERVICE_ORDERS,
     c.LOAD_SERVICE_ORDERS_SUCCESS,
-    c.LOAD_SERVICE_ORDERS_FAIL
+    c.LOAD_SERVICE_ORDERS_FAIL,
   ],
   api: ({ get }) => get(endpoint, {
     params: {
@@ -40,13 +45,35 @@ export const loadServiceOrders = ({
       per_page,
       sort,
       include,
-      filter
+      filter,
     },
   }),
 });
 
+// load choices only once, they're hardcoded constants
+export const loadServiceOrderChoices = () => (dispatch, getState) => {
+  const { choices } = getState().serviceOrders;
+
+  if (!choices) {
+    return dispatch({
+      types: [
+        c.LOAD_SERVICE_ORDER_CHOICES,
+        c.LOAD_SERVICE_ORDER_CHOICES_SUCCESS,
+        c.LOAD_SERVICE_ORDER_CHOICES_FAIL,
+      ],
+      api: ({ get }) => get(`${endpoint}choices/`),
+    });
+  }
+
+  return undefined;
+};
+
 export const loadSingleServiceOrder = id => ({
-  types: [c.LOAD_SINGLE_SERVICE_ORDER, c.LOAD_SINGLE_SERVICE_ORDER_SUCCESS, c.LOAD_SINGLE_SERVICE_ORDER_FAIL],
+  types: [
+    c.LOAD_SINGLE_SERVICE_ORDER,
+    c.LOAD_SINGLE_SERVICE_ORDER_SUCCESS,
+    c.LOAD_SINGLE_SERVICE_ORDER_FAIL,
+  ],
   api: ({ get }) => get(endpoint + id),
 });
 

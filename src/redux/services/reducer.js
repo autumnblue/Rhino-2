@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { map, mapValues, keyBy } from 'lodash';
+import { map } from 'lodash';
 
 import { validationErrorsHelper, choicesHelper } from 'src/helpers/reducerHelpers';
 

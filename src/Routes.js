@@ -86,7 +86,7 @@ const Routes = ({ history }) => (
 
         <Route path="service-orders" component={ServiceOrderListPage} />
         <Route path="service-orders/new" component={ServiceOrderCreatePage} />
-        <Route path="service-orders/:issuerId" component={ServiceOrderEditPage} />
+        <Route path="service-orders/:serviceOrderId" component={ServiceOrderEditPage} />
       </Route>
       <Route path="/login" component={LoginPage} />
     </Route>
