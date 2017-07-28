@@ -9,33 +9,33 @@ import LoginPage from './containers/LoginPage';
 import MainLayout from './containers/MainLayout';
 import SettingsPage from './containers/SettingsPage';
 
-import ClientListPage from './containers/ClientListPage';
-import ClientEditPage from './containers/ClientEditPage';
-import ClientCreatePage from './containers/ClientCreatePage';
+import ClientListPage from './containers/clients/ClientListPage';
+import ClientEditPage from './containers/clients/ClientEditPage';
+import ClientCreatePage from './containers/clients/ClientCreatePage';
 
-import ServiceListPage from './containers/ServiceListPage';
-import ServiceEditPage from './containers/ServiceEditPage';
-import ServiceCreatePage from './containers/ServiceCreatePage';
+import ServiceListPage from './containers/services/ServiceListPage';
+import ServiceEditPage from './containers/services/ServiceEditPage';
+import ServiceCreatePage from './containers/services/ServiceCreatePage';
 
-import ToolListPage from './containers/ToolListPage';
-import ToolCreatePage from './containers/ToolCreatePage';
-import ToolEditPage from './containers/ToolEditPage';
+import ToolListPage from './containers/tools/ToolListPage';
+import ToolCreatePage from './containers/tools/ToolCreatePage';
+import ToolEditPage from './containers/tools/ToolEditPage';
 
-import IssuerListPage from './containers/IssuerListPage';
-import IssuerCreatePage from './containers/IssuerCreatePage';
-import IssuerEditPage from './containers/IssuerEditPage';
+import IssuerListPage from './containers/issuers/IssuerListPage';
+import IssuerCreatePage from './containers/issuers/IssuerCreatePage';
+import IssuerEditPage from './containers/issuers/IssuerEditPage';
 
-import IndustryListPage from './containers/IndustryListPage';
-import IndustryCreatePage from './containers/IndustryCreatePage';
-import IndustryEditPage from './containers/IndustryEditPage';
+import IndustryListPage from './containers/industries/IndustryListPage';
+import IndustryCreatePage from './containers/industries/IndustryCreatePage';
+import IndustryEditPage from './containers/industries/IndustryEditPage';
 
-import DocumentTemplateListPage from './containers/DocumentTemplateListPage';
-import DocumentTemplateCreatePage from './containers/DocumentTemplateCreatePage';
-import DocumentTemplateEditPage from './containers/DocumentTemplateEditPage';
+import DocumentTemplateListPage from './containers/documentTemplates/DocumentTemplateListPage';
+import DocumentTemplateCreatePage from './containers/documentTemplates/DocumentTemplateCreatePage';
+import DocumentTemplateEditPage from './containers/documentTemplates/DocumentTemplateEditPage';
 
-import ServiceOrderListPage from './containers/ServiceOrderListPage';
-import ServiceOrderCreatePage from './containers/ServiceOrderCreatePage';
-import ServiceOrderEditPage from './containers/ServiceOrderEditPage';
+import ServiceOrderListPage from './containers/serviceOrders/ServiceOrderListPage';
+import ServiceOrderCreatePage from './containers/serviceOrders/ServiceOrderCreatePage';
+import ServiceOrderEditPage from './containers/serviceOrders/ServiceOrderEditPage';
 
 function reduxAsyncConnect(props) {
   return (
