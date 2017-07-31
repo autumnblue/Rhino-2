@@ -1,14 +1,32 @@
-import { Col, Row, Form } from 'reactstrap';
+import { Col, Row, Form, FormGroup } from 'reactstrap';
+import { Field } from 'redux-form' ;
+
+import { ReduxExpandableRichText } from 'src/components';
 
 import enhance from './enhance';
 
 const propTypes = {};
 
-const ServiceOrderForm = () => (
+const ServiceOrderForm = ({
+    validationErrors,
+    breadcrumbs,
+
+    onFieldChange,
+}) => (
   <Form>
     <Row>
-      <Col md="12">
-        <h2>Service order form placeholder</h2>
+      <Col md="6">
+      <FormGroup>
+        <label>Strategic Considerations</label>
+        <Field
+          component={ReduxExpandableRichText}
+          name="strategic_considerations"
+          onChange={onFieldChange}
+          parentBreadcrumbs={breadcrumbs}
+          label={'Strategic Considerations'}
+          error={validationErrors.strategic_considerations}
+        />
+      </FormGroup>
       </Col>
     </Row>
   </Form>

@@ -6,7 +6,7 @@ import {
   ReduxInput,
   ReduxPriorityVote,
   ReduxAssociations,
-  ReduxQuill,
+  ReduxRichText,
 } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
 
@@ -58,7 +58,7 @@ const ClientForm = ({
         <FormGroup>
           <label>HTML Body</label>
           <Field
-            component={ReduxQuill}
+            component={ReduxRichText}
             name="html_body"
             onBlur={onFieldChange}
             error={validationErrors.html_body}

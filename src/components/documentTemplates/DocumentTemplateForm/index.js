@@ -3,7 +3,7 @@ import { Field } from 'redux-form';
 import { object, func, string } from 'prop-types';
 
 import formatTime from 'src/helpers/formatTime';
-import { ReduxInput, ReduxCheckbox, ReduxSelect, ReduxQuill } from 'src/components';
+import { ReduxInput, ReduxCheckbox, ReduxSelect, ReduxRichText } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
 
 import enhance from './enhance';
@@ -59,7 +59,7 @@ const DocumentTemplateForm = ({
         <FormGroup>
           <label>Template Body</label>
           <Field
-            component={ReduxQuill}
+            component={ReduxRichText}
             name="html_body"
             onBlur={onFieldChange}
             error={validationErrors.html_body}

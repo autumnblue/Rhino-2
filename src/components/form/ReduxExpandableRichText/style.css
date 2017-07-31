@@ -1,0 +1,12 @@
+.empty {
+  color: #aaa;
+}
+
+.editor {
+  height: 60vh;
+}
+
+.breadcrumbs {
+  padding-left: 0;
+  margin-top: 5px;
+}

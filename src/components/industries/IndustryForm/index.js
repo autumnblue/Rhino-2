@@ -2,7 +2,7 @@ import { Col, Row, FormGroup, Form } from 'reactstrap';
 import { Field } from 'redux-form';
 import { object, func } from 'prop-types';
 
-import { ReduxInput, ReduxQuill } from 'src/components';
+import { ReduxInput, ReduxRichText } from 'src/components';
 
 import enhance from './enhance';
 
@@ -36,7 +36,7 @@ const ClientForm = ({
         <FormGroup>
           <label>Description</label>
           <Field
-            component={ReduxQuill}
+            component={ReduxRichText}
             name="html_body"
             onBlur={onFieldChange}
             error={validationErrors.html_body}

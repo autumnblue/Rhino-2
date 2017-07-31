@@ -2,7 +2,16 @@ import { Button } from 'reactstrap';
 import { object, func } from 'prop-types';
 import { Link } from 'react-router';
 
-import { ServiceOrderForm, Page, PageContent, PageHeader } from 'src/components';
+import {
+  ServiceOrderForm,
+  Page,
+  PageContent,
+  PageHeader,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from 'src/components';
 import { breadcrumbsType } from 'src/prop-types';
 
 import enhance from './enhance';
@@ -31,6 +40,7 @@ const ServiceOrderEditPage = ({
       <ServiceOrderForm
         onFieldChange={onFieldChange}
         validationErrors={validationErrors}
+        breadcrumbs={breadcrumbs}
       />
       <Button color="danger" onClick={onDelete}>Delete</Button>
     </PageContent>

@@ -1,14 +1,16 @@
-import { compose, pure, lifecycle, toClass, withState } from 'recompose';
+import { compose, pure, lifecycle, toClass, withState, withPropsOnChange } from 'recompose';
 import { object, bool, func, string, arrayOf, oneOfType } from 'prop-types';
 import React from 'react';
 import ReactQuill from 'react-quill';
+import classNames from 'classnames';
 
 import { FieldError } from 'src/components';
+
+import css from './style.css';
 
 const propTypes = {
   input: object.isRequired,
   disabled: bool,
-  error: oneOfType([string, arrayOf(string)]),
 
   onSetRef: func.isRequired,
 };
@@ -34,48 +36,58 @@ const formats = [
   'link', 'image',
 ];
 
+const propsEnhancer = withPropsOnChange(['className'], ({ className }) => ({
+  className: classNames({
+    [css.wrapper]: true,
+    [className]: !!className
+  })
+}))
+
+const refEnhancer = withState('reference', 'onSetRef', null);
+
 // TODO: This should be killed once ReactQuill supports onBlur prop
 const lifecycleEnhancer = lifecycle({
   componentDidMount() {
     // a little delay needs to be run before ReactQuill initialized
     setTimeout(() => {
-      const { reference, input: { onBlur } } = this.props;
+      const { reference } = this.props;
       reference.editingArea.querySelector('.ql-editor').addEventListener('blur', () => {
-        onBlur();
+        const { onBlur } = this.props;
+        if(typeof onBlur === 'function') {
+          onBlur();
+        }
       });
     });
   },
 });
 
-const refEnhancer = withState('reference', 'onSetRef', null);
-
 const enhance = compose(
+  propsEnhancer,
   refEnhancer,
   lifecycleEnhancer,
   pure,
   toClass,
 );
 
-const ReduxQuill = ({
-  input: { value, onChange },
+const RichText = ({
+  value,
   disabled,
-  error,
+  className,
 
   onSetRef,
+  onChange,
 }) => (
-  <div>
-    <ReactQuill
-      ref={onSetRef}
-      readOnly={disabled}
-      onChange={onChange}
-      value={value}
-      modules={modules}
-      formats={formats}
-    />
-    <FieldError error={error} />
-  </div>
+  <ReactQuill
+    className={className}
+    ref={onSetRef}
+    readOnly={disabled}
+    onChange={onChange}
+    value={value}
+    modules={modules}
+    formats={formats}
+  />
 );
 
-ReduxQuill.propTypes = propTypes;
+RichText.propTypes = propTypes;
 
-export default enhance(ReduxQuill);
+export default enhance(RichText);

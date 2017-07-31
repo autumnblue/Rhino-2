@@ -29,7 +29,7 @@ const propsEnhancer = withPropsOnChange(['serviceOrder'], ({ serviceOrder }) => 
     label: 'Service Orders',
     url: '/service-orders',
   }, {
-    label: serviceOrder.id,
+    label: serviceOrder.composite_id,
   }],
   // initialValues used by reduxForm
   initialValues: serviceOrder,
