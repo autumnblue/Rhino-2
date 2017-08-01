@@ -7,10 +7,6 @@ import {
   Page,
   PageContent,
   PageHeader,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
 } from 'src/components';
 import { breadcrumbsType } from 'src/prop-types';
 

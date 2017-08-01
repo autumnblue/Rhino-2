@@ -1,5 +1,4 @@
 import { string, node } from 'prop-types';
-import { Link } from 'react-router';
 import { compose, pure, defaultProps } from 'recompose';
 
 import { breadcrumbsType } from 'src/prop-types';

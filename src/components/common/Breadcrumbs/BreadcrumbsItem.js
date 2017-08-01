@@ -1,17 +1,26 @@
 import { compose, pure, withHandlers } from 'recompose';
 import { Link } from 'react-router';
+import { string, func, node } from 'prop-types';
+
+const propTypes = {
+  label: node.isRequired,
+  url: string,
+
+  onClick: func,
+  decoratedOnClick: func,
+};
 
 const handlersEnhancer = withHandlers({
   decoratedOnClick: ({ onClick }) => (evt) => {
     evt.preventDefault();
     onClick();
-  }
+  },
 });
 
 const enhance = compose(
   handlersEnhancer,
   pure,
-)
+);
 
 const BreadcrumbsItem = ({
   label,
@@ -27,4 +36,6 @@ const BreadcrumbsItem = ({
   </li>
 );
 
-export default enhance(BreadcrumbsItem)
+BreadcrumbsItem.propTypes = propTypes;
+
+export default enhance(BreadcrumbsItem);

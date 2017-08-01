@@ -1,8 +1,8 @@
-import { Input } from 'reactstrap';
-import { omit } from 'lodash';
+import { debounce } from 'lodash';
 import { compose, pure, withState, withHandlers, withPropsOnChange } from 'recompose';
-import { string, object, oneOfType, arrayOf } from 'prop-types';
+import { string, object, oneOfType, arrayOf, func, bool } from 'prop-types';
 
+import { breadcrumbsType } from 'src/prop-types';
 import {
   FieldError,
   SafeHTML,
@@ -12,29 +12,37 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Breadcrumbs
+  Breadcrumbs,
 } from 'src/components';
 
-import css from './style.css'
+import css from './style.css';
 
 const propTypes = {
   input: object.isRequired,
   error: oneOfType([string, arrayOf(string)]),
-  wrapperClassName: string,
+
+  isEditing: bool,
+  editingValue: string.isRequired,
+  breadcrumbs: breadcrumbsType,
+
+  onChange: func.isRequired,
+  onOpenEdit: func.isRequired,
+  onCloseEdit: func.isRequired,
+  onSetEditValue: func.isRequired,
 };
 
-const isEditingEnhancer = withState( 'isEditing', 'onSetIsEditing', false);
-const editingValueEnhancer = withState('editingValue', 'onSetEditValue',  ({ input }) => input.value)
+const isEditingEnhancer = withState('isEditing', 'onSetIsEditing', false);
+const editingValueEnhancer = withState('editingValue', 'onSetEditValue', ({ input }) => input.value);
 
 const handlersEnhancer = withHandlers({
   onOpenEdit: ({ onSetIsEditing }) => () => onSetIsEditing(true),
   onCloseEdit: ({ onSetIsEditing }) => () => onSetIsEditing(false),
   onChange: ({ input: { onChange }, onSetIsEditing, editingValue }) => () => {
-    onSetIsEditing(false)
+    onSetIsEditing(false);
     onChange(editingValue);
   },
   // have no idea why it needs a delay
-  onSetEditValue: ({ onSetEditValue }) => value => setTimeout(onSetEditValue, 0, value)
+  onSetEditValue: ({ onSetEditValue }) => debounce(value => onSetEditValue(value)),
 });
 
 const propsEnhancer = withPropsOnChange(['parentBreadcrumbs', 'label', 'onCloseEdit'], ({ parentBreadcrumbs, label, onCloseEdit }) => ({
@@ -42,11 +50,11 @@ const propsEnhancer = withPropsOnChange(['parentBreadcrumbs', 'label', 'onCloseE
     ...parentBreadcrumbs.slice(0, parentBreadcrumbs.length - 1),
     {
       ...parentBreadcrumbs[parentBreadcrumbs.length - 1],
-      onClick: onCloseEdit
+      onClick: onCloseEdit,
     },
-    { label }
-  ] : [{ label }]
-}))
+    { label },
+  ] : [{ label }],
+}));
 
 const enhance = compose(
   isEditingEnhancer,
@@ -69,8 +77,10 @@ const ReduxExpandableRichText = ({
   onSetEditValue,
 }) => (
   <div>
-    <SafeHTML html={value} />
-    <Base exists={!value} component="em" className={css.empty}>Empty</Base>
+    <div className={css.content}>
+      <SafeHTML html={value} />
+      <Base exists={!value} component="em" className={css.empty}>Empty</Base>
+    </div>
     <FieldError error={error} />
     <Button block onClick={onOpenEdit}>Edit</Button>
 

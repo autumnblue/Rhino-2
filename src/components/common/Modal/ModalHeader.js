@@ -1,4 +1,12 @@
 import { pure } from 'recompose';
+import { node, string, func } from 'prop-types';
+
+const propTypes = {
+  children: node,
+  title: string,
+
+  onRequestClose: func,
+};
 
 const enhance = pure;
 
@@ -17,7 +25,7 @@ const ModalHeader = ({
       aria-label="Close"
       onClick={onRequestClose}
     >
-        <span aria-hidden="true">×</span>
+      <span aria-hidden="true">×</span>
     </Base>
     <Base
       exists={!!title}
@@ -28,7 +36,8 @@ const ModalHeader = ({
     </Base>
     {children}
   </div>
-)
+);
 
+ModalHeader.propTypes = propTypes;
 
 export default enhance(ModalHeader);

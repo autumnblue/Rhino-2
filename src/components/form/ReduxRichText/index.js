@@ -1,7 +1,5 @@
-import { compose, pure, lifecycle, toClass, withState } from 'recompose';
-import { object, bool, func, string, arrayOf, oneOfType } from 'prop-types';
-import React from 'react';
-import ReactQuill from 'react-quill';
+import { pure } from 'recompose';
+import { object, bool, string, arrayOf, oneOfType } from 'prop-types';
 
 import { FieldError, RichText } from 'src/components';
 
@@ -15,7 +13,6 @@ const enhance = pure;
 
 const ReduxRichText = ({
   input: { value, onChange, onBlur },
-  editorClassName,
   disabled,
   error,
 }) => (

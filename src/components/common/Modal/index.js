@@ -1,56 +1,53 @@
 import ReactModal from 'react-modal';
-import { oneOfType, instanceOf, arrayOf } from 'prop-types';
+import { node, bool, object, func, string, number } from 'prop-types';
 import classNames from 'classnames';
-import { compose, pure, withPropsOnChange } from 'recompose'
+import { compose, pure, withPropsOnChange } from 'recompose';
 
-import ModalHeader from './ModalHeader';
-import ModalBody from './ModalBody'
-import ModalFooter from './ModalFooter';
 import css from './style.css';
 
-const modalContentType = oneOfType([
-  instanceOf(ModalHeader),
-  instanceOf(ModalBody),
-  instanceOf(ModalFooter)
-])
 
 const propTypes = {
-  children: oneOfType([
-    modalContentType,
-    arrayOf(modalContentType),
-  ])
-}
+  isOpen: bool.isRequired,
+  title: string,
+  closeTimeoutMS: number.isRequired,
+  className: object.isRequired,
+  overlayClassName: object.isRequired,
+  children: node,
+
+  onAfterOpen: func,
+  onRequestClose: func.isRequired,
+};
 
 const propsEnhancer = withPropsOnChange(
-  ['color', 'isOpen', 'fillIn', 'autoClose'],
-  ({ color, isOpen, fillIn }) => ({
-    closeTimeoutMS: 200,//autoClose ? 5000 : null,
+  ['color', 'fillIn', 'autoClose'],
+  ({ color, fillIn }) => ({
+    closeTimeoutMS: 200, // autoClose ? 5000 : null,
     overlayClassName: {
       base: classNames({
         modal: true,
         fade: true,
         [`modal-${color}`]: !!color,
-        [`modal-fill-in`]: !!fillIn,
-        [css.overlay]: true
+        'modal-fill-in': !!fillIn,
+        [css.overlay]: true,
       }),
       afterOpen: 'show',
-      beforeClose: css.hide
+      beforeClose: css.hide,
     },
     className: {
-      base: 'modal-dialog'
+      base: 'modal-dialog',
     },
-  })
+  }),
 );
 
 const style = {
   content: {},
-  overlay: {}
-}
+  overlay: {},
+};
 
 const enhance = compose(
   propsEnhancer,
   pure,
-)
+);
 
 const Modal = ({
   isOpen,
@@ -58,11 +55,10 @@ const Modal = ({
   closeTimeoutMS,
   className,
   overlayClassName,
-  backdropClassName,
   children,
 
   onAfterOpen,
-  onRequestClose
+  onRequestClose,
 }) => (
   <ReactModal
     isOpen={isOpen}
@@ -70,7 +66,7 @@ const Modal = ({
     style={style}
     className={className}
     overlayClassName={overlayClassName}
-    contentLabel={title}
+    contentLabel={title || ''}
 
     onAfterOpen={onAfterOpen}
     onRequestClose={onRequestClose}
@@ -79,6 +75,8 @@ const Modal = ({
       {children}
     </div>
   </ReactModal>
-)
+);
+
+Modal.propTypes = propTypes;
 
 export default enhance(Modal);

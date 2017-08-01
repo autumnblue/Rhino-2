@@ -1,18 +1,18 @@
 import { compose, pure, lifecycle, toClass, withState, withPropsOnChange } from 'recompose';
-import { object, bool, func, string, arrayOf, oneOfType } from 'prop-types';
+import { bool, func, string } from 'prop-types';
 import React from 'react';
 import ReactQuill from 'react-quill';
 import classNames from 'classnames';
 
-import { FieldError } from 'src/components';
-
 import css from './style.css';
 
 const propTypes = {
-  input: object.isRequired,
+  value: string,
   disabled: bool,
+  className: string.isRequired,
 
   onSetRef: func.isRequired,
+  onChange: func.isRequired,
 };
 
 const modules = {
@@ -39,9 +39,9 @@ const formats = [
 const propsEnhancer = withPropsOnChange(['className'], ({ className }) => ({
   className: classNames({
     [css.wrapper]: true,
-    [className]: !!className
-  })
-}))
+    [className]: !!className,
+  }),
+}));
 
 const refEnhancer = withState('reference', 'onSetRef', null);
 
@@ -53,7 +53,7 @@ const lifecycleEnhancer = lifecycle({
       const { reference } = this.props;
       reference.editingArea.querySelector('.ql-editor').addEventListener('blur', () => {
         const { onBlur } = this.props;
-        if(typeof onBlur === 'function') {
+        if (typeof onBlur === 'function') {
           onBlur();
         }
       });

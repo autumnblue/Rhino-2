@@ -2,7 +2,7 @@
 
 // common
 export { default as Associations } from './common/Associations';
-export { default as Breadcrumbs } from './common/Breadcrumbs'
+export { default as Breadcrumbs } from './common/Breadcrumbs';
 export { default as Icon } from './common/Icon';
 export { default as EntityLink } from './common/EntityLink';
 export { default as Modal } from './common/Modal';
