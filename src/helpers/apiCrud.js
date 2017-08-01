@@ -1,5 +1,9 @@
 import { omit } from 'lodash';
 import cookie from 'react-cookie';
+import {
+  increment as progressIncrement,
+  decrement as progressDecrement,
+} from './progress';
 
 function stringifyFilterValue(value) {
   if (value === true) {
@@ -63,6 +67,8 @@ async function fetchResource(method, url, options = {}) {
   const { params, data, useToken = true, jsonContentType = true } = options;
   const token = cookie.load('token');
 
+  progressIncrement();
+
   const reqOptions = {
     method,
     ...omit(options, ['params', 'data']),
@@ -83,22 +89,34 @@ async function fetchResource(method, url, options = {}) {
     reqOptions.body = JSON.stringify(data);
   }
 
-
-  const resp = await window.fetch(API_URL + url + serializeParams(params), reqOptions);
-
-  let respData;
-
   try {
-    // DELETE requests don't send response body
-    respData = await resp.json();
-  } catch (e) {
-    respData = null;
-  }
+    const resp = await window.fetch(API_URL + url + serializeParams(params), reqOptions);
 
-  return {
-    data: respData,
-    status: resp.status,
-  };
+    let respData;
+
+    try {
+      // DELETE requests don't send response body
+      respData = await resp.json();
+    } catch (e) {
+      respData = null;
+    }
+
+    progressDecrement();
+
+    return {
+      data: respData,
+      status: resp.status,
+    };
+  } catch (e) {
+    console.error(e); // eslint-disable-line no-console
+
+    progressDecrement();
+
+    return {
+      data: null,
+      status: 0,
+    };
+  }
 }
 
 export default {

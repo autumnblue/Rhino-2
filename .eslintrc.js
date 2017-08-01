@@ -33,7 +33,10 @@ module.exports = {
     "jsx-a11y/no-static-element-interactions": 0,
 
     // we should avoid long JS files
-    "max-lines": ["error", {"max": 150, "skipBlankLines": true}]
+    "max-lines": ["error", {"max": 150, "skipBlankLines": true}],
+
+    // unary operators are useful :)
+    "no-plusplus": 0
   },
   globals: {
     __CLIENT__: true,
