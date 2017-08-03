@@ -3,8 +3,10 @@
 // common
 export { default as Associations } from './common/Associations';
 export { default as Breadcrumbs } from './common/Breadcrumbs';
+export { default as DatePicker } from './common/DatePicker';
 export { default as Icon } from './common/Icon';
 export { default as EntityLink } from './common/EntityLink';
+export { default as ExpandableRichText } from './common/ExpandableRichText';
 export { default as Modal } from './common/Modal';
 export { default as ModalBody } from './common/Modal/ModalBody';
 export { default as ModalFooter } from './common/Modal/ModalFooter';
@@ -25,10 +27,13 @@ export { default as DocumentTemplateForm } from './documentTemplates/DocumentTem
 
 // form
 export { default as Button } from './form/Button';
+export { default as Checkbox } from './form/Checkbox';
+export { default as Input } from './form/Input';
 export { default as FieldError } from './form/FieldError';
 export { default as ReduxAsset } from './form/ReduxAsset';
 export { default as ReduxAssociations } from './form/ReduxAssociations';
 export { default as ReduxCheckbox } from './form/ReduxCheckbox';
+export { default as ReduxDatePicker } from './form/ReduxDatePicker';
 export { default as ReduxExpandableRichText } from './form/ReduxExpandableRichText';
 export { default as ReduxInput } from './form/ReduxInput';
 export { default as ReduxPriorityVote } from './form/ReduxPriorityVote';

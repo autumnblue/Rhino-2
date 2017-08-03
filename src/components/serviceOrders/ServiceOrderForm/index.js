@@ -2,8 +2,21 @@ import { Col, Row, Form, FormGroup } from 'reactstrap';
 import { Field } from 'redux-form';
 import { object, func } from 'prop-types';
 
-import { ReduxExpandableRichText } from 'src/components';
+import {
+  Input,
+  FieldError,
+  Checkbox,
+  ReduxInput,
+  ReduxSelect,
+  ReduxExpandableRichText
+} from 'src/components';
 import { breadcrumbsType } from 'src/prop-types';
+
+import MainInfoFormGroup from './MainInfoFormGroup';
+import TeamFormGroup from './TeamFormGroup';
+import TextSectionsFormGroup from './TextSectionsFormGroup';
+import IndustriesFormGroup from './IndustriesFormGroup';
+import RevisionsFormGroup from './RevisionsFormGroup';
 
 import enhance from './enhance';
 
@@ -15,25 +28,51 @@ const propTypes = {
 };
 
 const ServiceOrderForm = ({
-    validationErrors,
-    breadcrumbs,
+  clientOptions,
+  statusOptions,
+  paymentOptions,
+  usersOptions,
+  industriesOptions,
+  breadcrumbs,
+  validationErrors,
 
-    onFieldChange,
+  onFieldChange,
 }) => (
   <Form>
     <Row>
       <Col md="6">
-        <FormGroup>
-          <label>Strategic Considerations</label>
-          <Field
-            component={ReduxExpandableRichText}
-            name="strategic_considerations"
-            onChange={onFieldChange}
-            parentBreadcrumbs={breadcrumbs}
-            label="Strategic Considerations"
-            error={validationErrors.strategic_considerations}
-          />
-        </FormGroup>
+        <MainInfoFormGroup {...{
+            clientOptions,
+            statusOptions,
+            paymentOptions,
+            breadcrumbs,
+            validationErrors,
+
+            onFieldChange,
+          }}
+        />
+        <TeamFormGroup
+          validationErrors={validationErrors}
+          usersOptions={usersOptions}
+          onFieldChange={onFieldChange}
+        />
+      </Col>
+      <Col md="6">
+        <RevisionsFormGroup
+          validationErrors={validationErrors}
+          usersOptions={usersOptions}
+          onFieldChange={onFieldChange}
+        />
+        <TextSectionsFormGroup
+          breadcrumbs={breadcrumbs}
+          validationErrors={validationErrors}
+          onFieldChange={onFieldChange}
+        />
+        <IndustriesFormGroup
+          industriesOptions={industriesOptions}
+          validationErrors={validationErrors}
+          onFieldChange={onFieldChange}
+        />
       </Col>
     </Row>
   </Form>

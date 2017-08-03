@@ -4,24 +4,67 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 // actions
-import { loadSingleServiceOrder, deleteServiceOrderTrigger, editServiceOrderFormChange } from 'src/redux/serviceOrders/actions';
+import {
+  loadSingleServiceOrder,
+  deleteServiceOrderTrigger,
+  editServiceOrderFormChange,
+  loadServiceOrderChoices
+} from 'src/redux/serviceOrders/actions';
+import { loadClients } from 'src/redux/clients/actions'
+import { loadUsers } from 'src/redux/users/actions';
+import { loadIndustries } from 'src/redux/industries/actions';
+import { loadFocalProfiles } from 'src/redux/focalProfiles/actions';
 
 // selectors
 import { getCurrentServiceOrder } from 'src/redux/serviceOrders/selectors';
+import { getClients } from 'src/redux/clients/selectors';
+import { getUsers } from 'src/redux/users/selectors';
+import { getIndustries } from 'src/redux/industries/selectors';
+import { getFocalProfiles } from 'src/redux/focalProfiles/selectors'
 
 const reduxAsyncConnect = asyncConnect([{
-  promise: ({
+  promise: async ({
     store: { dispatch },
     params: { serviceOrderId },
-  }) => dispatch(loadSingleServiceOrder(serviceOrderId)),
+  }) => {
+    const [ serviceOrderSuccessAction ] = await Promise.all([
+      dispatch(loadSingleServiceOrder(serviceOrderId)),
+      dispatch(loadServiceOrderChoices()),
+      dispatch(loadClients({
+        filter: {
+          'service_orders.id': { eq: serviceOrderId }
+        }
+      })),
+      dispatch(loadUsers()),
+      dispatch(loadIndustries()),
+    ]);
+
+    const { client } = serviceOrderSuccessAction.response.data.service_order;
+
+    if(client) {
+      return dispatch(loadFocalProfiles({
+        filter: {
+          'client.id': { eq: client.id }
+        }
+      }))
+    }
+
+    return undefined;
+  }
 }]);
 
 const reduxConnect = connect(state => ({
   validationErrors: state.serviceOrders.validationErrors,
+  choices: state.serviceOrders.choices,
+  clients: getClients(state),
+  users: getUsers(state),
+  industries: getIndustries(state),
   serviceOrder: getCurrentServiceOrder(state),
+  focalProfiles: getFocalProfiles(state)
 }), {
   onDelete: deleteServiceOrderTrigger,
   onFieldChange: editServiceOrderFormChange,
+  onLoadFocals: loadFocalProfiles
 });
 
 const propsEnhancer = withPropsOnChange(['serviceOrder'], ({ serviceOrder }) => ({
@@ -44,6 +87,11 @@ const reduxFormEnhancer = reduxForm({
 const handlersEnhancer = withHandlers({
   onDelete: ({ onDelete, serviceOrder }) => () => onDelete(serviceOrder.id),
   onFieldChange: ({ onFieldChange, serviceOrder }) => () => onFieldChange(serviceOrder.id),
+  onClientChange: ({ onLoadFocals }) => client => onLoadFocals({
+    filter: {
+      'client.id': { eq: client }
+    }
+  })
 });
 
 export default compose(

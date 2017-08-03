@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
+import { node } from 'prop-types';
 
-const MainLayout = ({ children }) =>
- (<div>
-   {children}
- </div>);
+const MainLayout = ({ children }) => (
+  <div>
+    {children}
+  </div>
+);
 
 MainLayout.propTypes = {
-  children: PropTypes.node.isRequired,
-  // children: PropTypes.object,
+  children: node.isRequired,
 };
 
 export default MainLayout;

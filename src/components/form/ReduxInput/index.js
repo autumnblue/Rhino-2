@@ -1,9 +1,9 @@
-import { Input } from 'reactstrap';
 import { omit } from 'lodash';
 import { pure } from 'recompose';
 import { string, object, oneOfType, arrayOf } from 'prop-types';
 
 import { FieldError } from 'src/components';
+import { Input } from 'src/components';
 
 const propTypes = {
   input: object.isRequired,

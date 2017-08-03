@@ -55,6 +55,8 @@ export default function apiMiddleware() {
         text: error.message,
       }));
 
+      console.error(error); // eslint-disable-line no-console
+
       return next({ ...rest, response: {}, error, type: FAILURE });
     }
   };

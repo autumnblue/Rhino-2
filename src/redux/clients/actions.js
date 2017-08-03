@@ -29,9 +29,10 @@ export const pageChange = page => ({
 // API actions
 export const loadClients = ({
   filter = {},
-  per_page = 10,
+  per_page = 1000,
   sort = ['id'],
   page = 1,
+  include = ['departments', 'umbrella'],
 } = {}) => ({
   types: [c.LOAD_CLIENTS, c.LOAD_CLIENTS_SUCCESS, c.LOAD_CLIENTS_FAIL],
   api: ({ get }) => get(endpoint, {
@@ -40,7 +41,7 @@ export const loadClients = ({
       sort,
       per_page,
       page,
-      include: ['departments', 'umbrella'],
+      include,
     },
   }),
 });

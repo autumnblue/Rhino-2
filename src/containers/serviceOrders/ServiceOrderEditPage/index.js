@@ -12,7 +12,6 @@ import { breadcrumbsType } from 'src/prop-types';
 
 import enhance from './enhance';
 
-
 const propTypes = {
   validationErrors: object,
   breadcrumbs: breadcrumbsType.isRequired,
@@ -23,6 +22,11 @@ const propTypes = {
 
 const ServiceOrderEditPage = ({
   breadcrumbs,
+  choices,
+  clients,
+  users,
+  industries,
+  focalProfiles,
   validationErrors,
 
   onDelete,
@@ -33,10 +37,17 @@ const ServiceOrderEditPage = ({
       <Button tag={Link} to="/service-orders" color="success">Done</Button>
     </PageHeader>
     <PageContent>
-      <ServiceOrderForm
-        onFieldChange={onFieldChange}
-        validationErrors={validationErrors}
-        breadcrumbs={breadcrumbs}
+      <ServiceOrderForm {...{
+          validationErrors,
+          breadcrumbs,
+          clients,
+          users,
+          industries,
+          focalProfiles,
+          choices,
+
+          onFieldChange
+        }}
       />
       <Button color="danger" onClick={onDelete}>Delete</Button>
     </PageContent>

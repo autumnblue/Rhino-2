@@ -74,7 +74,11 @@ export const loadSingleServiceOrder = id => ({
     c.LOAD_SINGLE_SERVICE_ORDER_SUCCESS,
     c.LOAD_SINGLE_SERVICE_ORDER_FAIL,
   ],
-  api: ({ get }) => get(endpoint + id),
+  api: ({ get }) => get(endpoint + id, {
+    params: {
+      include: ['client']
+    }
+  }),
 });
 
 export const createServiceOrder = data => ({
