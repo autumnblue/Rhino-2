@@ -1,6 +1,7 @@
 // we will need to add some features to button later
 import { Input } from 'reactstrap';
-import { compose, pure, withHandlers } from 'recompose';
+import { compose, pure, withHandlers, mapProps } from 'recompose';
+import { omit } from 'lodash'
 
 const handlersEnhancer = withHandlers({
   onChange: ({ passValue, type, onChange }) => (evt) => {
@@ -12,10 +13,13 @@ const handlersEnhancer = withHandlers({
       onChange(evt);
     }
   }
-})
+});
+
+const omitPropsEnhancer = mapProps(props => omit(props, ['passValue']))
 
 const enhance = compose(
   handlersEnhancer,
+  omitPropsEnhancer,
   pure,
 );
 

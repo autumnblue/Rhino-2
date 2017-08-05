@@ -1,8 +1,7 @@
-import Select from 'react-select';
 import { compose, pure, withHandlers } from 'recompose';
 import { string, object, oneOfType, arrayOf } from 'prop-types';
 
-import { FieldError } from 'src/components';
+import { FieldError, Select } from 'src/components';
 
 const propTypes = {
   input: object.isRequired,
@@ -10,7 +9,7 @@ const propTypes = {
 };
 
 const handlersEnhancer = withHandlers({
-  onChange: ({ input: { onChange } }) => v => onChange(v ? v.value : null),
+  onChange: ({ input: { onChange } }) => onChange,
 });
 
 const enhance = compose(

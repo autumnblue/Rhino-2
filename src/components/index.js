@@ -39,6 +39,7 @@ export { default as ReduxInput } from './form/ReduxInput';
 export { default as ReduxPriorityVote } from './form/ReduxPriorityVote';
 export { default as ReduxSelect } from './form/ReduxSelect';
 export { default as ReduxRichText } from './form/ReduxRichText';
+export { default as Select } from './form/Select';
 
 // industries
 export { default as IndustryForm } from './industries/IndustryForm';

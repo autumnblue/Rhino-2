@@ -1,0 +1,22 @@
+.datePicker {
+  width: 100%;
+  & :global(.SingleDatePicker) {
+    width: 100%;
+    display: block;
+  }
+
+  & :global(.DateInput) {
+    font-size: 1rem;
+    padding: 0;
+    padding: 0;
+    width: calc(100% - 34px);
+  }
+
+  & :global(.SingleDatePickerInput__calendar-icon) {
+    margin: 0;
+    width: 34px;
+  }
+
+  & :global(.DateInput__display-text) {
+  }
+}
