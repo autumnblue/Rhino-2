@@ -1,11 +1,11 @@
 import { compose, pure, withPropsOnChange, withHandlers } from 'recompose';
-import { string, object, func, oneOfType, arrayOf } from 'prop-types';
-import classNames from 'classnames';
+import { string, func, oneOfType, arrayOf } from 'prop-types';
 
 import { Checkbox } from 'src/components';
+import { reduxFormInputType } from 'src/prop-types';
 
 const propTypes = {
-  input: object.isRequired,
+  input: reduxFormInputType.isRequired,
   id: string.isRequired,
   label: string.isRequired,
   error: oneOfType([string, arrayOf(string)]),
@@ -19,7 +19,7 @@ const propsEnhancer = withPropsOnChange(['id'], ({ id, input }) => ({
 }));
 
 const handlersEnhancer = withHandlers({
-  onChange: ({ input: { onChange } }) => (checked) => onChange(checked),
+  onChange: ({ input: { onChange } }) => checked => onChange(checked),
 });
 
 const enhance = compose(
@@ -30,7 +30,7 @@ const enhance = compose(
 
 const ReduxCheckbox = ({
   input: { value },
-  ...props,
+  ...props
 }) => (
   <Checkbox checked={value} {...props} />
 );

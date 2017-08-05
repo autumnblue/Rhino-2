@@ -1,26 +1,37 @@
 import { compose, pure, withHandlers, withPropsOnChange } from 'recompose';
-import classNames from 'classnames'
+import classNames from 'classnames';
+import { string, func } from 'prop-types';
 
-import formatTime from 'src/helpers/formatTime'
+import formatTime from 'src/helpers/formatTime';
 
-import css from './style.css'
+import css from './style.css';
+
+const propTypes = {
+  time: string.isRequired,
+  user_username: string.isRequired,
+  description: string.isRequired,
+  className: string.isRequired,
+
+  onSetEditingRevisionIndex: func.isRequired,
+};
 
 const handlersEnhancer = withHandlers({
-  onSetEditingRevisionIndex: ({ onSetEditingRevisionIndex, index }) => () => onSetEditingRevisionIndex(index)
+  onSetEditingRevisionIndex: ({ onSetEditingRevisionIndex, index }) =>
+    () => onSetEditingRevisionIndex(index),
 });
 
 const propsEnhancer = withPropsOnChange(['index', 'editingRevisionIndex'], ({ index, editingRevisionIndex }) => ({
   className: classNames({
     [css.row]: true,
-    [css.active]: index === editingRevisionIndex
-  })
-}))
+    [css.active]: index === editingRevisionIndex,
+  }),
+}));
 
 const enhance = compose(
   handlersEnhancer,
   propsEnhancer,
-  pure
-)
+  pure,
+);
 
 const RevisionRow = ({
   time,
@@ -38,6 +49,8 @@ const RevisionRow = ({
       <a className={css.editLink} onClick={onSetEditingRevisionIndex}>Edit</a>
     </td>
   </tr>
-)
+);
+
+RevisionRow.propTypes = propTypes;
 
 export default enhance(RevisionRow);

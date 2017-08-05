@@ -1,9 +1,11 @@
 import { DatePicker } from 'src/components';
-import {  omit } from 'lodash'
+import { omit } from 'lodash';
+
+import { reduxFormInputType } from 'src/prop-types';
 
 const propTypes = {
-
-}
+  input: reduxFormInputType.isRequired,
+};
 
 const ReduxDatePicker = ({
   input: { value, onChange },
@@ -14,8 +16,8 @@ const ReduxDatePicker = ({
     onChange={onChange}
     {...omit(props, ['meta', 'error'])}
   />
-)
+);
 
-ReduxDatePicker.propTypes = propTypes
+ReduxDatePicker.propTypes = propTypes;
 
-export default ReduxDatePicker
+export default ReduxDatePicker;

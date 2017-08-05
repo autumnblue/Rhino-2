@@ -1,4 +1,4 @@
-import { number, string, shape, arrayOf, any, node, bool } from 'prop-types';
+import { number, string, shape, arrayOf, any, node, bool, func } from 'prop-types';
 
 // this module exports the most widely used custom prop types
 
@@ -14,6 +14,34 @@ export const selectOptionsType = arrayOf(shape({
   value: any.isRequired,
 }));
 
+export const reduxFormInputType = shape({
+  checked: bool,
+  name: string.isRequired,
+  onBlur: func.isRequired,
+  onChange: func.isRequired,
+  onDragStart: func.isRequired,
+  onDrop: func.isRequired,
+  onFocus: func.isRequired,
+  value: any,
+});
+
+export const reduxFormMetaType = shape({
+  active: bool.isRequired,
+  asyncValidating: bool.isRequired,
+  autofilled: bool.isRequired,
+  dirty: bool.isRequired,
+  dispatch: func.isRequired,
+  error: string,
+  form: string.isRequired,
+  invalid: bool.isRequired,
+  pristine: bool.isRequired,
+  submitting: bool.isRequired,
+  submitFailed: bool.isRequired,
+  touched: bool.isRequired,
+  valid: bool.isRequired,
+  visited: bool.isRequired,
+  warning: string,
+});
 
 // entity types
 
@@ -57,6 +85,15 @@ export const industryType = shape({
   html_body: string.isRequired,
 });
 
+export const focalProfileType = shape({
+  id: number.isRequired,
+  title: string.isRequired,
+  created: string.isRequired,
+  is_default: bool.isRequired,
+  phone: string,
+  last_modified: string.isRequired,
+});
+
 export const serviceOrderType = shape({
   status: string.isRequired,
   csv_enabled: bool.isRequired,
@@ -80,6 +117,6 @@ export const serviceOrderType = shape({
   notes: string.isRequired,
   sign_by_date: string.isRequired,
   total_due: number.isRequired,
-  remediation_text: string.isRequired,
+  remediation_text: string,
   rules_of_engagement: string.isRequired,
 });

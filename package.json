@@ -129,7 +129,8 @@
     "sshpk": "^1.8.3",
     "stacktrace-js": "^1.3.1",
     "validator": "^5.5.0",
-    "with": "^5.1.1"
+    "with": "^5.1.1",
+    "react-dom": "^15.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -173,7 +174,6 @@
     "postcss-loader": "^2.0.6",
     "pre-commit": "^1.1.3",
     "react-addons-test-utils": "^15.4.0",
-    "react-dom": "^15.6.1",
     "react-transform-hmr": "^1.0.1",
     "redux-devtools": "^3.3.1",
     "redux-devtools-dock-monitor": "^1.1.1",

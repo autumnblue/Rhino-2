@@ -1,19 +1,20 @@
-import { compose, pure, withPropsOnChange } from 'recompose';
-import { FormGroup, Label } from 'reactstrap';
+import { pure } from 'recompose';
+import { FormGroup } from 'reactstrap';
 import { Field } from 'redux-form';
 import { object, func } from 'prop-types';
 
-import { ReduxSelect, ReduxAssociations } from 'src/components';
+import { breadcrumbsType } from 'src/prop-types';
 
-import ReduxResetableRichText from './ReduxResetableRichText'
+import ReduxResetableRichText from './ReduxResetableRichText';
 
 const propTypes = {
-  validationErrors: object,
+  breadcrumbs: breadcrumbsType.isRequired,
+  validationErrors: object.isRequired,
 
   onFieldChange: func.isRequired,
 };
 
-const enhance =  pure
+const enhance = pure;
 
 const TextSectionsFormGroup = ({
   breadcrumbs,
@@ -36,52 +37,52 @@ const TextSectionsFormGroup = ({
       />
     </FormGroup>
     <FormGroup>
-    <Field
-      component={ReduxResetableRichText}
-      name="scope_intro"
-      onChange={onFieldChange}
-      parentBreadcrumbs={breadcrumbs}
-      breadcrumbLabel="Scope Intro"
-      error={validationErrors.scope_intro}
-      editButtonLabel="Edit Scope Intro"
-      format={null}
-    />
+      <Field
+        component={ReduxResetableRichText}
+        name="scope_intro"
+        onChange={onFieldChange}
+        parentBreadcrumbs={breadcrumbs}
+        breadcrumbLabel="Scope Intro"
+        error={validationErrors.scope_intro}
+        editButtonLabel="Edit Scope Intro"
+        format={null}
+      />
     </FormGroup>
     <FormGroup>
-    <Field
-      component={ReduxResetableRichText}
-      name="remediation_text"
-      onChange={onFieldChange}
-      parentBreadcrumbs={breadcrumbs}
-      breadcrumbLabel="Remediation Text"
-      error={validationErrors.remediation_text}
-      editButtonLabel="Edit Remediation Text"
-      format={null}
-    />
+      <Field
+        component={ReduxResetableRichText}
+        name="remediation_text"
+        onChange={onFieldChange}
+        parentBreadcrumbs={breadcrumbs}
+        breadcrumbLabel="Remediation Text"
+        error={validationErrors.remediation_text}
+        editButtonLabel="Edit Remediation Text"
+        format={null}
+      />
     </FormGroup>
     <FormGroup>
-    <Field
-      component={ReduxResetableRichText}
-      name="scope_exclusion"
-      onChange={onFieldChange}
-      parentBreadcrumbs={breadcrumbs}
-      breadcrumbLabel="Scope Exclusion"
-      error={validationErrors.scope_exclusion}
-      editButtonLabel="Edit Scope Exclusion"
-      format={null}
-    />
+      <Field
+        component={ReduxResetableRichText}
+        name="scope_exclusion"
+        onChange={onFieldChange}
+        parentBreadcrumbs={breadcrumbs}
+        breadcrumbLabel="Scope Exclusion"
+        error={validationErrors.scope_exclusion}
+        editButtonLabel="Edit Scope Exclusion"
+        format={null}
+      />
     </FormGroup>
     <FormGroup>
-    <Field
-      component={ReduxResetableRichText}
-      name="rules_of_engagement"
-      onChange={onFieldChange}
-      parentBreadcrumbs={breadcrumbs}
-      breadcrumbLabel="Rules of Engagement"
-      error={validationErrors.rules_of_engagement}
-      editButtonLabel="Rules of Engagement"
-      format={null}
-    />
+      <Field
+        component={ReduxResetableRichText}
+        name="rules_of_engagement"
+        onChange={onFieldChange}
+        parentBreadcrumbs={breadcrumbs}
+        breadcrumbLabel="Rules of Engagement"
+        error={validationErrors.rules_of_engagement}
+        editButtonLabel="Rules of Engagement"
+        format={null}
+      />
     </FormGroup>
   </FormGroup>
 );

@@ -1,28 +1,37 @@
-import { SingleDatePicker } from 'react-dates'
-import { compose, pure, withPropsOnChange, withHandlers, withState } from 'recompose'
+import { SingleDatePicker } from 'react-dates';
+import { bool, object, func } from 'prop-types';
+import { compose, pure, withPropsOnChange, withHandlers, withState } from 'recompose';
+import moment from 'moment';
 import { omit } from 'lodash'
-import moment from 'moment'
 
-import css from './style.css'
+import css from './style.css';
+
+const propTypes = {
+  focused: bool.isRequired,
+  date: object.isRequired,
+
+  onFocusChange: func.isRequired,
+  onChange: func.isRequired,
+};
 
 const returnFalse = () => false;
 
 const focusedEnhancer = withState('focused', 'onFocusChange', false);
 
 const handlersEnhancer = withHandlers({
-  onFocusChange: ({ onFocusChange }) => ({ focused }) => onFocusChange(focused)
-})
+  onFocusChange: ({ onFocusChange }) => ({ focused }) => onFocusChange(focused),
+});
 
 const propsEnhancer = withPropsOnChange(['value'], ({ value }) => ({
-  date: moment(value)
+  date: moment(value),
 }));
 
 const enhance = compose(
   focusedEnhancer,
   handlersEnhancer,
   propsEnhancer,
-  pure
-)
+  pure,
+);
 
 const DatePicker = ({
   focused,
@@ -30,19 +39,21 @@ const DatePicker = ({
 
   onFocusChange,
   onChange,
-  ...props,
+  ...props
 }) => (
   <div className={css.datePicker}>
-  <SingleDatePicker
-    showDefaultInputIcon
-    focused={focused}
-    date={date}
-    onDateChange={onChange}
-    onFocusChange={onFocusChange}
-    isOutsideRange={returnFalse}
-    {...props}
-  />
+    <SingleDatePicker
+      showDefaultInputIcon
+      focused={focused}
+      date={date}
+      onDateChange={onChange}
+      onFocusChange={onFocusChange}
+      isOutsideRange={returnFalse}
+      {...omit(props, ['value'])}
+    />
   </div>
-)
+);
 
-export default enhance(DatePicker)
+DatePicker.propTypes = propTypes;
+
+export default enhance(DatePicker);

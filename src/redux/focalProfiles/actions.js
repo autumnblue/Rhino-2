@@ -1,6 +1,6 @@
 import * as c from './constants';
 
-const endpoint = 'focal-profiles/'
+const endpoint = 'focal-profiles/';
 
 // API actions
 export const loadFocalProfiles = ({

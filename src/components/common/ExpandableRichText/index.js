@@ -5,9 +5,9 @@ import {
   withState,
   withHandlers,
   withPropsOnChange,
-  defaultProps
+  defaultProps,
 } from 'recompose';
-import { string, object, oneOfType, arrayOf, func, bool } from 'prop-types';
+import { string, oneOfType, arrayOf, func, bool } from 'prop-types';
 
 import { breadcrumbsType } from 'src/prop-types';
 import {
@@ -26,8 +26,11 @@ import css from './style.css';
 
 const propTypes = {
   error: oneOfType([string, arrayOf(string)]),
-
+  value: string,
+  editButtonLabel: string.isRequired,
+  disabled: bool,
   isEditing: bool,
+  showContent: bool.isRequired,
   editingValue: string.isRequired,
   breadcrumbs: breadcrumbsType,
 
@@ -59,7 +62,7 @@ const handlersEnhancer = withHandlers({
 const valueChangeEnhancer = withPropsOnChange(['value'], ({ value, onSetEditValue }) => {
   onSetEditValue(value);
   return {};
-})
+});
 
 const propsEnhancer = withPropsOnChange(['parentBreadcrumbs', 'breadcrumbLabel', 'onCloseEdit'], ({ parentBreadcrumbs, breadcrumbLabel, onCloseEdit }) => ({
   breadcrumbs: parentBreadcrumbs ? [

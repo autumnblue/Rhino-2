@@ -1,5 +1,5 @@
 import { Button } from 'reactstrap';
-import { object, func } from 'prop-types';
+import { object, func, arrayOf, objectOf } from 'prop-types';
 import { Link } from 'react-router';
 
 import {
@@ -8,13 +8,20 @@ import {
   PageContent,
   PageHeader,
 } from 'src/components';
-import { breadcrumbsType } from 'src/prop-types';
+import { breadcrumbsType, clientType, userType, industryType, focalProfileType, serviceOrderType } from 'src/prop-types';
 
 import enhance from './enhance';
 
 const propTypes = {
-  validationErrors: object,
   breadcrumbs: breadcrumbsType.isRequired,
+  choices: object.isRequired,
+  clients: arrayOf(clientType).isRequired,
+  users: arrayOf(userType).isRequired,
+  industries: arrayOf(industryType).isRequired,
+  focalProfiles: arrayOf(focalProfileType).isRequired,
+  usersData: objectOf(userType).isRequired,
+  serviceOrder: serviceOrderType.isRequired,
+  validationErrors: object.isRequired,
 
   onDelete: func.isRequired,
   onFieldChange: func.isRequired,
@@ -28,6 +35,7 @@ const ServiceOrderEditPage = ({
   industries,
   focalProfiles,
   usersData,
+  serviceOrder,
   validationErrors,
 
   onDelete,
@@ -39,17 +47,18 @@ const ServiceOrderEditPage = ({
     </PageHeader>
     <PageContent>
       <ServiceOrderForm {...{
-          validationErrors,
-          breadcrumbs,
-          clients,
-          users,
-          industries,
-          focalProfiles,
-          usersData,
-          choices,
+        created: serviceOrder.created,
+        validationErrors,
+        breadcrumbs,
+        clients,
+        users,
+        industries,
+        focalProfiles,
+        usersData,
+        choices,
 
-          onFieldChange
-        }}
+        onFieldChange,
+      }}
       />
       <Button color="danger" onClick={onDelete}>Delete</Button>
     </PageContent>

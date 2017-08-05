@@ -1,10 +1,11 @@
 import { pure } from 'recompose';
-import { object, bool, string, arrayOf, oneOfType } from 'prop-types';
+import { bool, string, arrayOf, oneOfType } from 'prop-types';
 
 import { FieldError, RichText } from 'src/components';
+import { reduxFormInputType } from 'src/prop-types';
 
 const propTypes = {
-  input: object.isRequired,
+  input: reduxFormInputType.isRequired,
   disabled: bool,
   error: oneOfType([string, arrayOf(string)]),
 };

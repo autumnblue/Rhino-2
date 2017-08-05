@@ -1,34 +1,36 @@
-import { compose, pure, withPropsOnChange } from 'recompose';
-import { FormGroup, Label } from 'reactstrap';
+import { pure } from 'recompose';
+import { FormGroup } from 'reactstrap';
 import { Field } from 'redux-form';
 import { object, func } from 'prop-types';
 
-import { ReduxSelect, ReduxAssociations } from 'src/components';
+import { ReduxAssociations } from 'src/components';
+import { selectOptionsType } from 'src/prop-types';
 
 const propTypes = {
-  validationErrors: object,
+  industryOptions: selectOptionsType.isRequired,
+  validationErrors: object.isRequired,
 
   onFieldChange: func.isRequired,
 };
 
-const enhance =  pure
+const enhance = pure;
 
 const IndustriesFormGroup = ({
-  industriesOptions,
+  industryOptions,
   validationErrors,
 
   onFieldChange,
 }) => (
   <FormGroup tag="fieldset">
     <legend>Associated Industries</legend>
-      <Field
-        component={ReduxAssociations}
-        name="industries"
-        options={industriesOptions}
-        onChange={onFieldChange}
-        error={validationErrors.industries}
-        disabled
-      />
+    <Field
+      component={ReduxAssociations}
+      name="industries"
+      options={industryOptions}
+      onChange={onFieldChange}
+      error={validationErrors.industries}
+      disabled
+    />
   </FormGroup>
 );
 

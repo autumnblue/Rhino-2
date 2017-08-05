@@ -1,4 +1,4 @@
-import { compose, pure, withHandlers, withPropsOnChange, withState } from 'recompose';
+import { compose, pure, withHandlers, withPropsOnChange } from 'recompose';
 
 import objectToOptions from 'src/helpers/objectToOptions';
 
@@ -16,19 +16,19 @@ const propsEnhancer = withPropsOnChange(
       label: name,
       value: id,
     })),
-    usersOptions: users.map(({ first_name, last_name, username, id }) => ({
+    userOptions: users.map(({ first_name, last_name, username, id }) => ({
       label: first_name && last_name ? `${first_name} ${last_name}` : username,
       value: id,
     })),
-    industriesOptions: industries.map(({ name, id }) => ({
+    industryOptions: industries.map(({ name, id }) => ({
       label: name,
       value: id,
     })),
-    focalProfileOptions: focalProfiles.map(({ name, id }) => ({
-      label: name,
+    focalProfileOptions: focalProfiles.map(({ title, id }) => ({
+      label: title || 'No title',
       value: id,
     })),
-  })
+  }),
 );
 
 

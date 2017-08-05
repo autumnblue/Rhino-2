@@ -1,16 +1,8 @@
-import { Col, Row, Form, FormGroup } from 'reactstrap';
-import { Field } from 'redux-form';
-import { object, func } from 'prop-types';
+import { Col, Row, Form } from 'reactstrap';
+import { object, func, objectOf, string } from 'prop-types';
 
-import {
-  Input,
-  FieldError,
-  Checkbox,
-  ReduxInput,
-  ReduxSelect,
-  ReduxExpandableRichText
-} from 'src/components';
-import { breadcrumbsType } from 'src/prop-types';
+import { breadcrumbsType, selectOptionsType, userType } from 'src/prop-types';
+import formatTime from 'src/helpers/formatTime';
 
 import MainInfoFormGroup from './MainInfoFormGroup';
 import TeamFormGroup from './TeamFormGroup';
@@ -21,6 +13,14 @@ import RevisionsFormGroup from './RevisionsFormGroup';
 import enhance from './enhance';
 
 const propTypes = {
+  clientOptions: selectOptionsType.isRequired,
+  statusOptions: selectOptionsType.isRequired,
+  paymentOptions: selectOptionsType.isRequired,
+  userOptions: selectOptionsType.isRequired,
+  industryOptions: selectOptionsType.isRequired,
+  focalProfileOptions: selectOptionsType.isRequired,
+  usersData: objectOf(userType).isRequired,
+  created: string,
   validationErrors: object.isRequired,
   breadcrumbs: breadcrumbsType.isRequired,
 
@@ -31,9 +31,11 @@ const ServiceOrderForm = ({
   clientOptions,
   statusOptions,
   paymentOptions,
-  usersOptions,
-  industriesOptions,
+  userOptions,
+  industryOptions,
+  focalProfileOptions,
   usersData,
+  created,
   breadcrumbs,
   validationErrors,
 
@@ -42,26 +44,29 @@ const ServiceOrderForm = ({
   <Form>
     <Row>
       <Col md="6">
+        <em>Created: {formatTime(created).date()}</em>
+        <br /><br />
         <MainInfoFormGroup {...{
-            clientOptions,
-            statusOptions,
-            paymentOptions,
-            breadcrumbs,
-            validationErrors,
+          clientOptions,
+          statusOptions,
+          paymentOptions,
+          focalProfileOptions,
+          breadcrumbs,
+          validationErrors,
 
-            onFieldChange,
-          }}
+          onFieldChange,
+        }}
         />
         <TeamFormGroup
           validationErrors={validationErrors}
-          usersOptions={usersOptions}
+          userOptions={userOptions}
           onFieldChange={onFieldChange}
         />
       </Col>
       <Col md="6">
         <RevisionsFormGroup
           validationErrors={validationErrors}
-          usersOptions={usersOptions}
+          userOptions={userOptions}
           usersData={usersData}
           onFieldChange={onFieldChange}
         />
@@ -71,7 +76,7 @@ const ServiceOrderForm = ({
           onFieldChange={onFieldChange}
         />
         <IndustriesFormGroup
-          industriesOptions={industriesOptions}
+          industryOptions={industryOptions}
           validationErrors={validationErrors}
           onFieldChange={onFieldChange}
         />

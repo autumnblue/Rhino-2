@@ -76,8 +76,8 @@ export const loadSingleServiceOrder = id => ({
   ],
   api: ({ get }) => get(endpoint + id, {
     params: {
-      include: ['client']
-    }
+      include: ['client'],
+    },
   }),
 });
 

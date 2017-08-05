@@ -1,20 +1,22 @@
-import { compose, pure, withPropsOnChange } from 'recompose';
-import { FormGroup, Label } from 'reactstrap';
+import { pure } from 'recompose';
+import { FormGroup } from 'reactstrap';
 import { Field } from 'redux-form';
 import { object, func } from 'prop-types';
 
 import { ReduxSelect, ReduxAssociations } from 'src/components';
+import { selectOptionsType } from 'src/prop-types';
 
 const propTypes = {
-  validationErrors: object,
+  userOptions: selectOptionsType.isRequired,
+  validationErrors: object.isRequired,
 
   onFieldChange: func.isRequired,
 };
 
-const enhance =  pure
+const enhance = pure;
 
 const TeamFormGroup = ({
-  usersOptions,
+  userOptions,
   validationErrors,
 
   onFieldChange,
@@ -26,7 +28,7 @@ const TeamFormGroup = ({
       <Field
         component={ReduxSelect}
         name="author"
-        options={usersOptions}
+        options={userOptions}
         onChange={onFieldChange}
         error={validationErrors.author}
       />
@@ -36,7 +38,7 @@ const TeamFormGroup = ({
       <Field
         component={ReduxSelect}
         name="project_manager"
-        options={usersOptions}
+        options={userOptions}
         onChange={onFieldChange}
         error={validationErrors.project_manager}
       />
@@ -46,7 +48,7 @@ const TeamFormGroup = ({
       <Field
         component={ReduxAssociations}
         name="team"
-        options={usersOptions}
+        options={userOptions}
         onChange={onFieldChange}
         error={validationErrors.team}
       />

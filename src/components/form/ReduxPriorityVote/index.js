@@ -1,11 +1,12 @@
 import { omit } from 'lodash';
 import { pure } from 'recompose';
-import { string, object } from 'prop-types';
+import { string } from 'prop-types';
 
 import { PriorityVote } from 'src/components';
+import { reduxFormInputType } from 'src/prop-types';
 
 const propTypes = {
-  input: object.isRequired,
+  input: reduxFormInputType.isRequired,
   error: string,
 };
 

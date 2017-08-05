@@ -1,12 +1,12 @@
 import { omit } from 'lodash';
 import { pure } from 'recompose';
-import { string, object, oneOfType, arrayOf } from 'prop-types';
+import { string, oneOfType, arrayOf } from 'prop-types';
 
-import { FieldError } from 'src/components';
-import { Input } from 'src/components';
+import { Input, FieldError } from 'src/components';
+import { reduxFormInputType } from 'src/prop-types';
 
 const propTypes = {
-  input: object.isRequired,
+  input: reduxFormInputType.isRequired,
   error: oneOfType([string, arrayOf(string)]),
   wrapperClassName: string,
 };

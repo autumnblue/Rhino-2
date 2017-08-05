@@ -1,14 +1,29 @@
-import { Table, Row, Col } from 'reactstrap';
-import { compose, pure, withState, withHandlers } from 'recompose'
+import { Table } from 'reactstrap';
+import { compose, pure, withState, withHandlers } from 'recompose';
+import { string, number, func } from 'prop-types';
 
-import { FieldError } from 'src/components'
+import { FieldError } from 'src/components';
+import { selectOptionsType, reduxFormInputType } from 'src/prop-types';
 
 import RevisionRow from './RevisionRow';
 import RevisionForm from './RevisionForm';
 
-import css from './style.css'
+import css from './style.css';
 
-const editingRevisionIndexEnhancer = withState('editingRevisionIndex', 'onSetEditingRevisionIndex', null)
+const propTypes = {
+  input: reduxFormInputType.isRequired,
+  error: string,
+  editingRevisionIndex: number,
+  userOptions: selectOptionsType.isRequired,
+
+  onSetEditingRevisionIndex: func.isRequired,
+  onCancel: func.isRequired,
+  onEdit: func.isRequired,
+  onAdd: func.isRequired,
+  onDelete: func.isRequired,
+};
+
+const editingRevisionIndexEnhancer = withState('editingRevisionIndex', 'onSetEditingRevisionIndex', null);
 
 const handlersEnhancer = withHandlers({
   onCancel: ({ onSetEditingRevisionIndex }) => () => onSetEditingRevisionIndex(null),
@@ -28,12 +43,12 @@ const handlersEnhancer = withHandlers({
         time,
         user_email: user.email,
         user_username: user.username,
-        user_full_name: `${user.first_name} ${user.last_name}`
+        user_full_name: `${user.first_name} ${user.last_name}`,
       },
-      ...value.slice(index + 1)
+      ...value.slice(index + 1),
     ]);
 
-    onSetEditingRevisionIndex(null)
+    onSetEditingRevisionIndex(null);
   },
   onAdd: ({ input: { value, onChange }, usersData, onSetEditingRevisionIndex }) => ({
     user_id,
@@ -50,37 +65,36 @@ const handlersEnhancer = withHandlers({
         time,
         user_email: user.email,
         user_username: user.username,
-        user_full_name: `${user.first_name} ${user.last_name}`
+        user_full_name: `${user.first_name} ${user.last_name}`,
       },
     ]);
 
-    onSetEditingRevisionIndex(null)
+    onSetEditingRevisionIndex(null);
   },
   onDelete: ({ input: { value, onChange }, onSetEditingRevisionIndex }) => ({
     index,
   }) => {
     onChange([
       ...value.slice(0, index),
-      ...value.slice(index + 1)
+      ...value.slice(index + 1),
     ]);
 
-    onSetEditingRevisionIndex(null)
+    onSetEditingRevisionIndex(null);
   },
 });
-
 
 
 const enhance = compose(
   editingRevisionIndexEnhancer,
   handlersEnhancer,
   pure,
-)
+);
 
 const ReduxRevisions = ({
   input: { value },
   error,
   editingRevisionIndex,
-  usersOptions,
+  userOptions,
 
   onSetEditingRevisionIndex,
   onCancel,
@@ -95,28 +109,29 @@ const ReduxRevisions = ({
           <th>Date</th>
           <th>Username</th>
           <th>Note</th>
-          <th></th>
+          <th />
         </tr>
       </thead>
       <tbody>
-      {value.map(({ time, user_username, description }, index) => (
-        <RevisionRow {...{
-          key: index,
-          editingRevisionIndex,
-          index,
-          time,
-          user_username,
-          description,
+        {value.map(({ time, user_username, description }, index) => (
+          <RevisionRow {...{
+            key: index,
+            editingRevisionIndex,
+            index,
+            time,
+            user_username,
+            description,
 
-          onSetEditingRevisionIndex,
-        }} />
+            onSetEditingRevisionIndex,
+          }}
+          />
       ))}
       </tbody>
     </Table>
     <RevisionForm
       revisions={value}
       index={editingRevisionIndex}
-      usersOptions={usersOptions}
+      userOptions={userOptions}
 
       onCancel={onCancel}
       onEdit={onEdit}
@@ -125,6 +140,8 @@ const ReduxRevisions = ({
     />
     <FieldError error={error} />
   </div>
-)
+);
 
-export default enhance(ReduxRevisions)
+ReduxRevisions.propTypes = propTypes;
+
+export default enhance(ReduxRevisions);

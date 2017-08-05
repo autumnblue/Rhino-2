@@ -1,10 +1,9 @@
 import ReactSelect from 'react-select';
 import { compose, pure, withHandlers } from 'recompose';
-import { string, object, oneOfType, arrayOf } from 'prop-types';
-
-import { FieldError } from 'src/components';
+import { func } from 'prop-types';
 
 const propTypes = {
+  onChange: func.isRequired,
 };
 
 const handlersEnhancer = withHandlers({
@@ -20,10 +19,10 @@ const Select = ({
   onChange,
   ...props
 }) => (
-    <ReactSelect
-      onChange={onChange}
-      {...props}
-    />
+  <ReactSelect
+    onChange={onChange}
+    {...props}
+  />
 );
 
 Select.propTypes = propTypes;

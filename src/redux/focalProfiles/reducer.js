@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-import { map } from 'lodash'
+import { map } from 'lodash';
 
-import * as c from './constants'
+import * as c from './constants';
 
 const initialState = {
   data: {},
-  ids: []
+  ids: [],
 };
 
 function data(state = initialState.data) {

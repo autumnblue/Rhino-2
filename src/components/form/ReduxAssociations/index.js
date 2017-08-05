@@ -1,12 +1,12 @@
 import { omit } from 'lodash';
 import { compose, pure } from 'recompose';
-import { string, object, oneOfType, arrayOf } from 'prop-types';
+import { string, oneOfType, arrayOf } from 'prop-types';
 
 import { Associations, FieldError } from 'src/components';
-import { selectOptionsType } from 'src/prop-types';
+import { selectOptionsType, reduxFormInputType } from 'src/prop-types';
 
 const propTypes = {
-  input: object.isRequired,
+  input: reduxFormInputType.isRequired,
   options: selectOptionsType.isRequired,
   wrapperClassName: string,
   error: oneOfType([string, arrayOf(string)]),

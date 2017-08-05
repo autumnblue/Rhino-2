@@ -1,10 +1,11 @@
 import { compose, pure, withPropsOnChange, withHandlers } from 'recompose';
-import { string, object, func, oneOfType, arrayOf } from 'prop-types';
+import { string, func, oneOfType, arrayOf, bool } from 'prop-types';
 import classNames from 'classnames';
 
 import { FieldError } from 'src/components';
 
 const propTypes = {
+  checked: bool.isRequired,
   id: string.isRequired,
   label: string.isRequired,
   error: oneOfType([string, arrayOf(string)]),

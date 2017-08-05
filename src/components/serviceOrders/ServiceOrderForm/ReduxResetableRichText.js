@@ -1,20 +1,33 @@
-import { compose, pure, withState, withHandlers, withPropsOnChange } from 'recompose';
+import { compose, pure, withHandlers } from 'recompose';
 import { Col, Row } from 'reactstrap';
+import { string, func } from 'prop-types';
 
-import { Input, Checkbox, FieldError, ExpandableRichText, Button } from 'src/components';
+import { FieldError, ExpandableRichText, Button } from 'src/components';
+import { reduxFormInputType, breadcrumbsType } from 'src/prop-types';
 
+const propTypes = {
+  input: reduxFormInputType.isRequired,
+  error: string,
+
+  parentBreadcrumbs: breadcrumbsType.isRequired,
+  breadcrumbLabel: string.isRequired,
+  editButtonLabel: string.isRequired,
+
+  onReset: func.isRequired,
+  onChange: func.isRequired,
+};
 
 const handlersEnhancer = withHandlers({
-  onChange: ({ input: { onChange }}) => onChange,
-  onReset: ({ input: { onChange } }) => () => onChange(null)
+  onChange: ({ input: { onChange } }) => onChange,
+  onReset: ({ input: { onChange } }) => () => onChange(null),
 });
 
 const enhance = compose(
   handlersEnhancer,
   pure,
-)
+);
 
-const ReduxCustomizableValue = ({
+const ReduxCustomizableRichText = ({
   input: { value },
   error,
 
@@ -42,6 +55,8 @@ const ReduxCustomizableValue = ({
       <FieldError error={error} />
     </Col>
   </Row>
-)
+);
 
-export default enhance(ReduxCustomizableValue);
+ReduxCustomizableRichText.propTypes = propTypes;
+
+export default enhance(ReduxCustomizableRichText);
