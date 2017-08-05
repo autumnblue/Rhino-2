@@ -17,7 +17,7 @@ const enhance = pure
 
 const TeamFormGroup = ({
   usersOptions,
-  users,
+  usersData,
   validationErrors,
 
   onFieldChange,
@@ -70,7 +70,7 @@ const TeamFormGroup = ({
         component={ReduxRevisions}
         name="revisions"
         usersOptions={usersOptions}
-        users={users}
+        usersData={usersData}
         onChange={onFieldChange}
         error={validationErrors.revisions}
       />

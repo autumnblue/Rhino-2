@@ -1,6 +1,8 @@
 import { Table, Row, Col } from 'reactstrap';
 import { compose, pure, withState, withHandlers } from 'recompose'
 
+import { FieldError } from 'src/components'
+
 import RevisionRow from './RevisionRow';
 import RevisionForm from './RevisionForm';
 
@@ -10,12 +12,60 @@ const editingRevisionIndexEnhancer = withState('editingRevisionIndex', 'onSetEdi
 
 const handlersEnhancer = withHandlers({
   onCancel: ({ onSetEditingRevisionIndex }) => () => onSetEditingRevisionIndex(null),
-  onEdit: ({ onChange, value }) => ({
+  onEdit: ({ input: { value, onChange }, usersData, onSetEditingRevisionIndex }) => ({
     index,
     user_id,
     description,
     time,
-  }) => {}
+  }) => {
+    const user = usersData[user_id];
+
+    onChange([
+      ...value.slice(0, index),
+      {
+        user_id,
+        description,
+        time,
+        user_email: user.email,
+        user_username: user.username,
+        user_full_name: `${user.first_name} ${user.last_name}`
+      },
+      ...value.slice(index + 1)
+    ]);
+
+    onSetEditingRevisionIndex(null)
+  },
+  onAdd: ({ input: { value, onChange }, usersData, onSetEditingRevisionIndex }) => ({
+    user_id,
+    description,
+    time,
+  }) => {
+    const user = usersData[user_id];
+
+    onChange([
+      ...value,
+      {
+        user_id,
+        description,
+        time,
+        user_email: user.email,
+        user_username: user.username,
+        user_full_name: `${user.first_name} ${user.last_name}`
+      },
+    ]);
+
+    onSetEditingRevisionIndex(null)
+  },
+  onDelete: ({ input: { value, onChange }, onSetEditingRevisionIndex }) => ({
+    index,
+  }) => {
+    onChange([
+      ...value.slice(0, index),
+      ...value.slice(index + 1)
+    ]);
+
+    onSetEditingRevisionIndex(null)
+  },
 });
 
 
@@ -28,11 +78,15 @@ const enhance = compose(
 
 const ReduxRevisions = ({
   input: { value },
+  error,
   editingRevisionIndex,
   usersOptions,
 
   onSetEditingRevisionIndex,
   onCancel,
+  onEdit,
+  onAdd,
+  onDelete,
 }) => (
   <div className={css.wrapper}>
     <Table striped responsive className={css.table}>
@@ -48,6 +102,7 @@ const ReduxRevisions = ({
       {value.map(({ time, user_username, description }, index) => (
         <RevisionRow {...{
           key: index,
+          editingRevisionIndex,
           index,
           time,
           user_username,
@@ -64,7 +119,11 @@ const ReduxRevisions = ({
       usersOptions={usersOptions}
 
       onCancel={onCancel}
+      onEdit={onEdit}
+      onAdd={onAdd}
+      onDelete={onDelete}
     />
+    <FieldError error={error} />
   </div>
 )
 

@@ -6,3 +6,15 @@
 .table {
   border-bottom: 1px solid #ddd;
 }
+
+.row {
+  &.active {
+    background: #F9EEC1!important;
+  }
+}
+
+.editLink {
+  cursor: pointer;
+  text-decoration: underline!important;
+  text-decoration-style: dotted!important;
+}

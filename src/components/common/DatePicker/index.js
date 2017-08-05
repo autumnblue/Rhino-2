@@ -5,6 +5,8 @@ import moment from 'moment'
 
 import css from './style.css'
 
+const returnFalse = () => false;
+
 const focusedEnhancer = withState('focused', 'onFocusChange', false);
 
 const handlersEnhancer = withHandlers({
@@ -26,7 +28,6 @@ const DatePicker = ({
   focused,
   date,
 
-
   onFocusChange,
   onChange,
   ...props,
@@ -38,6 +39,7 @@ const DatePicker = ({
     date={date}
     onDateChange={onChange}
     onFocusChange={onFocusChange}
+    isOutsideRange={returnFalse}
     {...props}
   />
   </div>

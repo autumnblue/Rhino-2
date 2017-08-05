@@ -27,6 +27,7 @@ const ServiceOrderEditPage = ({
   users,
   industries,
   focalProfiles,
+  usersData,
   validationErrors,
 
   onDelete,
@@ -44,6 +45,7 @@ const ServiceOrderEditPage = ({
           users,
           industries,
           focalProfiles,
+          usersData,
           choices,
 
           onFieldChange

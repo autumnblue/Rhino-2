@@ -3,9 +3,9 @@ import { compose, pure, withState, withPropsOnChange, withHandlers } from 'recom
 
 import { Input, Select, DatePicker, Button } from 'src/components';
 
-const userEnhancer = withState('user_id', 'onChangeUser');
-const descriptionEnhancer = withState('description', 'onChangeDescription');
-const timeEnhancer = withState('time', 'onChangeTime');
+const userEnhancer = withState('user_id', 'onChangeUser', null);
+const descriptionEnhancer = withState('description', 'onChangeDescription', '');
+const timeEnhancer = withState('time', 'onChangeTime', Date.now());
 
 const indexChangeEnhancer = withPropsOnChange(
   ['index', 'revisions'],
@@ -32,7 +32,7 @@ const indexChangeEnhancer = withPropsOnChange(
 )
 
 const handlersEnhancer = withHandlers({
-  onDelete: ({ onDelete, index }) => () => onDelete(index),
+  onDelete: ({ onDelete, index }) => () => onDelete({index}),
   onAdd: ({ onAdd, user_id, description, time }) => () => onAdd({
     user_id,
     description,
@@ -65,6 +65,9 @@ const RevisionForm = ({
   onChangeUser,
   onChangeDescription,
   onCancel,
+  onEdit,
+  onAdd,
+  onDelete,
 }) => (
   <Row>
     <Col md="12">
@@ -85,11 +88,11 @@ const RevisionForm = ({
     </Col>
     <Base exists={!isNew} component={Col} md="12">
       <Button color="default" onClick={onCancel}>Cancel</Button>{' '}
-      <Button color="warning">Delete</Button>
-      <Button color="primary" className="float-right">Save</Button>
+      <Button color="warning" onClick={onDelete}>Delete</Button>
+      <Button color="primary" className="float-right" onClick={onEdit}>Save</Button>
     </Base>
     <Base exists={isNew} component={Col} md="12">
-      <Button color="primary" className="float-right">Create</Button>
+      <Button color="primary" className="float-right" onClick={onAdd}>Create</Button>
     </Base>
   </Row>
 )

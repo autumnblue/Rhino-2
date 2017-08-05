@@ -60,7 +60,8 @@ const reduxConnect = connect(state => ({
   users: getUsers(state),
   industries: getIndustries(state),
   serviceOrder: getCurrentServiceOrder(state),
-  focalProfiles: getFocalProfiles(state)
+  focalProfiles: getFocalProfiles(state),
+  usersData: state.users.data,
 }), {
   onDelete: deleteServiceOrderTrigger,
   onFieldChange: editServiceOrderFormChange,

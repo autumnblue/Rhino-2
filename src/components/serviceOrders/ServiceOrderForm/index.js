@@ -33,6 +33,7 @@ const ServiceOrderForm = ({
   paymentOptions,
   usersOptions,
   industriesOptions,
+  usersData,
   breadcrumbs,
   validationErrors,
 
@@ -61,6 +62,7 @@ const ServiceOrderForm = ({
         <RevisionsFormGroup
           validationErrors={validationErrors}
           usersOptions={usersOptions}
+          usersData={usersData}
           onFieldChange={onFieldChange}
         />
         <TextSectionsFormGroup
