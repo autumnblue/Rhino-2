@@ -31,7 +31,7 @@ const propTypes = {
   disabled: bool,
   isEditing: bool,
   showContent: bool.isRequired,
-  editingValue: string.isRequired,
+  editingValue: string,
   breadcrumbs: breadcrumbsType,
 
   onChange: func.isRequired,

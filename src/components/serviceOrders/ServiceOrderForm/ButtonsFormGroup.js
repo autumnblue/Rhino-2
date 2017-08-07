@@ -1,6 +1,7 @@
 import { FormGroup } from 'reactstrap';
 import { pure } from 'recompose';
 import { bool, number } from 'prop-types';
+import { Link } from 'react-router';
 
 import { Button } from 'src/components';
 
@@ -18,14 +19,14 @@ const ButtonsFormGroup = ({
   <FormGroup>
     <Button
       disabled={isNew}
-      component="a"
-      href={`${process.env.API_URL}service-orders/${id}/pdf`}
+      tag={Link}
+      to={`${process.env.API_URL}service-orders/${id}/pdf`}
       target="_blank"
     >Download PDF</Button>{' '}
     <Button
       disabled={isNew}
-      component="a"
-      href={`${process.env.API_URL}service-orders/${id}/preview`}
+      tag={Link}
+      to={`${process.env.API_URL}service-orders/${id}/preview`}
       target="_blank"
     >Preview</Button>
   </FormGroup>
