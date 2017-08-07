@@ -1,5 +1,5 @@
 import { Col, Row, Form } from 'reactstrap';
-import { object, func, objectOf, string } from 'prop-types';
+import { object, func, objectOf, string, number, bool } from 'prop-types';
 
 import { breadcrumbsType, selectOptionsType, userType } from 'src/prop-types';
 import formatTime from 'src/helpers/formatTime';
@@ -9,10 +9,13 @@ import TeamFormGroup from './TeamFormGroup';
 import TextSectionsFormGroup from './TextSectionsFormGroup';
 import IndustriesFormGroup from './IndustriesFormGroup';
 import RevisionsFormGroup from './RevisionsFormGroup';
+import ButtonsFormGroup from './ButtonsFormGroup';
 
 import enhance from './enhance';
 
 const propTypes = {
+  isNew: bool,
+  id: number,
   clientOptions: selectOptionsType.isRequired,
   statusOptions: selectOptionsType.isRequired,
   paymentOptions: selectOptionsType.isRequired,
@@ -28,6 +31,7 @@ const propTypes = {
 };
 
 const ServiceOrderForm = ({
+  isNew,
   clientOptions,
   statusOptions,
   paymentOptions,
@@ -36,6 +40,7 @@ const ServiceOrderForm = ({
   focalProfileOptions,
   usersData,
   created,
+  id,
   breadcrumbs,
   validationErrors,
 
@@ -43,10 +48,11 @@ const ServiceOrderForm = ({
 }) => (
   <Form>
     <Row>
-      <Col md="6">
-        <em>Created: {formatTime(created).date()}</em>
+      <Col md="6" sm="12">
+        <em>Created: {formatTime(created).date() || '-'}</em>
         <br /><br />
         <MainInfoFormGroup {...{
+          isNew,
           clientOptions,
           statusOptions,
           paymentOptions,
@@ -63,8 +69,10 @@ const ServiceOrderForm = ({
           onFieldChange={onFieldChange}
         />
       </Col>
-      <Col md="6">
+      <Col md="6" sm="12">
+        <ButtonsFormGroup id={id} isNew={isNew} />
         <RevisionsFormGroup
+          isNew={isNew}
           validationErrors={validationErrors}
           userOptions={userOptions}
           usersData={usersData}

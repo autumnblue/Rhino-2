@@ -40,7 +40,7 @@ const ReduxCustomizableRichText = ({
 }) => (
   <Row>
     <Col md="4" sm="12">
-      <Button onClick={onReset}>Reset</Button>
+      <Button onClick={onReset} block>Reset</Button>
     </Col>
     <Col md="8" sm="12">
       <ExpandableRichText

@@ -1,7 +1,7 @@
 import { pure } from 'recompose';
 import { FormGroup, Row, Col } from 'reactstrap';
 import { Field } from 'redux-form';
-import { object, func, objectOf } from 'prop-types';
+import { object, func, objectOf, bool } from 'prop-types';
 
 import { ReduxInput, ReduxDatePicker } from 'src/components';
 import { userType, selectOptionsType } from 'src/prop-types';
@@ -9,6 +9,7 @@ import { userType, selectOptionsType } from 'src/prop-types';
 import ReduxRevisions from './ReduxRevisions';
 
 const propTypes = {
+  isNew: bool,
   userOptions: selectOptionsType.isRequired,
   usersData: objectOf(userType).isRequired,
   validationErrors: object.isRequired,
@@ -19,6 +20,7 @@ const propTypes = {
 const enhance = pure;
 
 const TeamFormGroup = ({
+  isNew,
   userOptions,
   usersData,
   validationErrors,
@@ -37,6 +39,7 @@ const TeamFormGroup = ({
             type="number"
             min="0"
             step="1"
+            disabled={isNew}
             onBlur={onFieldChange}
             error={validationErrors.version}
           />
@@ -50,6 +53,7 @@ const TeamFormGroup = ({
             name="client_so_num"
             type="number"
             step="1"
+            disabled={isNew}
             onBlur={onFieldChange}
             error={validationErrors.client_so_num}
           />
@@ -61,6 +65,7 @@ const TeamFormGroup = ({
           <Field
             component={ReduxDatePicker}
             name="version_date"
+            disabled={isNew}
             onChange={onFieldChange}
             error={validationErrors.version_date}
           />
@@ -74,6 +79,7 @@ const TeamFormGroup = ({
           name="revisions"
           userOptions={userOptions}
           usersData={usersData}
+          isNewServiceOrder={isNew}
           onChange={onFieldChange}
           error={validationErrors.revisions}
         />

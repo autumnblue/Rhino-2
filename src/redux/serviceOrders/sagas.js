@@ -49,7 +49,7 @@ function* newServiceOrderFormChange() {
 function* createServiceOrderSuccess() {
   while (true) {
     const { response } = yield take(c.CREATE_SERVICE_ORDER_SUCCESS);
-    const { id } = response.data.serviceOrder;
+    const { id } = response.data.service_order;
 
     yield put(push(`/service-orders/${id}`));
   }

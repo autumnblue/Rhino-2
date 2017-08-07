@@ -66,7 +66,6 @@ const reduxConnect = connect(state => ({
 }), {
   onDelete: deleteServiceOrderTrigger,
   onFieldChange: editServiceOrderFormChange,
-  onLoadFocals: loadFocalProfiles,
 });
 
 const propsEnhancer = withPropsOnChange(['serviceOrder'], ({ serviceOrder }) => ({
@@ -89,11 +88,6 @@ const reduxFormEnhancer = reduxForm({
 const handlersEnhancer = withHandlers({
   onDelete: ({ onDelete, serviceOrder }) => () => onDelete(serviceOrder.id),
   onFieldChange: ({ onFieldChange, serviceOrder }) => () => onFieldChange(serviceOrder.id),
-  onClientChange: ({ onLoadFocals }) => client => onLoadFocals({
-    filter: {
-      'client.id': { eq: client },
-    },
-  }),
 });
 
 export default compose(

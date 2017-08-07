@@ -1,7 +1,7 @@
 import { FormGroup } from 'reactstrap';
 import { pure } from 'recompose';
 import { Field } from 'redux-form';
-import { object, func } from 'prop-types';
+import { object, func, bool } from 'prop-types';
 
 import { ReduxSelect, ReduxInput, Select } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
@@ -9,6 +9,7 @@ import { selectOptionsType } from 'src/prop-types';
 import ReduxCustomizableText from './ReduxCustomizableText';
 
 const propTypes = {
+  isNew: bool,
   clientOptions: selectOptionsType.isRequired,
   statusOptions: selectOptionsType.isRequired,
   paymentOptions: selectOptionsType.isRequired,
@@ -21,6 +22,7 @@ const propTypes = {
 const enhance = pure;
 
 const MainInfoFormGroup = ({
+  isNew,
   clientOptions,
   statusOptions,
   paymentOptions,
@@ -38,7 +40,7 @@ const MainInfoFormGroup = ({
         options={clientOptions}
         onChange={onFieldChange}
         error={validationErrors.client}
-        disabled
+        disabled={!isNew}
       />
     </FormGroup>
     <FormGroup>
@@ -73,7 +75,7 @@ const MainInfoFormGroup = ({
     </FormGroup>
     <FormGroup>
       <label>Focal (<em>not working</em>)</label>
-      <Select options={focalProfileOptions} />
+      <Select options={focalProfileOptions} disabled={isNew} />
     </FormGroup>
     <FormGroup>
       <label>Notes</label>

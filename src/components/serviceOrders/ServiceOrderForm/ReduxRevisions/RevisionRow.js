@@ -8,7 +8,7 @@ import css from './style.css';
 
 const propTypes = {
   time: string.isRequired,
-  user_username: string.isRequired,
+  user_username: string,
   description: string.isRequired,
   className: string.isRequired,
 

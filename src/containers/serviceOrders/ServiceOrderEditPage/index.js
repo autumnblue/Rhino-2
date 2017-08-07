@@ -48,6 +48,7 @@ const ServiceOrderEditPage = ({
     <PageContent>
       <ServiceOrderForm {...{
         created: serviceOrder.created,
+        id: serviceOrder.id,
         validationErrors,
         breadcrumbs,
         clients,

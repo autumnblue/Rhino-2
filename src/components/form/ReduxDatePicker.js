@@ -14,7 +14,7 @@ const ReduxDatePicker = ({
   <DatePicker
     value={value}
     onChange={onChange}
-    {...omit(props, ['meta', 'error'])}
+    {...omit(props, ['meta'])}
   />
 );
 

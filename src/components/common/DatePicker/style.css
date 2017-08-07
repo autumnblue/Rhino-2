@@ -20,3 +20,15 @@
   & :global(.DateInput__display-text) {
   }
 }
+
+.disabled {
+  cursor: not-allowed;
+
+  & :global(.SingleDatePickerInput), & :global(.DateInput) {
+    background: #eceeef!important;
+  }
+
+  & :global(.SingleDatePicker) {
+    pointer-events: none;
+  }
+}
