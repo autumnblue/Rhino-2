@@ -5,6 +5,10 @@ import objectToOptions from 'src/helpers/objectToOptions';
 const handlersEnhancer = withHandlers({
   // makes a short delay which runs onFieldChange after the store is updated
   onFieldChange: ({ onFieldChange }) => (...args) => setTimeout(onFieldChange, 0, ...args),
+  onAddServiceGroup: ({ onAddServiceGroup, id }) => () => onAddServiceGroup({
+    service_order: id,
+    commit: true
+  })
 });
 
 const propsEnhancer = withPropsOnChange(

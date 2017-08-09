@@ -1,5 +1,6 @@
 import { Col, Row, Form } from 'reactstrap';
 import { object, func, objectOf, string, number, bool } from 'prop-types';
+import { Field, FieldArray } from 'redux-form'
 
 import { breadcrumbsType, selectOptionsType, userType } from 'src/prop-types';
 import formatTime from 'src/helpers/formatTime';
@@ -10,6 +11,9 @@ import TextSectionsFormGroup from './TextSectionsFormGroup';
 import IndustriesFormGroup from './IndustriesFormGroup';
 import RevisionsFormGroup from './RevisionsFormGroup';
 import ButtonsFormGroup from './ButtonsFormGroup';
+
+import ServiceGroupArray from './ServiceGroupArray';
+import ServiceGroupPrimary from './ServiceGroupPrimary';
 
 import enhance from './enhance';
 
@@ -43,8 +47,17 @@ const ServiceOrderForm = ({
   id,
   breadcrumbs,
   validationErrors,
+  serviceGroupsValidationErrors,
+  serviceInstanceValidationErrors,
 
   onFieldChange,
+  onEditServiceGroup,
+  onAddServiceGroup,
+  onDeleteServiceGroup,
+
+  onEditServiceInstance,
+  onAddServiceInstance,
+  onDeleteServiceInstance,
 }) => (
   <Form>
     <Row>
@@ -88,6 +101,31 @@ const ServiceOrderForm = ({
           validationErrors={validationErrors}
           onFieldChange={onFieldChange}
         />
+      </Col>
+      <Col md="12">
+      <ServiceGroupPrimary
+        onEditServiceGroup={onEditServiceGroup}
+        serviceGroupsValidationErrors={serviceGroupsValidationErrors}
+        serviceInstanceValidationErrors={serviceInstanceValidationErrors}
+
+        onEditServiceInstance={onEditServiceInstance}
+        onAddServiceInstance={onAddServiceInstance}
+        onDeleteServiceInstance={onDeleteServiceInstance}
+      />
+      <FieldArray
+        name="service_groups"
+        component={ServiceGroupArray}
+        serviceGroupsValidationErrors={serviceGroupsValidationErrors}
+        serviceInstanceValidationErrors={serviceInstanceValidationErrors}
+
+        onEdit={onEditServiceGroup}
+        onAdd={onAddServiceGroup}
+        onDelete={onDeleteServiceGroup}
+
+        onEditServiceInstance={onEditServiceInstance}
+        onAddServiceInstance={onAddServiceInstance}
+        onDeleteServiceInstance={onDeleteServiceInstance}
+      />
       </Col>
     </Row>
   </Form>

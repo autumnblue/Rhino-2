@@ -14,6 +14,16 @@ import { loadClients } from 'src/redux/clients/actions';
 import { loadUsers } from 'src/redux/users/actions';
 import { loadIndustries } from 'src/redux/industries/actions';
 import { loadFocalProfiles } from 'src/redux/focalProfiles/actions';
+import {
+  editServiceGroupFieldChange,
+  createServiceGroup,
+  deleteServiceGroupTrigger,
+} from 'src/redux/serviceGroups/actions'
+import {
+  editServiceInstanceFieldChange,
+  createServiceInstance,
+  deleteServiceInstanceTrigger,
+} from 'src/redux/serviceInstances/actions'
 
 // selectors
 import { getCurrentServiceOrder } from 'src/redux/serviceOrders/selectors';
@@ -62,10 +72,19 @@ const reduxConnect = connect(state => ({
   serviceOrder: getCurrentServiceOrder(state),
   focalProfiles: getFocalProfiles(state),
   usersData: state.users.data,
-
+  serviceGroupsValidationErrors: state.serviceGroups.validationErrorsPerId,
+  serviceInstanceValidationErrors: state.serviceInstances.validationErrorsPerId,
 }), {
   onDelete: deleteServiceOrderTrigger,
   onFieldChange: editServiceOrderFormChange,
+
+  onEditServiceGroup: editServiceGroupFieldChange,
+  onAddServiceGroup: createServiceGroup,
+  onDeleteServiceGroup: deleteServiceGroupTrigger,
+
+  onEditServiceInstance: editServiceInstanceFieldChange,
+  onAddServiceInstance: createServiceInstance,
+  onDeleteServiceInstance: deleteServiceInstanceTrigger,
 });
 
 const propsEnhancer = withPropsOnChange(['serviceOrder'], ({ serviceOrder }) => ({

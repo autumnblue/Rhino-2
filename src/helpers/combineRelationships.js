@@ -14,6 +14,7 @@ function place(object, result) {
 
     return object.id;
   }
+  
   return object;
 }
 

@@ -37,9 +37,19 @@ const ServiceOrderEditPage = ({
   usersData,
   serviceOrder,
   validationErrors,
+  serviceGroupsValidationErrors,
+  serviceInstanceValidationErrors,
 
   onDelete,
   onFieldChange,
+
+  onEditServiceGroup,
+  onAddServiceGroup,
+  onDeleteServiceGroup,
+
+  onEditServiceInstance,
+  onAddServiceInstance,
+  onDeleteServiceInstance,
 }) => (
   <Page>
     <PageHeader breadcrumbs={breadcrumbs}>
@@ -57,8 +67,17 @@ const ServiceOrderEditPage = ({
         focalProfiles,
         usersData,
         choices,
+        serviceGroupsValidationErrors,
+        serviceInstanceValidationErrors,
 
         onFieldChange,
+        onEditServiceGroup,
+        onAddServiceGroup,
+        onDeleteServiceGroup,
+
+        onEditServiceInstance,
+        onAddServiceInstance,
+        onDeleteServiceInstance,
       }}
       />
       <Button color="danger" onClick={onDelete}>Delete</Button>

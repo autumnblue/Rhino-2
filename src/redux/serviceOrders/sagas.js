@@ -11,6 +11,7 @@ import * as c from './constants';
 import { createServiceOrder, editServiceOrder, deleteServiceOrder } from './actions';
 import { getCurrentServiceOrder } from './selectors';
 
+
 function* listParamsChange() {
   // will cancel current running handleInput task
   yield takeLatest([c.LIST_FILTERS_CHANGE, c.PAGE_CHANGE], function* handle() {
@@ -32,6 +33,7 @@ function* listParamsChange() {
     yield put(push(`/service-orders/?${query}`));
   });
 }
+
 
 function* newServiceOrderFormChange() {
   while (true) {

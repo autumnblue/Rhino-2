@@ -35,6 +35,7 @@ export { default as ReduxAssociations } from './form/ReduxAssociations';
 export { default as ReduxCheckbox } from './form/ReduxCheckbox';
 export { default as ReduxDatePicker } from './form/ReduxDatePicker';
 export { default as ReduxExpandableRichText } from './form/ReduxExpandableRichText';
+export { default as ReduxHidden } from './form/ReduxHidden';
 export { default as ReduxInput } from './form/ReduxInput';
 export { default as ReduxPriorityVote } from './form/ReduxPriorityVote';
 export { default as ReduxSelect } from './form/ReduxSelect';
