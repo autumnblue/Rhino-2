@@ -16,7 +16,7 @@ function* deleteServiceInstanceTrigger() {
     const { id } = yield take(c.DELETE_SERVICE_INSTANCE_TRIGGER);
 
     // eslint-disable-next-line no-alert
-    if (window.confirm('Are you sure want to delete the service group')) {
+    if (window.confirm('Are you sure want to delete the service instance')) {
       yield put(deleteServiceInstance(id));
     }
   }

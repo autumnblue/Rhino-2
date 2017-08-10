@@ -14,6 +14,7 @@ import { loadClients } from 'src/redux/clients/actions';
 import { loadUsers } from 'src/redux/users/actions';
 import { loadIndustries } from 'src/redux/industries/actions';
 import { loadFocalProfiles } from 'src/redux/focalProfiles/actions';
+import { loadServices } from 'src/redux/services/actions'
 import {
   editServiceGroupFieldChange,
   createServiceGroup,
@@ -31,6 +32,7 @@ import { getClients } from 'src/redux/clients/selectors';
 import { getUsers } from 'src/redux/users/selectors';
 import { getIndustries } from 'src/redux/industries/selectors';
 import { getFocalProfiles } from 'src/redux/focalProfiles/selectors';
+import { getServices } from 'src/redux/services/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
   promise: async ({
@@ -47,6 +49,7 @@ const reduxAsyncConnect = asyncConnect([{
       })),
       dispatch(loadUsers()),
       dispatch(loadIndustries()),
+      dispatch(loadServices())
     ]);
 
     const { client } = serviceOrderSuccessAction.response.data.service_order;
@@ -71,6 +74,7 @@ const reduxConnect = connect(state => ({
   industries: getIndustries(state),
   serviceOrder: getCurrentServiceOrder(state),
   focalProfiles: getFocalProfiles(state),
+  services: getServices(state),
   usersData: state.users.data,
   serviceGroupsValidationErrors: state.serviceGroups.validationErrorsPerId,
   serviceInstanceValidationErrors: state.serviceInstances.validationErrorsPerId,

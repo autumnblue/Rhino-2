@@ -36,12 +36,14 @@ const SafeHTML = ({
   html,
   exists,
   component,
+  ...props,
 }) => (
   <Base
     component={component}
     className={css.safeHTML}
     exists={exists}
     dangerouslySetInnerHTML={html}
+    {...props}
   />
 );
 

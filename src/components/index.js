@@ -37,9 +37,11 @@ export { default as ReduxDatePicker } from './form/ReduxDatePicker';
 export { default as ReduxExpandableRichText } from './form/ReduxExpandableRichText';
 export { default as ReduxHidden } from './form/ReduxHidden';
 export { default as ReduxInput } from './form/ReduxInput';
+export { default as ReduxOutputText } from './form/ReduxOutputText';
 export { default as ReduxPriorityVote } from './form/ReduxPriorityVote';
 export { default as ReduxSelect } from './form/ReduxSelect';
 export { default as ReduxRichText } from './form/ReduxRichText';
+export { default as ReduxRichTextList } from './form/ReduxRichTextList';
 export { default as Select } from './form/Select';
 
 // industries

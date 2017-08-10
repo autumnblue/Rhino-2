@@ -2,19 +2,22 @@ import { Field, FieldArray } from 'redux-form';
 import { FormGroup } from 'reactstrap';
 import { compose, onlyUpdateForKeys, withState, withHandlers, withPropsOnChange } from 'recompose'
 
-import { ReduxInput, ReduxHidden, Button } from 'src/components';
+import { ReduxInput, ReduxHidden, Button, ReduxRichTextList } from 'src/components';
+import { empty } from 'src/helpers';
 
-import Incentives from './Incentives';
 import ServiceInstanceArray from './ServiceInstanceArray'
 
 const idEnhancer = withState('id', 'onSetId');
 
 const handlersEnhancer = withHandlers({
   onEdit: ({ onEdit, id, member }) => () =>  onEdit(id, member),
-  onDelete: ({ onDelete, id, index }) => () => onDelete(id, index)
+  onDelete: ({ onDelete, id, index }) => () => onDelete(id, index),
+  onAddServiceInstance: ({ onAddServiceInstance, id }) => (data) => onAddServiceInstance({
+    ...data,
+    service_group: id,
+    commit: true,
+  })
 });
-
-const empty = {};
 
 const propsEnhancer = withPropsOnChange(['serviceGroupsValidationErrors', 'id'], ({ serviceGroupsValidationErrors, id }) => ({
   validationErrors: serviceGroupsValidationErrors[id] || empty,
@@ -24,7 +27,11 @@ const enhance = compose(
   idEnhancer,
   handlersEnhancer,
   propsEnhancer,
-  onlyUpdateForKeys(['validationErrors']),
+  onlyUpdateForKeys([
+    'validationErrors',
+    'serviceInstanceValidationErrors',
+    'serviceOptions'
+  ]),
 )
 
 const ServiceGroupItem = ({
@@ -32,6 +39,8 @@ const ServiceGroupItem = ({
   extended,
   validationErrors,
   serviceInstanceValidationErrors,
+  className,
+  serviceOptions,
 
   onSetId,
   onEdit,
@@ -41,18 +50,23 @@ const ServiceGroupItem = ({
   onAddServiceInstance,
   onDeleteServiceInstance,
 }) => (
-  <FormGroup>
-    <Field component={ReduxHidden} onFill={onSetId} name={`${member}.id`} />
-    <FieldArray
+  <FormGroup className={className}>
+    <Field
+      component={ReduxHidden}
+      onFill={onSetId}
+      name={`${member}.id`}
+    />
+    <Field
+      component={ReduxRichTextList}
       name={`${member}.incentives`}
-      component={Incentives}
-      onEditServiceGroup={onEdit}
+      onChange={onEdit}
       error={validationErrors.incentives}
     />
     <FieldArray
       name={`${member}.service_instances`}
       component={ServiceInstanceArray}
       serviceInstanceValidationErrors={serviceInstanceValidationErrors}
+      serviceOptions={serviceOptions}
 
       onEdit={onEditServiceInstance}
       onAdd={onAddServiceInstance}

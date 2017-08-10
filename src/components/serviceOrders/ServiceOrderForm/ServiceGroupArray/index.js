@@ -4,6 +4,7 @@ import { compose, pure, withHandlers } from 'recompose';
 import { Button } from 'src/components'
 
 import ServiceGroupItem from '../ServiceGroupItem';
+import css from './style.css';
 
 const handlersEnhancer = withHandlers({
   onAdd: ({ onAdd, fields }) => async () => {
@@ -11,12 +12,13 @@ const handlersEnhancer = withHandlers({
     const { data } = addAction.response;
 
     if(data && data.service_group) {
-      fields.push(data.service_group);
+      //fields.push(data.service_group);
     }
   },
   onDelete: ({ onDelete, fields }) => (id, index) => {
     onDelete(id);
-    fields.remove(index)
+    //console.log(deleteAction)
+    //fields.remove(index)
   }
 });
 
@@ -27,20 +29,28 @@ const enhance = compose(
 
 const ServiceGroupArray = ({
   fields,
+  serviceOptions,
   serviceGroupsValidationErrors,
   serviceInstanceValidationErrors,
 
   onAdd,
   onEdit,
   onDelete,
+
+  onEditServiceInstance,
+  onAddServiceInstance,
+  onDeleteServiceInstance,
 }) => (
   <FormGroup tag="fieldset">
     <legend>Recurring Service Groups</legend>
+    <div className={css.items}>
     {fields.map((member, index, fields) => (
       <ServiceGroupItem
+        className={css.item}
         member={member}
         index={index}
         key={member}
+        serviceOptions={serviceOptions}
         serviceGroupsValidationErrors={serviceGroupsValidationErrors}
         serviceInstanceValidationErrors={serviceInstanceValidationErrors}
 
@@ -48,8 +58,13 @@ const ServiceGroupArray = ({
 
         onDelete={onDelete}
         onEdit={onEdit}
+
+        onEditServiceInstance={onEditServiceInstance}
+        onAddServiceInstance={onAddServiceInstance}
+        onDeleteServiceInstance={onDeleteServiceInstance}
       />
     ))}
+    </div>
     <Button color="primary" onClick={onAdd}>Add Service Group</Button>
   </FormGroup>
 )

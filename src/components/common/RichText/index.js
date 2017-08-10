@@ -1,4 +1,4 @@
-import { compose, pure, lifecycle, toClass, withState, withPropsOnChange } from 'recompose';
+import { compose, pure, lifecycle, toClass, withState, withPropsOnChange, withHandlers } from 'recompose';
 import { bool, func, string } from 'prop-types';
 import React from 'react';
 import ReactQuill from 'react-quill';
@@ -61,10 +61,15 @@ const lifecycleEnhancer = lifecycle({
   },
 });
 
+const handlersEnhancer = withHandlers({
+  onChange: ({ onChange }) => (value) => onChange(value)
+})
+
 const enhance = compose(
   propsEnhancer,
   refEnhancer,
   lifecycleEnhancer,
+  handlersEnhancer,
   pure,
   toClass,
 );

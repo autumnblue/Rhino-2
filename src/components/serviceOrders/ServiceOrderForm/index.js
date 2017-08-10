@@ -42,6 +42,7 @@ const ServiceOrderForm = ({
   userOptions,
   industryOptions,
   focalProfileOptions,
+  serviceOptions,
   usersData,
   created,
   id,
@@ -61,6 +62,7 @@ const ServiceOrderForm = ({
 }) => (
   <Form>
     <Row>
+      
       <Col md="6" sm="12">
         <em>Created: {formatTime(created).date() || '-'}</em>
         <br /><br />
@@ -104,6 +106,7 @@ const ServiceOrderForm = ({
       </Col>
       <Col md="12">
       <ServiceGroupPrimary
+        serviceOptions={serviceOptions}
         onEditServiceGroup={onEditServiceGroup}
         serviceGroupsValidationErrors={serviceGroupsValidationErrors}
         serviceInstanceValidationErrors={serviceInstanceValidationErrors}
@@ -112,9 +115,11 @@ const ServiceOrderForm = ({
         onAddServiceInstance={onAddServiceInstance}
         onDeleteServiceInstance={onDeleteServiceInstance}
       />
+
       <FieldArray
         name="service_groups"
         component={ServiceGroupArray}
+        serviceOptions={serviceOptions}
         serviceGroupsValidationErrors={serviceGroupsValidationErrors}
         serviceInstanceValidationErrors={serviceInstanceValidationErrors}
 

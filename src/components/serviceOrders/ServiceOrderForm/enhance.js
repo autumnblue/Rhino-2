@@ -12,8 +12,8 @@ const handlersEnhancer = withHandlers({
 });
 
 const propsEnhancer = withPropsOnChange(
-  ['choices', 'clients', 'users', 'industries', 'focalProfiles'],
-  ({ choices, clients, users, industries, focalProfiles }) => ({
+  ['choices', 'clients', 'users', 'industries', 'focalProfiles', 'services'],
+  ({ choices, clients, users, industries, focalProfiles, services }) => ({
     statusOptions: objectToOptions(choices.status),
     paymentOptions: objectToOptions(choices.payment),
     clientOptions: clients.map(({ name, id }) => ({
@@ -30,6 +30,10 @@ const propsEnhancer = withPropsOnChange(
     })),
     focalProfileOptions: focalProfiles.map(({ title, id }) => ({
       label: title || 'No title',
+      value: id,
+    })),
+    serviceOptions: services.map(({ name, id }) => ({
+      label: name,
       value: id,
     })),
   }),

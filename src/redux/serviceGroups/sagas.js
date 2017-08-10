@@ -43,19 +43,21 @@ function* editServiceGroupFieldChange() {
         ...diff,
       }));
     }
-    /*const { values } = state.form.editServiceOrderForm;
-
-    yield put(createServiceOrder({
-      commit: true,
-      ...values,
-    }));*/
   }
 }
 
+function* serviceGroupListChange() {
+  while(true) {
+    const { id } = yield take(c.DELETE_SERVICE_GROUP_SUCCESS);
+    const { service_order } = yield select(getSpecifiedServiceGroup, id);
+
+  }
+}
 
 export default function* createSaga() {
   yield all([
     fork(deleteServiceGroupTrigger),
     fork(editServiceGroupFieldChange),
+    fork(serviceGroupListChange),
   ]);
 }

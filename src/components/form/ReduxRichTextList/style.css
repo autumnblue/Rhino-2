@@ -1,0 +1,17 @@
+.wrapper {
+  margin-bottom: 1rem;
+}
+
+.item {
+  padding: 0.5rem 10px;
+  background: #fff;
+  border: 1px solid #CCD5DB;
+  border-bottom: none;
+  &:last-child {
+    border-bottom: 1px solid #CCD5DB;
+  }
+}
+
+.editingItem {
+  background: #FFFAE7;
+}

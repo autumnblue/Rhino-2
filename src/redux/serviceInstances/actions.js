@@ -1,6 +1,6 @@
 import * as c from './constants';
 
-const endpoint = 'service-groups/';
+const endpoint = 'service-instances/';
 
 // UI actions
 export const deleteServiceInstanceTrigger = id => ({

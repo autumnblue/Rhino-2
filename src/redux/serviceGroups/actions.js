@@ -31,7 +31,12 @@ export const loadServiceGroups = ({
 
 export const createServiceGroup = data => ({
   types: [c.CREATE_SERVICE_GROUP, c.CREATE_SERVICE_GROUP_SUCCESS, c.CREATE_SERVICE_GROUP_FAIL],
-  api: ({ post }) => post(endpoint, { data }),
+  api: ({ post }) => post(endpoint, {
+    data,
+    params: {
+      include: ['service_order']
+    }
+  }),
 });
 
 export const editServiceGroup = (id, data) => ({
@@ -43,4 +48,5 @@ export const editServiceGroup = (id, data) => ({
 export const deleteServiceGroup = id => ({
   types: [c.DELETE_SERVICE_GROUP, c.DELETE_SERVICE_GROUP_SUCCESS, c.DELETE_SERVICE_GROUP_FAIL],
   api: ({ del }) => del(endpoint + id),
+  id,
 });
