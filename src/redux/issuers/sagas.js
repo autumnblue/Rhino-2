@@ -53,12 +53,12 @@ function* editIssuerFormChange() {
     const { id } = yield take(c.EDIT_ISSUER_FORM_CHANGE);
     const state = yield select();
     const { values, registeredFields } = state.form.editIssuerForm;
-    const tool = yield select(getCurrentIssuer);
+    const issuer = yield select(getCurrentIssuer);
 
     // since we put entire client to reduxForm using initialValues
     // we need to extract only those properties which are rendered on the page
     const keys = Object.keys(registeredFields);
-    const diff = simpleObjectDiff(pick(values, keys), tool);
+    const diff = simpleObjectDiff(issuer, pick(values, keys));
 
     if (!isEmpty(diff)) {
       yield put(editIssuer(id, {

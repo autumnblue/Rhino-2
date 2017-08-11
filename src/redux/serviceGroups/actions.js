@@ -29,6 +29,19 @@ export const loadServiceGroups = ({
   }),
 });
 
+export const loadSingleServiceGroup = id => ({
+  types: [
+    c.LOAD_SINGLE_SERVICE_GROUP,
+    c.LOAD_SINGLE_SERVICE_GROUP_SUCCESS,
+    c.LOAD_SINGLE_SERVICE_GROUP_FAIL,
+  ],
+  api: ({ get }) => get(endpoint + id, {
+    params: {
+      include: ['service_instances']
+    }
+  }),
+});
+
 export const createServiceGroup = data => ({
   types: [c.CREATE_SERVICE_GROUP, c.CREATE_SERVICE_GROUP_SUCCESS, c.CREATE_SERVICE_GROUP_FAIL],
   api: ({ post }) => post(endpoint, {

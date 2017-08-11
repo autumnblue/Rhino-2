@@ -9,21 +9,42 @@ const editorValueEnhancer = withState('editorValue', 'onEditorValueChange', '');
 const editingIndexEnhancer = withState('editIndex', 'onSetEditIndex')
 
 const handlersEnhancer = withHandlers({
-  onAdd: ({ onChange, editorValue, input: { value } }) => () => {
+  onAdd: ({ editorValue, onEditorValueChange, input: { value, onChange } }) => () => {
     onChange([
       ...value,
       editorValue,
-    ])
+    ]);
+
+    onEditorValueChange('');
   },
 
-  onEdit: ({ onChange, editing }) => () => {},
+  onEdit: ({ input: { onChange, value }, editIndex, editorValue, onSetEditIndex, onEditorValueChange }) => () => {
+    onChange([
+      ...value.slice(0, editIndex),
+      editorValue,
+      ...value.slice(editIndex + 1),
+    ]);
+
+    onSetEditIndex(null);
+    onEditorValueChange('');
+  },
 
   onSetEditIndex: ({ onSetEditIndex, onEditorValueChange, input: { value } }) => index => {
     onEditorValueChange(value[index]);
     onSetEditIndex(index);
   },
 
-  onRemove: ({ onChange, input: { value } }) => index => () => {}
+  onRemove: ({ input: { value, onChange } }) => index => {
+    onChange([
+      ...value.slice(0, index),
+      ...value.slice(index + 1),
+    ]);
+  },
+
+  onCancel: ({ onSetEditIndex, onEditorValueChange }) => () => {
+    onSetEditIndex(null);
+    onEditorValueChange('');
+  }
 });
 
 const propsEnhancer = withPropsOnChange(['editIndex'], ({ editIndex }) => ({
@@ -54,18 +75,18 @@ const ReduxRichTextList = ({
   <div className={css.wrapper}>
     {value.map((item, index) => (
       <RichTextListItem
-        className={`${css.item} ${editIndex === index ? css.editingItem : ''}`}
         key={index}
         index={index}
         html={item}
+        editIndex={editIndex}
         onSetEditIndex={onSetEditIndex}
         onRemove={onRemove}
       />
     ))}
-    <RichText onChange={onEditorValueChange} value={editorValue} />
-    <Base exists={isEditing} component={Button} onClick={onEdit}>Save</Base>
-    <Base exists={isEditing} component={Button} onClick={onCancel}>Cancel</Base>
+    <RichText onChange={onEditorValueChange} value={editorValue} className={css.editor} />
     <Base exists={!isEditing} component={Button} onClick={onAdd}>Add</Base>
+    <Base exists={isEditing} component={Button} onClick={onEdit}>Save</Base>{' '}
+    <Base exists={isEditing} component={Button} onClick={onCancel}>Cancel</Base>
   </div>
 )
 

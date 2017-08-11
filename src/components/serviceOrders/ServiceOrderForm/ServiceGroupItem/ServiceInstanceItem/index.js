@@ -1,46 +1,80 @@
 import { compose, onlyUpdateForKeys, withPropsOnChange, withHandlers, withState } from 'recompose'
-import { Field } from 'redux-form'
+import { Field, formValues } from 'redux-form'
+import { InputGroupAddon, InputGroup } from 'reactstrap'
+import { Button, Icon, ReduxOutputText, ReduxHidden, ReduxPriorityVote, ReduxInput, ReduxDatePicker } from 'src/components';
+import { empty, withReduxFormValues } from 'src/helpers';
 
-import { Button, ReduxOutputText, ReduxHidden, ReduxInput } from 'src/components';
-import { empty } from 'src/helpers';
+import css from './style.css'
+
+/*const formValuesEnhancer = withReduxFormValues(({ member }) => ({
+  id: `${member}.id`,
+  unitPrice: `${member}.unit_price`,
+  numberOfHours: `${member}.number_of_hours`
+}));*/
 
 const idEnhancer = withState('id', 'onSetId');
+const unitPriceEnhancer = withState('unitPrice', 'onSetUnitPrice');
+const numberOfHoursEnhancer = withState('numberOfHours', 'onSetNumberOfHours');
 
 const handlersEnhancer = withHandlers({
-  onEdit: ({ onEdit, id, member }) => () =>  onEdit(id, member),
+  onEdit: ({ onEdit, id, member }) => () => setTimeout(onEdit, 0, id, member),
   onDelete: ({ onDelete, id }) => evt => {
     evt.preventDefault();
     onDelete(id);
   }
 });
 
-const propsEnhancer = withPropsOnChange(['serviceInstanceValidationErrors', 'id'], ({ serviceInstanceValidationErrors, id }) => ({
+const propsEnhancer = withPropsOnChange([
+  'serviceInstanceValidationErrors',
+  'id',
+  'unitPrice',
+  'numberOfHours'
+], ({
+  serviceInstanceValidationErrors,
+  id,
+  unitPrice,
+  numberOfHours
+}) => ({
   validationErrors: serviceInstanceValidationErrors[id] || empty,
+  totalDue: +unitPrice * +numberOfHours
 }));
 
 const enhance = compose(
   idEnhancer,
+  unitPriceEnhancer,
+  numberOfHoursEnhancer,
   handlersEnhancer,
   propsEnhancer,
   onlyUpdateForKeys([
-    'validationErrors'
+    'validationErrors',
+    'totalDue'
   ]),
 )
 
 const ServiceInstanceItem = ({
   member,
   validationErrors,
+  totalDue,
 
   onDelete,
-  onSetId,
   onEdit,
+
+  onSetId,
+  onSetUnitPrice,
+  onSetNumberOfHours,
 }) => (
-  <tr>
-    <Field
-      component={ReduxHidden}
-      onFill={onSetId}
-      name={`${member}.id`}
-    />
+  <tr className={css.row}>
+    <Field name={`${member}.id`} component={ReduxHidden} onFill={onSetId} />
+    <Field name={`${member}.unit_price`} component={ReduxHidden} onFill={onSetUnitPrice} />
+    <Field name={`${member}.number_of_hours`} component={ReduxHidden} onFill={onSetNumberOfHours} />
+    <td>
+
+      <Field
+        component={ReduxPriorityVote}
+        name={`${member}.custom_sort_priority`}
+        onChange={onEdit}
+      />
+    </td>
     <td>
       <Field
         component={ReduxOutputText}
@@ -48,16 +82,63 @@ const ServiceInstanceItem = ({
       />
     </td>
     <td>
-      {console.log('validationErrors', validationErrors)}
+      <div className={css.unitPrice}>
+        <Field
+          component={ReduxInput}
+          name={`${member}.unit_price`}
+          onBlur={onEdit}
+          addonPre="$"
+          parse={parseInt}
+          error={validationErrors.unit_price}
+        />
+      </div>
+      &nbsp;x&nbsp;
+      <div  className={css.numberOfHours}>
       <Field
         component={ReduxInput}
-        name={`${member}.unit_price`}
+        name={`${member}.number_of_hours`}
+        type="number"
+        addonPost="hrs"
+        error={validationErrors.number_of_hours}
+        parse={parseInt}
+
         onBlur={onEdit}
-        error={validationErrors.unit_price}
       />
+      </div>
+      {' '}
+      Total&nbsp;Due:&nbsp;${totalDue}
     </td>
     <td>
-      <Button onClick={onDelete}>Delete Service Instance</Button>
+    <nobr>
+      From&nbsp;
+      <Field
+        component={ReduxDatePicker}
+        name={`${member}.start_date`}
+        className={css.date}
+        showIcon={false}
+        placeholder="Start Date"
+        onChange={onEdit}
+        error={validationErrors.start_date}
+      />
+      </nobr>
+      {' '}
+      <nobr>
+      to&nbsp;
+      <Field
+        component={ReduxDatePicker}
+        name={`${member}.end_date`}
+        className={css.date}
+        showIcon={false}
+        placeholder="End Date"
+        onChange={onEdit}
+        error={validationErrors.end_date}
+      />
+      </nobr>
+    </td>
+    <td>
+      <Button onClick={onDelete}>
+        <Icon wb="close" />
+      </Button>
     </td>
   </tr>
 )

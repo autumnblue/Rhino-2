@@ -1,21 +1,25 @@
 import { Field, FieldArray } from 'redux-form';
-import { FormGroup } from 'reactstrap';
+import { FormGroup, Col, Row } from 'reactstrap';
 import { compose, onlyUpdateForKeys, withState, withHandlers, withPropsOnChange } from 'recompose'
 
 import { ReduxInput, ReduxHidden, Button, ReduxRichTextList } from 'src/components';
-import { empty } from 'src/helpers';
+import { empty, withReduxFormValues } from 'src/helpers';
 
 import ServiceInstanceArray from './ServiceInstanceArray'
+import AdjustmentsArray from './AdjustmentsArray'
 
 const idEnhancer = withState('id', 'onSetId');
 
 const handlersEnhancer = withHandlers({
-  onEdit: ({ onEdit, id, member }) => () =>  onEdit(id, member),
+  onEdit: ({ onEdit, id, member }) => () => setTimeout(onEdit, 0, id, member),
   onDelete: ({ onDelete, id, index }) => () => onDelete(id, index),
   onAddServiceInstance: ({ onAddServiceInstance, id }) => (data) => onAddServiceInstance({
     ...data,
     service_group: id,
-    commit: true,
+  }),
+  onAddAdjustment: ({ onAddAdjustment, id }) => (data) => onAddAdjustment({
+    ...data,
+    service_group: id,
   })
 });
 
@@ -39,29 +43,40 @@ const ServiceGroupItem = ({
   extended,
   validationErrors,
   serviceInstanceValidationErrors,
+  adjustmentValidationErrors,
   className,
   serviceOptions,
 
   onSetId,
+
   onEdit,
   onDelete,
 
   onEditServiceInstance,
   onAddServiceInstance,
   onDeleteServiceInstance,
+
+  onEditAdjustment,
+  onAddAdjustment,
+  onDeleteAdjustment,
 }) => (
   <FormGroup className={className}>
-    <Field
-      component={ReduxHidden}
-      onFill={onSetId}
-      name={`${member}.id`}
-    />
-    <Field
-      component={ReduxRichTextList}
-      name={`${member}.incentives`}
-      onChange={onEdit}
-      error={validationErrors.incentives}
-    />
+    <Field name={`${member}.id`} component={ReduxHidden} onFill={onSetId} />
+
+    <Row>
+      <Col md="6" />
+      <Col md="6">
+        <FormGroup>
+          <label>Incentives</label>
+          <Field
+            component={ReduxRichTextList}
+            name={`${member}.incentives`}
+            onChange={onEdit}
+            error={validationErrors.incentives}
+          />
+        </FormGroup>
+      </Col>
+    </Row>
     <FieldArray
       name={`${member}.service_instances`}
       component={ServiceInstanceArray}
@@ -71,6 +86,15 @@ const ServiceGroupItem = ({
       onEdit={onEditServiceInstance}
       onAdd={onAddServiceInstance}
       onDelete={onDeleteServiceInstance}
+    />
+    <FieldArray
+      name={`${member}.adjustments`}
+      component={AdjustmentsArray}
+      adjustmentValidationErrors={adjustmentValidationErrors}
+
+      onEdit={onEditAdjustment}
+      onAdd={onAddAdjustment}
+      onDelete={onDeleteAdjustment}
     />
     <Base
       component={Button}

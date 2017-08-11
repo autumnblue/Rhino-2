@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { sortBy } from 'lodash'
 
 import { getServiceGroupsData } from 'src/redux/serviceGroups/selectors';
 import { getServiceInstancesData } from 'src/redux/serviceInstances/selectors'
@@ -14,18 +15,24 @@ export const getServiceOrders = createSelector(
 
 const fillServiceInstances = (serviceGroup, serviceInsancesData) => ({
   ...serviceGroup,
-  service_instances: serviceGroup.service_instances.map(id => serviceInsancesData[id])
+  service_instances: sortBy(
+    serviceGroup.service_instance_ids.map(id => serviceInsancesData[id]),
+    'custom_sort_priority'
+  )
 })
 
+
+// Yeah, looks not good :(
 export const getCurrentServiceOrder = createSelector(
   [getCurrentServiceOrderId, getServiceOrdersData, getServiceGroupsData, getServiceInstancesData],
   (id, data, serviceGroupsData, serviceInsancesData) => ({
     ...data[id],
     primary_service_group: fillServiceInstances(
-      serviceGroupsData[data[id].primary_service_group],
+      serviceGroupsData[data[id].primary_service_group_id],
       serviceInsancesData
     ),
-    service_groups: data[id].service_groups.map(sgId => fillServiceInstances(
+    service_groups: data[id].service_group_ids
+    .map(sgId => fillServiceInstances(
       serviceGroupsData[sgId],
       serviceInsancesData
     ))

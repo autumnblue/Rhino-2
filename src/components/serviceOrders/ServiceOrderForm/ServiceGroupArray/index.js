@@ -7,19 +7,7 @@ import ServiceGroupItem from '../ServiceGroupItem';
 import css from './style.css';
 
 const handlersEnhancer = withHandlers({
-  onAdd: ({ onAdd, fields }) => async () => {
-    const addAction = await onAdd();
-    const { data } = addAction.response;
-
-    if(data && data.service_group) {
-      //fields.push(data.service_group);
-    }
-  },
-  onDelete: ({ onDelete, fields }) => (id, index) => {
-    onDelete(id);
-    //console.log(deleteAction)
-    //fields.remove(index)
-  }
+  onDelete: ({ onDelete }) => (id) => onDelete(id)
 });
 
 const enhance = compose(

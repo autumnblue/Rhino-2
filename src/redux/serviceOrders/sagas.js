@@ -5,7 +5,7 @@ import { pickBy, pick, isEmpty } from 'lodash';
 import { push } from 'react-router-redux';
 import qs from 'qs';
 
-import simpleObjectDiff from 'src/helpers/simpleObjectDiff';
+import { simpleObjectDiff } from 'src/helpers';
 
 import * as c from './constants';
 import { createServiceOrder, editServiceOrder, deleteServiceOrder } from './actions';
@@ -62,12 +62,12 @@ function* editServiceOrderFormChange() {
     const { id } = yield take(c.EDIT_SERVICE_ORDER_FORM_CHANGE);
     const state = yield select();
     const { values, registeredFields } = state.form.editServiceOrderForm;
-    const tool = yield select(getCurrentServiceOrder);
+    const serviceOrder = yield select(getCurrentServiceOrder);
 
     // since we put entire client to reduxForm using initialValues
     // we need to extract only those properties which are rendered on the page
     const keys = Object.keys(registeredFields);
-    const diff = simpleObjectDiff(pick(values, keys), tool);
+    const diff = simpleObjectDiff(serviceOrder, pick(values, keys));
 
     if (!isEmpty(diff)) {
       yield put(editServiceOrder(id, {

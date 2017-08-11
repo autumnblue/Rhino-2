@@ -14,7 +14,7 @@ function place(object, result) {
 
     return object.id;
   }
-  
+
   return object;
 }
 
@@ -56,6 +56,7 @@ function pluralizeKeys(object) {
 export function combineRelationships(state, response) {
   const normalized = pluralizeKeys(normalize(response));
   const newState = Object.assign({}, state);
+
 
   for (const [key, branch] of Object.entries(newState)) {
     if (key in normalized) {

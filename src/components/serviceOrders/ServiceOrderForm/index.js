@@ -52,6 +52,7 @@ const ServiceOrderForm = ({
   serviceInstanceValidationErrors,
 
   onFieldChange,
+  
   onEditServiceGroup,
   onAddServiceGroup,
   onDeleteServiceGroup,
@@ -62,7 +63,7 @@ const ServiceOrderForm = ({
 }) => (
   <Form>
     <Row>
-      
+
       <Col md="6" sm="12">
         <em>Created: {formatTime(created).date() || '-'}</em>
         <br /><br />

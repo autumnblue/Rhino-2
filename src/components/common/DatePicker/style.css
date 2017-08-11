@@ -21,6 +21,10 @@
   }
 }
 
+.noIcon :global(.DateInput) {
+  width: 100%;
+}
+
 .disabled {
   cursor: not-allowed;
 

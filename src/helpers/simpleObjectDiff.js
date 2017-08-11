@@ -3,7 +3,7 @@ export default function simpleObjectDiff(source, target) {
 
   for (const [key, value] of Object.entries(source)) {
     if (value !== target[key]) {
-      result[key] = value;
+      result[key] = target[key];
     }
   }
 

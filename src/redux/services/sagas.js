@@ -5,7 +5,7 @@ import { isEmpty, pick, pickBy } from 'lodash';
 import { formValueSelector } from 'redux-form';
 import qs from 'qs';
 
-import simpleObjectDiff from 'src/helpers/simpleObjectDiff';
+import { simpleObjectDiff } from 'src/helpers';
 
 import { getService } from './selectors';
 import { editService, createService, deleteService } from './actions';
@@ -34,7 +34,7 @@ function* editServiceFormChange() {
     const service = yield select(getService);
 
     const keys = Object.keys(registeredFields);
-    const diff = simpleObjectDiff(pick(values, keys), service);
+    const diff = simpleObjectDiff(service, pick(values, keys));
 
     if (!isEmpty(diff)) {
       yield put(editService(id, {

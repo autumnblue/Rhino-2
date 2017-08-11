@@ -5,13 +5,18 @@ import { compose, pure, withState, withHandlers } from 'recompose'
 import { ReduxOutputText, Select, Button } from 'src/components';
 
 import ServiceInstanceItem from '../ServiceInstanceItem'
+import css from './style.css'
 
 const serviceEnhancer = withState('serviceValue', 'onSetService', null);
 
 const handlersEnhancer = withHandlers({
-  onAdd: ({ onAdd, serviceValue }) => () => onAdd({
-    service: serviceValue
-  })
+  onAdd: ({ onAdd, serviceValue, onSetService }) => () => {
+    onAdd({
+      service: serviceValue
+    });
+
+    onSetService(null);
+  }
 })
 
 const enhance = compose(
@@ -32,9 +37,8 @@ const ServiceInstanceArray = ({
   onEdit,
 }) => (
   <FormGroup tag="fieldset">
-  
     <legend>Selected Services</legend>
-    <Table>
+    <Table striped className={css.table}>
       <tbody>
         {fields.map(member => (
           <ServiceInstanceItem

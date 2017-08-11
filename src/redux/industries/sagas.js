@@ -53,12 +53,12 @@ function* editIndustryFormChange() {
     const { id } = yield take(c.EDIT_INDUSTRY_FORM_CHANGE);
     const state = yield select();
     const { values, registeredFields } = state.form.editIndustryForm;
-    const tool = yield select(getCurrentIndustry);
+    const industry = yield select(getCurrentIndustry);
 
     // since we put entire client to reduxForm using initialValues
     // we need to extract only those properties which are rendered on the page
     const keys = Object.keys(registeredFields);
-    const diff = simpleObjectDiff(pick(values, keys), tool);
+    const diff = simpleObjectDiff(industry, pick(values, keys));
 
     if (!isEmpty(diff)) {
       yield put(editIndustry(id, {

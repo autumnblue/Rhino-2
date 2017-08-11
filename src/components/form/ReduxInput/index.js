@@ -14,20 +14,13 @@ const propTypes = {
 const enhance = pure;
 
 const ReduxInput = ({
-  input: { value, onChange, onBlur },
-  error,
-  wrapperClassName,
+  input,
   ...props
 }) => (
-  <div className={wrapperClassName || ''}>
-    <Input
-      value={value}
-      onChange={onChange}
-      onBlur={onBlur}
-      {...omit(props, 'meta')}
-    />
-    <FieldError error={error} />
-  </div>
+  <Input
+    {...input}
+    {...omit(props, 'meta')}
+  />
 );
 
 ReduxInput.propTypes = propTypes;

@@ -43,4 +43,5 @@ export const editServiceInstance = (id, data) => ({
 export const deleteServiceInstance = id => ({
   types: [c.DELETE_SERVICE_INSTANCE, c.DELETE_SERVICE_INSTANCE_SUCCESS, c.DELETE_SERVICE_INSTANCE_FAIL],
   api: ({ del }) => del(endpoint + id),
+  id,
 });

@@ -1,6 +1,6 @@
 import { SingleDatePicker } from 'react-dates';
 import { bool, object, func, string, oneOfType, arrayOf } from 'prop-types';
-import { compose, pure, withPropsOnChange, withHandlers, withState } from 'recompose';
+import { compose, pure, withPropsOnChange, withHandlers, withState, defaultProps } from 'recompose';
 import moment from 'moment';
 import { omit } from 'lodash';
 import classNames from 'classnames';
@@ -12,7 +12,7 @@ import css from './style.css';
 const propTypes = {
   error: oneOfType([string, arrayOf(string)]),
   focused: bool.isRequired,
-  date: object.isRequired,
+  date: object,
   className: string.isRequired,
 
   onFocusChange: func.isRequired,
@@ -21,6 +21,10 @@ const propTypes = {
 
 const returnFalse = () => false;
 
+const defaultPropsEnhancer = defaultProps({
+  showIcon: true,
+})
+
 const focusedEnhancer = withState('focused', 'onFocusChange', false);
 
 const handlersEnhancer = withHandlers({
@@ -28,15 +32,21 @@ const handlersEnhancer = withHandlers({
   onChange: ({ onChange }) => value => onChange(value ? value.toDate().toISOString() : value),
 });
 
-const propsEnhancer = withPropsOnChange(['value', 'disabled'], ({ value, disabled }) => ({
-  date: moment(value || Date.now()),
-  className: classNames({
-    [css.datePicker]: true,
-    [css.disabled]: !!disabled,
-  }),
-}));
+const propsEnhancer = withPropsOnChange(
+  ['value', 'disabled', 'className', 'showIcon'],
+  ({ value, disabled, className, showIcon }) => ({
+    date: value ? moment(value) : null,
+    className: classNames({
+      [css.datePicker]: true,
+      [css.disabled]: !!disabled,
+      [css.noIcon]: !showIcon,
+      [className]: !!className,
+    }),
+  })
+);
 
 const enhance = compose(
+  defaultPropsEnhancer,
   focusedEnhancer,
   handlersEnhancer,
   propsEnhancer,
@@ -48,6 +58,7 @@ const DatePicker = ({
   date,
   error,
   className,
+  showIcon,
 
   onFocusChange,
   onChange,
@@ -55,7 +66,7 @@ const DatePicker = ({
 }) => (
   <div className={className}>
     <SingleDatePicker
-      showDefaultInputIcon
+      showDefaultInputIcon={showIcon}
       focused={focused}
       date={date}
       onDateChange={onChange}
