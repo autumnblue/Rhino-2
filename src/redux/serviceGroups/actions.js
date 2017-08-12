@@ -37,7 +37,7 @@ export const loadSingleServiceGroup = id => ({
   ],
   api: ({ get }) => get(endpoint + id, {
     params: {
-      include: ['service_instances']
+      include: ['service_instances', 'adjustments']
     }
   }),
 });
@@ -45,7 +45,10 @@ export const loadSingleServiceGroup = id => ({
 export const createServiceGroup = data => ({
   types: [c.CREATE_SERVICE_GROUP, c.CREATE_SERVICE_GROUP_SUCCESS, c.CREATE_SERVICE_GROUP_FAIL],
   api: ({ post }) => post(endpoint, {
-    data,
+    data: {
+      ...data,
+      commit: true,
+    },
     params: {
       include: ['service_order']
     }

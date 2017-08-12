@@ -31,7 +31,12 @@ export const loadServiceInstances = ({
 
 export const createServiceInstance = data => ({
   types: [c.CREATE_SERVICE_INSTANCE, c.CREATE_SERVICE_INSTANCE_SUCCESS, c.CREATE_SERVICE_INSTANCE_FAIL],
-  api: ({ post }) => post(endpoint, { data }),
+  api: ({ post }) => post(endpoint, {
+    data: {
+      ...data,
+      commit: true,
+    }
+  }),
 });
 
 export const editServiceInstance = (id, data) => ({

@@ -34,6 +34,7 @@ const enhance = compose(
   onlyUpdateForKeys([
     'validationErrors',
     'serviceInstanceValidationErrors',
+    'adjustmentValidationErrors',
     'serviceOptions'
   ]),
 )
@@ -87,6 +88,7 @@ const ServiceGroupItem = ({
       onAdd={onAddServiceInstance}
       onDelete={onDeleteServiceInstance}
     />
+
     <FieldArray
       name={`${member}.adjustments`}
       component={AdjustmentsArray}

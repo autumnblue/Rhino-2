@@ -50,9 +50,10 @@ const ServiceOrderForm = ({
   validationErrors,
   serviceGroupsValidationErrors,
   serviceInstanceValidationErrors,
+  adjustmentValidationErrors,
 
   onFieldChange,
-  
+
   onEditServiceGroup,
   onAddServiceGroup,
   onDeleteServiceGroup,
@@ -60,6 +61,10 @@ const ServiceOrderForm = ({
   onEditServiceInstance,
   onAddServiceInstance,
   onDeleteServiceInstance,
+
+  onEditAdjustment,
+  onAddAdjustment,
+  onDeleteAdjustment,
 }) => (
   <Form>
     <Row>
@@ -107,30 +112,44 @@ const ServiceOrderForm = ({
       </Col>
       <Col md="12">
       <ServiceGroupPrimary
-        serviceOptions={serviceOptions}
-        onEditServiceGroup={onEditServiceGroup}
-        serviceGroupsValidationErrors={serviceGroupsValidationErrors}
-        serviceInstanceValidationErrors={serviceInstanceValidationErrors}
+        {...{
+          serviceOptions,
+          onEditServiceGroup,
+          serviceGroupsValidationErrors,
+          serviceInstanceValidationErrors,
+          adjustmentValidationErrors,
 
-        onEditServiceInstance={onEditServiceInstance}
-        onAddServiceInstance={onAddServiceInstance}
-        onDeleteServiceInstance={onDeleteServiceInstance}
+          onEditServiceInstance,
+          onAddServiceInstance,
+          onDeleteServiceInstance,
+
+          onEditAdjustment,
+          onAddAdjustment,
+          onDeleteAdjustment,
+        }}
       />
 
       <FieldArray
         name="service_groups"
         component={ServiceGroupArray}
-        serviceOptions={serviceOptions}
-        serviceGroupsValidationErrors={serviceGroupsValidationErrors}
-        serviceInstanceValidationErrors={serviceInstanceValidationErrors}
+        {...{
+          serviceOptions,
+          serviceGroupsValidationErrors,
+          serviceInstanceValidationErrors,
+          adjustmentValidationErrors,
 
-        onEdit={onEditServiceGroup}
-        onAdd={onAddServiceGroup}
-        onDelete={onDeleteServiceGroup}
+          onEdit: onEditServiceGroup,
+          onAdd: onAddServiceGroup,
+          onDelete: onDeleteServiceGroup,
 
-        onEditServiceInstance={onEditServiceInstance}
-        onAddServiceInstance={onAddServiceInstance}
-        onDeleteServiceInstance={onDeleteServiceInstance}
+          onEditServiceInstance,
+          onAddServiceInstance,
+          onDeleteServiceInstance,
+
+          onEditAdjustment,
+          onAddAdjustment,
+          onDeleteAdjustment,
+        }}
       />
       </Col>
     </Row>

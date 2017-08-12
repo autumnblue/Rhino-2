@@ -7,27 +7,41 @@ const ServiceGroupPrimary = ({
   serviceOptions,
   serviceGroupsValidationErrors,
   serviceInstanceValidationErrors,
+  adjustmentValidationErrors,
 
   onEditServiceGroup,
 
   onEditServiceInstance,
   onAddServiceInstance,
   onDeleteServiceInstance,
+
+  onEditAdjustment,
+  onAddAdjustment,
+  onDeleteAdjustment,
 }) => (
   <FormGroup tag="fieldset">
+
     <legend>Primary Service Group</legend>
     <div className={css.container}>
       <ServiceGroupItem
         member="primary_service_group"
-        serviceOptions={serviceOptions}
-        serviceGroupsValidationErrors={serviceGroupsValidationErrors}
-        serviceInstanceValidationErrors={serviceInstanceValidationErrors}
+        {...{
+          serviceOptions,
+          serviceGroupsValidationErrors,
+          serviceInstanceValidationErrors,
+          adjustmentValidationErrors,
 
-        onEdit={onEditServiceGroup}
+          onEdit: onEditServiceGroup,
 
-        onEditServiceInstance={onEditServiceInstance}
-        onAddServiceInstance={onAddServiceInstance}
-        onDeleteServiceInstance={onDeleteServiceInstance}
+          onEditServiceInstance,
+          onAddServiceInstance,
+          onDeleteServiceInstance,
+
+          onEditAdjustment,
+          onAddAdjustment,
+          onDeleteAdjustment,
+        }}
+
       />
     </div>
   </FormGroup>

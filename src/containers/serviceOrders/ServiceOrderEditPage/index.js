@@ -40,6 +40,7 @@ const ServiceOrderEditPage = ({
   validationErrors,
   serviceGroupsValidationErrors,
   serviceInstanceValidationErrors,
+  adjustmentValidationErrors,
 
   onDelete,
   onFieldChange,
@@ -51,8 +52,13 @@ const ServiceOrderEditPage = ({
   onEditServiceInstance,
   onAddServiceInstance,
   onDeleteServiceInstance,
+
+  onEditAdjustment,
+  onAddAdjustment,
+  onDeleteAdjustment,
 }) => (
   <Page>
+  
     <PageHeader breadcrumbs={breadcrumbs}>
       <Button tag={Link} to="/service-orders" color="success">Done</Button>
     </PageHeader>
@@ -71,6 +77,7 @@ const ServiceOrderEditPage = ({
         choices,
         serviceGroupsValidationErrors,
         serviceInstanceValidationErrors,
+        adjustmentValidationErrors,
 
         onFieldChange,
         onEditServiceGroup,
@@ -80,6 +87,10 @@ const ServiceOrderEditPage = ({
         onEditServiceInstance,
         onAddServiceInstance,
         onDeleteServiceInstance,
+
+        onEditAdjustment,
+        onAddAdjustment,
+        onDeleteAdjustment,
       }}
       />
       <Button color="danger" onClick={onDelete}>Delete</Button>

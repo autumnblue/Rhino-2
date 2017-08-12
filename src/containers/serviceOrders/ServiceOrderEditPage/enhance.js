@@ -24,7 +24,12 @@ import {
   editServiceInstanceFieldChange,
   createServiceInstance,
   deleteServiceInstanceTrigger,
-} from 'src/redux/serviceInstances/actions'
+} from 'src/redux/serviceInstances/actions';
+import {
+  editAdjustmentFieldChange,
+  createAdjustment,
+  deleteAdjustmentTrigger,
+} from 'src/redux/adjustments/actions'
 
 // selectors
 import { getCurrentServiceOrder } from 'src/redux/serviceOrders/selectors';
@@ -78,6 +83,7 @@ const reduxConnect = connect(state => ({
   usersData: state.users.data,
   serviceGroupsValidationErrors: state.serviceGroups.validationErrorsPerId,
   serviceInstanceValidationErrors: state.serviceInstances.validationErrorsPerId,
+  adjustmentValidationErrors: state.adjustments.validationErrorsPerId,
 }), {
   onDelete: deleteServiceOrderTrigger,
   onFieldChange: editServiceOrderFormChange,
@@ -89,6 +95,10 @@ const reduxConnect = connect(state => ({
   onEditServiceInstance: editServiceInstanceFieldChange,
   onAddServiceInstance: createServiceInstance,
   onDeleteServiceInstance: deleteServiceInstanceTrigger,
+
+  onEditAdjustment: editAdjustmentFieldChange,
+  onAddAdjustment: createAdjustment,
+  onDeleteAdjustment: deleteAdjustmentTrigger,
 });
 
 const propsEnhancer = withPropsOnChange(['serviceOrder'], ({ serviceOrder }) => ({

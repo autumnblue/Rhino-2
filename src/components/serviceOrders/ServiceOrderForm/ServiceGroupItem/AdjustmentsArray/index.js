@@ -1,29 +1,73 @@
-import { FormGroup, } from 'reactstrap'
+import { FormGroup, Table } from 'reactstrap';
+import { compose, pure, withState, withPropsOnChange, withHandlers } from 'recompose';
+
+import { Button } from 'src/components'
 
 import AdjustmentsItem from '../AdjustmentsItem';
 import AdjustmentFields from './AdjustmentFields';
+import css from './style.css';
+
+const editingIndexEnhancer = withState('editingIndex', 'onSetEditingIndex', null)
+
+const propsEnhancer = withPropsOnChange(['fields', 'editingIndex'], ({ fields, editingIndex }) => ({
+  edigingMember: `${fields.name}[${editingIndex}]`,
+  isEditing: typeof editingIndex === 'number'
+}))
+
+const handlersEnhancer = withHandlers({
+  onCancel: ({ onSetEditingIndex }) => () => onSetEditingIndex(null),
+})
+
+const enhance = compose(
+  editingIndexEnhancer,
+  propsEnhancer,
+  handlersEnhancer,
+  pure,
+);
 
 const AdjustmentsArray = ({
   fields,
   adjustmentValidationErrors,
+  editingIndex,
+  isEditing,
+  edigingMember,
 
   onDelete,
   onEdit,
+  onAdd,
+  onCancel,
+  onSetEditingIndex,
 }) => (
-  <div>
-    <AdjustmentFields />
+  <FormGroup tag="fieldset">
+    <legend>Adjusments</legend>
 
-  {fields.map((member) => (
-    <AdjustmentsItem
-      member={member}
-      key={member}
+    <div className={css.container}>
+    <AdjustmentFields
       adjustmentValidationErrors={adjustmentValidationErrors}
-
-      onDelete={onDelete}
+      member={edigingMember}
+      isEditing={isEditing}
       onEdit={onEdit}
+      onAdd={onAdd}
+      onCancel={onCancel}
     />
-  ))}
-  </div>
+    <Table striped className={css.table}>
+    <tbody>
+    {fields.map((member, index) => (
+      <AdjustmentsItem
+        member={member}
+        key={member}
+        index={index}
+        editingIndex={editingIndex}
+
+        onDelete={onDelete}
+        onEdit={onEdit}
+        onSetEditingIndex={onSetEditingIndex}
+      />
+    ))}
+    </tbody>
+    </Table>
+    </div>
+  </FormGroup>
 )
 
-export default AdjustmentsArray
+export default enhance(AdjustmentsArray)

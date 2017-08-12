@@ -1,4 +1,5 @@
 // should be sorted alphabetically
+export { default as adjustments } from './adjustments/reducer';
 export { default as app } from './app/reducer';
 export { default as assets } from './assets/reducer';
 export { default as clients } from './clients/reducer';

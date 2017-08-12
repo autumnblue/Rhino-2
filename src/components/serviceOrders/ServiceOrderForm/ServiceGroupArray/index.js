@@ -20,6 +20,7 @@ const ServiceGroupArray = ({
   serviceOptions,
   serviceGroupsValidationErrors,
   serviceInstanceValidationErrors,
+  adjustmentValidationErrors,
 
   onAdd,
   onEdit,
@@ -28,6 +29,10 @@ const ServiceGroupArray = ({
   onEditServiceInstance,
   onAddServiceInstance,
   onDeleteServiceInstance,
+
+  onEditAdjustment,
+  onAddAdjustment,
+  onDeleteAdjustment,
 }) => (
   <FormGroup tag="fieldset">
     <legend>Recurring Service Groups</legend>
@@ -38,18 +43,25 @@ const ServiceGroupArray = ({
         member={member}
         index={index}
         key={member}
-        serviceOptions={serviceOptions}
-        serviceGroupsValidationErrors={serviceGroupsValidationErrors}
-        serviceInstanceValidationErrors={serviceInstanceValidationErrors}
+        extended={true}
+        {...{
+          serviceOptions,
+          serviceGroupsValidationErrors,
+          serviceInstanceValidationErrors,
+          adjustmentValidationErrors,
 
-        extended
+          onDelete,
+          onEdit,
 
-        onDelete={onDelete}
-        onEdit={onEdit}
+          onEditServiceInstance,
+          onAddServiceInstance,
+          onDeleteServiceInstance,
 
-        onEditServiceInstance={onEditServiceInstance}
-        onAddServiceInstance={onAddServiceInstance}
-        onDeleteServiceInstance={onDeleteServiceInstance}
+          onEditAdjustment,
+          onAddAdjustment,
+          onDeleteAdjustment,
+        }}
+
       />
     ))}
     </div>
