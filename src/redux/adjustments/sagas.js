@@ -6,7 +6,7 @@ import { push } from 'react-router-redux';
 import qs from 'qs';
 
 import { simpleObjectDiff } from 'src/helpers';
-import { loadSingleServiceGroup } from 'src/redux/serviceGroups/actions'
+import { loadSingleServiceGroup } from 'src/redux/serviceGroups/actions';
 
 import * as c from './constants';
 import { createAdjustment, editAdjustment, deleteAdjustment } from './actions';
@@ -42,7 +42,7 @@ function* editAdjustmentFieldChange() {
 
       resolve(apiAction);
 
-      if(diff.custom_sort_priority) {
+      if (diff.custom_sort_priority) {
         // reload list
         yield put(loadSingleServiceGroup(adjustment.service_group_id));
       }
@@ -51,7 +51,7 @@ function* editAdjustmentFieldChange() {
 }
 
 function* deleteAdjustmentSuccess() {
-  while(true) {
+  while (true) {
     const { id } = yield take(c.DELETE_ADJUSTMENT_SUCCESS);
     const { service_group } = yield select(getSpecifiedAdjustment, id);
 

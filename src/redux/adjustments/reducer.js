@@ -19,23 +19,23 @@ function validationErrorsPerId(state = initialState.validationErrorsPerId, actio
     case c.EDIT_ADJUSTMENT_FAIL:
       return {
         ...state,
-        [action.id]: validationErrorsHelper(state, action)
-      }
+        [action.id]: validationErrorsHelper(state, action),
+      };
     case c.CREATE_ADJUSTMENT_FAIL:
       return {
         ...state,
-        new: validationErrorsHelper(state, action)
-      }
+        new: validationErrorsHelper(state, action),
+      };
     case c.EDIT_ADJUSTMENT_SUCCESS:
       return {
         ...state,
-        [action.id]: {}
-      }
+        [action.id]: {},
+      };
     case c.CREATE_ADJUSTMENT_SUCCESS:
       return {
         ...state,
-        new: {}
-      }
+        new: {},
+      };
     default:
       return state;
   }

@@ -6,7 +6,7 @@ export const NEW_SERVICE_ORDER_FORM_CHANGE = `${prefix}/NEW_SERVICE_ORDER_FORM_C
 export const EDIT_SERVICE_ORDER_FORM_CHANGE = `${prefix}/EDIT_SERVICE_ORDER_FORM_CHANGE`;
 export const DELETE_SERVICE_ORDER_TRIGGER = `${prefix}/DELETE_SERVICE_ORDER_TRIGGER`;
 export const PAGE_CHANGE = `${prefix}/PAGE_CHANGE`;
-export const SERVICE_GROUP_EDIT = `${prefix}/SERVICE_GROUP_EDIT`
+export const SERVICE_GROUP_EDIT = `${prefix}/SERVICE_GROUP_EDIT`;
 
 // API actions
 export const LOAD_SERVICE_ORDERS = `${prefix}/LOAD_SERVICE_ORDERS`;

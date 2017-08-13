@@ -2,7 +2,7 @@ const prefix = 'adjustments';
 
 // UI actions
 export const DELETE_ADJUSTMENT_TRIGGER = `${prefix}/DELETE_ADJUSTMENT_TRIGGER`;
-export const EDIT_ADJUSTMENT_FIELD_CHANGE = `${prefix}/EDIT_ADJUSTMENT_FIELD_CHANGE`
+export const EDIT_ADJUSTMENT_FIELD_CHANGE = `${prefix}/EDIT_ADJUSTMENT_FIELD_CHANGE`;
 
 // API actions
 export const LOAD_ADJUSTMENTS = `${prefix}/LOAD_ADJUSTMENTS`;

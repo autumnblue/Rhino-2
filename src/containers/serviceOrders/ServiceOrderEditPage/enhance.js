@@ -14,12 +14,12 @@ import { loadClients } from 'src/redux/clients/actions';
 import { loadUsers } from 'src/redux/users/actions';
 import { loadIndustries } from 'src/redux/industries/actions';
 import { loadFocalProfiles } from 'src/redux/focalProfiles/actions';
-import { loadServices } from 'src/redux/services/actions'
+import { loadServices } from 'src/redux/services/actions';
 import {
   editServiceGroupFieldChange,
   createServiceGroup,
   deleteServiceGroupTrigger,
-} from 'src/redux/serviceGroups/actions'
+} from 'src/redux/serviceGroups/actions';
 import {
   editServiceInstanceFieldChange,
   createServiceInstance,
@@ -29,11 +29,11 @@ import {
   editAdjustmentFieldChange,
   createAdjustment,
   deleteAdjustmentTrigger,
-} from 'src/redux/adjustments/actions'
+} from 'src/redux/adjustments/actions';
 
 // selectors
 import { getCurrentServiceOrder, getSummaryOfCosts } from 'src/redux/serviceOrders/selectors';
-import { loadServiceGroupChoices } from 'src/redux/serviceGroups/actions'
+import { loadServiceGroupChoices } from 'src/redux/serviceGroups/actions';
 import { getClients } from 'src/redux/clients/selectors';
 import { getUsers } from 'src/redux/users/selectors';
 import { getIndustries } from 'src/redux/industries/selectors';
@@ -46,36 +46,34 @@ const reduxAsyncConnect = asyncConnect([{
     params: { serviceOrderId },
   }) => {
     try {
+      const [serviceOrderSuccessAction] = await Promise.all([
+        dispatch(loadSingleServiceOrder(serviceOrderId)),
+        dispatch(loadServiceOrderChoices()),
+        dispatch(loadServiceGroupChoices()),
+        dispatch(loadClients({
+          filter: {
+            'service_orders.id': { eq: serviceOrderId },
+          },
+        })),
+        dispatch(loadUsers()),
+        dispatch(loadIndustries()),
+        dispatch(loadServices()),
+      ]);
 
+      const { client } = serviceOrderSuccessAction.response.data.service_order;
 
-    const [serviceOrderSuccessAction] = await Promise.all([
-      dispatch(loadSingleServiceOrder(serviceOrderId)),
-      dispatch(loadServiceOrderChoices()),
-      dispatch(loadServiceGroupChoices()),
-      dispatch(loadClients({
-        filter: {
-          'service_orders.id': { eq: serviceOrderId },
-        },
-      })),
-      dispatch(loadUsers()),
-      dispatch(loadIndustries()),
-      dispatch(loadServices())
-    ]);
+      if (client) {
+        return dispatch(loadFocalProfiles({
+          filter: {
+            'client.id': { eq: client.id },
+          },
+        }));
+      }
 
-    const { client } = serviceOrderSuccessAction.response.data.service_order;
-
-    if (client) {
-      return dispatch(loadFocalProfiles({
-        filter: {
-          'client.id': { eq: client.id },
-        },
-      }));
+      return undefined;
+    } catch (e) {
+      console.error(e);
     }
-
-    return undefined;
-  } catch(e) {
-    console.error(e);
-  }
   },
 }]);
 

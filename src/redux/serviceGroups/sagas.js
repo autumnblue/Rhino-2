@@ -38,7 +38,7 @@ function* editServiceGroupFieldChange() {
 
     const diff = simpleObjectDiff(
       serviceGroup,
-      omit(data, ['service_instances', 'adjustments'])
+      omit(data, ['service_instances', 'adjustments']),
     );
 
     if (!isEmpty(diff)) {
@@ -51,7 +51,7 @@ function* editServiceGroupFieldChange() {
 }
 
 function* deleteServiceGroupSuccess() {
-  while(true) {
+  while (true) {
     const { id } = yield take(c.DELETE_SERVICE_GROUP_SUCCESS);
     const { service_order_id } = yield select(getSpecifiedServiceGroup, id);
 

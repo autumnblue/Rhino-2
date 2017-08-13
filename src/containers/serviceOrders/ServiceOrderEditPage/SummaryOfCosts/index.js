@@ -1,7 +1,7 @@
 import { FormGroup, Row, Col } from 'reactstrap';
 
 import { formatMoney, formatAdjustment } from 'src/helpers';
-import { FieldError} from 'src/components'
+import { FieldError } from 'src/components';
 
 import ServiceGroupCosts from './ServiceGroupCosts';
 
@@ -15,17 +15,17 @@ const SummaryOfCosts = ({
   <FormGroup>
     <legend>Summary of Costs</legend>
     <Row>
-    <Col lg="4" md="6" sm="6" xs="12">
-      <ServiceGroupCosts
-        name="Primary Service Group"
-        subtotal={primaryServiceGroupCosts.subtotal}
-        total={primaryServiceGroupCosts.total}
-        instances={primaryServiceGroupCosts.instances}
-        adjustments={primaryServiceGroupCosts.adjustments}
-      />
-    </Col>
-    <Col lg="4" md="6" sm="6" xs="12">
-      {serviceGroupsCosts.map(({
+      <Col lg="4" md="6" sm="6" xs="12">
+        <ServiceGroupCosts
+          name="Primary Service Group"
+          subtotal={primaryServiceGroupCosts.subtotal}
+          total={primaryServiceGroupCosts.total}
+          instances={primaryServiceGroupCosts.instances}
+          adjustments={primaryServiceGroupCosts.adjustments}
+        />
+      </Col>
+      <Col lg="4" md="6" sm="6" xs="12">
+        {serviceGroupsCosts.map(({
         serviceGroup,
         subtotal,
         total,
@@ -41,30 +41,31 @@ const SummaryOfCosts = ({
           adjustments={adjustments}
         />
       ))}
-    </Col>
-    <Col lg="4" md="6" sm="12" xs="12">
-      <p>
+      </Col>
+      <Col lg="4" md="6" sm="12" xs="12">
+        <p>
         Subtotal:
         {' '}
-        <strong className="float-right">${formatMoney(subtotal)}</strong>
-      </p>
-      <p>
-        <u>
+          <strong className="float-right">${formatMoney(subtotal)}</strong>
+        </p>
+        <p>
+          <u>
         Total Due:
         </u>
-        {' '}
-        <strong className="float-right">
-          <u>
+          {' '}
+          <strong className="float-right">
+            <u>
             ${formatMoney(total)}
-          </u>
-        </strong>
-        <FieldError error={
+            </u>
+          </strong>
+          <FieldError error={
           total.toFixed(2) !== serverSideTotal.toFixed(2)
             ? `Client-side and server-side total_due value (which is equal to $${formatMoney(serverSideTotal)}) calculations are different!`
             : null
-        } />
-      </p>
-    </Col>
+        }
+          />
+        </p>
+      </Col>
     </Row>
   </FormGroup>
 );

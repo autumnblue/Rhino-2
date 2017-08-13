@@ -37,8 +37,8 @@ export const createServiceInstance = data => ({
       commit: true,
     },
     params: {
-      include: ['service_group']
-    }
+      include: ['service_group'],
+    },
   }),
 });
 
@@ -47,8 +47,8 @@ export const editServiceInstance = (id, data) => ({
   api: ({ patch }) => patch(endpoint + id, {
     data,
     params: {
-      include: ['service_group']
-    }
+      include: ['service_group'],
+    },
   }),
   id,
 });

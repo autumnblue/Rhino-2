@@ -55,8 +55,8 @@ export const loadSingleServiceGroup = id => ({
   ],
   api: ({ get }) => get(endpoint + id, {
     params: {
-      include: ['service_instances', 'adjustments']
-    }
+      include: ['service_instances', 'adjustments'],
+    },
   }),
 });
 
@@ -68,8 +68,8 @@ export const createServiceGroup = data => ({
       commit: true,
     },
     params: {
-      include: ['service_order']
-    }
+      include: ['service_order'],
+    },
   }),
 });
 
@@ -78,8 +78,8 @@ export const editServiceGroup = (id, data) => ({
   api: ({ patch }) => patch(endpoint + id, {
     data,
     params: {
-      include: ['service_order']
-    }
+      include: ['service_order'],
+    },
   }),
   id,
 });

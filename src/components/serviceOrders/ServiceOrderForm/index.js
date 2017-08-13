@@ -1,6 +1,6 @@
 import { Col, Row, Form } from 'reactstrap';
 import { object, func, objectOf, string, number, bool } from 'prop-types';
-import { Field, FieldArray } from 'redux-form'
+import { Field, FieldArray } from 'redux-form';
 
 import { breadcrumbsType, selectOptionsType, userType } from 'src/prop-types';
 import formatTime from 'src/helpers/formatTime';
@@ -120,49 +120,49 @@ const ServiceOrderForm = ({
       </Base>
       <Base exists={!isNew} component={Col} md="12">
 
-      <ServiceGroupPrimary
-        {...{
-          serviceOptions,
-          onEditServiceGroup,
-          summaryOfCosts,
-          serviceGroupsValidationErrors,
-          serviceInstanceValidationErrors,
-          adjustmentValidationErrors,
+        <ServiceGroupPrimary
+          {...{
+            serviceOptions,
+            onEditServiceGroup,
+            summaryOfCosts,
+            serviceGroupsValidationErrors,
+            serviceInstanceValidationErrors,
+            adjustmentValidationErrors,
 
-          onEditServiceInstance,
-          onAddServiceInstance,
-          onDeleteServiceInstance,
+            onEditServiceInstance,
+            onAddServiceInstance,
+            onDeleteServiceInstance,
 
-          onEditAdjustment,
-          onAddAdjustment,
-          onDeleteAdjustment,
-        }}
-      />
+            onEditAdjustment,
+            onAddAdjustment,
+            onDeleteAdjustment,
+          }}
+        />
 
-      <FieldArray
-        name="service_groups"
-        component={ServiceGroupArray}
-        {...{
-          serviceOptions,
-          frequencyOptions,
-          summaryOfCosts,
-          serviceGroupsValidationErrors,
-          serviceInstanceValidationErrors,
-          adjustmentValidationErrors,
+        <FieldArray
+          name="service_groups"
+          component={ServiceGroupArray}
+          {...{
+            serviceOptions,
+            frequencyOptions,
+            summaryOfCosts,
+            serviceGroupsValidationErrors,
+            serviceInstanceValidationErrors,
+            adjustmentValidationErrors,
 
-          onEdit: onEditServiceGroup,
-          onAdd: onAddServiceGroup,
-          onDelete: onDeleteServiceGroup,
+            onEdit: onEditServiceGroup,
+            onAdd: onAddServiceGroup,
+            onDelete: onDeleteServiceGroup,
 
-          onEditServiceInstance,
-          onAddServiceInstance,
-          onDeleteServiceInstance,
+            onEditServiceInstance,
+            onAddServiceInstance,
+            onDeleteServiceInstance,
 
-          onEditAdjustment,
-          onAddAdjustment,
-          onDeleteAdjustment,
-        }}
-      />
+            onEditAdjustment,
+            onAddAdjustment,
+            onDeleteAdjustment,
+          }}
+        />
       </Base>
     </Row>
     <Row>

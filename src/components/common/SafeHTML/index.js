@@ -36,7 +36,7 @@ const SafeHTML = ({
   html,
   exists,
   component,
-  ...props,
+  ...props
 }) => (
   <Base
     component={component}

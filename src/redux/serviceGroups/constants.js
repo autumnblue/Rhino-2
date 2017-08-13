@@ -2,7 +2,7 @@ const prefix = 'serviceGroups';
 
 // UI actions
 export const DELETE_SERVICE_GROUP_TRIGGER = `${prefix}/DELETE_SERVICE_GROUP_TRIGGER`;
-export const EDIT_SERVICE_GROUP_FIELD_CHANGE = `${prefix}/EDIT_SERVICE_GROUP_FIELD_CHANGE`
+export const EDIT_SERVICE_GROUP_FIELD_CHANGE = `${prefix}/EDIT_SERVICE_GROUP_FIELD_CHANGE`;
 
 // API actions
 export const LOAD_SERVICE_GROUPS = `${prefix}/LOAD_SERVICE_GROUPS`;

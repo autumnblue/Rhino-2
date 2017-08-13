@@ -2,7 +2,7 @@
 import { Input as ReactstrapInput } from 'reactstrap';
 import { compose, pure, withHandlers, mapProps, withPropsOnChange } from 'recompose';
 import { omit } from 'lodash';
-import classNames from 'classnames'
+import classNames from 'classnames';
 
 import { FieldError } from 'src/components';
 
@@ -28,10 +28,10 @@ const propsEnhancer = withPropsOnChange(
     wrapperClassName: classNames({
       [wrapperClassName]: !!wrapperClassName,
       'input-group': addonPre || addonPost,
-      [css.wrapperOnError]: !!error
-    })
-  })
-)
+      [css.wrapperOnError]: !!error,
+    }),
+  }),
+);
 
 const omitPropsEnhancer = mapProps(props => omit(props, ['passValue']));
 
@@ -52,7 +52,7 @@ const Input = ({
   <div className={wrapperClassName}>
     <Base exists={addonPre} className="input-group-addon">{addonPre}</Base>
     <ReactstrapInput {...props} />
-    <Base exists={addonPost} className="input-group-addon" style={{flexBreak: 'after'}}>{addonPost}</Base>
+    <Base exists={addonPost} className="input-group-addon" style={{ flexBreak: 'after' }}>{addonPost}</Base>
     <Base className={css.break} exists={error} />
     <FieldError error={error} />
   </div>

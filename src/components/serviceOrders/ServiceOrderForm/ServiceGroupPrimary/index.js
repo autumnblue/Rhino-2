@@ -47,6 +47,6 @@ const ServiceGroupPrimary = ({
       />
     </div>
   </FormGroup>
-)
+);
 
 export default ServiceGroupPrimary;

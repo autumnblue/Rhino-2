@@ -81,7 +81,7 @@ export const loadSingleServiceOrder = id => ({
         'service_groups.service_instances',
         'primary_service_group.service_instances',
         'service_groups.adjustments',
-        'primary_service_group.adjustments'
+        'primary_service_group.adjustments',
       ],
     },
   }),

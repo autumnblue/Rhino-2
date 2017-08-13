@@ -1,26 +1,26 @@
 import { Field, FieldArray } from 'redux-form';
 import { FormGroup, Col, Row } from 'reactstrap';
-import { compose, onlyUpdateForKeys, withState, withHandlers, withPropsOnChange } from 'recompose'
+import { compose, onlyUpdateForKeys, withState, withHandlers, withPropsOnChange } from 'recompose';
 
 import { ReduxInput, ReduxHidden, Button, ReduxRichTextList, ReduxPriorityVote, ReduxOutputText, ReduxSelect } from 'src/components';
 import { empty, withReduxFormValues, formatMoney } from 'src/helpers';
 
-import ServiceInstanceArray from './ServiceInstanceArray'
-import AdjustmentsArray from './AdjustmentsArray'
+import ServiceInstanceArray from './ServiceInstanceArray';
+import AdjustmentsArray from './AdjustmentsArray';
 
 const idEnhancer = withState('id', 'onSetId');
 
 const handlersEnhancer = withHandlers({
   onEdit: ({ onEdit, id, member }) => () => setTimeout(onEdit, 0, id, member),
   onDelete: ({ onDelete, id, index }) => () => onDelete(id, index),
-  onAddServiceInstance: ({ onAddServiceInstance, id }) => (data) => onAddServiceInstance({
+  onAddServiceInstance: ({ onAddServiceInstance, id }) => data => onAddServiceInstance({
     ...data,
     service_group: id,
   }),
-  onAddAdjustment: ({ onAddAdjustment, id }) => (data) => onAddAdjustment({
+  onAddAdjustment: ({ onAddAdjustment, id }) => data => onAddAdjustment({
     ...data,
     service_group: id,
-  })
+  }),
 });
 
 const propsEnhancer = withPropsOnChange(
@@ -29,7 +29,7 @@ const propsEnhancer = withPropsOnChange(
     validationErrors: serviceGroupsValidationErrors[id] || empty,
     displayTotal: id && formatMoney(summaryOfCosts.costsByGroupId[id].total),
     displaySubtotal: id && formatMoney(summaryOfCosts.costsByGroupId[id].subtotal),
-  }))
+  }));
 
 const enhance = compose(
   idEnhancer,
@@ -43,7 +43,7 @@ const enhance = compose(
     'displayTotal',
     'displaySubtotal',
   ]),
-)
+);
 
 const ServiceGroupItem = ({
   member,
@@ -87,44 +87,44 @@ const ServiceGroupItem = ({
       <Col md="7">
         <Base exists={extended} component={Row}>
           <Col md="12">
-          <h5>
+            <h5>
             Recurring Service Group
-            #<Field name={`${member}.id`} component={ReduxOutputText}  />
-          </h5>
+            #<Field name={`${member}.id`} component={ReduxOutputText} />
+            </h5>
           </Col>
           <Col md="6" lg="6" xl="3">
             <FormGroup>
-            <label>Frequency</label>
-            <Field name={`${member}.frequency`} component={ReduxSelect} options={frequencyOptions} />
+              <label>Frequency</label>
+              <Field name={`${member}.frequency`} component={ReduxSelect} options={frequencyOptions} />
             </FormGroup>
           </Col>
           <Col md="6" lg="6" xl="3">
-          <FormGroup>
-          <label>Iterations</label>
-          <Field
-            component={ReduxInput}
-            name={`${member}.iterations`}
-            type="number"
-            addonPost="times"
-            error={validationErrors.iterations}
-            parse={parseInt}
+            <FormGroup>
+              <label>Iterations</label>
+              <Field
+                component={ReduxInput}
+                name={`${member}.iterations`}
+                type="number"
+                addonPost="times"
+                error={validationErrors.iterations}
+                parse={parseInt}
 
-            onBlur={onEdit}
-          />
-          </FormGroup>
+                onBlur={onEdit}
+              />
+            </FormGroup>
           </Col>
           <Col md="12" lg="12" xl="6">
-          <FormGroup>
-          <label>Simple Service Range</label>
-          <Field
-            component={ReduxInput}
-            name={`${member}.simple_service_range`}
-            type="textarea"
-            error={validationErrors.simple_service_range}
+            <FormGroup>
+              <label>Simple Service Range</label>
+              <Field
+                component={ReduxInput}
+                name={`${member}.simple_service_range`}
+                type="textarea"
+                error={validationErrors.simple_service_range}
 
-            onBlur={onEdit}
-          />
-          </FormGroup>
+                onBlur={onEdit}
+              />
+            </FormGroup>
           </Col>
         </Base>
       </Col>
@@ -163,7 +163,7 @@ const ServiceGroupItem = ({
     />
 
     <FormGroup>
-    <strong>Total: ${displayTotal}</strong>
+      <strong>Total: ${displayTotal}</strong>
     </FormGroup>
 
     <Base
@@ -172,7 +172,7 @@ const ServiceGroupItem = ({
       onClick={onDelete}
     >Delete Service Group</Base>
   </FormGroup>
-)
+);
 
 
 export default enhance(ServiceGroupItem);

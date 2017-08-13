@@ -6,7 +6,7 @@ import { push } from 'react-router-redux';
 import qs from 'qs';
 
 import { simpleObjectDiff } from 'src/helpers';
-import { loadSingleServiceGroup } from 'src/redux/serviceGroups/actions'
+import { loadSingleServiceGroup } from 'src/redux/serviceGroups/actions';
 
 import * as c from './constants';
 import { createServiceInstance, editServiceInstance, deleteServiceInstance } from './actions';
@@ -48,7 +48,7 @@ function* editServiceInstanceFieldChange() {
 }
 
 function* deleteServiceInstanceSuccess() {
-  while(true) {
+  while (true) {
     const { id } = yield take(c.DELETE_SERVICE_INSTANCE_SUCCESS);
 
     const { service_group_id } = yield select(getSpecifiedServiceInstance, id);

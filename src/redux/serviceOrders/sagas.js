@@ -72,8 +72,8 @@ function* editServiceOrderFormChange() {
       serviceOrder,
       omit(
         pick(values, keys),
-        ['primary_service_group', 'service_groups']
-      )
+        ['primary_service_group', 'service_groups'],
+      ),
     );
 
     if (!isEmpty(diff)) {

@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
-import { sortBy } from 'lodash'
+import { sortBy } from 'lodash';
 
 import { getServiceGroupsData } from 'src/redux/serviceGroups/selectors';
-import { getServiceInstancesData } from 'src/redux/serviceInstances/selectors'
-import { getAdjustmentsData } from 'src/redux/adjustments/selectors'
+import { getServiceInstancesData } from 'src/redux/serviceInstances/selectors';
+import { getAdjustmentsData } from 'src/redux/adjustments/selectors';
 
 const getServiceOrdersIds = state => state.serviceOrders.ids;
 const getCurrentServiceOrderId = state => state.serviceOrders.id;
@@ -18,13 +18,13 @@ const fillServiceGroup = (serviceGroup, serviceInsancesData, adjustmentsData) =>
   ...serviceGroup,
   service_instances: sortBy(
     serviceGroup.service_instance_ids.map(id => serviceInsancesData[id]),
-    'custom_sort_priority'
+    'custom_sort_priority',
   ),
   adjustments: sortBy(
-    serviceGroup.adjustments.map((adjustmentId) => adjustmentsData[adjustmentId]),
-    'sort_priority'
-  )
-})
+    serviceGroup.adjustments.map(adjustmentId => adjustmentsData[adjustmentId]),
+    'sort_priority',
+  ),
+});
 
 
 // Yeah, looks not good :(
@@ -42,10 +42,10 @@ export const getCurrentServiceOrder = createSelector(
         sgId => fillServiceGroup(
           serviceGroupsData[sgId],
           serviceInsancesData,
-          adjustmentsData
-        )
+          adjustmentsData,
+        ),
       ),
-      'sort_priority'
+      'sort_priority',
     ),
   }),
 );
@@ -71,12 +71,12 @@ const calculateTotalDue = (summary, adjustments) => {
   });
 
   return summary;
-}
+};
 
 const calculateServiceGroup = (
   serviceGroup,
   serviceInstancesDate,
-  adjustmentsData
+  adjustmentsData,
 ) => {
   const costs = {
     instances: [],
@@ -86,7 +86,7 @@ const calculateServiceGroup = (
     serviceGroup,
   };
 
-  serviceGroup.service_instances.forEach(id => {
+  serviceGroup.service_instances.forEach((id) => {
     const instance = serviceInstancesDate[id];
     const cost = instance.unit_price * instance.number_of_hours;
 
@@ -95,14 +95,14 @@ const calculateServiceGroup = (
     costs.subtotal += cost;
   });
 
-  serviceGroup.adjustments.forEach(id => {
+  serviceGroup.adjustments.forEach((id) => {
     costs.adjustments.push(adjustmentsData[id]);
   });
 
   costs.total = calculateTotalDue(costs.subtotal, costs.adjustments);
 
   return costs;
-}
+};
 
 export const getSummaryOfCosts = createSelector(
   [getCurrentServiceOrderId, getServiceOrdersData, getServiceGroupsData, getServiceInstancesData, getAdjustmentsData],
@@ -112,15 +112,15 @@ export const getSummaryOfCosts = createSelector(
     const primaryServiceGroupCosts = calculateServiceGroup(
       serviceGroupsData[serviceOrder.primary_service_group_id],
       serviceInsancesData,
-      adjustmentsData
+      adjustmentsData,
     );
     let subtotal = primaryServiceGroupCosts.subtotal;
     let total = primaryServiceGroupCosts.total;
-    const serviceGroupsCosts = serviceOrder.service_group_ids.map(serviceGroupId => {
+    const serviceGroupsCosts = serviceOrder.service_group_ids.map((serviceGroupId) => {
       const costs = calculateServiceGroup(
         serviceGroupsData[serviceGroupId],
         serviceInsancesData,
-        adjustmentsData
+        adjustmentsData,
       );
       costsByGroupId[serviceGroupId] = costs;
       subtotal += costs.subtotal;
@@ -136,7 +136,7 @@ export const getSummaryOfCosts = createSelector(
       costsByGroupId,
       subtotal,
       total,
-      serverSideTotal: serviceOrder.total_due
+      serverSideTotal: serviceOrder.total_due,
     };
-  }
-)
+  },
+);

@@ -1,11 +1,11 @@
 import { Field } from 'redux-form';
-import { compose, pure, withStateHandlers, withHandlers, withPropsOnChange } from 'recompose'
-import classNames from 'classnames'
+import { compose, pure, withStateHandlers, withHandlers, withPropsOnChange } from 'recompose';
+import classNames from 'classnames';
 
 import { ReduxOutputText, ReduxHidden, Button, Icon } from 'src/components';
 import { formatAdjustment } from 'src/helpers';
 
-import css from './style.css'
+import css from './style.css';
 
 const stateEnhancer = withStateHandlers({
   modifier: '+',
@@ -13,27 +13,27 @@ const stateEnhancer = withStateHandlers({
 }, {
   onSetId: () => id => ({ id }),
   onSetModifier: () => modifier => ({ modifier }),
-  onSetValue: () => value => ({ value })
+  onSetValue: () => value => ({ value }),
 });
 
 const handlersEnhancer = withHandlers({
   onDoubleClick: ({ onSetEditingIndex, index }) => () => onSetEditingIndex(index),
-  onDelete: ({ onDelete, id }) => () => onDelete(id)
-})
+  onDelete: ({ onDelete, id }) => () => onDelete(id),
+});
 
 const displayValueEnhancer = withPropsOnChange(
   ['modifier', 'value'],
   ({ modifier, value }) => ({
-    displayValue: formatAdjustment({ modifier, value })
-  })
-)
+    displayValue: formatAdjustment({ modifier, value }),
+  }),
+);
 
 const propsEnhancer = withPropsOnChange(['index', 'editingIndex'], ({ index, editingIndex }) => ({
   className: classNames({
     [css.item]: true,
     [css.editingItem]: index === editingIndex,
-  })
-}))
+  }),
+}));
 
 const enhance = compose(
   stateEnhancer,
@@ -41,7 +41,7 @@ const enhance = compose(
   displayValueEnhancer,
   propsEnhancer,
   pure,
-)
+);
 
 const AdjustmentsItem = ({
   member,
@@ -71,6 +71,6 @@ const AdjustmentsItem = ({
       </p>
     </td>
   </tr>
-)
+);
 
 export default enhance(AdjustmentsItem);

@@ -1,29 +1,29 @@
-import { FormGroup, Table, Row, Col } from 'reactstrap'
+import { FormGroup, Table, Row, Col } from 'reactstrap';
 import { Field } from 'redux-form';
-import { compose, pure, withState, withHandlers } from 'recompose'
+import { compose, pure, withState, withHandlers } from 'recompose';
 
 import { ReduxOutputText, Select, Button, Icon } from 'src/components';
 
-import ServiceInstanceItem from '../ServiceInstanceItem'
-import css from './style.css'
+import ServiceInstanceItem from '../ServiceInstanceItem';
+import css from './style.css';
 
 const serviceEnhancer = withState('serviceValue', 'onSetService', null);
 
 const handlersEnhancer = withHandlers({
   onAdd: ({ onAdd, serviceValue, onSetService }) => () => {
     onAdd({
-      service: serviceValue
+      service: serviceValue,
     });
 
     onSetService(null);
-  }
-})
+  },
+});
 
 const enhance = compose(
   serviceEnhancer,
   handlersEnhancer,
   pure,
-)
+);
 
 const ServiceInstanceArray = ({
   fields,
@@ -54,30 +54,31 @@ const ServiceInstanceArray = ({
       </tbody>
     </Table>
     <Row>
-    <Col md="6" lg="6" sm="12">
-      <strong>Subtotal: ${displaySubtotal}</strong>
-    </Col>
-    <Col md="6" lg="6" sm="12">
+      <Col md="6" lg="6" sm="12">
+        <strong>Subtotal: ${displaySubtotal}</strong>
+      </Col>
+      <Col md="6" lg="6" sm="12">
 
-    <Select
-      className={css.select}
-      options={serviceOptions}
-      value={serviceValue}
-      onChange={onSetService}
-    />
-      <Button
-        color="primary"
-        outline
-        onClick={onAdd}
-        disabled={!serviceValue}
-        className={css.add}>
+        <Select
+          className={css.select}
+          options={serviceOptions}
+          value={serviceValue}
+          onChange={onSetService}
+        />
+        <Button
+          color="primary"
+          outline
+          onClick={onAdd}
+          disabled={!serviceValue}
+          className={css.add}
+        >
           <Icon wb="plus" />
-      </Button>
-    </Col>
+        </Button>
+      </Col>
     </Row>
 
 
   </FormGroup>
-)
+);
 
 export default enhance(ServiceInstanceArray);

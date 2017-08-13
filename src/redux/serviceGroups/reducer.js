@@ -20,13 +20,13 @@ function validationErrorsPerId(state = initialState.validationErrorsPerId, actio
     case c.EDIT_SERVICE_GROUP_FAIL:
       return {
         ...state,
-        [action.id]: validationErrorsHelper(state, action)
-      }
+        [action.id]: validationErrorsHelper(state, action),
+      };
     case c.EDIT_SERVICE_GROUP_SUCCESS:
       return {
         ...state,
-        [action.id]: {}
-      }
+        [action.id]: {},
+      };
     default:
       return state;
   }

@@ -3,10 +3,10 @@ import { compose, pure, withHandlers, withState, withPropsOnChange } from 'recom
 import { SafeHTML, RichText, Button } from 'src/components';
 
 import RichTextListItem from './RichTextListItem';
-import css from './style.css'
+import css from './style.css';
 
 const editorValueEnhancer = withState('editorValue', 'onEditorValueChange', '');
-const editingIndexEnhancer = withState('editIndex', 'onSetEditIndex')
+const editingIndexEnhancer = withState('editIndex', 'onSetEditIndex');
 
 const handlersEnhancer = withHandlers({
   onAdd: ({ editorValue, onEditorValueChange, input: { value, onChange } }) => () => {
@@ -29,12 +29,12 @@ const handlersEnhancer = withHandlers({
     onEditorValueChange('');
   },
 
-  onSetEditIndex: ({ onSetEditIndex, onEditorValueChange, input: { value } }) => index => {
+  onSetEditIndex: ({ onSetEditIndex, onEditorValueChange, input: { value } }) => (index) => {
     onEditorValueChange(value[index]);
     onSetEditIndex(index);
   },
 
-  onRemove: ({ input: { value, onChange } }) => index => {
+  onRemove: ({ input: { value, onChange } }) => (index) => {
     onChange([
       ...value.slice(0, index),
       ...value.slice(index + 1),
@@ -44,12 +44,12 @@ const handlersEnhancer = withHandlers({
   onCancel: ({ onSetEditIndex, onEditorValueChange }) => () => {
     onSetEditIndex(null);
     onEditorValueChange('');
-  }
+  },
 });
 
 const propsEnhancer = withPropsOnChange(['editIndex'], ({ editIndex }) => ({
-  isEditing: typeof editIndex === 'number'
-}))
+  isEditing: typeof editIndex === 'number',
+}));
 
 const enhance = compose(
   editingIndexEnhancer,
@@ -57,7 +57,7 @@ const enhance = compose(
   handlersEnhancer,
   propsEnhancer,
   pure,
-)
+);
 
 const ReduxRichTextList = ({
   input: { value },
@@ -88,6 +88,6 @@ const ReduxRichTextList = ({
     <Base exists={isEditing} component={Button} onClick={onEdit}>Save</Base>{' '}
     <Base exists={isEditing} component={Button} onClick={onCancel}>Cancel</Base>
   </div>
-)
+);
 
 export default enhance(ReduxRichTextList);

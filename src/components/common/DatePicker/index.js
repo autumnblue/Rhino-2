@@ -23,7 +23,7 @@ const returnFalse = () => false;
 
 const defaultPropsEnhancer = defaultProps({
   showIcon: true,
-})
+});
 
 const focusedEnhancer = withState('focused', 'onFocusChange', false);
 
@@ -42,7 +42,7 @@ const propsEnhancer = withPropsOnChange(
       [css.noIcon]: !showIcon,
       [className]: !!className,
     }),
-  })
+  }),
 );
 
 const enhance = compose(

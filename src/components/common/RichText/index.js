@@ -62,8 +62,8 @@ const lifecycleEnhancer = lifecycle({
 });
 
 const handlersEnhancer = withHandlers({
-  onChange: ({ onChange }) => (value) => onChange(value)
-})
+  onChange: ({ onChange }) => value => onChange(value),
+});
 
 const enhance = compose(
   propsEnhancer,

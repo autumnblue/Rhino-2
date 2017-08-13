@@ -58,7 +58,7 @@ function* editToolFormChange() {
     // since we put entire client to reduxForm using initialValues
     // we need to extract only those properties which are rendered on the page
     const keys = Object.keys(registeredFields);
-    const diff = simpleObjectDiff(tool, pick(values, keys), );
+    const diff = simpleObjectDiff(tool, pick(values, keys));
 
     if (!isEmpty(diff)) {
       yield put(editTool(id, {

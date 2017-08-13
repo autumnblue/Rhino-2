@@ -1,12 +1,12 @@
-import { compose, onlyUpdateForKeys, withPropsOnChange, withHandlers, withState } from 'recompose'
-import { Field, formValues } from 'redux-form'
-import { InputGroupAddon, InputGroup } from 'reactstrap'
+import { compose, onlyUpdateForKeys, withPropsOnChange, withHandlers, withState } from 'recompose';
+import { Field, formValues } from 'redux-form';
+import { InputGroupAddon, InputGroup } from 'reactstrap';
 import { Button, Icon, ReduxOutputText, ReduxHidden, ReduxPriorityVote, ReduxInput, ReduxDatePicker } from 'src/components';
 import { empty, withReduxFormValues, formatMoney } from 'src/helpers';
 
-import css from './style.css'
+import css from './style.css';
 
-/*const formValuesEnhancer = withReduxFormValues(({ member }) => ({
+/* const formValuesEnhancer = withReduxFormValues(({ member }) => ({
   id: `${member}.id`,
   unitPrice: `${member}.unit_price`,
   numberOfHours: `${member}.number_of_hours`
@@ -18,25 +18,25 @@ const numberOfHoursEnhancer = withState('numberOfHours', 'onSetNumberOfHours');
 
 const handlersEnhancer = withHandlers({
   onEdit: ({ onEdit, id, member }) => () => setTimeout(onEdit, 0, id, member),
-  onDelete: ({ onDelete, id }) => evt => {
+  onDelete: ({ onDelete, id }) => (evt) => {
     evt.preventDefault();
     onDelete(id);
-  }
+  },
 });
 
 const propsEnhancer = withPropsOnChange([
   'serviceInstanceValidationErrors',
   'id',
   'unitPrice',
-  'numberOfHours'
+  'numberOfHours',
 ], ({
   serviceInstanceValidationErrors,
   id,
   unitPrice,
-  numberOfHours
+  numberOfHours,
 }) => ({
   validationErrors: serviceInstanceValidationErrors[id] || empty,
-  totalDue: +unitPrice * +numberOfHours
+  totalDue: +unitPrice * +numberOfHours,
 }));
 
 const enhance = compose(
@@ -47,9 +47,9 @@ const enhance = compose(
   propsEnhancer,
   onlyUpdateForKeys([
     'validationErrors',
-    'totalDue'
+    'totalDue',
   ]),
-)
+);
 
 const ServiceInstanceItem = ({
   member,
@@ -93,23 +93,23 @@ const ServiceInstanceItem = ({
         />
       </div>
       &nbsp;x&nbsp;
-      <div  className={css.numberOfHours}>
-      <Field
-        component={ReduxInput}
-        name={`${member}.number_of_hours`}
-        type="number"
-        addonPost="hrs"
-        error={validationErrors.number_of_hours}
-        parse={parseInt}
+      <div className={css.numberOfHours}>
+        <Field
+          component={ReduxInput}
+          name={`${member}.number_of_hours`}
+          type="number"
+          addonPost="hrs"
+          error={validationErrors.number_of_hours}
+          parse={parseInt}
 
-        onBlur={onEdit}
-      />
+          onBlur={onEdit}
+        />
       </div>
       {' '}
       Total&nbsp;Due:&nbsp;<strong>${formatMoney(totalDue)}</strong>
     </td>
     <td>
-    <nobr>
+      <nobr>
       From&nbsp;
       <Field
         component={ReduxDatePicker}
@@ -141,6 +141,6 @@ const ServiceInstanceItem = ({
       </Button>
     </td>
   </tr>
-)
+);
 
 export default enhance(ServiceInstanceItem);
