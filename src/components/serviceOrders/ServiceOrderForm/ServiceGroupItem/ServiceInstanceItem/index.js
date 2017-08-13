@@ -119,6 +119,7 @@ const ServiceInstanceItem = ({
         placeholder="Start Date"
         onChange={onEdit}
         error={validationErrors.start_date}
+        formatAsDate
       />
       </nobr>
       {' '}
@@ -132,6 +133,7 @@ const ServiceInstanceItem = ({
         placeholder="End Date"
         onChange={onEdit}
         error={validationErrors.end_date}
+        formatAsDate
       />
       </nobr>
     </td>

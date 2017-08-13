@@ -29,7 +29,14 @@ const focusedEnhancer = withState('focused', 'onFocusChange', false);
 
 const handlersEnhancer = withHandlers({
   onFocusChange: ({ onFocusChange }) => ({ focused }) => onFocusChange(!!focused),
-  onChange: ({ onChange }) => value => onChange(value ? value.toDate().toISOString() : value),
+  onChange: ({ onChange, formatAsDate }) => value => {
+    onChange(value
+      ? (formatAsDate
+        ? value.toDate().toISOString().split('T')[0]
+        : value.toDate().toISOString()
+      )
+      : value)
+  },
 });
 
 const propsEnhancer = withPropsOnChange(
@@ -72,7 +79,7 @@ const DatePicker = ({
       onDateChange={onChange}
       onFocusChange={onFocusChange}
       isOutsideRange={returnFalse}
-      {...omit(props, ['value', 'disabled'])}
+      {...omit(props, ['value', 'disabled', 'formatAsDate'])}
     />
     <FieldError error={error} />
   </div>
