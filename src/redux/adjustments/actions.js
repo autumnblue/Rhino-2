@@ -8,13 +8,13 @@ export const deleteAdjustmentTrigger = id => ({
   id,
 });
 
-export const editAdjustmentFieldChange = (id, data) => (dispatch) =>
-  new Promise((resolve) => dispatch({
+export const editAdjustmentFieldChange = (id, data) => dispatch =>
+  new Promise(resolve => dispatch({
     type: c.EDIT_ADJUSTMENT_FIELD_CHANGE,
     id,
     data,
     resolve,
-  }))
+  }));
 
 // API actions
 export const loadAdjustments = ({
@@ -36,11 +36,11 @@ export const createAdjustment = data => ({
   api: ({ post }) => post(endpoint, {
     data: {
       ...data,
-      commit: true
+      commit: true,
     },
     params: {
-      include: ['service_group.service_order']
-    }
+      include: ['service_group.service_order'],
+    },
   }),
 });
 
@@ -49,8 +49,8 @@ export const editAdjustment = (id, data) => ({
   api: ({ patch }) => patch(endpoint + id, {
     data,
     params: {
-      include: ['service_group.service_order']
-    }
+      include: ['service_group.service_order'],
+    },
   }),
   id,
 });

@@ -1,4 +1,23 @@
+import { pure } from 'recompose';
+import { string, number, arrayOf, shape, object } from 'prop-types';
+
 import { formatMoney, formatAdjustment } from 'src/helpers';
+
+const propTypes = {
+  name: string.isRequired,
+  instances: arrayOf(shape({
+    cost: number.isRequired,
+    instance: object.isRequired,
+  })).isRequired,
+  adjustments: arrayOf(shape({
+    value: number.isRequired,
+    modifier: string.isRequired,
+  })).isRequired,
+  subtotal: number.isRequired,
+  total: number.isRequired,
+};
+
+const enhance = pure;
 
 const ServiceGroupCosts = ({
   name,
@@ -44,5 +63,6 @@ const ServiceGroupCosts = ({
   </div>
 );
 
+ServiceGroupCosts.propTypes = propTypes;
 
-export default ServiceGroupCosts;
+export default enhance(ServiceGroupCosts);

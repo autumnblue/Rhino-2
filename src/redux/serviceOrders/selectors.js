@@ -29,7 +29,10 @@ const fillServiceGroup = (serviceGroup, serviceInsancesData, adjustmentsData) =>
 
 // Yeah, looks not good :(
 export const getCurrentServiceOrder = createSelector(
-  [getCurrentServiceOrderId, getServiceOrdersData, getServiceGroupsData, getServiceInstancesData, getAdjustmentsData],
+  [
+    getCurrentServiceOrderId, getServiceOrdersData, getServiceGroupsData,
+    getServiceInstancesData, getAdjustmentsData,
+  ],
   (id, data, serviceGroupsData, serviceInsancesData, adjustmentsData) => ({
     ...data[id],
     primary_service_group: fillServiceGroup(
@@ -61,7 +64,8 @@ def calculate_total_due(self):
 
   return total_due
 */
-const calculateTotalDue = (summary, adjustments) => {
+const calculateTotalDue = (givenSummary, adjustments) => {
+  let summary = givenSummary;
   adjustments.filter(({ modifier }) => (modifier === '+')).forEach(({ value }) => {
     summary += value;
   });
@@ -105,7 +109,10 @@ const calculateServiceGroup = (
 };
 
 export const getSummaryOfCosts = createSelector(
-  [getCurrentServiceOrderId, getServiceOrdersData, getServiceGroupsData, getServiceInstancesData, getAdjustmentsData],
+  [
+    getCurrentServiceOrderId, getServiceOrdersData, getServiceGroupsData,
+    getServiceInstancesData, getAdjustmentsData,
+  ],
   (id, data, serviceGroupsData, serviceInsancesData, adjustmentsData) => {
     const serviceOrder = data[id];
     const costsByGroupId = {};
