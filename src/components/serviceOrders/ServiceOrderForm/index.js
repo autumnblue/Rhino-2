@@ -11,6 +11,8 @@ import TextSectionsFormGroup from './TextSectionsFormGroup';
 import IndustriesFormGroup from './IndustriesFormGroup';
 import RevisionsFormGroup from './RevisionsFormGroup';
 import ButtonsFormGroup from './ButtonsFormGroup';
+import OptionsFormGroup from './OptionsFormGroup';
+import TimelineFormGroup from './TimelineFormGroup';
 
 import ServiceGroupArray from './ServiceGroupArray';
 import ServiceGroupPrimary from './ServiceGroupPrimary';
@@ -34,6 +36,7 @@ const propTypes = {
   onFieldChange: func.isRequired,
 };
 
+
 const ServiceOrderForm = ({
   isNew,
   clientOptions,
@@ -43,8 +46,10 @@ const ServiceOrderForm = ({
   industryOptions,
   focalProfileOptions,
   serviceOptions,
+  frequencyOptions,
   usersData,
   created,
+  summaryOfCosts,
   id,
   breadcrumbs,
   validationErrors,
@@ -110,11 +115,16 @@ const ServiceOrderForm = ({
           onFieldChange={onFieldChange}
         />
       </Col>
-      <Col md="12">
+      <Base exists={isNew} component={Col} md="12">
+        <strong>Service Groups are only available after Service Order is created</strong>
+      </Base>
+      <Base exists={!isNew} component={Col} md="12">
+
       <ServiceGroupPrimary
         {...{
           serviceOptions,
           onEditServiceGroup,
+          summaryOfCosts,
           serviceGroupsValidationErrors,
           serviceInstanceValidationErrors,
           adjustmentValidationErrors,
@@ -134,6 +144,8 @@ const ServiceOrderForm = ({
         component={ServiceGroupArray}
         {...{
           serviceOptions,
+          frequencyOptions,
+          summaryOfCosts,
           serviceGroupsValidationErrors,
           serviceInstanceValidationErrors,
           adjustmentValidationErrors,
@@ -151,6 +163,14 @@ const ServiceOrderForm = ({
           onDeleteAdjustment,
         }}
       />
+      </Base>
+    </Row>
+    <Row>
+      <Col md="6" sm="12">
+        <OptionsFormGroup onFieldChange={onFieldChange} />
+      </Col>
+      <Col md="6" sm="12">
+        <TimelineFormGroup onFieldChange={onFieldChange} />
       </Col>
     </Row>
   </Form>

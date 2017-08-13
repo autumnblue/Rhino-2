@@ -4,6 +4,7 @@ import ServiceGroupItem from '../ServiceGroupItem';
 import css from './style.css';
 
 const ServiceGroupPrimary = ({
+  summaryOfCosts,
   serviceOptions,
   serviceGroupsValidationErrors,
   serviceInstanceValidationErrors,
@@ -26,6 +27,7 @@ const ServiceGroupPrimary = ({
       <ServiceGroupItem
         member="primary_service_group"
         {...{
+          summaryOfCosts,
           serviceOptions,
           serviceGroupsValidationErrors,
           serviceInstanceValidationErrors,

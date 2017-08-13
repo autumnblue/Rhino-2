@@ -1,7 +1,7 @@
 import { all, fork, call, takeLatest, select, put, take } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { formValueSelector } from 'redux-form';
-import { pickBy, pick, isEmpty } from 'lodash';
+import { pickBy, pick, isEmpty, omit } from 'lodash';
 import { push } from 'react-router-redux';
 import qs from 'qs';
 
@@ -67,7 +67,14 @@ function* editServiceOrderFormChange() {
     // since we put entire client to reduxForm using initialValues
     // we need to extract only those properties which are rendered on the page
     const keys = Object.keys(registeredFields);
-    const diff = simpleObjectDiff(serviceOrder, pick(values, keys));
+
+    const diff = simpleObjectDiff(
+      serviceOrder,
+      omit(
+        pick(values, keys),
+        ['primary_service_group', 'service_groups']
+      )
+    );
 
     if (!isEmpty(diff)) {
       yield put(editServiceOrder(id, {

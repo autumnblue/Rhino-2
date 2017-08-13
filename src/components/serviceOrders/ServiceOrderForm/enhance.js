@@ -1,6 +1,12 @@
-import { compose, pure, withHandlers, withPropsOnChange } from 'recompose';
+import { compose, pure, withHandlers, withPropsOnChange, defaultProps } from 'recompose';
 
 import objectToOptions from 'src/helpers/objectToOptions';
+
+const defaultPropsEnhancer = defaultProps({
+  // serviceGroupChoices is required at edit page
+  serviceGroupChoices: { frequency: {} },
+  services: [],
+})
 
 const handlersEnhancer = withHandlers({
   // makes a short delay which runs onFieldChange after the store is updated
@@ -12,10 +18,11 @@ const handlersEnhancer = withHandlers({
 });
 
 const propsEnhancer = withPropsOnChange(
-  ['choices', 'clients', 'users', 'industries', 'focalProfiles', 'services'],
-  ({ choices, clients, users, industries, focalProfiles, services }) => ({
+  ['choices', 'serviceGroupChoices', 'clients', 'users', 'industries', 'focalProfiles', 'services'],
+  ({ choices, serviceGroupChoices, clients, users, industries, focalProfiles, services }) => ({
     statusOptions: objectToOptions(choices.status),
     paymentOptions: objectToOptions(choices.payment),
+    frequencyOptions: objectToOptions(serviceGroupChoices.frequency),
     clientOptions: clients.map(({ name, id }) => ({
       label: name,
       value: id,
@@ -41,6 +48,7 @@ const propsEnhancer = withPropsOnChange(
 
 
 export default compose(
+  defaultPropsEnhancer,
   handlersEnhancer,
   propsEnhancer,
   pure,

@@ -1,13 +1,14 @@
 import { combineReducers } from 'redux';
 import { map } from 'lodash';
 
-import { validationErrorsHelper } from 'src/helpers/reducerHelpers';
+import { validationErrorsHelper, choicesHelper } from 'src/helpers/reducerHelpers';
 
 import * as c from './constants';
 
 const initialState = {
   data: {},
   validationErrorsPerId: {},
+  choices: null,
 };
 
 function data(state = initialState.data) {
@@ -31,7 +32,17 @@ function validationErrorsPerId(state = initialState.validationErrorsPerId, actio
   }
 }
 
+function choices(state = initialState.choices, action) {
+  switch (action.type) {
+    case c.LOAD_SERVICE_GROUP_CHOICES_SUCCESS:
+      return choicesHelper(state, action);
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   data,
   validationErrorsPerId,
+  choices,
 });

@@ -50,24 +50,12 @@ function* editAdjustmentFieldChange() {
   }
 }
 
-function* updateServiceGroup(adjustmentId) {
-  const { service_group } = yield select(getSpecifiedAdjustment, adjustmentId);
-
-  yield put(loadSingleServiceGroup(service_group));
-}
-
 function* deleteAdjustmentSuccess() {
   while(true) {
     const { id } = yield take(c.DELETE_ADJUSTMENT_SUCCESS);
-    yield* updateServiceGroup(id);
-  }
-}
+    const { service_group } = yield select(getSpecifiedAdjustment, id);
 
-function* createAdjustmentSuccess() {
-  while(true) {
-    const { response } = yield take(c.CREATE_ADJUSTMENT_SUCCESS);
-    const { id } = response.data.adjustment;
-    yield* updateServiceGroup(id);
+    yield put(loadSingleServiceGroup(service_group));
   }
 }
 
@@ -76,6 +64,5 @@ export default function* createSaga() {
     fork(deleteAdjustmentTrigger),
     fork(editAdjustmentFieldChange),
     fork(deleteAdjustmentSuccess),
-    fork(createAdjustmentSuccess),
   ]);
 }

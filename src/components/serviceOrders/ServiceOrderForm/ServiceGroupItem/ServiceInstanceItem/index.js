@@ -2,7 +2,7 @@ import { compose, onlyUpdateForKeys, withPropsOnChange, withHandlers, withState 
 import { Field, formValues } from 'redux-form'
 import { InputGroupAddon, InputGroup } from 'reactstrap'
 import { Button, Icon, ReduxOutputText, ReduxHidden, ReduxPriorityVote, ReduxInput, ReduxDatePicker } from 'src/components';
-import { empty, withReduxFormValues } from 'src/helpers';
+import { empty, withReduxFormValues, formatMoney } from 'src/helpers';
 
 import css from './style.css'
 
@@ -106,7 +106,7 @@ const ServiceInstanceItem = ({
       />
       </div>
       {' '}
-      Total&nbsp;Due:&nbsp;${totalDue}
+      Total&nbsp;Due:&nbsp;<strong>${formatMoney(totalDue)}</strong>
     </td>
     <td>
     <nobr>

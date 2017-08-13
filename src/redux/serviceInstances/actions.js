@@ -35,13 +35,21 @@ export const createServiceInstance = data => ({
     data: {
       ...data,
       commit: true,
+    },
+    params: {
+      include: ['service_group']
     }
   }),
 });
 
 export const editServiceInstance = (id, data) => ({
   types: [c.EDIT_SERVICE_INSTANCE, c.EDIT_SERVICE_INSTANCE_SUCCESS, c.EDIT_SERVICE_INSTANCE_FAIL],
-  api: ({ patch }) => patch(endpoint + id, { data }),
+  api: ({ patch }) => patch(endpoint + id, {
+    data,
+    params: {
+      include: ['service_group']
+    }
+  }),
   id,
 });
 

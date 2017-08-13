@@ -2,13 +2,14 @@ import { compose, pure, withHandlers, withPropsOnChange } from 'recompose';
 import classNames from 'classnames';
 import { func, number, string } from 'prop-types';
 
-import { Icon } from 'src/components';
+import { Icon, FieldError } from 'src/components';
 
 import css from './style.css';
 
 const propTypes = {
   value: number.isRequired,
   className: string.isRequired,
+  error: string,
 
   onVoteUp: func.isRequired,
   onVoteDown: func.isRequired,
@@ -37,6 +38,7 @@ const enhance = compose(
 const PriorityVote = ({
   value,
   className,
+  error,
 
   onVoteUp,
   onVoteDown,
@@ -53,6 +55,7 @@ const PriorityVote = ({
       className={css.voteButton}
       onClick={onVoteDown}
     />
+    <FieldError error={error} />
   </div>
 );
 

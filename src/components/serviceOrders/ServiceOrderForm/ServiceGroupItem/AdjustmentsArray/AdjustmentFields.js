@@ -96,10 +96,10 @@ const handlersEnhancer = withHandlers({
 
 const modifierOptions = [{
   value: '+',
-  label: 'Add Number'
+  label: '+/-'
 }, {
   value: '%',
-  label: 'Add Percent'
+  label: '%'
 }]
 
 const enhance = compose(

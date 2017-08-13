@@ -17,7 +17,9 @@ const enhance = compose(
 
 const ServiceGroupArray = ({
   fields,
+  summaryOfCosts,
   serviceOptions,
+  frequencyOptions,
   serviceGroupsValidationErrors,
   serviceInstanceValidationErrors,
   adjustmentValidationErrors,
@@ -36,7 +38,7 @@ const ServiceGroupArray = ({
 }) => (
   <FormGroup tag="fieldset">
     <legend>Recurring Service Groups</legend>
-    <div className={css.items}>
+    <Base exists={fields.length} className={css.items}>
     {fields.map((member, index, fields) => (
       <ServiceGroupItem
         className={css.item}
@@ -45,7 +47,9 @@ const ServiceGroupArray = ({
         key={member}
         extended={true}
         {...{
+          summaryOfCosts,
           serviceOptions,
+          frequencyOptions,
           serviceGroupsValidationErrors,
           serviceInstanceValidationErrors,
           adjustmentValidationErrors,
@@ -64,7 +68,7 @@ const ServiceGroupArray = ({
 
       />
     ))}
-    </div>
+    </Base>
     <Button color="primary" onClick={onAdd}>Add Service Group</Button>
   </FormGroup>
 )

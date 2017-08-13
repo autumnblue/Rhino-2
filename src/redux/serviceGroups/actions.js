@@ -29,6 +29,24 @@ export const loadServiceGroups = ({
   }),
 });
 
+// load choices only once, they're hardcoded constants
+export const loadServiceGroupChoices = () => (dispatch, getState) => {
+  const { choices } = getState().serviceGroups;
+
+  if (!choices) {
+    return dispatch({
+      types: [
+        c.LOAD_SERVICE_GROUP_CHOICES,
+        c.LOAD_SERVICE_GROUP_CHOICES_SUCCESS,
+        c.LOAD_SERVICE_GROUP_CHOICES_FAIL,
+      ],
+      api: ({ get }) => get(`${endpoint}choices/`),
+    });
+  }
+
+  return undefined;
+};
+
 export const loadSingleServiceGroup = id => ({
   types: [
     c.LOAD_SINGLE_SERVICE_GROUP,
@@ -57,7 +75,12 @@ export const createServiceGroup = data => ({
 
 export const editServiceGroup = (id, data) => ({
   types: [c.EDIT_SERVICE_GROUP, c.EDIT_SERVICE_GROUP_SUCCESS, c.EDIT_SERVICE_GROUP_FAIL],
-  api: ({ patch }) => patch(endpoint + id, { data }),
+  api: ({ patch }) => patch(endpoint + id, {
+    data,
+    params: {
+      include: ['service_order']
+    }
+  }),
   id,
 });
 

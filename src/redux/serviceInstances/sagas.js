@@ -43,33 +43,17 @@ function* editServiceInstanceFieldChange() {
         commit: true,
         ...diff,
       }));
-
-      if(diff.custom_sort_priority) {
-        // reload list
-        yield put(loadSingleServiceGroup(serviceInstance.service_group_id));
-      }
     }
   }
-}
-
-function* updateServiceGroup(serviceInstanceId) {
-  const { service_group_id } = yield select(getSpecifiedServiceInstance, serviceInstanceId);
-
-  yield put(loadSingleServiceGroup(service_group_id));
 }
 
 function* deleteServiceInstanceSuccess() {
   while(true) {
     const { id } = yield take(c.DELETE_SERVICE_INSTANCE_SUCCESS);
-    yield* updateServiceGroup(id);
-  }
-}
 
-function* createServiceInstanceSuccess() {
-  while(true) {
-    const { response } = yield take(c.CREATE_SERVICE_INSTANCE_SUCCESS);
-    const { id } = response.data.service_instance;
-    yield* updateServiceGroup(id);
+    const { service_group_id } = yield select(getSpecifiedServiceInstance, id);
+
+    yield put(loadSingleServiceGroup(service_group_id));
   }
 }
 
@@ -78,6 +62,5 @@ export default function* createSaga() {
     fork(deleteServiceInstanceTrigger),
     fork(editServiceInstanceFieldChange),
     fork(deleteServiceInstanceSuccess),
-    fork(createServiceInstanceSuccess),
   ]);
 }

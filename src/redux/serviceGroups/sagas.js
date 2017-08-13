@@ -36,10 +36,13 @@ function* editServiceGroupFieldChange() {
       id,
     );
 
-    const diff = simpleObjectDiff(serviceGroup, omit(data, ['service_instances']));
+    const diff = simpleObjectDiff(
+      serviceGroup,
+      omit(data, ['service_instances', 'adjustments'])
+    );
 
     if (!isEmpty(diff)) {
-      yield put(editServiceGroup(id, {
+      yield put.sync(editServiceGroup(id, {
         commit: true,
         ...diff,
       }));
@@ -56,21 +59,10 @@ function* deleteServiceGroupSuccess() {
   }
 }
 
-function* createServiceGroupSuccess() {
-  while(true) {
-    const { response } = yield take(c.CREATE_SERVICE_GROUP_SUCCESS);
-    const { id } = response.data.service_group;
-    const { service_order_id } = yield select(getSpecifiedServiceGroup, id);
-
-    yield put(loadSingleServiceOrder(service_order_id));
-  }
-}
-
 export default function* createSaga() {
   yield all([
     fork(deleteServiceGroupTrigger),
     fork(editServiceGroupFieldChange),
     fork(deleteServiceGroupSuccess),
-    fork(createServiceGroupSuccess)
   ]);
 }

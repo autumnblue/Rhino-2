@@ -82,7 +82,7 @@ const Associations = ({
         onRemove={onRemove}
       />
     ))}
-    <div className={css.selectContainer}>
+    <div>
       <Select
         className={css.select}
         options={options}

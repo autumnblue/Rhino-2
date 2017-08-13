@@ -32,7 +32,8 @@ import {
 } from 'src/redux/adjustments/actions'
 
 // selectors
-import { getCurrentServiceOrder } from 'src/redux/serviceOrders/selectors';
+import { getCurrentServiceOrder, getSummaryOfCosts } from 'src/redux/serviceOrders/selectors';
+import { loadServiceGroupChoices } from 'src/redux/serviceGroups/actions'
 import { getClients } from 'src/redux/clients/selectors';
 import { getUsers } from 'src/redux/users/selectors';
 import { getIndustries } from 'src/redux/industries/selectors';
@@ -44,9 +45,13 @@ const reduxAsyncConnect = asyncConnect([{
     store: { dispatch },
     params: { serviceOrderId },
   }) => {
+    try {
+
+
     const [serviceOrderSuccessAction] = await Promise.all([
       dispatch(loadSingleServiceOrder(serviceOrderId)),
       dispatch(loadServiceOrderChoices()),
+      dispatch(loadServiceGroupChoices()),
       dispatch(loadClients({
         filter: {
           'service_orders.id': { eq: serviceOrderId },
@@ -68,12 +73,16 @@ const reduxAsyncConnect = asyncConnect([{
     }
 
     return undefined;
+  } catch(e) {
+    console.error(e);
+  }
   },
 }]);
 
 const reduxConnect = connect(state => ({
   validationErrors: state.serviceOrders.validationErrors,
   choices: state.serviceOrders.choices,
+  serviceGroupChoices: state.serviceGroups.choices,
   clients: getClients(state),
   users: getUsers(state),
   industries: getIndustries(state),
@@ -81,6 +90,7 @@ const reduxConnect = connect(state => ({
   focalProfiles: getFocalProfiles(state),
   services: getServices(state),
   usersData: state.users.data,
+  summaryOfCosts: getSummaryOfCosts(state),
   serviceGroupsValidationErrors: state.serviceGroups.validationErrorsPerId,
   serviceInstanceValidationErrors: state.serviceInstances.validationErrorsPerId,
   adjustmentValidationErrors: state.adjustments.validationErrorsPerId,

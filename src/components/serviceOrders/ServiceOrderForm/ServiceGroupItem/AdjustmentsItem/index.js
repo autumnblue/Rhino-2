@@ -3,10 +3,14 @@ import { compose, pure, withStateHandlers, withHandlers, withPropsOnChange } fro
 import classNames from 'classnames'
 
 import { ReduxOutputText, ReduxHidden, Button, Icon } from 'src/components';
+import { formatAdjustment } from 'src/helpers';
 
 import css from './style.css'
 
-const stateEnhancer = withStateHandlers(null, {
+const stateEnhancer = withStateHandlers({
+  modifier: '+',
+  value: 0,
+}, {
   onSetId: () => id => ({ id }),
   onSetModifier: () => modifier => ({ modifier }),
   onSetValue: () => value => ({ value })
@@ -19,18 +23,9 @@ const handlersEnhancer = withHandlers({
 
 const displayValueEnhancer = withPropsOnChange(
   ['modifier', 'value'],
-  ({ modifier, value }) => {
-    const sign = value < 0 ? '-' : '+';
-    if(modifier === '%') {
-      return {
-        displayValue: `${sign} ${Math.abs(value)}%`
-      }
-    } else {
-      return {
-        displayValue: `${sign} $${Math.abs(value)}`
-      }
-    }
-  }
+  ({ modifier, value }) => ({
+    displayValue: formatAdjustment({ modifier, value })
+  })
 )
 
 const propsEnhancer = withPropsOnChange(['index', 'editingIndex'], ({ index, editingIndex }) => ({

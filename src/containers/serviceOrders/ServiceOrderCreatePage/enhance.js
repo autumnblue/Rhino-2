@@ -35,7 +35,6 @@ const reduxConnect = connect(state => ({
   clients: getClients(state),
   users: getUsers(state),
   industries: getIndustries(state),
-  serviceOrder: getCurrentServiceOrder(state),
   usersData: state.users.data,
   initialValues: {
     industries: [],

@@ -10,6 +10,7 @@ import {
 } from 'src/components';
 import { breadcrumbsType, clientType, userType, industryType, focalProfileType, serviceOrderType } from 'src/prop-types';
 
+import SummaryOfCosts from './SummaryOfCosts';
 import enhance from './enhance';
 
 const propTypes = {
@@ -30,6 +31,7 @@ const propTypes = {
 const ServiceOrderEditPage = ({
   breadcrumbs,
   choices,
+  serviceGroupChoices,
   clients,
   users,
   industries,
@@ -37,6 +39,7 @@ const ServiceOrderEditPage = ({
   services,
   usersData,
   serviceOrder,
+  summaryOfCosts,
   validationErrors,
   serviceGroupsValidationErrors,
   serviceInstanceValidationErrors,
@@ -58,7 +61,6 @@ const ServiceOrderEditPage = ({
   onDeleteAdjustment,
 }) => (
   <Page>
-  
     <PageHeader breadcrumbs={breadcrumbs}>
       <Button tag={Link} to="/service-orders" color="success">Done</Button>
     </PageHeader>
@@ -75,6 +77,8 @@ const ServiceOrderEditPage = ({
         services,
         usersData,
         choices,
+        serviceGroupChoices,
+        summaryOfCosts,
         serviceGroupsValidationErrors,
         serviceInstanceValidationErrors,
         adjustmentValidationErrors,
@@ -93,6 +97,15 @@ const ServiceOrderEditPage = ({
         onDeleteAdjustment,
       }}
       />
+
+      <SummaryOfCosts
+        primaryServiceGroupCosts={summaryOfCosts.primaryServiceGroupCosts}
+        serviceGroupsCosts={summaryOfCosts.serviceGroupsCosts}
+        subtotal={summaryOfCosts.subtotal}
+        total={summaryOfCosts.total}
+        serverSideTotal={summaryOfCosts.serverSideTotal}
+      />
+
       <Button color="danger" onClick={onDelete}>Delete</Button>
     </PageContent>
   </Page>
