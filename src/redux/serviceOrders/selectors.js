@@ -89,7 +89,6 @@ const calculateServiceGroup = (
     total: 0,
     serviceGroup,
   };
-
   serviceGroup.service_instances.forEach((id) => {
     const instance = serviceInstancesDate[id];
     const cost = instance.unit_price * instance.number_of_hours;
@@ -123,6 +122,7 @@ export const getSummaryOfCosts = createSelector(
     );
     let subtotal = primaryServiceGroupCosts.subtotal;
     let total = primaryServiceGroupCosts.total;
+
     const serviceGroupsCosts = serviceOrder.service_group_ids.map((serviceGroupId) => {
       const costs = calculateServiceGroup(
         serviceGroupsData[serviceGroupId],

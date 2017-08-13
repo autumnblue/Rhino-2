@@ -26,6 +26,7 @@ const handlersEnhancer = withHandlers({
 const propsEnhancer = withPropsOnChange(
   ['serviceGroupsValidationErrors', 'id', 'summaryOfCosts'],
   ({ serviceGroupsValidationErrors, id, summaryOfCosts }) => ({
+
     validationErrors: serviceGroupsValidationErrors[id] || empty,
     displayTotal: id && formatMoney(summaryOfCosts.costsByGroupId[id].total),
     displaySubtotal: id && formatMoney(summaryOfCosts.costsByGroupId[id].subtotal),

@@ -45,7 +45,11 @@ export const createServiceInstance = data => ({
       commit: true,
     },
     params: {
-      include: ['service_group.service_order'],
+      include: [
+        'service_group.service_order',
+        'service_group.primary_service_order',
+        'service_group.service_instances'
+      ],
     },
   }),
 });
@@ -59,7 +63,11 @@ export const editServiceInstance = (id, data) => ({
   api: ({ patch }) => patch(endpoint + id, {
     data,
     params: {
-      include: ['service_group.service_order'],
+      include: [
+        'service_group.service_order',
+        'service_group.primary_service_order',
+        'service_group.service_instances'
+      ],
     },
   }),
   id,
