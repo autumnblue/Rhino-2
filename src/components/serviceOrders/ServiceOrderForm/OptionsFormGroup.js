@@ -19,20 +19,20 @@ const OptionsFormGroup = ({
     <legend>Options</legend>
     <Field
       component={ReduxCheckbox}
-      name="travel_enabled"
       label="Travel Required"
+      name="travel_enabled"
       onChange={onFieldChange}
     />
     <Field
       component={ReduxCheckbox}
-      name="Show Appendix C"
-      label="app_c_enabled"
+      label="Show Appendix C"
+      name="app_c_enabled"
       onChange={onFieldChange}
     />
     <Field
       component={ReduxCheckbox}
-      name="Include Vulnerability Spreadsheet"
-      label="csv_enabled"
+      label="Include Vulnerability Spreadsheet"
+      name="csv_enabled"
       onChange={onFieldChange}
     />
   </FormGroup>
