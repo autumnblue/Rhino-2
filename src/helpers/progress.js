@@ -13,7 +13,7 @@ export function decrement() {
     if (--calls === 0) {
       nprogress.done();
     } else {
-      nprogress.inc();
+      nprogress.inc(0.1);
     }
   });
 }

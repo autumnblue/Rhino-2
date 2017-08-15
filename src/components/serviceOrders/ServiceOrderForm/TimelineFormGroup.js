@@ -1,9 +1,9 @@
 import { pure } from 'recompose';
 import { FormGroup, Row, Col } from 'reactstrap';
 import { Field } from 'redux-form';
-import { object, func } from 'prop-types';
+import { func } from 'prop-types';
 
-import { ReduxInput, ReduxDatePicker, ReduxCheckbox, ReduxOutputText } from 'src/components';
+import { ReduxInput, ReduxDatePicker, ReduxOutputText } from 'src/components';
 
 
 const propTypes = {

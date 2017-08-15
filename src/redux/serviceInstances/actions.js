@@ -48,7 +48,7 @@ export const createServiceInstance = data => ({
       include: [
         'service_group.service_order',
         'service_group.primary_service_order',
-        'service_group.service_instances'
+        'service_group.service_instances',
       ],
     },
   }),
@@ -66,7 +66,7 @@ export const editServiceInstance = (id, data) => ({
       include: [
         'service_group.service_order',
         'service_group.primary_service_order',
-        'service_group.service_instances'
+        'service_group.service_instances',
       ],
     },
   }),

@@ -1,11 +1,24 @@
 import { Field } from 'redux-form';
 import { compose, pure, withStateHandlers, withHandlers, withPropsOnChange } from 'recompose';
 import classNames from 'classnames';
+import { string, func } from 'prop-types';
 
 import { ReduxOutputText, ReduxHidden, Button, Icon } from 'src/components';
 import { formatAdjustment } from 'src/helpers';
 
 import css from './style.css';
+
+const propTypes = {
+  member: string.isRequired,
+  displayValue: string.isRequired,
+  className: string.isRequired,
+
+  onSetId: func.isRequired,
+  onSetValue: func.isRequired,
+  onSetModifier: func.isRequired,
+  onDoubleClick: func.isRequired,
+  onDelete: func.isRequired,
+};
 
 const stateEnhancer = withStateHandlers({
   modifier: '+',
@@ -72,5 +85,7 @@ const AdjustmentsItem = ({
     </td>
   </tr>
 );
+
+AdjustmentsItem.propTypes = propTypes;
 
 export default enhance(AdjustmentsItem);

@@ -1,11 +1,24 @@
 import { FormGroup, Table } from 'reactstrap';
 import { compose, pure, withState, withPropsOnChange, withHandlers } from 'recompose';
-
-import { Button } from 'src/components';
+import { object, bool, string, func, number } from 'prop-types';
 
 import AdjustmentsItem from '../AdjustmentsItem';
 import AdjustmentFields from './AdjustmentFields';
 import css from './style.css';
+
+const propTypes = {
+  fields: object.isRequired,
+  adjustmentValidationErrors: object.isRequired,
+  editingIndex: number,
+  isEditing: bool.isRequired,
+  edigingMember: string.isRequired,
+
+  onDelete: func.isRequired,
+  onEdit: func.isRequired,
+  onAdd: func.isRequired,
+  onCancel: func.isRequired,
+  onSetEditingIndex: func.isRequired,
+};
 
 const editingIndexEnhancer = withState('editingIndex', 'onSetEditingIndex', null);
 
@@ -69,5 +82,7 @@ const AdjustmentsArray = ({
     </div>
   </FormGroup>
 );
+
+AdjustmentsArray.propTypes = propTypes;
 
 export default enhance(AdjustmentsArray);

@@ -1,8 +1,17 @@
 import { compose, pure, withHandlers } from 'recompose';
+import { string, number, func } from 'prop-types';
 
 import { SafeHTML, Button, Icon } from 'src/components';
 
 import css from './style.css';
+
+const propTypes = {
+  html: string.isRequired,
+  editIndex: number,
+  index: number.isRequired,
+  onDoubleClick: func.isRequired,
+  onRemove: func.isRequired,
+};
 
 const handlersEnhancer = withHandlers({
   onDoubleClick: ({ onSetEditIndex, index }) => (evt) => {
@@ -35,5 +44,7 @@ const RichTextListItem = ({
     </Button>
   </div>
 );
+
+RichTextListItem.propTypes = propTypes;
 
 export default enhance(RichTextListItem);

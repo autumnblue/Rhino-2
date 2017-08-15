@@ -1,12 +1,19 @@
-// we will need to add some features to button later
 import { Input as ReactstrapInput } from 'reactstrap';
 import { compose, pure, withHandlers, mapProps, withPropsOnChange } from 'recompose';
 import { omit } from 'lodash';
 import classNames from 'classnames';
+import { string, oneOfType, arrayOf } from 'prop-types';
 
 import { FieldError } from 'src/components';
 
 import css from './style.css';
+
+const propTypes = {
+  error: oneOfType([string, arrayOf(string)]),
+  wrapperClassName: string.isRequired,
+  addonPre: string,
+  addonPost: string,
+};
 
 const handlersEnhancer = withHandlers({
   onChange: ({ passValue, onChange }) => (evt) => {
@@ -57,5 +64,7 @@ const Input = ({
     <FieldError error={error} />
   </div>
 );
+
+Input.propTypes = propTypes;
 
 export default enhance(Input);

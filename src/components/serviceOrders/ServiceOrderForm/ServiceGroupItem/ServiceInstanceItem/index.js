@@ -1,16 +1,24 @@
 import { compose, onlyUpdateForKeys, withPropsOnChange, withHandlers, withState } from 'recompose';
-import { Field, formValues } from 'redux-form';
-import { InputGroupAddon, InputGroup } from 'reactstrap';
+import { Field } from 'redux-form';
+import { string, func, object, number } from 'prop-types';
+
 import { Button, Icon, ReduxOutputText, ReduxHidden, ReduxPriorityVote, ReduxInput, ReduxDatePicker } from 'src/components';
-import { empty, withReduxFormValues, formatMoney } from 'src/helpers';
+import { empty, formatMoney } from 'src/helpers';
 
 import css from './style.css';
 
-/* const formValuesEnhancer = withReduxFormValues(({ member }) => ({
-  id: `${member}.id`,
-  unitPrice: `${member}.unit_price`,
-  numberOfHours: `${member}.number_of_hours`
-}));*/
+const propTypes = {
+  member: string.isRequired,
+  validationErrors: object.isRequired,
+  totalDue: number.isRequired,
+
+  onDelete: func.isRequired,
+  onEdit: func.isRequired,
+
+  onSetId: func.isRequired,
+  onSetUnitPrice: func.isRequired,
+  onSetNumberOfHours: func.isRequired,
+};
 
 const idEnhancer = withState('id', 'onSetId');
 const unitPriceEnhancer = withState('unitPrice', 'onSetUnitPrice');
@@ -144,5 +152,7 @@ const ServiceInstanceItem = ({
     </td>
   </tr>
 );
+
+ServiceInstanceItem.propTypes = propTypes;
 
 export default enhance(ServiceInstanceItem);

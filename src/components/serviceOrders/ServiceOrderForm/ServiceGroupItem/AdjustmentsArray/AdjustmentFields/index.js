@@ -1,11 +1,8 @@
 import { Row, Col, FormGroup } from 'reactstrap';
 import { Field } from 'redux-form';
-import { compose, pure, withStateHandlers, withHandlers, withPropsOnChange } from 'recompose';
+import { string, bool, number, func, object } from 'prop-types';
 
 import {
-  ReduxPriorityVote,
-  ReduxInput,
-  ReduxSelect,
   Input,
   Select,
   PriorityVote,
@@ -13,86 +10,33 @@ import {
   FieldError,
   ReduxHidden,
 } from 'src/components';
-import { empty } from 'src/helpers';
 
 import css from './style.css';
 
-const stateEnhancer = withStateHandlers(
-  {
-    id: null,
-    sort_priority: null,
-    value: 0,
-    modifier: '+',
-    label: '',
-    description: '',
-  },
-  {
-    onSetId: () => id => ({ id }),
-    onSetSortPriority: () => sort_priority => ({ sort_priority }),
-    onSetValue: () => value => ({ value }),
-    onSetModifier: () => modifier => ({ modifier }),
-    onSetLabel: () => label => ({ label }),
-    onSetDescription: () => description => ({ description }),
-  },
-  );
+import enhance from './enhance';
 
-const propsEnhancer = withPropsOnChange(
-  ['adjustmentValidationErrors', 'id', 'isEditing'],
-  ({ adjustmentValidationErrors, id, isEditing }) => ({
-    validationErrors: adjustmentValidationErrors[isEditing ? id : 'new'] || empty,
-  }),
-);
+const propTypes = {
+  member: string.isRequired,
+  isEditing: bool.isRequired,
 
-const resetHandlerEnhancer = withHandlers({
-  onReset: ({ onSetId, onSetSortPriority, onSetValue, onSetModifier, onSetLabel, onSetDescription }) => () => {
-    onSetId(null);
-    onSetSortPriority(null);
-    onSetValue(0);
-    onSetModifier('+');
-    onSetLabel('');
-    onSetDescription('');
-  },
-});
+  sort_priority: number,
+  value: number,
+  modifier: string,
+  label: string,
+  description: string,
+  validationErrors: object.isRequired,
 
-const handlersEnhancer = withHandlers({
-  onAdd: ({ onAdd, onReset, value, modifier, label, description }) => async () => {
-    const { response } = await onAdd({
-      value: +value,
-      modifier,
-      label,
-      description,
-    });
+  onSetId: func.isRequired,
+  onSetSortPriority: func.isRequired,
+  onSetValue: func.isRequired,
+  onSetModifier: func.isRequired,
+  onSetLabel: func.isRequired,
+  onSetDescription: func.isRequired,
 
-    // :(
-    if (response.data && response.data.adjustment) {
-      onReset();
-    }
-  },
-  onEdit: ({
-    onEdit,
-    onReset,
-    onCancel,
-    id,
-    sort_priority,
-    value,
-    modifier,
-    label,
-    description,
-  }) => async () => {
-    const { response } = await onEdit(id, {
-      sort_priority,
-      value,
-      modifier,
-      label,
-      description,
-    });
-
-    if (response.data && response.data.adjustment) {
-      onReset();
-      onCancel();
-    }
-  },
-});
+  onEdit: func.isRequired,
+  onAdd: func.isRequired,
+  onCancel: func.isRequired,
+};
 
 const modifierOptions = [{
   value: '+',
@@ -101,14 +45,6 @@ const modifierOptions = [{
   value: '%',
   label: '%',
 }];
-
-const enhance = compose(
-  stateEnhancer,
-  propsEnhancer,
-  resetHandlerEnhancer,
-  handlersEnhancer,
-  pure,
-);
 
 const AdjustmentFields = ({
   member,
@@ -204,5 +140,7 @@ const AdjustmentFields = ({
     </Col>
   </Row>
 );
+
+AdjustmentFields.propTypes = propTypes;
 
 export default enhance(AdjustmentFields);

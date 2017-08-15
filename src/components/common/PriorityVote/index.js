@@ -7,7 +7,7 @@ import { Icon, FieldError } from 'src/components';
 import css from './style.css';
 
 const propTypes = {
-  value: number.isRequired,
+  value: number,
   className: string.isRequired,
   error: string,
 

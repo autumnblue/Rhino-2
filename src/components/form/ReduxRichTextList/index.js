@@ -1,9 +1,25 @@
 import { compose, pure, withHandlers, withState, withPropsOnChange } from 'recompose';
+import { number, string, func, bool } from 'prop-types';
 
-import { SafeHTML, RichText, Button } from 'src/components';
+import { RichText, Button } from 'src/components';
+import { reduxFormInputType } from 'src/prop-types';
 
 import RichTextListItem from './RichTextListItem';
 import css from './style.css';
+
+const propTypes = {
+  input: reduxFormInputType.isRequired,
+  editIndex: number,
+  editorValue: string.isRequired,
+  isEditing: bool.isRequired,
+
+  onSetEditIndex: func.isRequired,
+  onEditorValueChange: func.isRequired,
+  onEdit: func.isRequired,
+  onCancel: func.isRequired,
+  onAdd: func.isRequired,
+  onRemove: func.isRequired,
+};
 
 const editorValueEnhancer = withState('editorValue', 'onEditorValueChange', '');
 const editingIndexEnhancer = withState('editIndex', 'onSetEditIndex');
@@ -18,7 +34,9 @@ const handlersEnhancer = withHandlers({
     onEditorValueChange('');
   },
 
-  onEdit: ({ input: { onChange, value }, editIndex, editorValue, onSetEditIndex, onEditorValueChange }) => () => {
+  onEdit: ({
+    input: { onChange, value }, editIndex, editorValue, onSetEditIndex, onEditorValueChange,
+  }) => () => {
     onChange([
       ...value.slice(0, editIndex),
       editorValue,
@@ -73,7 +91,10 @@ const ReduxRichTextList = ({
   onRemove,
 }) => (
   <div className={css.wrapper}>
+
+    {/* eslint-disable react/no-array-index-key */}
     {value.map((item, index) => (
+
       <RichTextListItem
         key={index}
         index={index}
@@ -83,11 +104,14 @@ const ReduxRichTextList = ({
         onRemove={onRemove}
       />
     ))}
+    {/* eslint-enable react/no-array-index-key */}
     <RichText onChange={onEditorValueChange} value={editorValue} className={css.editor} />
     <Base exists={!isEditing} component={Button} onClick={onAdd}>Add</Base>
     <Base exists={isEditing} component={Button} onClick={onEdit}>Save</Base>{' '}
     <Base exists={isEditing} component={Button} onClick={onCancel}>Cancel</Base>
   </div>
 );
+
+ReduxRichTextList.propTypes = propTypes;
 
 export default enhance(ReduxRichTextList);

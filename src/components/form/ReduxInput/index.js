@@ -2,7 +2,7 @@ import { omit } from 'lodash';
 import { pure } from 'recompose';
 import { string, oneOfType, arrayOf } from 'prop-types';
 
-import { Input, FieldError } from 'src/components';
+import { Input } from 'src/components';
 import { reduxFormInputType } from 'src/prop-types';
 
 const propTypes = {

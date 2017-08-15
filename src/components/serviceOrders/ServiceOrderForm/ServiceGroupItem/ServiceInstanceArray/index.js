@@ -1,11 +1,26 @@
 import { FormGroup, Table, Row, Col } from 'reactstrap';
-import { Field } from 'redux-form';
 import { compose, pure, withState, withHandlers } from 'recompose';
+import { object, string, func, number } from 'prop-types';
 
-import { ReduxOutputText, Select, Button, Icon } from 'src/components';
+import { selectOptionsType } from 'src/prop-types';
+import { Select, Button, Icon } from 'src/components';
 
 import ServiceInstanceItem from '../ServiceInstanceItem';
 import css from './style.css';
+
+const propTypes = {
+  fields: object.isRequired,
+  displaySubtotal: string,
+  serviceOptions: selectOptionsType.isRequired,
+  serviceInstanceValidationErrors: object.isRequired,
+
+  serviceValue: number,
+
+  onSetService: func.isRequired,
+  onAdd: func.isRequired,
+  onDelete: func.isRequired,
+  onEdit: func.isRequired,
+};
 
 const serviceEnhancer = withState('serviceValue', 'onSetService', null);
 
@@ -80,5 +95,7 @@ const ServiceInstanceArray = ({
 
   </FormGroup>
 );
+
+ServiceInstanceArray.propTypes = propTypes;
 
 export default enhance(ServiceInstanceArray);

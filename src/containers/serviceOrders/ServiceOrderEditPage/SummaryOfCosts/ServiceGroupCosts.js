@@ -29,13 +29,15 @@ const ServiceGroupCosts = ({
   <div>
     <h6>{name}</h6>
     <ul>
-      {instances.map(({ cost, instance }) => (
-        <li>
+      {/* eslint-disable react/no-array-index-key*/}
+      {instances.map(({ cost, instance }, index) => (
+        <li key={index}>
           {instance.display_name}
           {' '}
           <strong className="float-right">${formatMoney(cost)}</strong>
         </li>
-    ))}
+      ))}
+      {/* eslint-enable react/no-array-index-key*/}
     </ul>
     <p>
     Subtotal:
@@ -43,11 +45,13 @@ const ServiceGroupCosts = ({
       <strong className="float-right">${formatMoney(subtotal)}</strong>
     </p>
     <Base component="ul" exists={adjustments.length}>
-      {adjustments.map(({ value, modifier }) => (
-        <li>
+      {/* eslint-disable react/no-array-index-key*/}
+      {adjustments.map(({ value, modifier }, index) => (
+        <li key={index}>
           {formatAdjustment({ value, modifier })}
         </li>
-    ))}
+      ))}
+      {/* eslint-enable react/no-array-index-key*/}
     </Base>
     <p>
       <u>

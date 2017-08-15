@@ -19,6 +19,7 @@ import {
   editServiceGroupFieldChange,
   createServiceGroup,
   deleteServiceGroupTrigger,
+  loadServiceGroupChoices,
 } from 'src/redux/serviceGroups/actions';
 import {
   editServiceInstanceFieldChange,
@@ -33,7 +34,6 @@ import {
 
 // selectors
 import { getCurrentServiceOrder, getSummaryOfCosts } from 'src/redux/serviceOrders/selectors';
-import { loadServiceGroupChoices } from 'src/redux/serviceGroups/actions';
 import { getClients } from 'src/redux/clients/selectors';
 import { getUsers } from 'src/redux/users/selectors';
 import { getIndustries } from 'src/redux/industries/selectors';
@@ -72,7 +72,8 @@ const reduxAsyncConnect = asyncConnect([{
 
       return undefined;
     } catch (e) {
-      console.error(e);
+      console.error(e); // eslint-disable-line no-console
+      return undefined;
     }
   },
 }]);

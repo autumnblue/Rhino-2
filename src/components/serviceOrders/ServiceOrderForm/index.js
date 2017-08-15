@@ -1,6 +1,7 @@
+/* eslint "max-lines": ["error", {"max": 175, "skipBlankLines": true}] */
 import { Col, Row, Form } from 'reactstrap';
 import { object, func, objectOf, string, number, bool } from 'prop-types';
-import { Field, FieldArray } from 'redux-form';
+import { FieldArray } from 'redux-form';
 
 import { breadcrumbsType, selectOptionsType, userType } from 'src/prop-types';
 import formatTime from 'src/helpers/formatTime';
@@ -13,7 +14,6 @@ import RevisionsFormGroup from './RevisionsFormGroup';
 import ButtonsFormGroup from './ButtonsFormGroup';
 import OptionsFormGroup from './OptionsFormGroup';
 import TimelineFormGroup from './TimelineFormGroup';
-
 import ServiceGroupArray from './ServiceGroupArray';
 import ServiceGroupPrimary from './ServiceGroupPrimary';
 
@@ -21,19 +21,37 @@ import enhance from './enhance';
 
 const propTypes = {
   isNew: bool,
-  id: number,
   clientOptions: selectOptionsType.isRequired,
   statusOptions: selectOptionsType.isRequired,
   paymentOptions: selectOptionsType.isRequired,
   userOptions: selectOptionsType.isRequired,
   industryOptions: selectOptionsType.isRequired,
   focalProfileOptions: selectOptionsType.isRequired,
+  serviceOptions: selectOptionsType.isRequired,
+  frequencyOptions: selectOptionsType.isRequired,
   usersData: objectOf(userType).isRequired,
   created: string,
+  summaryOfCosts: object,
+  id: number,
   validationErrors: object.isRequired,
+  serviceGroupsValidationErrors: object,
+  serviceInstanceValidationErrors: object,
+  adjustmentValidationErrors: object,
   breadcrumbs: breadcrumbsType.isRequired,
 
   onFieldChange: func.isRequired,
+
+  onEditServiceGroup: func,
+  onAddServiceGroup: func,
+  onDeleteServiceGroup: func,
+
+  onEditServiceInstance: func,
+  onAddServiceInstance: func,
+  onDeleteServiceInstance: func,
+
+  onEditAdjustment: func,
+  onAddAdjustment: func,
+  onDeleteAdjustment: func,
 };
 
 
@@ -119,7 +137,6 @@ const ServiceOrderForm = ({
         <strong>Service Groups are only available after Service Order is created</strong>
       </Base>
       <Base exists={!isNew} component={Col} md="12">
-
         <ServiceGroupPrimary
           {...{
             serviceOptions,

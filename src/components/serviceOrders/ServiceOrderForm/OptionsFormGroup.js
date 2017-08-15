@@ -1,10 +1,9 @@
 import { pure } from 'recompose';
 import { FormGroup } from 'reactstrap';
 import { Field } from 'redux-form';
-import { object, func } from 'prop-types';
+import { func } from 'prop-types';
 
 import { ReduxCheckbox } from 'src/components';
-
 
 const propTypes = {
   onFieldChange: func.isRequired,

@@ -11,6 +11,7 @@ import css from './style.css';
 
 const propTypes = {
   error: oneOfType([string, arrayOf(string)]),
+  showIcon: bool,
   focused: bool.isRequired,
   date: object,
   className: string.isRequired,
@@ -29,13 +30,14 @@ const focusedEnhancer = withState('focused', 'onFocusChange', false);
 
 const handlersEnhancer = withHandlers({
   onFocusChange: ({ onFocusChange }) => ({ focused }) => onFocusChange(!!focused),
-  onChange: ({ onChange, formatAsDate }) => value => {
-    onChange(value
-      ? (formatAsDate
-        ? value.toDate().toISOString().split('T')[0]
-        : value.toDate().toISOString()
-      )
-      : value)
+  onChange: ({ onChange, formatAsDate }) => (value) => {
+    if (value) {
+      const isoString = value.toDate().toISOString();
+
+      return onChange(formatAsDate ? isoString.split('T')[0] : isoString);
+    }
+
+    return onChange(value);
   },
 });
 

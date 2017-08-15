@@ -1,57 +1,45 @@
 import { Field, FieldArray } from 'redux-form';
 import { FormGroup, Col, Row } from 'reactstrap';
-import { compose, onlyUpdateForKeys, withState, withHandlers, withPropsOnChange } from 'recompose';
+import { string, bool, object, func } from 'prop-types';
 
 import { ReduxInput, ReduxHidden, Button, ReduxRichTextList, ReduxPriorityVote, ReduxOutputText, ReduxSelect } from 'src/components';
-import { empty, withReduxFormValues, formatMoney } from 'src/helpers';
+import { selectOptionsType } from 'src/prop-types';
 
 import ServiceInstanceArray from './ServiceInstanceArray';
 import AdjustmentsArray from './AdjustmentsArray';
+import enhance from './enhance';
 
-const idEnhancer = withState('id', 'onSetId');
+const propTypes = {
+  member: string.isRequired,
+  extended: bool,
+  displayTotal: string,
+  displaySubtotal: string,
+  validationErrors: object.isRequired,
+  serviceInstanceValidationErrors: object.isRequired,
+  adjustmentValidationErrors: object.isRequired,
+  className: string,
+  serviceOptions: selectOptionsType.isRequired,
+  frequencyOptions: selectOptionsType,
 
-const handlersEnhancer = withHandlers({
-  onEdit: ({ onEdit, id, member }) => () => setTimeout(onEdit, 0, id, member),
-  onDelete: ({ onDelete, id, index }) => () => onDelete(id, index),
-  onAddServiceInstance: ({ onAddServiceInstance, id }) => data => onAddServiceInstance({
-    ...data,
-    service_group: id,
-  }),
-  onAddAdjustment: ({ onAddAdjustment, id }) => data => onAddAdjustment({
-    ...data,
-    service_group: id,
-  }),
-});
+  onSetId: func.isRequired,
 
-const propsEnhancer = withPropsOnChange(
-  ['serviceGroupsValidationErrors', 'id', 'summaryOfCosts'],
-  ({ serviceGroupsValidationErrors, id, summaryOfCosts }) => ({
+  onEdit: func.isRequired,
+  onDelete: func.isRequired,
 
-    validationErrors: serviceGroupsValidationErrors[id] || empty,
-    displayTotal: id && formatMoney(summaryOfCosts.costsByGroupId[id].total),
-    displaySubtotal: id && formatMoney(summaryOfCosts.costsByGroupId[id].subtotal),
-  }));
+  onEditServiceInstance: func.isRequired,
+  onAddServiceInstance: func.isRequired,
+  onDeleteServiceInstance: func.isRequired,
 
-const enhance = compose(
-  idEnhancer,
-  handlersEnhancer,
-  propsEnhancer,
-  onlyUpdateForKeys([
-    'validationErrors',
-    'serviceInstanceValidationErrors',
-    'adjustmentValidationErrors',
-    'serviceOptions',
-    'displayTotal',
-    'displaySubtotal',
-  ]),
-);
+  onEditAdjustment: func.isRequired,
+  onAddAdjustment: func.isRequired,
+  onDeleteAdjustment: func.isRequired,
+};
 
 const ServiceGroupItem = ({
   member,
   extended,
   displayTotal,
   displaySubtotal,
-  summaryOfCosts,
   validationErrors,
   serviceInstanceValidationErrors,
   adjustmentValidationErrors,
@@ -175,5 +163,6 @@ const ServiceGroupItem = ({
   </FormGroup>
 );
 
+ServiceGroupItem.propTypes = propTypes;
 
 export default enhance(ServiceGroupItem);

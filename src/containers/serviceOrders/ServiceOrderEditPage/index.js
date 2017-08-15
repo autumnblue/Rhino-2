@@ -8,7 +8,7 @@ import {
   PageContent,
   PageHeader,
 } from 'src/components';
-import { breadcrumbsType, clientType, userType, industryType, focalProfileType, serviceOrderType } from 'src/prop-types';
+import { breadcrumbsType, clientType, userType, industryType, focalProfileType, serviceOrderType, serviceType } from 'src/prop-types';
 
 import SummaryOfCosts from './SummaryOfCosts';
 import enhance from './enhance';
@@ -16,16 +16,34 @@ import enhance from './enhance';
 const propTypes = {
   breadcrumbs: breadcrumbsType.isRequired,
   choices: object.isRequired,
+  serviceGroupChoices: object.isRequired,
   clients: arrayOf(clientType).isRequired,
   users: arrayOf(userType).isRequired,
   industries: arrayOf(industryType).isRequired,
   focalProfiles: arrayOf(focalProfileType).isRequired,
+  services: arrayOf(serviceType).isRequired,
   usersData: objectOf(userType).isRequired,
   serviceOrder: serviceOrderType.isRequired,
+  summaryOfCosts: object.isRequired,
   validationErrors: object.isRequired,
+  serviceGroupsValidationErrors: object.isRequired,
+  serviceInstanceValidationErrors: object.isRequired,
+  adjustmentValidationErrors: object.isRequired,
 
   onDelete: func.isRequired,
   onFieldChange: func.isRequired,
+
+  onEditServiceGroup: func.isRequired,
+  onAddServiceGroup: func.isRequired,
+  onDeleteServiceGroup: func.isRequired,
+
+  onEditServiceInstance: func.isRequired,
+  onAddServiceInstance: func.isRequired,
+  onDeleteServiceInstance: func.isRequired,
+
+  onEditAdjustment: func.isRequired,
+  onAddAdjustment: func.isRequired,
+  onDeleteAdjustment: func.isRequired,
 };
 
 const ServiceOrderEditPage = ({

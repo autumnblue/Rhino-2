@@ -13,7 +13,6 @@ import { loadUsers } from 'src/redux/users/actions';
 import { loadIndustries } from 'src/redux/industries/actions';
 
 // selectors
-import { getCurrentServiceOrder } from 'src/redux/serviceOrders/selectors';
 import { getClients } from 'src/redux/clients/selectors';
 import { getUsers } from 'src/redux/users/selectors';
 import { getIndustries } from 'src/redux/industries/selectors';
