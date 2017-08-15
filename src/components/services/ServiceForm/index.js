@@ -2,7 +2,7 @@ import { Col, Row, FormGroup, Form, Label } from 'reactstrap';
 import { Field } from 'redux-form';
 import { object, func, bool } from 'prop-types';
 
-import { ReduxInput, ReduxSelect, ReduxPriorityVote, ReduxRichText, ReduxAsset } from 'src/components';
+import { ReduxInput, ReduxSelect, ReduxPriorityVote, ReduxAsset } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
 
 import enhance from './enhance';
@@ -115,11 +115,13 @@ const ServiceForm = ({
           <FormGroup>
             <Label>Service Body</Label>
             <Field
-              component={ReduxRichText}
+              component={ReduxInput}
+              type="textarea"
               disabled={isNew}
               name="html_body"
               onChange={onFieldChange}
               error={validationErrors.html_body}
+              rows="30"
             />
           </FormGroup>
         </FormGroup>
