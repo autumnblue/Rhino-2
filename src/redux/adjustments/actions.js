@@ -38,26 +38,12 @@ export const createAdjustment = data => ({
       ...data,
       commit: true,
     },
-    params: {
-      include: [
-        'service_group.service_order',
-        'service_group.adjustments',
-      ],
-    },
   }),
 });
 
 export const editAdjustment = (id, data) => ({
   types: [c.EDIT_ADJUSTMENT, c.EDIT_ADJUSTMENT_SUCCESS, c.EDIT_ADJUSTMENT_FAIL],
-  api: ({ patch }) => patch(endpoint + id, {
-    data,
-    params: {
-      include: [
-        'service_group.service_order',
-        'service_group.adjustments',
-      ],
-    },
-  }),
+  api: ({ patch }) => patch(endpoint + id, { data }),
   id,
 });
 

@@ -55,7 +55,12 @@ export const loadSingleServiceGroup = id => ({
   ],
   api: ({ get }) => get(endpoint + id, {
     params: {
-      include: ['service_instances', 'adjustments'],
+      include: [
+        'service_instances',
+        'adjustments',
+        'service_order',
+        'primary_service_order',
+      ],
     },
   }),
 });
@@ -67,20 +72,12 @@ export const createServiceGroup = data => ({
       ...data,
       commit: true,
     },
-    params: {
-      include: ['service_order'],
-    },
   }),
 });
 
 export const editServiceGroup = (id, data) => ({
   types: [c.EDIT_SERVICE_GROUP, c.EDIT_SERVICE_GROUP_SUCCESS, c.EDIT_SERVICE_GROUP_FAIL],
-  api: ({ patch }) => patch(endpoint + id, {
-    data,
-    params: {
-      include: ['service_order'],
-    },
-  }),
+  api: ({ patch }) => patch(endpoint + id, { data }),
   id,
 });
 

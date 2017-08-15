@@ -47,12 +47,22 @@ function* editServiceGroupFieldChange() {
   }
 }
 
-function* deleteServiceGroupSuccess() {
+function* updateAdjustmentSuccess() {
   while (true) {
-    const { id } = yield take(c.DELETE_SERVICE_GROUP_SUCCESS);
-    const { service_order_id } = yield select(getSpecifiedServiceGroup, id);
+    const { response, id } = yield take([
+      c.CREATE_SERVICE_GROUP_SUCCESS,
+      c.EDIT_SERVICE_GROUP_SUCCESS,
+      c.DELETE_SERVICE_GROUP_SUCCESS,
+    ]);
 
-    yield put(loadSingleServiceOrder(service_order_id));
+    const { service_order_id, primary_service_order_id } = yield select(
+      getSpecifiedServiceGroup,
+      id || response.data.service_group.id,
+    );
+
+    yield put(
+      loadSingleServiceOrder(service_order_id || primary_service_order_id),
+    );
   }
 }
 
@@ -60,6 +70,6 @@ export default function* createSaga() {
   yield all([
     fork(deleteServiceGroupTrigger),
     fork(editServiceGroupFieldChange),
-    fork(deleteServiceGroupSuccess),
+    fork(updateAdjustmentSuccess),
   ]);
 }

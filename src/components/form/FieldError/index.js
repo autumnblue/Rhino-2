@@ -14,7 +14,7 @@ const enhance = pure;
 const FieldError = ({ error, className, component }) => (
   <Base
     exists={error}
-    component={component}
+    component={component || 'div'}
     className={`${css.error} ${className || ''}`}
   >
     {error}
