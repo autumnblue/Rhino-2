@@ -82,18 +82,20 @@ const TimelineFormGroup = ({
       </Col>
       <Col lg="6" md="6" sm="12" xs="12">
         <FormGroup>
-        Number of employees:{' '}
+          <label>Number of employees</label>
           <strong>
             <Field
-              component={ReduxOutputText}
+              component={ReduxInput}
               name="number_of_employees"
+              type="number"
+              onBlur={onFieldChange}
             />
           </strong>
         </FormGroup>
       </Col>
       <Col lg="6" md="6" sm="12" xs="12">
         <FormGroup>
-        Days to complete:{' '}
+          Days to complete:{' '}
           <strong>
             <Field
               component={ReduxOutputText}

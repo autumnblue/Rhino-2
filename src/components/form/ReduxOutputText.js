@@ -5,7 +5,7 @@ const propTypes = {
 };
 
 const ReduxOutputText = ({ input: { value } }) => (
-  <Base exists={value} component="span">{value}</Base>
+  <Base exists={typeof value !== 'undefined'} component="span">{value}</Base>
 );
 
 ReduxOutputText.propTypes = propTypes;
