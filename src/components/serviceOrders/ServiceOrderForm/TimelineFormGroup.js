@@ -1,18 +1,21 @@
 import { pure } from 'recompose';
 import { FormGroup, Row, Col } from 'reactstrap';
 import { Field } from 'redux-form';
-import { func } from 'prop-types';
+import { func, object } from 'prop-types';
 
 import { ReduxInput, ReduxDatePicker, ReduxOutputText } from 'src/components';
 
 
 const propTypes = {
+  validationErrors: object.isRequired,
   onFieldChange: func.isRequired,
 };
 
 const enhance = pure;
 
 const TimelineFormGroup = ({
+  validationErrors,
+
   onFieldChange,
 }) => (
   <FormGroup tag="fieldset">
@@ -25,6 +28,7 @@ const TimelineFormGroup = ({
             component={ReduxDatePicker}
             name="sign_by_date"
             onChange={onFieldChange}
+            error={validationErrors.sign_by_date}
           />
         </FormGroup>
       </Col>
@@ -35,6 +39,7 @@ const TimelineFormGroup = ({
             component={ReduxDatePicker}
             name="expires"
             onChange={onFieldChange}
+            error={validationErrors.expires}
           />
         </FormGroup>
       </Col>
@@ -45,6 +50,7 @@ const TimelineFormGroup = ({
             component={ReduxDatePicker}
             name="signed_date"
             onChange={onFieldChange}
+            error={validationErrors.signed_date}
           />
         </FormGroup>
       </Col>
@@ -56,6 +62,7 @@ const TimelineFormGroup = ({
             component={ReduxDatePicker}
             name="start_date"
             onChange={onFieldChange}
+            error={validationErrors.start_date}
           />
         </FormGroup>
       </Col>
@@ -66,6 +73,7 @@ const TimelineFormGroup = ({
             component={ReduxDatePicker}
             name="end_date"
             onChange={onFieldChange}
+            error={validationErrors.end_date}
           />
         </FormGroup>
       </Col>
@@ -77,6 +85,7 @@ const TimelineFormGroup = ({
             name="hours_per_day"
             type="number"
             onBlur={onFieldChange}
+            error={validationErrors.hours_per_day}
           />
         </FormGroup>
       </Col>
@@ -89,6 +98,7 @@ const TimelineFormGroup = ({
               name="number_of_employees"
               type="number"
               onBlur={onFieldChange}
+              error={validationErrors.number_of_employees}
             />
           </strong>
         </FormGroup>

@@ -187,7 +187,7 @@ const ServiceOrderForm = ({
         <OptionsFormGroup onFieldChange={onFieldChange} />
       </Col>
       <Col md="6" sm="12">
-        <TimelineFormGroup onFieldChange={onFieldChange} />
+        <TimelineFormGroup validationErrors={validationErrors} onFieldChange={onFieldChange} />
       </Col>
     </Row>
   </Form>
