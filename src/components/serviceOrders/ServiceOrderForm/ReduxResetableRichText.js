@@ -2,7 +2,7 @@ import { compose, pure, withHandlers } from 'recompose';
 import { Col, Row } from 'reactstrap';
 import { string, func } from 'prop-types';
 
-import { FieldError, ExpandableRichText, Button } from 'src/components';
+import { FieldError, FullPageRichText, Button } from 'src/components';
 import { reduxFormInputType, breadcrumbsType } from 'src/prop-types';
 
 const propTypes = {
@@ -43,7 +43,7 @@ const ReduxCustomizableRichText = ({
       <Button onClick={onReset} block>Reset</Button>
     </Col>
     <Col md="8" sm="12">
-      <ExpandableRichText
+      <FullPageRichText
         onChange={onChange}
         parentBreadcrumbs={parentBreadcrumbs}
         breadcrumbLabel={breadcrumbLabel}

@@ -1,11 +1,11 @@
-import { FormGroup, Table, Row, Col } from 'reactstrap';
+import { Table, Row, Col } from 'reactstrap';
 import { compose, pure, withState, withHandlers } from 'recompose';
 import { object, string, func, number } from 'prop-types';
 
 import { selectOptionsType } from 'src/prop-types';
 import { Select, Button, Icon } from 'src/components';
 
-import ServiceInstanceItem from '../ServiceInstanceItem';
+import ServiceInstanceItem from './ServiceInstanceItem';
 import css from './style.css';
 
 const propTypes = {
@@ -52,8 +52,7 @@ const ServiceInstanceArray = ({
   onDelete,
   onEdit,
 }) => (
-  <FormGroup tag="fieldset">
-    <legend>Selected Services</legend>
+  <div>
     <Table striped className={css.table}>
       <tbody>
         {fields.map(member => (
@@ -91,9 +90,7 @@ const ServiceInstanceArray = ({
         </Button>
       </Col>
     </Row>
-
-
-  </FormGroup>
+  </div>
 );
 
 ServiceInstanceArray.propTypes = propTypes;

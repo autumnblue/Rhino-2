@@ -1,9 +1,16 @@
 import { createSelector } from 'reselect';
 import { sortBy } from 'lodash';
 
-import { getServiceGroupsData } from 'src/redux/serviceGroups/selectors';
-import { getServiceInstancesData } from 'src/redux/serviceInstances/selectors';
-import { getAdjustmentsData } from 'src/redux/adjustments/selectors';
+import { applyAdjustments } from 'src/helpers';
+
+import { getServiceGroupsData as getServiceGroupsDataRef } from 'src/redux/serviceGroups/selectors';
+import { getServiceInstancesData as getServiceInstancesDataRef } from 'src/redux/serviceInstances/selectors';
+import { getAdjustmentsData as getAdjustmentsDataRef } from 'src/redux/adjustments/selectors';
+
+// fixes circular dependency issues
+const getServiceGroupsData = (...args) => getServiceGroupsDataRef(...args);
+const getServiceInstancesData = (...args) => getServiceInstancesDataRef(...args);
+const getAdjustmentsData = (...args) => getAdjustmentsDataRef(...args);
 
 const getServiceOrdersIds = state => state.serviceOrders.ids;
 const getCurrentServiceOrderId = state => state.serviceOrders.id;
@@ -53,29 +60,8 @@ export const getCurrentServiceOrder = createSelector(
   }),
 );
 
-/*
-def calculate_total_due(self):
-  total_due = self.pre_adjustment_total
+// Summary of costs
 
-  for each_additive_adjustment in self.adjustments.filter(modifier='+'):
-      total_due += each_additive_adjustment.value
-  for each_multiplicative_adjustment in self.adjustments.filter(modifier='%'):
-      total_due *= (1 + (each_multiplicative_adjustment.value / 100))
-
-  return total_due
-*/
-const calculateTotalDue = (givenSummary, adjustments) => {
-  let summary = givenSummary;
-  adjustments.filter(({ modifier }) => (modifier === '+')).forEach(({ value }) => {
-    summary += value;
-  });
-
-  adjustments.filter(({ modifier }) => (modifier === '%')).forEach(({ value }) => {
-    summary *= (1 + (value / 100));
-  });
-
-  return summary;
-};
 
 const calculateServiceGroup = (
   serviceGroup,
@@ -102,7 +88,7 @@ const calculateServiceGroup = (
     costs.adjustments.push(adjustmentsData[id]);
   });
 
-  costs.total = calculateTotalDue(costs.subtotal, costs.adjustments);
+  costs.total = applyAdjustments(costs.subtotal, costs.adjustments);
 
   return costs;
 };

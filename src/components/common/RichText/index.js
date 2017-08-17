@@ -36,12 +36,15 @@ const formats = [
   'link', 'image',
 ];
 
-const propsEnhancer = withPropsOnChange(['className'], ({ className }) => ({
-  className: classNames({
-    [css.wrapper]: true,
-    [className]: !!className,
+const propsEnhancer = withPropsOnChange(
+  ['className', 'disabled'], ({ className, disabled }) => ({
+    className: classNames({
+      [css.wrapper]: true,
+      [css.disabled]: !!disabled,
+      [className]: !!className,
+    }),
   }),
-}));
+);
 
 const refEnhancer = withState('reference', 'onSetRef', null);
 

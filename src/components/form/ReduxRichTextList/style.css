@@ -6,6 +6,7 @@
   background: #fff;
   border: 1px solid #CCD5DB;
   border-bottom: none;
+  margin-bottom: 0;
   &:last-child {
     border-bottom: 1px solid #CCD5DB;
   }
@@ -16,11 +17,6 @@
 }
 
 .editor {
-  margin-bottom: 0.5rem;
-}
-
-
-.item {
   margin-bottom: 0.5rem;
 }
 

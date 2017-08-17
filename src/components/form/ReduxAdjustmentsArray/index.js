@@ -1,8 +1,8 @@
-import { FormGroup, Table } from 'reactstrap';
+import { Table } from 'reactstrap';
 import { compose, pure, withState, withPropsOnChange, withHandlers } from 'recompose';
 import { object, bool, string, func, number } from 'prop-types';
 
-import AdjustmentsItem from '../AdjustmentsItem';
+import AdjustmentsItem from './AdjustmentsItem';
 import AdjustmentFields from './AdjustmentFields';
 import css from './style.css';
 
@@ -38,7 +38,7 @@ const enhance = compose(
   pure,
 );
 
-const AdjustmentsArray = ({
+const ReduxAdjustmentsArray = ({
   fields,
   adjustmentValidationErrors,
   editingIndex,
@@ -51,38 +51,34 @@ const AdjustmentsArray = ({
   onCancel,
   onSetEditingIndex,
 }) => (
-  <FormGroup tag="fieldset">
-    <legend>Adjusments</legend>
+  <div className={css.container}>
+    <AdjustmentFields
+      adjustmentValidationErrors={adjustmentValidationErrors}
+      member={edigingMember}
+      isEditing={isEditing}
+      onEdit={onEdit}
+      onAdd={onAdd}
+      onCancel={onCancel}
+    />
+    <Table striped className={css.table}>
+      <tbody>
+        {fields.map((member, index) => (
+          <AdjustmentsItem
+            member={member}
+            key={member}
+            index={index}
+            editingIndex={editingIndex}
 
-    <div className={css.container}>
-      <AdjustmentFields
-        adjustmentValidationErrors={adjustmentValidationErrors}
-        member={edigingMember}
-        isEditing={isEditing}
-        onEdit={onEdit}
-        onAdd={onAdd}
-        onCancel={onCancel}
-      />
-      <Table striped className={css.table}>
-        <tbody>
-          {fields.map((member, index) => (
-            <AdjustmentsItem
-              member={member}
-              key={member}
-              index={index}
-              editingIndex={editingIndex}
-
-              onDelete={onDelete}
-              onEdit={onEdit}
-              onSetEditingIndex={onSetEditingIndex}
-            />
-    ))}
-        </tbody>
-      </Table>
-    </div>
-  </FormGroup>
+            onDelete={onDelete}
+            onEdit={onEdit}
+            onSetEditingIndex={onSetEditingIndex}
+          />
+        ))}
+      </tbody>
+    </Table>
+  </div>
 );
 
-AdjustmentsArray.propTypes = propTypes;
+ReduxAdjustmentsArray.propTypes = propTypes;
 
-export default enhance(AdjustmentsArray);
+export default enhance(ReduxAdjustmentsArray);

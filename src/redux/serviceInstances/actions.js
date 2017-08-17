@@ -3,9 +3,10 @@ import * as c from './constants';
 const endpoint = 'service-instances/';
 
 // UI actions
-export const deleteServiceInstanceTrigger = id => ({
+export const deleteServiceInstanceTrigger = (id, shouldRedirect) => ({
   type: c.DELETE_SERVICE_INSTANCE_TRIGGER,
   id,
+  shouldRedirect,
 });
 
 export const editServiceInstanceFieldChange = (id, path) => ({
@@ -33,6 +34,41 @@ export const loadServiceInstances = ({
   }),
 });
 
+// load choices only once, they're hardcoded constants
+export const loadDocumentTemplateChoices = () => (dispatch, getState) => {
+  const { choices } = getState().documentTemplates;
+
+  if (!choices) {
+    return dispatch({
+      types: [
+        c.LOAD_SERVICE_INSTANCE_CHOICES,
+        c.LOAD_SERVICE_INSTANCE_CHOICES_SUCCESS,
+        c.LOAD_SERVICE_INSTANCE_CHOICES_FAIL,
+      ],
+      api: ({ get }) => get(`${endpoint}choices/`),
+    });
+  }
+
+  return undefined;
+};
+
+export const loadSingleServiceInstance = id => ({
+  types: [
+    c.LOAD_SINGLE_SERVICE_INSTANCE,
+    c.LOAD_SINGLE_SERVICE_INSTANCE_SUCCESS,
+    c.LOAD_SINGLE_SERVICE_INSTANCE_FAIL,
+  ],
+  api: ({ get }) => get(endpoint + id, {
+    params: {
+      include: [
+        'service_group.service_order',
+        'service_group.primary_service_order',
+        'adjustments',
+      ],
+    },
+  }),
+});
+
 export const createServiceInstance = data => ({
   types: [
     c.CREATE_SERVICE_INSTANCE,
@@ -44,13 +80,6 @@ export const createServiceInstance = data => ({
       ...data,
       commit: true,
     },
-    params: {
-      include: [
-        'service_group.service_order',
-        'service_group.primary_service_order',
-        'service_group.service_instances',
-      ],
-    },
   }),
 });
 
@@ -60,20 +89,11 @@ export const editServiceInstance = (id, data) => ({
     c.EDIT_SERVICE_INSTANCE_SUCCESS,
     c.EDIT_SERVICE_INSTANCE_FAIL,
   ],
-  api: ({ patch }) => patch(endpoint + id, {
-    data,
-    params: {
-      include: [
-        'service_group.service_order',
-        'service_group.primary_service_order',
-        'service_group.service_instances',
-      ],
-    },
-  }),
+  api: ({ patch }) => patch(endpoint + id, { data }),
   id,
 });
 
-export const deleteServiceInstance = id => ({
+export const deleteServiceInstance = (id, shouldRedirect) => ({
   types: [
     c.DELETE_SERVICE_INSTANCE,
     c.DELETE_SERVICE_INSTANCE_SUCCESS,
@@ -81,4 +101,5 @@ export const deleteServiceInstance = id => ({
   ],
   api: ({ del }) => del(endpoint + id),
   id,
+  shouldRedirect,
 });

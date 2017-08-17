@@ -13,3 +13,12 @@
     overflow: auto;
   }
 }
+
+.disabled {
+  cursor: not-allowed;
+  background: #eceeef;
+
+  & > :global(.ql-toolbar) {
+    pointer-events: none;
+  }
+}

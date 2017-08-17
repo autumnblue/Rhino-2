@@ -2,11 +2,10 @@ import { Field, FieldArray } from 'redux-form';
 import { FormGroup, Col, Row } from 'reactstrap';
 import { string, bool, object, func } from 'prop-types';
 
-import { ReduxInput, ReduxHidden, Button, ReduxRichTextList, ReduxPriorityVote, ReduxOutputText, ReduxSelect } from 'src/components';
+import { ReduxAdjustmentsArray, ReduxInput, ReduxHidden, Button, ReduxRichTextList, ReduxPriorityVote, ReduxOutputText, ReduxSelect } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
 
 import ServiceInstanceArray from './ServiceInstanceArray';
-import AdjustmentsArray from './AdjustmentsArray';
 import enhance from './enhance';
 
 const propTypes = {
@@ -129,27 +128,34 @@ const ServiceGroupItem = ({
         </FormGroup>
       </Col>
     </Row>
-    <FieldArray
-      name={`${member}.service_instances`}
-      component={ServiceInstanceArray}
-      displaySubtotal={displaySubtotal}
-      serviceInstanceValidationErrors={serviceInstanceValidationErrors}
-      serviceOptions={serviceOptions}
 
-      onEdit={onEditServiceInstance}
-      onAdd={onAddServiceInstance}
-      onDelete={onDeleteServiceInstance}
-    />
+    <FormGroup tag="fieldset">
+      <legend>Selected Services</legend>
+      <FieldArray
+        name={`${member}.service_instances`}
+        component={ServiceInstanceArray}
+        displaySubtotal={displaySubtotal}
+        serviceInstanceValidationErrors={serviceInstanceValidationErrors}
+        serviceOptions={serviceOptions}
 
-    <FieldArray
-      name={`${member}.adjustments`}
-      component={AdjustmentsArray}
-      adjustmentValidationErrors={adjustmentValidationErrors}
+        onEdit={onEditServiceInstance}
+        onAdd={onAddServiceInstance}
+        onDelete={onDeleteServiceInstance}
+      />
+    </FormGroup>
 
-      onEdit={onEditAdjustment}
-      onAdd={onAddAdjustment}
-      onDelete={onDeleteAdjustment}
-    />
+    <FormGroup tag="fieldset">
+      <legend>Adjusments</legend>
+      <FieldArray
+        name={`${member}.adjustments`}
+        component={ReduxAdjustmentsArray}
+        adjustmentValidationErrors={adjustmentValidationErrors}
+
+        onEdit={onEditAdjustment}
+        onAdd={onAddAdjustment}
+        onDelete={onDeleteAdjustment}
+      />
+    </FormGroup>
 
     <FormGroup>
       <strong>Total: ${displayTotal}</strong>

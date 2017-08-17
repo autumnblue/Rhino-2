@@ -3,6 +3,7 @@ import { isEmpty, omit } from 'lodash';
 
 import { simpleObjectDiff } from 'src/helpers';
 import { loadSingleServiceGroup } from 'src/redux/serviceGroups/actions';
+import { loadSingleServiceInstance } from 'src/redux/serviceInstances/actions';
 
 import * as c from './constants';
 import { editAdjustment, deleteAdjustment } from './actions';
@@ -37,11 +38,6 @@ function* editAdjustmentFieldChange() {
       }));
 
       resolve(apiAction);
-
-      if (diff.custom_sort_priority) {
-        // reload list
-        yield put(loadSingleServiceGroup(adjustment.service_group_id));
-      }
     }
   }
 }
@@ -54,12 +50,16 @@ function* updateAdjustmentSuccess() {
       c.DELETE_ADJUSTMENT_SUCCESS,
     ]);
 
-    const { service_group } = yield select(
+    const { service_group, service_instance } = yield select(
       getSpecifiedAdjustment,
       id || response.data.adjustment.id,
     );
 
-    yield put(loadSingleServiceGroup(service_group));
+    if (service_group) {
+      yield put(loadSingleServiceGroup(service_group));
+    } else if (service_instance) {
+      yield put(loadSingleServiceInstance(service_instance));
+    }
   }
 }
 

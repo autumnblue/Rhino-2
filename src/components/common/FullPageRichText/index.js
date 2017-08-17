@@ -85,7 +85,7 @@ const enhance = compose(
   pure,
 );
 
-const ExpandableRichText = ({
+const FullPageRichText = ({
   value,
   error,
   isEditing,
@@ -106,7 +106,7 @@ const ExpandableRichText = ({
       <Base exists={!value} component="em" className={css.empty}>Empty</Base>
     </Base>
     <FieldError error={error} />
-    <Button block onClick={onOpenEdit}>{editButtonLabel}</Button>
+    <Button block onClick={onOpenEdit} disabled={disabled}>{editButtonLabel}</Button>
 
     <Modal isOpen={isEditing} onRequestClose={onCloseEdit} fillIn>
       <ModalHeader onRequestClose={onCloseEdit}>
@@ -121,12 +121,12 @@ const ExpandableRichText = ({
         />
       </ModalBody>
       <ModalFooter>
-        <Button disabled={disabled} onClick={onCloseEdit}>Cancel</Button>
+        <Button onClick={onCloseEdit}>Cancel</Button>
       </ModalFooter>
     </Modal>
   </div>
 );
 
-ExpandableRichText.propTypes = propTypes;
+FullPageRichText.propTypes = propTypes;
 
-export default enhance(ExpandableRichText);
+export default enhance(FullPageRichText);

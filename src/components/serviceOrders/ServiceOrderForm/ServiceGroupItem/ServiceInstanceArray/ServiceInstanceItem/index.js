@@ -1,6 +1,7 @@
 import { compose, onlyUpdateForKeys, withPropsOnChange, withHandlers, withState } from 'recompose';
 import { Field } from 'redux-form';
 import { string, func, object, number } from 'prop-types';
+import { Link } from 'react-router';
 
 import { Button, Icon, ReduxOutputText, ReduxHidden, ReduxPriorityVote, ReduxInput, ReduxDatePicker } from 'src/components';
 import { empty, formatMoney } from 'src/helpers';
@@ -11,6 +12,7 @@ const propTypes = {
   member: string.isRequired,
   validationErrors: object.isRequired,
   totalDue: number.isRequired,
+  id: number,
 
   onDelete: func.isRequired,
   onEdit: func.isRequired,
@@ -56,6 +58,7 @@ const enhance = compose(
   onlyUpdateForKeys([
     'validationErrors',
     'totalDue',
+    'id',
   ]),
 );
 
@@ -63,6 +66,7 @@ const ServiceInstanceItem = ({
   member,
   validationErrors,
   totalDue,
+  id,
 
   onDelete,
   onEdit,
@@ -146,8 +150,12 @@ const ServiceInstanceItem = ({
       </nobr>
     </td>
     <td>
-      <Button onClick={onDelete}>
+      <Button onClick={onDelete} className={css.button}>
         <Icon wb="close" />
+      </Button>
+      {' '}
+      <Button tag={Link} to={`/service-instances/${id}`} className={css.button}>
+        <Icon wb="pencil" />
       </Button>
     </td>
   </tr>

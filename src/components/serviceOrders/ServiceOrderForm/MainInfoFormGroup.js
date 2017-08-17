@@ -3,10 +3,8 @@ import { pure } from 'recompose';
 import { Field } from 'redux-form';
 import { object, func, bool } from 'prop-types';
 
-import { ReduxSelect, ReduxInput, Select } from 'src/components';
+import { ReduxSelect, ReduxDirtiable, ReduxInput, Select } from 'src/components';
 import { selectOptionsType } from 'src/prop-types';
-
-import ReduxCustomizableText from './ReduxCustomizableText';
 
 const propTypes = {
   isNew: bool,
@@ -46,7 +44,8 @@ const MainInfoFormGroup = ({
     <FormGroup>
       <label>Custom Title</label>
       <Field
-        component={ReduxCustomizableText}
+        component={ReduxDirtiable}
+        dirtiableType="input"
         name="custom_title"
         onChange={onFieldChange}
         error={validationErrors.custom_title}

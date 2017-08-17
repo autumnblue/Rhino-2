@@ -6,7 +6,7 @@ export { default as Breadcrumbs } from './common/Breadcrumbs';
 export { default as DatePicker } from './common/DatePicker';
 export { default as Icon } from './common/Icon';
 export { default as EntityLink } from './common/EntityLink';
-export { default as ExpandableRichText } from './common/ExpandableRichText';
+export { default as FullPageRichText } from './common/FullPageRichText';
 export { default as Modal } from './common/Modal';
 export { default as ModalBody } from './common/Modal/ModalBody';
 export { default as ModalFooter } from './common/Modal/ModalFooter';
@@ -26,15 +26,18 @@ export { default as ClientForm } from './clients/ClientForm';
 export { default as DocumentTemplateForm } from './documentTemplates/DocumentTemplateForm';
 
 // form
+export { default as Asset } from './form/Asset';
 export { default as Button } from './form/Button';
 export { default as Checkbox } from './form/Checkbox';
 export { default as Input } from './form/Input';
 export { default as FieldError } from './form/FieldError';
+export { default as ReduxAdjustmentsArray } from './form/ReduxAdjustmentsArray';
 export { default as ReduxAsset } from './form/ReduxAsset';
 export { default as ReduxAssociations } from './form/ReduxAssociations';
 export { default as ReduxCheckbox } from './form/ReduxCheckbox';
 export { default as ReduxDatePicker } from './form/ReduxDatePicker';
-export { default as ReduxExpandableRichText } from './form/ReduxExpandableRichText';
+export { default as ReduxDirtiable } from './form/ReduxDirtiable';
+export { default as ReduxFullPageRichText } from './form/ReduxFullPageRichText';
 export { default as ReduxHidden } from './form/ReduxHidden';
 export { default as ReduxInput } from './form/ReduxInput';
 export { default as ReduxOutputText } from './form/ReduxOutputText';
@@ -52,6 +55,9 @@ export { default as IssuerForm } from './issuers/IssuerForm';
 
 // services
 export { default as ServiceForm } from './services/ServiceForm';
+
+// service instances
+export { default as ServiceInstanceForm } from './serviceInstances/ServiceInstanceForm';
 
 // service orders
 export { default as ServiceOrderForm } from './serviceOrders/ServiceOrderForm';

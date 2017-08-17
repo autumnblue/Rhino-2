@@ -1,6 +1,6 @@
 import { pure } from 'recompose';
 
-import { ExpandableRichText } from 'src/components';
+import { FullPageRichText } from 'src/components';
 import { reduxFormInputType } from 'src/prop-types';
 
 const propTypes = {
@@ -9,17 +9,17 @@ const propTypes = {
 
 const enhance = pure;
 
-const ReduxExpandableRichText = ({
+const ReduxFullPageRichText = ({
   input: { value, onChange },
   ...props
 }) => (
-  <ExpandableRichText
+  <FullPageRichText
     value={value}
     onChange={onChange}
     {...props}
   />
 );
 
-ReduxExpandableRichText.propTypes = propTypes;
+ReduxFullPageRichText.propTypes = propTypes;
 
-export default enhance(ReduxExpandableRichText);
+export default enhance(ReduxFullPageRichText);

@@ -37,6 +37,8 @@ import ServiceOrderListPage from './containers/serviceOrders/ServiceOrderListPag
 import ServiceOrderCreatePage from './containers/serviceOrders/ServiceOrderCreatePage';
 import ServiceOrderEditPage from './containers/serviceOrders/ServiceOrderEditPage';
 
+import ServiceInstanceEditPage from './containers/serviceInstances/ServiceInstanceEditPage';
+
 function reduxAsyncConnect(props) {
   return (
     <ReduxAsyncConnect
@@ -87,6 +89,8 @@ const Routes = ({ history }) => (
         <Route path="service-orders" component={ServiceOrderListPage} />
         <Route path="service-orders/new" component={ServiceOrderCreatePage} />
         <Route path="service-orders/:serviceOrderId" component={ServiceOrderEditPage} />
+
+        <Route path="service-instances/:serviceInstanceId" component={ServiceInstanceEditPage} />
       </Route>
       <Route path="/login" component={LoginPage} />
     </Route>
