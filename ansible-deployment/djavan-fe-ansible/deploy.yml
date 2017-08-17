@@ -38,3 +38,8 @@
     with_items:
       - nginx
       - "pm2-{{ project.user }}"
+
+  - name: Apply version control
+    shell: apt-mark hold {{item}}
+    with_items:
+      - nginx
