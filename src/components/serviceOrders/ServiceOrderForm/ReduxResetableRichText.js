@@ -19,7 +19,11 @@ const propTypes = {
 
 const handlersEnhancer = withHandlers({
   onChange: ({ input: { onChange } }) => onChange,
-  onReset: ({ input: { onChange } }) => () => onChange(null),
+  onReset: ({ input: { onChange } }) => () => {
+    if(confirm('Are you sure you want to reset the field?')) {
+      onChange(null)  
+    }
+  },
 });
 
 const enhance = compose(

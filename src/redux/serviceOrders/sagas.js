@@ -1,7 +1,7 @@
 import { all, fork, call, takeLatest, select, put, take } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { formValueSelector } from 'redux-form';
-import { pickBy, pick, isEmpty, omit } from 'lodash';
+import { pickBy, pick, isEmpty, omit, omitBy, isUndefined } from 'lodash';
 import { push } from 'react-router-redux';
 import qs from 'qs';
 
@@ -68,13 +68,17 @@ function* editServiceOrderFormChange() {
     // we need to extract only those properties which are rendered on the page
     const keys = Object.keys(registeredFields);
 
-    const diff = simpleObjectDiff(
-      serviceOrder,
-      omit(
-        pick(values, keys),
-        ['primary_service_group', 'service_groups'],
+    const diff = omitBy(
+      simpleObjectDiff(
+        serviceOrder,
+        omit(
+          pick(values, keys),
+          ['primary_service_group', 'service_groups'],
+        ),
       ),
+      isUndefined
     );
+
 
     if (!isEmpty(diff)) {
       yield put(editServiceOrder(id, {
