@@ -30,10 +30,10 @@ const modules = {
 };
 
 const formats = [
-  'header',
+  'font', 'size', 'align', 'header',
   'bold', 'italic', 'underline', 'strike', 'blockquote',
-  'list', 'bullet', 'indent',
-  'link', 'image',
+  'list', 'bullet', 'indent', 'background',
+  'link', 'image', 'code-block', 'script', 'color',
 ];
 
 const propsEnhancer = withPropsOnChange(

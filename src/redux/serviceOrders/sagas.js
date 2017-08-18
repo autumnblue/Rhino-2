@@ -76,7 +76,7 @@ function* editServiceOrderFormChange() {
           ['primary_service_group', 'service_groups'],
         ),
       ),
-      isUndefined
+      isUndefined,
     );
 
 

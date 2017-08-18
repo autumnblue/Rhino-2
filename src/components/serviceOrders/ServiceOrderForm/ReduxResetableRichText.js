@@ -20,8 +20,9 @@ const propTypes = {
 const handlersEnhancer = withHandlers({
   onChange: ({ input: { onChange } }) => onChange,
   onReset: ({ input: { onChange } }) => () => {
-    if(confirm('Are you sure you want to reset the field?')) {
-      onChange(null)  
+    // eslint-disable-next-line no-alert
+    if (window.confirm('Are you sure you want to reset the field?')) {
+      onChange(null);
     }
   },
 });
