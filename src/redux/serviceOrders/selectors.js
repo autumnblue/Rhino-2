@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { sortBy } from 'lodash';
 
 import { applyAdjustments } from 'src/helpers';
 
@@ -23,14 +22,8 @@ export const getServiceOrders = createSelector(
 
 const fillServiceGroup = (serviceGroup, serviceInsancesData, adjustmentsData) => ({
   ...serviceGroup,
-  service_instances: sortBy(
-    serviceGroup.service_instance_ids.map(id => serviceInsancesData[id]),
-    'custom_sort_priority',
-  ),
-  adjustments: sortBy(
-    serviceGroup.adjustments.map(adjustmentId => adjustmentsData[adjustmentId]),
-    'sort_priority',
-  ),
+  service_instances: serviceGroup.service_instance_ids.map(id => serviceInsancesData[id]),
+  adjustments: serviceGroup.adjustments.map(adjustmentId => adjustmentsData[adjustmentId]),
 });
 
 
@@ -47,16 +40,13 @@ export const getCurrentServiceOrder = createSelector(
       serviceInsancesData,
       adjustmentsData,
     ),
-    service_groups: sortBy(
-      data[id].service_group_ids.map(
+    service_groups: data[id].service_group_ids.map(
         sgId => fillServiceGroup(
           serviceGroupsData[sgId],
           serviceInsancesData,
           adjustmentsData,
         ),
       ),
-      'sort_priority',
-    ),
   }),
 );
 

@@ -151,5 +151,5 @@ export const serviceInstanceType = shape({
 export const assetType = shape({
   id: number.isRequired,
   file: string.isRequired,
-  download: string.isRequired
+  download: string.isRequired,
 });
