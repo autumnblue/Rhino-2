@@ -14,6 +14,11 @@ function showError(response, next) {
         text: detail || non_field_errors.join('\n'),
       }));
     }
+  } else {
+    next(noty({
+      type: 'error',
+      text: 'Unknown error',
+    }));
   }
 }
 
