@@ -11,25 +11,29 @@ const propTypes = {
   onChange: func.isRequired,
 };
 
+const host = process.env.API_URL.replace(/(https?:\/\/.*?)\/.*/, '$1');
+
 const propsEnhancer = withPropsOnChange(['assetsData', 'value'], ({ assetsData, value }) => ({
-  url: value && assetsData[value] ? assetsData[value].download : null,
+  url: value && assetsData[value] ? host + assetsData[value].download : null,
 }));
 
 const handlersEnhancer = withHandlers({
   onChange: ({ onChange, onUpload }) => async ({ target }) => {
     const file = target.files[0];
-    const file_name = file.name;
-    const mime_type = file.type;
+    if (file) {
+      const file_name = file.name;
+      const mime_type = file.type;
 
-    const { response } = await onUpload({
-      file,
-      file_name,
-      mime_type,
-    });
+      const { response } = await onUpload({
+        file,
+        file_name,
+        mime_type,
+      });
 
-    const { id } = response.data.asset;
+      const { id } = response.data.asset;
 
-    onChange(id);
+      onChange(id);
+    }
   },
 });
 
