@@ -16,10 +16,10 @@ export const refreshToken = token => ({
   }),
 });
 
-export const login = ({ username, password }) => ({
+export const login = data => ({
   types: [c.LOGIN, c.LOGIN_SUCCESS, c.LOGIN_FAIL],
   api: ({ post }) => post('token/', {
-    data: { username, password },
+    data,
     useToken: false,
   }),
 });

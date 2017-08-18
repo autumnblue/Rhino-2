@@ -25,7 +25,6 @@ const enhance = compose(
   pure,
 );
 
-
 const LoginForm = ({
   validationErrors,
 
@@ -34,11 +33,11 @@ const LoginForm = ({
   <Form onSubmit={onSubmit}>
     <FormGroup>
       <Field
-        name="username"
+        name="email"
         component={ReduxInput}
         type="text"
         placeholder="email@example.com"
-        error={validationErrors.username}
+        error={validationErrors.email}
       />
     </FormGroup>
     <FormGroup>

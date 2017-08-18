@@ -43,7 +43,6 @@ const handlersEnhancer = withHandlers({
         description,
         time,
         user_email: user.email,
-        user_username: user.username,
         user_full_name: `${user.first_name} ${user.last_name}`,
       },
       ...value.slice(index + 1),
@@ -65,7 +64,6 @@ const handlersEnhancer = withHandlers({
         description,
         time,
         user_email: user.email,
-        user_username: user.username,
         user_full_name: `${user.first_name} ${user.last_name}`,
       },
     ]);
@@ -115,14 +113,14 @@ const ReduxRevisions = ({
         </tr>
       </thead>
       <tbody>
-        {value.map(({ time, user_username, description }, index) => (
+        {value.map(({ time, user_email, description }, index) => (
           <RevisionRow {...{
             key: index,
             editingRevisionIndex,
             index,
             time,
-            user_username,
             description,
+            user_email,
 
             onSetEditingRevisionIndex,
           }}

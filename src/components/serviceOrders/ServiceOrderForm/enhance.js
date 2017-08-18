@@ -27,8 +27,8 @@ const propsEnhancer = withPropsOnChange(
       label: name,
       value: id,
     })),
-    userOptions: users.map(({ first_name, last_name, username, id }) => ({
-      label: first_name && last_name ? `${first_name} ${last_name}` : username,
+    userOptions: users.map(({ first_name, last_name, email, id }) => ({
+      label: first_name && last_name ? `${first_name} ${last_name}` : email,
       value: id,
     })),
     industryOptions: industries.map(({ name, id }) => ({

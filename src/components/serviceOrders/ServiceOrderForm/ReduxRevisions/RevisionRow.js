@@ -8,7 +8,7 @@ import css from './style.css';
 
 const propTypes = {
   time: string.isRequired,
-  user_username: string,
+  user_email: string.isRequired,
   description: string.isRequired,
   className: string.isRequired,
 
@@ -35,7 +35,7 @@ const enhance = compose(
 
 const RevisionRow = ({
   time,
-  user_username,
+  user_email,
   description,
   className,
 
@@ -43,7 +43,7 @@ const RevisionRow = ({
 }) => (
   <tr className={className}>
     <td>{formatTime(time).date()}</td>
-    <td>{user_username}</td>
+    <td>{user_email}</td>
     <td>{description}</td>
     <td>
       <a className={css.editLink} onClick={onSetEditingRevisionIndex}>Edit</a>

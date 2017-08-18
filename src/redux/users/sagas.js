@@ -9,13 +9,13 @@ import { login } from './actions';
 function* submitLoginForm() {
   while (true) {
     yield take(c.SUBMIT_LOGIN_FORM);
-    const { username, password } = yield select(
+    const { email, password } = yield select(
       formValueSelector('loginForm'),
-      'username',
+      'email',
       'password',
     );
 
-    yield put(login({ username, password }));
+    yield put(login({ email, password }));
   }
 }
 
