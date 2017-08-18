@@ -1,0 +1,16 @@
+.menu {
+  top: 0;
+}
+
+.active {
+  background: rgba(0,0,0,.06);
+}
+
+.active a {
+  color: #fff!important;
+}
+
+.logout {
+  width: 100%!important;
+  cursor: pointer;
+}

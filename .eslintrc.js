@@ -1,33 +1,48 @@
 module.exports = {
   "extends": "airbnb",
-  "plugins": [
-    "babel",
-    "react",
-    "jsx-a11y",
-    "import",
-  ],
   "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
-    }
-  },
+  "plugins": ["babel"],
   "rules": {
-    "no-console": 0,
-    "no-unused-expressions": 0,
-    "no-unused-vars": 0,
-    "react/prefer-stateless-function": 0,
-    "no-nested-ternary": 0,
-    "no-undef": 1,
-    "global-require": 1,
-    "new-cap": 1,
-    "arrow-parens": 0,
-    "babel/arrow-parens": 1,
-    "max-len": 0,
+    // we don't import React directly
+    "react/react-in-jsx-scope": 0,
+    // .js extension is easier to manage
+    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+    // allow to use while(true) in sagas
+    "no-constant-condition": 0,
+    // allow to use for..of
+    "no-restricted-syntax": 0,
+
+    // allow to use package-like dependency "src"
+    "import/extensions": 0,
+    "import/no-unresolved": 0,
+
+    // we can export and import both default and named
+    "import/prefer-default-export": 0,
+
+    // we don/t use default props
+    "react/require-default-props": 0,
+
+    // identifiers like foo_bar are used as server request params
+    "camelcase": 0,
+
+    // allow to use meta-component Base
+    "react/jsx-no-undef": [2, { "allowGlobals": true }],
+
+    // disable some jsx-a11y rules for now
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+
+    // we should avoid long JS files
+    "max-lines": ["error", {"max": 160, "skipBlankLines": true}],
+
+    // unary operators are useful :)
+    "no-plusplus": 0
   },
   globals: {
     __CLIENT__: true,
     __DEVELOPMENT__: true,
     __DEVTOOLS__: true,
+    window: true,
+    Base: true
   }
 };

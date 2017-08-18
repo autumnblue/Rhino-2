@@ -1,0 +1,20 @@
+.wrapper {
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
+
+.table {
+  border-bottom: 1px solid #ddd;
+}
+
+.row {
+  &.active {
+    background: #FFFAE7!important;
+  }
+}
+
+.editLink {
+  cursor: pointer;
+  text-decoration: underline!important;
+  text-decoration-style: dotted!important;
+}

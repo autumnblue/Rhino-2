@@ -13,15 +13,15 @@
   shell: "pm2 unstartup -u {{ project.user }}"
   ignore_errors: true
     
-- name: project | yarn
-  shell: yarn
-  args:
-    chdir: "{{ project.root }}"
-  register: yarn
-  become: true
-  become_user: "{{ project.user }}"
+#- name: project | yarn
+#  shell: yarn
+#  args:
+#    chdir: "{{ project.root }}"
+#  register: yarn
+#  become: true
+#  become_user: "{{ project.user }}"
     
-- debug: var=yarn.stdout_lines
+#- debug: var=yarn.stdout_lines
 
 - name: project | npm install
   shell: "npm install --unsafe-perm"
