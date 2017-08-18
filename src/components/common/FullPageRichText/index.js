@@ -34,10 +34,10 @@ const propTypes = {
   editingValue: string,
   breadcrumbs: breadcrumbsType,
 
-  onChange: func.isRequired,
   onOpenEdit: func.isRequired,
   onCloseEdit: func.isRequired,
   onSetEditValue: func.isRequired,
+  onReset: func.isRequired,
 };
 
 const defaultPropsEnhancer = defaultProps({
@@ -50,10 +50,13 @@ const editingValueEnhancer = withState('editingValue', 'onSetEditValue', ({ valu
 
 const handlersEnhancer = withHandlers({
   onOpenEdit: ({ onSetIsEditing }) => () => onSetIsEditing(true),
-  onCloseEdit: ({ onSetIsEditing }) => () => onSetIsEditing(false),
-  onChange: ({ onChange, onSetIsEditing, editingValue }) => () => {
+  onCloseEdit: ({ onChange, onSetIsEditing, editingValue }) => () => {
     onSetIsEditing(false);
     onChange(editingValue);
+  },
+  onReset: ({ onSetEditValue, onSetIsEditing, value }) => () => {
+    onSetIsEditing(false);
+    onSetEditValue(value);
   },
   // have no idea why it needs a delay
   onSetEditValue: ({ onSetEditValue }) => debounce(value => onSetEditValue(value)),
@@ -95,10 +98,10 @@ const FullPageRichText = ({
   showContent,
   disabled,
 
-  onChange,
   onOpenEdit,
   onCloseEdit,
   onSetEditValue,
+  onReset,
 }) => (
   <div>
     <Base exists={showContent} className={css.content}>
@@ -111,7 +114,7 @@ const FullPageRichText = ({
     <Modal isOpen={isEditing} onRequestClose={onCloseEdit} fillIn>
       <ModalHeader onRequestClose={onCloseEdit}>
         <Breadcrumbs className={css.breadcrumbs} breadcrumbs={breadcrumbs} />
-        <Button onClick={onChange} color="success">Save</Button>
+        <Button onClick={onReset}>Reset</Button>
       </ModalHeader>
       <ModalBody>
         <RichText
@@ -121,7 +124,7 @@ const FullPageRichText = ({
         />
       </ModalBody>
       <ModalFooter>
-        <Button onClick={onCloseEdit}>Cancel</Button>
+        <Button onClick={onCloseEdit} color="success">Done</Button>
       </ModalFooter>
     </Modal>
   </div>

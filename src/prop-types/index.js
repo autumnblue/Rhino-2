@@ -1,4 +1,4 @@
-import { number, string, shape, arrayOf, any, node, bool, func } from 'prop-types';
+import { number, string, shape, arrayOf, any, node, bool, func, object } from 'prop-types';
 
 // this module exports the most widely used custom prop types
 
@@ -150,6 +150,14 @@ export const serviceInstanceType = shape({
 
 export const assetType = shape({
   id: number.isRequired,
-  file: string.isRequired,
+  interaction_log: arrayOf(object).isRequired,
+  uuid: string.isRequired,
+  created: string.isRequired,
+  file_name: string.isRequired,
+  file_extension: string.isRequired,
+  entity_type: string.isRequired,
+  checksum: string.isRequired,
   download: string.isRequired,
+  mime_type: 'image/jpeg',
+  size: number.isRequired,
 });

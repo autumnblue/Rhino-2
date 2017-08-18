@@ -55,7 +55,7 @@ const stateChangeEnhancer = withHandlers({
   onChangeStateValue: ({ dirtiableType, onChangeStateValue, onChange }) => (stateValue) => {
     onChangeStateValue(stateValue);
 
-    if (['select', 'fullScreenRichText', 'asset'].includes(dirtiableType)) {
+    if (['select', 'fullPageRichText', 'asset'].includes(dirtiableType)) {
       setTimeout(onChange);
     }
   },
