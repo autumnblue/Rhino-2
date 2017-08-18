@@ -4,7 +4,7 @@
   "description": "Rhino Djavan",
   "main": "index.js",
   "scripts": {
-    "build": "API_URL=\"https://djavan-server-dev.rsl.host/api/v1/\" NODE_ENV=production webpack --config webpack/webpack.config.js",
+    "build": "NODE_ENV=production webpack --config webpack/webpack.config.js",
     "dev": "concurrently --kill-others \"npm run dev-server\" \"npm run webpack-dev-server\"",
     "dev-server": "NODE_ENV=development nodemon --exec babel-node ./bin/server.js --watch ./bin/server.js",
     "webpack-dev-server": "NODE_ENV=development webpack-dev-server --config webpack/webpack.config.js",
