@@ -66,34 +66,34 @@ const ServiceForm = ({
           <FormGroup>
             <Label>Description</Label>
             <Field
-              component={ReduxInput}
+              component={ReduxRichText}
               type="textarea"
               name="description"
               placeholder="Description"
               onBlur={onFieldChange}
-              error={validationErrors.url}
+              error={validationErrors.description}
             />
           </FormGroup>
           <FormGroup>
             <Label>Scope text</Label>
             <Field
-              component={ReduxInput}
+              component={ReduxRichText}
               type="textarea"
               name="engagement_type_description"
               placeholder="Scope text"
               onBlur={onFieldChange}
-              error={validationErrors.address}
+              error={validationErrors.engagement_type_description}
             />
           </FormGroup>
           <FormGroup>
             <Label>Remediation text</Label>
             <Field
-              component={ReduxInput}
+              component={ReduxRichText}
               type="textarea"
               name="remediation_text"
               placeholder="Recomendation text"
               onBlur={onFieldChange}
-              error={validationErrors.address}
+              error={validationErrors.remediation_text}
             />
           </FormGroup>
         </FormGroup>
