@@ -23,3 +23,12 @@ body {
 [disabled] {
   cursor: not-allowed;
 }
+
+
+.Select.is-disabled > .Select-control {
+  background: #eceeef;
+  cursor: not-allowed;
+  border-color: #e4eaec;
+  color: #464a4c;
+  border-radius: 0.25rem;
+}

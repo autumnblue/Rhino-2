@@ -1,8 +1,13 @@
 .datePicker {
   width: 100%;
+
   & :global(.SingleDatePicker) {
     width: 100%;
     display: block;
+  }
+
+  & :global(.SingleDatePickerInput) {
+    border-radius: 0.25rem;
   }
 
   & :global(.DateInput) {
@@ -30,6 +35,10 @@
 
   & :global(.SingleDatePickerInput), & :global(.DateInput) {
     background: #eceeef!important;
+  }
+
+  & :global(.SingleDatePickerInput) {
+    border-color: #e4eaec;
   }
 
   & :global(.SingleDatePicker) {
