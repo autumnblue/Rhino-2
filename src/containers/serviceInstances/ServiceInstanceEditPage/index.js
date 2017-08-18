@@ -1,16 +1,17 @@
 import { Link } from 'react-router';
 import { FormGroup } from 'reactstrap';
-import { arrayOf, object, func } from 'prop-types';
+import { arrayOf, object, func, objectOf } from 'prop-types';
 
 import { Page, PageHeader, PageContent, Button, ServiceInstanceForm } from 'src/components';
 import { formatMoney } from 'src/helpers';
-import { breadcrumbsType, serviceType, serviceInstanceType } from 'src/prop-types';
+import { breadcrumbsType, serviceType, serviceInstanceType, assetType } from 'src/prop-types';
 
 import enhance from './enhance';
 
 const propTypes = {
   breadcrumbs: breadcrumbsType.isRequired,
   services: arrayOf(serviceType).isRequired,
+  assetsData: objectOf(assetType).isRequired,
   validationErrors: object.isRequired,
   adjustmentValidationErrors: object.isRequired,
   serviceInstance: serviceInstanceType.isRequired,
@@ -29,6 +30,7 @@ const propTypes = {
 const ServiceInstanceEditPage = ({
   breadcrumbs,
   services,
+  assetsData,
   validationErrors,
   adjustmentValidationErrors,
   serviceInstance,
@@ -53,6 +55,7 @@ const ServiceInstanceEditPage = ({
         parentBreadcrumbs={breadcrumbs}
         {...{
           services,
+          assetsData,
           validationErrors,
           adjustmentValidationErrors,
           choices,

@@ -38,6 +38,7 @@ const reduxConnect = connect(state => ({
   serviceInstance: getCurrentServiceInstance(state),
   services: getServices(state),
   adjustmentValidationErrors: state.adjustments.validationErrorsPerId,
+  assetsData: state.assets.data,
   choices: state.serviceInstances.choices,
 }), {
   onDelete: deleteServiceInstanceTrigger,

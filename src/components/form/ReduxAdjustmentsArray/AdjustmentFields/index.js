@@ -82,16 +82,16 @@ const AdjustmentFields = ({
       ) :
       null
     }
-    <Col md="1" sm="1">
+    <Col lg="1" md="2" sm="1">
       <PriorityVote
         onChange={onSetSortPriority}
         value={sort_priority}
         disabled={sort_priority === null}
       />
     </Col>
-    <Col md="11" sm="11">
+    <Col lg="11" md="10" sm="11">
       <Row>
-        <Col md="3" sm="3">
+        <Col lg="3" md="6" sm="3">
           <FormGroup>
             <label>Value</label>
             <Input
@@ -102,7 +102,7 @@ const AdjustmentFields = ({
             <FieldError error={validationErrors.value} />
           </FormGroup>
         </Col>
-        <Col md="3" sm="3">
+        <Col lg="3" md="6" sm="3">
           <FormGroup>
             <label>Modifier</label>
 
@@ -116,14 +116,14 @@ const AdjustmentFields = ({
             <FieldError error={validationErrors.modifier} />
           </FormGroup>
         </Col>
-        <Col md="6" sm="6">
+        <Col lg="6" md="12" sm="6">
           <FormGroup>
             <label>Label</label>
             <Input value={label} onChange={onSetLabel} passValue />
             <FieldError error={validationErrors.label} />
           </FormGroup>
         </Col>
-        <Col md="12" sm="12">
+        <Col md="12" lg="12" sm="12">
           <FormGroup>
             <label>Description</label>
 
@@ -133,7 +133,7 @@ const AdjustmentFields = ({
         </Col>
       </Row>
     </Col>
-    <Col md="12">
+    <Col lg="12" md="12" sm="12">
       <Base exists={!isEditing} component={Button} onClick={onAdd}>Add</Base>
       <Base exists={isEditing} component={Button} onClick={onEdit}>Save</Base>{' '}
       <Base exists={isEditing} component={Button} onClick={onCancel}>Cancel</Base>

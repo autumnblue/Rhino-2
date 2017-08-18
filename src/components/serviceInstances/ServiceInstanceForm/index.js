@@ -1,7 +1,7 @@
 import { Form, Row, Col } from 'reactstrap';
-import { object, func } from 'prop-types';
+import { object, func, objectOf } from 'prop-types';
 
-import { selectOptionsType, breadcrumbsType } from 'src/prop-types';
+import { selectOptionsType, breadcrumbsType, assetType } from 'src/prop-types';
 
 import SubtotalFormLeftSide from './SubtotalFormLeftSide';
 import SubtotalFormRightSide from './SubtotalFormRightSide';
@@ -9,6 +9,7 @@ import enhance from './enhance';
 
 const propTypes = {
   serviceOptions: selectOptionsType.isRequired,
+  assetsData: objectOf(assetType).isRequired,
   engagementTypeOptions: selectOptionsType.isRequired,
   parentBreadcrumbs: breadcrumbsType.isRequired,
   validationErrors: object.isRequired,
@@ -24,6 +25,7 @@ const propTypes = {
 
 const ServiceInstanceForm = ({
   serviceOptions,
+  assetsData,
   engagementTypeOptions,
   parentBreadcrumbs,
   validationErrors,
@@ -56,6 +58,7 @@ const ServiceInstanceForm = ({
         <SubtotalFormRightSide {...{
           parentBreadcrumbs,
           engagementTypeOptions,
+          assetsData,
           validationErrors,
 
           onFieldChange,

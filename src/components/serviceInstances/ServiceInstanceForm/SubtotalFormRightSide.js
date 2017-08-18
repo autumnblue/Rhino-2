@@ -1,14 +1,15 @@
 import { FormGroup } from 'reactstrap';
 import { Field } from 'redux-form';
-import { object, func } from 'prop-types';
+import { object, func, objectOf } from 'prop-types';
 import { pure } from 'recompose';
 
 import { ReduxCheckbox, ReduxDirtiable } from 'src/components';
-import { selectOptionsType, breadcrumbsType } from 'src/prop-types';
+import { selectOptionsType, breadcrumbsType, assetType } from 'src/prop-types';
 
 const propTypes = {
   engagementTypeOptions: selectOptionsType.isRequired,
   parentBreadcrumbs: breadcrumbsType.isRequired,
+  assetsData: objectOf(assetType).isRequired,
   validationErrors: object.isRequired,
 
   onFieldChange: func.isRequired,
@@ -21,6 +22,7 @@ const enhance = pure;
 const SubtotalFormRightSide = ({
   parentBreadcrumbs,
   engagementTypeOptions,
+  assetsData,
   validationErrors,
 
   onFieldChange,
@@ -45,6 +47,8 @@ const SubtotalFormRightSide = ({
         component={ReduxDirtiable}
         dirtiableType="asset"
         name="feature_image"
+        type="image"
+        assetsData={assetsData}
         onChange={onFieldChange}
         onUpload={onUploadAsset}
         error={validationErrors.feature_image}

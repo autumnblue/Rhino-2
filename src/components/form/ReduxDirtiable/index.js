@@ -1,6 +1,6 @@
 import { compose, pure, mapProps, withState, withHandlers, withPropsOnChange } from 'recompose';
 import { Col, Row } from 'reactstrap';
-import { bool, string, func, oneOf } from 'prop-types';
+import { bool, string, func, oneOf, number, oneOfType } from 'prop-types';
 import { omit } from 'lodash';
 
 import { Input, Checkbox, Select, FieldError, RichText, FullPageRichText, Asset } from 'src/components';
@@ -10,7 +10,7 @@ const propTypes = {
   input: reduxFormInputType.isRequired,
   canEdit: bool.isRequired,
   error: string,
-  stateValue: string.isRequired,
+  stateValue: oneOfType([string, number]).isRequired,
   dirtiableType: oneOf(
     ['input', 'select', 'richText', 'fullPageRichText', 'asset'],
   ).isRequired,
@@ -55,7 +55,7 @@ const stateChangeEnhancer = withHandlers({
   onChangeStateValue: ({ dirtiableType, onChangeStateValue, onChange }) => (stateValue) => {
     onChangeStateValue(stateValue);
 
-    if (['select', 'fullScreenRichText'].includes(dirtiableType)) {
+    if (['select', 'fullScreenRichText', 'asset'].includes(dirtiableType)) {
       setTimeout(onChange);
     }
   },

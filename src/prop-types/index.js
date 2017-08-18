@@ -138,7 +138,7 @@ export const serviceInstanceType = shape({
   display_description: string.isRequired,
   name: string,
   display_remediation_ordered: bool.isRequired,
-  scope_summary: arrayOf(string.isRequired),
+  scope_summary: string.isRequired,
   remediation_text: string,
   engagement_type_description: string,
   engagement_type: string,
@@ -146,4 +146,10 @@ export const serviceInstanceType = shape({
   start_date: string,
   number_of_hours: number.isRequired,
   html_body: string.isRequired,
+});
+
+export const assetType = shape({
+  id: number.isRequired,
+  file: string.isRequired,
+  download: string.isRequired
 });

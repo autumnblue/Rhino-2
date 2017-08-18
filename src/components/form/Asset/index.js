@@ -12,7 +12,7 @@ const propTypes = {
 };
 
 const propsEnhancer = withPropsOnChange(['assetsData', 'value'], ({ assetsData, value }) => ({
-  url: value && assetsData[value] ? assetsData[value].file : null,
+  url: value && assetsData[value] ? assetsData[value].download : null,
 }));
 
 const handlersEnhancer = withHandlers({
