@@ -17,3 +17,13 @@ export function decrement() {
     }
   });
 }
+
+window.addEventListener('beforeunload', (evt) => {
+  if (calls > 0) {
+    // eslint-disable-next-line no-param-reassign
+    evt.returnValue = 'Changes you made may not be saved.';
+    return evt.returnValue;
+  }
+
+  return undefined;
+});

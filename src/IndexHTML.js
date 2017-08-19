@@ -65,7 +65,6 @@ const IndexHTML = () => (
           }
         `}
       </style>
-
     </head>
     <body>
       <div id="react-view" />
