@@ -1,6 +1,7 @@
 .wrapper {
   border: 1px solid #ddd;
   padding: 1rem;
+
 }
 
 .table {
@@ -8,6 +9,7 @@
 }
 
 .row {
+  cursor: pointer;
   &.active {
     background: #FFFAE7!important;
   }

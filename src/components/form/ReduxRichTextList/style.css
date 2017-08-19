@@ -7,6 +7,7 @@
   border: 1px solid #CCD5DB;
   border-bottom: none;
   margin-bottom: 0;
+  cursor: pointer;
   &:last-child {
     border-bottom: 1px solid #CCD5DB;
   }
