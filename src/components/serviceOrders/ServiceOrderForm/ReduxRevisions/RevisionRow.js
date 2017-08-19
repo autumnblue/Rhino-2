@@ -16,7 +16,7 @@ const propTypes = {
 };
 
 const handlersEnhancer = withHandlers({
-  onSetEditingRevisionIndex: ({ onSetEditingRevisionIndex, index }) =>
+  onDoubleClick: ({ onSetEditingRevisionIndex, index }) =>
     () => onSetEditingRevisionIndex(index),
 });
 
@@ -39,15 +39,12 @@ const RevisionRow = ({
   description,
   className,
 
-  onSetEditingRevisionIndex,
+  onDoubleClick,
 }) => (
-  <tr className={className}>
+  <tr className={className} onDoubleClick={onDoubleClick}>
     <td>{formatTime(time).date()}</td>
     <td>{user_email}</td>
     <td>{description}</td>
-    <td>
-      <a className={css.editLink} onClick={onSetEditingRevisionIndex}>Edit</a>
-    </td>
   </tr>
 );
 

@@ -12,9 +12,3 @@
     background: #FFFAE7!important;
   }
 }
-
-.editLink {
-  cursor: pointer;
-  text-decoration: underline!important;
-  text-decoration-style: dotted!important;
-}
