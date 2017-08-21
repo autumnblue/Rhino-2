@@ -5,27 +5,25 @@ import { logout } from '../redux/users/actions';
 export const COMBINE_RELATIONSHIPS = 'djavan/COMBINE_RELATIONSHIPS';
 
 function showError(response, next) {
-  if (response.data) {
-    const { detail, non_field_errors, dependent_resources } = response.data;
+  const { detail, non_field_errors, dependent_resources } = response.data || {};
 
-    if (detail || non_field_errors) {
-      return next(noty({
-        type: 'error',
-        text: detail || non_field_errors.join('\n'),
-      }));
-    }
+  if (detail || non_field_errors) {
+    return next(noty({
+      type: 'error',
+      text: detail || non_field_errors.join('\n'),
+    }));
+  }
 
-    if (dependent_resources) {
-      return next(noty({
-        type: 'error',
-        text: `Dependent resources: ${Object.keys(dependent_resources).join(', ')}`,
-      }));
-    }
+  if (dependent_resources) {
+    return next(noty({
+      type: 'error',
+      text: `Dependent resources: ${Object.keys(dependent_resources).join(', ')}`,
+    }));
   }
 
   return next(noty({
     type: 'error',
-    text: 'Unknown error',
+    text: String(response.data) || 'Unknown error',
   }));
 }
 
