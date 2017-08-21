@@ -12,7 +12,7 @@ const propTypes = {
   description: string.isRequired,
   className: string.isRequired,
 
-  onSetEditingRevisionIndex: func.isRequired,
+  onDoubleClick: func.isRequired,
 };
 
 const handlersEnhancer = withHandlers({
