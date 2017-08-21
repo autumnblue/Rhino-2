@@ -2,7 +2,7 @@ import { Button } from 'reactstrap';
 import { object, func, arrayOf, shape } from 'prop-types';
 import { Link } from 'react-router';
 
-import { DocumentTemplateForm, Page, PageContent, PageHeader } from 'src/components';
+import { DocumentTemplateForm, Page, PageContent, PageHeader, PageFooter } from 'src/components';
 import { breadcrumbsType, issuerType, documentTemplateType } from 'src/prop-types';
 
 import enhance from './enhance';
@@ -32,9 +32,7 @@ const DocumentTemplateEditPage = ({
   onFieldChange,
 }) => (
   <Page title={`Editing Document Template #${documentTemplate.id}`}>
-    <PageHeader breadcrumbs={breadcrumbs}>
-      <Button tag={Link} to="/document-templates" color="success">Done</Button>
-    </PageHeader>
+    <PageHeader breadcrumbs={breadcrumbs} />
     <PageContent>
       <DocumentTemplateForm
         created={documentTemplate.created}
@@ -44,7 +42,10 @@ const DocumentTemplateEditPage = ({
         validationErrors={validationErrors}
         onFieldChange={onFieldChange}
       />
-      <Button color="danger" onClick={onDelete}>Delete</Button>
+      <PageFooter>
+        <Button color="danger" onClick={onDelete}>Delete</Button>
+        <Button tag={Link} to="/document-templates" color="success" className="float-right">Done</Button>
+      </PageFooter>
     </PageContent>
   </Page>
 );

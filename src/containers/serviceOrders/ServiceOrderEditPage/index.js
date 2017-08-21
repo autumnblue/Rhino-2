@@ -7,6 +7,7 @@ import {
   Page,
   PageContent,
   PageHeader,
+  PageFooter,
 } from 'src/components';
 import { breadcrumbsType, clientType, userType, industryType, focalProfileType, serviceOrderType, serviceType } from 'src/prop-types';
 
@@ -79,9 +80,7 @@ const ServiceOrderEditPage = ({
   onDeleteAdjustment,
 }) => (
   <Page title={`Editing ${serviceOrder.composite_id}`}>
-    <PageHeader breadcrumbs={breadcrumbs}>
-      <Button tag={Link} to="/service-orders" color="success">Done</Button>
-    </PageHeader>
+    <PageHeader breadcrumbs={breadcrumbs} />
     <PageContent>
       <ServiceOrderForm {...{
         created: serviceOrder.created,
@@ -124,7 +123,10 @@ const ServiceOrderEditPage = ({
         serverSideTotal={summaryOfCosts.serverSideTotal}
       />
 
-      <Button color="danger" onClick={onDelete}>Delete</Button>
+      <PageFooter>
+        <Button tag={Link} to="/service-orders" color="success" className="float-right">Done</Button>
+        <Button color="danger" onClick={onDelete}>Delete</Button>
+      </PageFooter>
     </PageContent>
   </Page>
 );

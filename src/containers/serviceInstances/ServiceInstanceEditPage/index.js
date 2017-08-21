@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import { FormGroup } from 'reactstrap';
 import { arrayOf, object, func, objectOf } from 'prop-types';
 
-import { Page, PageHeader, PageContent, Button, ServiceInstanceForm } from 'src/components';
+import { Page, PageHeader, PageFooter, PageContent, Button, ServiceInstanceForm } from 'src/components';
 import { formatMoney } from 'src/helpers';
 import { breadcrumbsType, serviceType, serviceInstanceType, assetType } from 'src/prop-types';
 
@@ -46,9 +46,7 @@ const ServiceInstanceEditPage = ({
   onUploadAsset,
 }) => (
   <Page title={`Editing ${serviceInstance.display_name}`}>
-    <PageHeader breadcrumbs={breadcrumbs}>
-      <Button tag={Link} to={`/service-orders/${serviceInstance.service_order.id}`} color="success">Done</Button>
-    </PageHeader>
+    <PageHeader breadcrumbs={breadcrumbs} />
     <PageContent>
       <ServiceInstanceForm
         id={serviceInstance.id}
@@ -72,7 +70,17 @@ const ServiceInstanceEditPage = ({
       <FormGroup>
         Total due: <strong>{formatMoney(serviceInstance.total)}</strong>
       </FormGroup>
-      <Button color="danger" onClick={onDelete}>Delete</Button>
+      <PageFooter>
+        <Button color="danger" onClick={onDelete}>Delete</Button>
+        <Button
+          tag={Link}
+          to={`/service-orders/${serviceInstance.service_order.id}`}
+          color="success"
+          className="float-right"
+        >
+          Done
+        </Button>
+      </PageFooter>
     </PageContent>
   </Page>
 );

@@ -2,7 +2,7 @@ import { Button } from 'reactstrap';
 import { object, func } from 'prop-types';
 import { Link } from 'react-router';
 
-import { IndustryForm, Page, PageContent, PageHeader } from 'src/components';
+import { IndustryForm, Page, PageContent, PageHeader, PageFooter } from 'src/components';
 import { breadcrumbsType, industryType } from 'src/prop-types';
 
 import enhance from './enhance';
@@ -26,15 +26,16 @@ const IndustryEditPage = ({
   onFieldChange,
 }) => (
   <Page title={`Editing ${industry.name}`}>
-    <PageHeader breadcrumbs={breadcrumbs}>
-      <Button tag={Link} to="/industries" color="success">Done</Button>
-    </PageHeader>
+    <PageHeader breadcrumbs={breadcrumbs} />
     <PageContent>
       <IndustryForm
         onFieldChange={onFieldChange}
         validationErrors={validationErrors}
       />
-      <Button color="danger" onClick={onDelete}>Delete</Button>
+      <PageFooter>
+        <Button color="danger" onClick={onDelete}>Delete</Button>
+        <Button tag={Link} to="/industries" color="success" className="float-right">Done</Button>
+      </PageFooter>
     </PageContent>
   </Page>
 );

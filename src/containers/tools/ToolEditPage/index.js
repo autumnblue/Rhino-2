@@ -2,7 +2,7 @@ import { Button } from 'reactstrap';
 import { object, func, arrayOf, shape } from 'prop-types';
 import { Link } from 'react-router';
 
-import { ToolForm, Page, PageContent, PageHeader } from 'src/components';
+import { ToolForm, Page, PageContent, PageHeader, PageFooter } from 'src/components';
 import { breadcrumbsType, serviceType, toolType } from 'src/prop-types';
 
 import enhance from './enhance';
@@ -32,9 +32,7 @@ const ToolEditPage = ({
   onFieldChange,
 }) => (
   <Page title={`Editing ${tool.name}`}>
-    <PageHeader breadcrumbs={breadcrumbs}>
-      <Button tag={Link} to="/tools" color="success">Done</Button>
-    </PageHeader>
+    <PageHeader breadcrumbs={breadcrumbs} />
     <PageContent>
       <ToolForm
         services={services}
@@ -43,7 +41,10 @@ const ToolEditPage = ({
 
         onFieldChange={onFieldChange}
       />
-      <Button color="danger" onClick={onDelete}>Delete</Button>
+      <PageFooter>
+        <Button color="danger" onClick={onDelete}>Delete</Button>
+        <Button tag={Link} to="/tools" color="success" className="float-right">Done</Button>
+      </PageFooter>
     </PageContent>
   </Page>
 );

@@ -2,7 +2,7 @@ import { Button } from 'reactstrap';
 import { object, func, shape } from 'prop-types';
 import { Link } from 'react-router';
 
-import { ServiceForm, Page, PageContent, PageHeader } from 'src/components';
+import { ServiceForm, Page, PageContent, PageHeader, PageFooter } from 'src/components';
 import { breadcrumbsType, serviceType } from 'src/prop-types';
 
 import enhance from './enhance';
@@ -33,9 +33,7 @@ const ServiceEditPage = ({
   onUploadAsset,
 }) => (
   <Page title={`Editing ${service.name}`}>
-    <PageHeader breadcrumbs={breadcrumbs}>
-      <Button tag={Link} to="/services" color="success">Done</Button>
-    </PageHeader>
+    <PageHeader breadcrumbs={breadcrumbs} />
     <PageContent>
       <ServiceForm
         choices={choices}
@@ -45,7 +43,10 @@ const ServiceEditPage = ({
         onFieldChange={onFieldChange}
         onUploadAsset={onUploadAsset}
       />
-      <Button color="danger" onClick={onDelete}>Delete</Button>
+      <PageFooter>
+        <Button color="danger" onClick={onDelete}>Delete</Button>
+        <Button tag={Link} to="/services" color="success" className="float-right">Done</Button>
+      </PageFooter>
     </PageContent>
   </Page>
 );

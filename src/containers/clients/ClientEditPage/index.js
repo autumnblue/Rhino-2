@@ -2,7 +2,7 @@ import { Button } from 'reactstrap';
 import { arrayOf, object, func } from 'prop-types';
 import { Link } from 'react-router';
 
-import { ClientForm, Page, PageContent, PageHeader } from 'src/components';
+import { ClientForm, Page, PageContent, PageHeader, PageFooter } from 'src/components';
 import { clientType, issuerType, userType, industryType, breadcrumbsType } from 'src/prop-types';
 
 import enhance from './enhance';
@@ -40,9 +40,7 @@ const ClientEditPage = ({
   onRedirect,
 }) => (
   <Page title={`Editing ${client.name}`}>
-    <PageHeader breadcrumbs={breadcrumbs}>
-      <Button tag={Link} to="/clients" color="success">Done</Button>
-    </PageHeader>
+    <PageHeader breadcrumbs={breadcrumbs} />
     <PageContent>
       <ClientForm {...{
         parents,
@@ -57,7 +55,10 @@ const ClientEditPage = ({
         onFieldChange,
       }}
       />
-      <Button color="danger" onClick={onDelete}>Delete</Button>
+      <PageFooter>
+        <Button color="danger" onClick={onDelete}>Delete</Button>
+        <Button tag={Link} to="/clients" color="success" className="float-right">Done</Button>
+      </PageFooter>
     </PageContent>
   </Page>
 );

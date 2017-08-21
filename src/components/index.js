@@ -13,6 +13,7 @@ export { default as ModalFooter } from './common/Modal/ModalFooter';
 export { default as ModalHeader } from './common/Modal/ModalHeader';
 export { default as Page } from './common/Page';
 export { default as PageContent } from './common/PageContent';
+export { default as PageFooter } from './common/PageFooter';
 export { default as PageHeader } from './common/PageHeader';
 export { default as Paginate } from './common/Paginate';
 export { default as PriorityVote } from './common/PriorityVote';
