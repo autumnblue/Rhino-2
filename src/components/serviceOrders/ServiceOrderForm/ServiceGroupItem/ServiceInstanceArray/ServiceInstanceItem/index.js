@@ -80,10 +80,10 @@ const ServiceInstanceItem = ({
     <Field name={`${member}.unit_price`} component={ReduxHidden} onFill={onSetUnitPrice} />
     <Field name={`${member}.number_of_hours`} component={ReduxHidden} onFill={onSetNumberOfHours} />
     <td>
-
       <Field
         component={ReduxPriorityVote}
         name={`${member}.custom_sort_priority`}
+        showNumber={false}
         onChange={onEdit}
       />
     </td>

@@ -1,4 +1,4 @@
-import { compose, pure, withHandlers, withPropsOnChange } from 'recompose';
+import { compose, pure, withHandlers, withPropsOnChange, defaultProps } from 'recompose';
 import classNames from 'classnames';
 import { func, number, string } from 'prop-types';
 
@@ -10,10 +10,15 @@ const propTypes = {
   value: number,
   className: string.isRequired,
   error: string,
+  showNumber: number.isRequired,
 
   onVoteUp: func.isRequired,
   onVoteDown: func.isRequired,
 };
+
+const defaultPropsEnhancer = defaultProps({
+  showNumber: true,
+});
 
 const handlersEnhancer = withHandlers({
   onVoteUp: ({ onChange, value }) => () => onChange(value - 1),
@@ -30,6 +35,7 @@ const propsEnhancer = withPropsOnChange(['value', 'disabled'], ({ className, dis
 }));
 
 const enhance = compose(
+  defaultPropsEnhancer,
   handlersEnhancer,
   propsEnhancer,
   pure,
@@ -39,6 +45,7 @@ const PriorityVote = ({
   value,
   className,
   error,
+  showNumber,
 
   onVoteUp,
   onVoteDown,
@@ -49,7 +56,12 @@ const PriorityVote = ({
       className={`${css.voteButton} ${css.upVoteButton}`}
       onClick={onVoteUp}
     />
-    <span>{value || '–'}</span>
+    <Base
+      exists={showNumber}
+      component="span"
+    >
+      {value || '–'}
+    </Base>
     <Icon
       wb="chevron-down"
       className={css.voteButton}
