@@ -35,6 +35,7 @@ const ServiceListPage = ({
     </PageHeader>
     <PageContent>
       <ServiceFilters onFiltersChange={onFiltersChange} initialValues={filters} />
+      <Base exists={!services.length}>No results are found</Base>
       <ServiceList
         services={services}
         assetsData={assetsData}

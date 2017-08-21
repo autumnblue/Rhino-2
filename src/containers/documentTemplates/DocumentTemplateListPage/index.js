@@ -44,6 +44,7 @@ const DocumentTemplateListPage = ({
         issuers={issuers}
         choices={choices}
       />
+      <Base exists={!documentTemplates.length}>No results are found</Base>
       <DocumentTemplateList
         documentTemplates={documentTemplates}
         choices={choices}

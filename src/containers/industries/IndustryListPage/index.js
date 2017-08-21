@@ -35,6 +35,7 @@ const IndustryListPage = ({
         onFiltersChange={onFiltersChange}
         initialValues={filters}
       />
+      <Base exists={!industries.length}>No results are found</Base>
       <IndustryList
         industries={industries}
       />

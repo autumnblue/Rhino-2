@@ -43,6 +43,7 @@ const ClientListPage = ({
     </PageHeader>
     <PageContent>
       <ClientFilters onFiltersChange={onFiltersChange} initialValues={filters} />
+      <Base exists={!clients.length}>No results are found</Base>
       <ClientList clients={clients} />
       <Paginate
         pageCount={pageCount}

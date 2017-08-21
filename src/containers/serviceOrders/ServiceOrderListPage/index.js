@@ -64,6 +64,7 @@ const ServiceOrderListPage = ({
 
         onFiltersChange={onFiltersChange}
       />
+      <Base exists={!serviceOrders.length}>No results are found</Base>
       <ServiceOrderList
         clientsData={clientsData}
         serviceOrders={serviceOrders}

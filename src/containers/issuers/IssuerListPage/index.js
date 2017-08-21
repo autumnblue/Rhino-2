@@ -32,6 +32,7 @@ const IssuerListPage = ({
     </PageHeader>
     <PageContent>
       <IssuerFilters onFiltersChange={onFiltersChange} initialValues={filters} />
+      <Base exists={!issuers.length}>No results are found</Base>
       <IssuerList
         issuers={issuers}
       />

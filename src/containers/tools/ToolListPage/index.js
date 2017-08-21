@@ -34,6 +34,7 @@ const ToolListPage = ({
     </PageHeader>
     <PageContent>
       <ToolFilters onFiltersChange={onFiltersChange} initialValues={filters} />
+      <Base exists={!tools.length}>No results are found</Base>
       <ToolList
         tools={tools}
         onEdit={onEdit}
