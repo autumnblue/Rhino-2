@@ -66,6 +66,7 @@ const ClientFilters = ({
         type="text"
         placeholder="Filter..."
         onBlur={onFiltersChange}
+        onPressEnter={onFiltersChange}
       />
     </FormGroup>
   </Col>

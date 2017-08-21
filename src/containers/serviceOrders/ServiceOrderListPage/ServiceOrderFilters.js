@@ -90,6 +90,7 @@ const ServiceOrderFilters = ({
         name="client"
         placeholder="Filter by client name..."
         onBlur={onFiltersChange}
+        onPressEnter={onFiltersChange}
       />
     </FormGroup>
   </Col>

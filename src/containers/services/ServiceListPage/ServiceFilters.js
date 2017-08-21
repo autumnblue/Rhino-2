@@ -28,6 +28,7 @@ const ServiceFilters = ({
         name="contains"
         placeholder="Filter..."
         onBlur={onFiltersChange}
+        onPressEnter={onFiltersChange}
       />
     </FormGroup>
   </Col>

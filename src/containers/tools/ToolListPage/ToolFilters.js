@@ -28,6 +28,7 @@ const ToolFilters = ({
         name="contains"
         placeholder="Filter..."
         onBlur={onFiltersChange}
+        onPressEnter={onFiltersChange}
       />
     </FormGroup>
   </Col>

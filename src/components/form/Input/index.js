@@ -27,6 +27,18 @@ const handlersEnhancer = withHandlers({
 
     return undefined;
   },
+  onKeyUp: ({ onKeyUp, onPressEnter }) => (evt) => {
+    if (typeof onKeyUp === 'function') {
+      onKeyUp(evt);
+    }
+
+    if (typeof onPressEnter === 'function') {
+      if (evt.keyCode === 13) {
+        evt.preventDefault();
+        onPressEnter(evt);
+      }
+    }
+  },
 });
 
 const propsEnhancer = withPropsOnChange(
@@ -40,7 +52,7 @@ const propsEnhancer = withPropsOnChange(
   }),
 );
 
-const omitPropsEnhancer = mapProps(props => omit(props, ['passValue']));
+const omitPropsEnhancer = mapProps(props => omit(props, ['passValue', 'onPressEnter']));
 
 const enhance = compose(
   handlersEnhancer,
