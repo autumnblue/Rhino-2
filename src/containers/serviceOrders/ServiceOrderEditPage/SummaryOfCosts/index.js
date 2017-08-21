@@ -56,7 +56,7 @@ const SummaryOfCosts = ({
         <p>
         Subtotal:
         {' '}
-          <strong className="float-right">${formatMoney(subtotal)}</strong>
+          <strong className="float-right">{formatMoney(subtotal)}</strong>
         </p>
         <p>
           <u>
@@ -65,7 +65,7 @@ const SummaryOfCosts = ({
           {' '}
           <strong className="float-right">
             <u>
-            ${formatMoney(total)}
+              {formatMoney(total)}
             </u>
           </strong>
 
@@ -74,7 +74,7 @@ const SummaryOfCosts = ({
           component="p"
           error={
         total.toFixed(2) !== serverSideTotal.toFixed(2)
-          ? `Client-side and server-side total_due value (which is equal to $${formatMoney(serverSideTotal)}) calculations are different!`
+          ? `Client-side and server-side total_due value (which is equal to ${formatMoney(serverSideTotal)}) calculations are different!`
           : null
       }
         />

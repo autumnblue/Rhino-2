@@ -71,7 +71,7 @@ const SubtotalFormGroup = ({
     </div>
     <div className={css.eq}>=</div>
     <div className={css.total}>
-      <strong>${formatMoney(totalDue)}</strong>
+      <strong>{formatMoney(totalDue)}</strong>
       {' '}subtotal
     </div>
   </FormGroup>

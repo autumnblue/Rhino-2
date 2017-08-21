@@ -34,7 +34,7 @@ const ServiceGroupCosts = ({
         <li key={index}>
           {instance.display_name}
           {' '}
-          <strong className="float-right">${formatMoney(cost)}</strong>
+          <strong className="float-right">{formatMoney(cost)}</strong>
         </li>
       ))}
       {/* eslint-enable react/no-array-index-key */}
@@ -42,7 +42,7 @@ const ServiceGroupCosts = ({
     <p>
     Subtotal:
     {' '}
-      <strong className="float-right">${formatMoney(subtotal)}</strong>
+      <strong className="float-right">{formatMoney(subtotal)}</strong>
     </p>
     <Base component="ul" exists={adjustments.length}>
       {/* eslint-disable react/no-array-index-key */}
@@ -60,7 +60,7 @@ const ServiceGroupCosts = ({
       {' '}
       <strong className="float-right">
         <u>
-        ${formatMoney(total)}
+          {formatMoney(total)}
         </u>
       </strong>
     </p>

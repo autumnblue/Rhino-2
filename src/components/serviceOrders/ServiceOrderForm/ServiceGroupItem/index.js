@@ -158,7 +158,7 @@ const ServiceGroupItem = ({
     </FormGroup>
 
     <FormGroup>
-      <strong>Total: ${displayTotal}</strong>
+      <strong>Total: {displayTotal}</strong>
     </FormGroup>
 
     <Base

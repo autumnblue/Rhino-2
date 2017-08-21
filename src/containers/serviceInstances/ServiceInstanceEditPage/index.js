@@ -70,7 +70,7 @@ const ServiceInstanceEditPage = ({
         }}
       />
       <FormGroup>
-        Total due: <strong>${formatMoney(serviceInstance.total)}</strong>
+        Total due: <strong>{formatMoney(serviceInstance.total)}</strong>
       </FormGroup>
       <Button color="danger" onClick={onDelete}>Delete</Button>
     </PageContent>

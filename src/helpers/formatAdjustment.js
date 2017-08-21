@@ -8,7 +8,7 @@ export default function formatAdjustment({
   if (modifier === '%') {
     return `${sign} ${Math.abs(value)}%`;
   } else if (modifier === '+') {
-    return `${sign} $${formatMoney(Math.abs(value))}`;
+    return `${sign} ${formatMoney(Math.abs(value))}`;
   }
 
   throw new Error(`Unlnown adjustment modifier ${modifier}`);

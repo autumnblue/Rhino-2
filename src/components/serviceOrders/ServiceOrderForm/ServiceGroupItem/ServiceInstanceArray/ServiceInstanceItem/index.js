@@ -118,7 +118,7 @@ const ServiceInstanceItem = ({
         />
       </div>
       {' '}
-      Total&nbsp;Due:&nbsp;<strong>${formatMoney(totalDue)}</strong>
+      Total&nbsp;Due:&nbsp;<strong>{formatMoney(totalDue)}</strong>
     </td>
     <td>
       <nobr>

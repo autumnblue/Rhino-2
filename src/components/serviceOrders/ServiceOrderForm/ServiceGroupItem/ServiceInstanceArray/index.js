@@ -69,7 +69,7 @@ const ServiceInstanceArray = ({
     </Table>
     <Row>
       <Col md="6" lg="6" sm="12">
-        <strong>Subtotal: ${displaySubtotal}</strong>
+        <strong>Subtotal: {displaySubtotal}</strong>
       </Col>
       <Col md="6" lg="6" sm="12">
 

@@ -3,7 +3,7 @@ import { string, number, shape, object } from 'prop-types';
 
 import { clientType } from 'src/prop-types';
 import { EntityLink } from 'src/components';
-import formatTime from 'src/helpers/formatTime';
+import { formatTime, formatMoney } from 'src/helpers';
 
 const propTypes = {
   id: number.isRequired,
@@ -13,7 +13,7 @@ const propTypes = {
   signed_date: string,
   start_date: string,
   end_date: string,
-  total_due_str: string.isRequired,
+  total_due: number.isRequired,
 
   client: clientType.isRequired,
   assessment_count: number.isRequired,
@@ -24,11 +24,10 @@ const propTypes = {
 };
 
 const propsEnhancer = withPropsOnChange(
-  ['client', 'clientsData', 'total_due'], ({ client, clientsData, total_due }) => ({
+  ['client', 'clientsData'], ({ client, clientsData }) => ({
     client: clientsData[client] || {
       name: 'Unknown Client',
     },
-    total_due_str: total_due < 0 ? `-$${-total_due}` : `$${total_due}`,
   }),
 );
 
@@ -45,7 +44,7 @@ const ServiceOrderListItem = ({
   signed_date,
   start_date,
   end_date,
-  total_due_str,
+  total_due,
 
   client,
   assessment_count,
@@ -76,7 +75,7 @@ const ServiceOrderListItem = ({
       Start:&nbsp;{formatTime(start_date).date() || '-'}<br />
       End:&nbsp;{formatTime(end_date).date() || '-'}
       <br /><br />
-      <strong>Total&nbsp;Due:&nbsp;{total_due_str}</strong>
+      <strong>Total&nbsp;Due:&nbsp;{formatMoney(total_due)}</strong>
     </td>
     <td>
       <EntityLink to={`/service-orders/${id}`} />
