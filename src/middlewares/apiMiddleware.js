@@ -6,20 +6,27 @@ export const COMBINE_RELATIONSHIPS = 'djavan/COMBINE_RELATIONSHIPS';
 
 function showError(response, next) {
   if (response.data) {
-    const { detail, non_field_errors } = response.data;
+    const { detail, non_field_errors, dependent_resources } = response.data;
 
     if (detail || non_field_errors) {
-      next(noty({
+      return next(noty({
         type: 'error',
         text: detail || non_field_errors.join('\n'),
       }));
     }
-  } else {
-    next(noty({
+
+    if(dependent_resources) {
+      return next(noty({
+        type: 'error',
+        text: `Dependent resources: ${Object.keys(dependent_resources).join(', ')}`,
+      }));
+    }
+  }
+
+    return next(noty({
       type: 'error',
       text: 'Unknown error',
     }));
-  }
 }
 
 export default function apiMiddleware() {
