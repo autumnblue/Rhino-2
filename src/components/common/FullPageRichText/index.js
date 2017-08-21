@@ -37,6 +37,7 @@ const propTypes = {
   onOpenEdit: func.isRequired,
   onCloseEdit: func.isRequired,
   onSetEditValue: func.isRequired,
+  onCancel: func.isRequired,
   onReset: func.isRequired,
 };
 
@@ -54,9 +55,12 @@ const handlersEnhancer = withHandlers({
     onSetIsEditing(false);
     onChange(editingValue);
   },
-  onReset: ({ onSetEditValue, onSetIsEditing, value }) => () => {
+  onCancel: ({ onSetEditValue, onSetIsEditing, value }) => () => {
     onSetIsEditing(false);
     onSetEditValue(value);
+  },
+  onReset: ({ onChange }) => () => {
+    onChange(null);
   },
   // have no idea why it needs a delay
   onSetEditValue: ({ onSetEditValue }) => debounce(value => onSetEditValue(value)),
@@ -101,6 +105,7 @@ const FullPageRichText = ({
   onOpenEdit,
   onCloseEdit,
   onSetEditValue,
+  onCancel,
   onReset,
 }) => (
   <div>
@@ -114,7 +119,7 @@ const FullPageRichText = ({
     <Modal isOpen={isEditing} onRequestClose={onCloseEdit} fillIn>
       <ModalHeader onRequestClose={onCloseEdit}>
         <Breadcrumbs className={css.breadcrumbs} breadcrumbs={breadcrumbs} />
-        <Button onClick={onReset}>Reset</Button>
+        <Button onClick={onCancel}>Cancel</Button>
       </ModalHeader>
       <ModalBody>
         <RichText
@@ -124,6 +129,7 @@ const FullPageRichText = ({
         />
       </ModalBody>
       <ModalFooter>
+        <Button onClick={onReset} color="default" className={css.reset}>Clear/Reset</Button>
         <Button onClick={onCloseEdit} color="success">Done</Button>
       </ModalFooter>
     </Modal>
