@@ -1,67 +1,57 @@
 // components are sorted alphabetically
 
 // common
-export { default as Associations } from './common/Associations';
-export { default as Breadcrumbs } from './common/Breadcrumbs';
-export { default as DatePicker } from './common/DatePicker';
 export { default as Icon } from './common/Icon';
-export { default as EntityLink } from './common/EntityLink';
-export { default as FullPageRichText } from './common/FullPageRichText';
 export { default as Modal } from './common/Modal';
 export { default as ModalBody } from './common/Modal/ModalBody';
 export { default as ModalFooter } from './common/Modal/ModalFooter';
 export { default as ModalHeader } from './common/Modal/ModalHeader';
-export { default as Page } from './common/Page';
-export { default as PageContent } from './common/PageContent';
-export { default as PageFooter } from './common/PageFooter';
-export { default as PageHeader } from './common/PageHeader';
 export { default as Paginate } from './common/Paginate';
-export { default as PriorityVote } from './common/PriorityVote';
-export { default as RichText } from './common/RichText';
 export { default as SafeHTML } from './common/SafeHTML';
 
-// clients
-export { default as ClientForm } from './clients/ClientForm';
-
-// document templates
-export { default as DocumentTemplateForm } from './documentTemplates/DocumentTemplateForm';
+// entities
+export { default as ClientForm } from './entities/ClientForm';
+export { default as DocumentTemplateForm } from './entities/DocumentTemplateForm';
+export { default as IndustryForm } from './entities/IndustryForm';
+export { default as IssuerForm } from './entities/IssuerForm';
+export { default as ServiceForm } from './entities/ServiceForm';
+export { default as ServiceInstanceForm } from './entities/ServiceInstanceForm';
+export { default as ServiceOrderForm } from './entities/ServiceOrderForm';
+export { default as ToolForm } from './entities/ToolForm';
 
 // form
+export { default as Associations } from './form/Associations';
 export { default as Asset } from './form/Asset';
+export { default as Breadcrumbs } from './layout/Breadcrumbs';
 export { default as Button } from './form/Button';
 export { default as Checkbox } from './form/Checkbox';
+export { default as DatePicker } from './form/DatePicker';
 export { default as Input } from './form/Input';
 export { default as FieldError } from './form/FieldError';
-export { default as ReduxAdjustmentsArray } from './form/ReduxAdjustmentsArray';
-export { default as ReduxAsset } from './form/ReduxAsset';
-export { default as ReduxAssociations } from './form/ReduxAssociations';
-export { default as ReduxCheckbox } from './form/ReduxCheckbox';
-export { default as ReduxDatePicker } from './form/ReduxDatePicker';
-export { default as ReduxDirtiable } from './form/ReduxDirtiable';
-export { default as ReduxFullPageRichText } from './form/ReduxFullPageRichText';
-export { default as ReduxHidden } from './form/ReduxHidden';
-export { default as ReduxInput } from './form/ReduxInput';
-export { default as ReduxOutputText } from './form/ReduxOutputText';
-export { default as ReduxPriorityVote } from './form/ReduxPriorityVote';
-export { default as ReduxSelect } from './form/ReduxSelect';
-export { default as ReduxRichText } from './form/ReduxRichText';
-export { default as ReduxRichTextList } from './form/ReduxRichTextList';
+export { default as FullPageRichText } from './form/FullPageRichText';
+export { default as PriorityVote } from './form/PriorityVote';
+export { default as RichText } from './form/RichText';
 export { default as Select } from './form/Select';
 
-// industries
-export { default as IndustryForm } from './industries/IndustryForm';
+// layout
+export { default as EntityLink } from './layout/EntityLink';
+export { default as Page } from './layout/Page';
+export { default as PageContent } from './layout/PageContent';
+export { default as PageFooter } from './layout/PageFooter';
+export { default as PageHeader } from './layout/PageHeader';
 
-// issuers
-export { default as IssuerForm } from './issuers/IssuerForm';
-
-// services
-export { default as ServiceForm } from './services/ServiceForm';
-
-// service instances
-export { default as ServiceInstanceForm } from './serviceInstances/ServiceInstanceForm';
-
-// service orders
-export { default as ServiceOrderForm } from './serviceOrders/ServiceOrderForm';
-
-// tools
-export { default as ToolForm } from './tools/ToolForm';
+// redux-form
+export { default as ReduxAdjustmentsArray } from './redux-form/ReduxAdjustmentsArray';
+export { default as ReduxAsset } from './redux-form/ReduxAsset';
+export { default as ReduxAssociations } from './redux-form/ReduxAssociations';
+export { default as ReduxCheckbox } from './redux-form/ReduxCheckbox';
+export { default as ReduxDatePicker } from './redux-form/ReduxDatePicker';
+export { default as ReduxDirtiable } from './redux-form/ReduxDirtiable';
+export { default as ReduxFullPageRichText } from './redux-form/ReduxFullPageRichText';
+export { default as ReduxHidden } from './redux-form/ReduxHidden';
+export { default as ReduxInput } from './redux-form/ReduxInput';
+export { default as ReduxOutputText } from './redux-form/ReduxOutputText';
+export { default as ReduxPriorityVote } from './redux-form/ReduxPriorityVote';
+export { default as ReduxSelect } from './redux-form/ReduxSelect';
+export { default as ReduxRichText } from './redux-form/ReduxRichText';
+export { default as ReduxRichTextList } from './redux-form/ReduxRichTextList';
