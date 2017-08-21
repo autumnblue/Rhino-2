@@ -68,19 +68,16 @@ function* editServiceOrderFormChange() {
     // we need to extract only those properties which are rendered on the page
     const keys = Object.keys(registeredFields);
 
-    const diff = omitBy(
-      simpleObjectDiff(
-        serviceOrder,
-        omit(
-          pick(values, keys),
-          ['primary_service_group', 'service_groups'],
-        ),
+    const diff = simpleObjectDiff(
+      serviceOrder,
+      omit(
+        pick(values, keys),
+        ['primary_service_group', 'service_groups'],
       ),
-      isUndefined,
     );
 
 
-    if (!isEmpty(diff)) {
+    if (!isEmpty(omitBy(diff, isUndefined))) {
       yield put(editServiceOrder(id, {
         commit: true,
         ...diff,

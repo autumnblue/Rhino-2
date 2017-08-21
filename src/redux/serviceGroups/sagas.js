@@ -1,6 +1,6 @@
 import { all, fork, select, put, take } from 'redux-saga/effects';
 import { formValueSelector } from 'redux-form';
-import { isEmpty, omit } from 'lodash';
+import { isEmpty, omit, omitBy, isUndefined } from 'lodash';
 
 import { simpleObjectDiff } from 'src/helpers';
 import { loadSingleServiceOrder } from 'src/redux/serviceOrders/actions';
@@ -38,7 +38,7 @@ function* editServiceGroupFieldChange() {
       omit(data, ['service_instances', 'adjustments']),
     );
 
-    if (!isEmpty(diff)) {
+    if (!isEmpty(omitBy(diff, isUndefined))) {
       yield put.sync(editServiceGroup(id, {
         commit: true,
         ...diff,

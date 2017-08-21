@@ -1,7 +1,7 @@
 import { all, fork, take, select, put, takeLatest, call } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { push } from 'react-router-redux';
-import { isEmpty, pick, pickBy } from 'lodash';
+import { isEmpty, pick, pickBy, omitBy, isUndefined } from 'lodash';
 import { formValueSelector } from 'redux-form';
 import qs from 'qs';
 
@@ -36,7 +36,7 @@ function* editServiceFormChange() {
     const keys = Object.keys(registeredFields);
     const diff = simpleObjectDiff(service, pick(values, keys));
 
-    if (!isEmpty(diff)) {
+    if (!isEmpty(omitBy(diff, isUndefined))) {
       yield put(editService(id, {
         commit: true,
         ...diff,

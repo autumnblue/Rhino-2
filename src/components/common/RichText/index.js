@@ -3,6 +3,7 @@ import { bool, func, string } from 'prop-types';
 import React from 'react';
 import ReactQuill from 'react-quill';
 import classNames from 'classnames';
+import { debounce } from 'lodash';
 
 import css from './style.css';
 
@@ -54,12 +55,15 @@ const lifecycleEnhancer = lifecycle({
     // a little delay needs to be run before ReactQuill initialized
     setTimeout(() => {
       const { reference } = this.props;
-      reference.editingArea.querySelector('.ql-editor').addEventListener('blur', () => {
+      const editor = reference.editingArea.querySelector('.ql-editor');
+      const handler = () => {
         const { onBlur } = this.props;
         if (typeof onBlur === 'function') {
-          onBlur();
+          setTimeout(onBlur);
         }
-      });
+      };
+
+      editor.addEventListener('blur', debounce(handler, 300));
     });
   },
 });

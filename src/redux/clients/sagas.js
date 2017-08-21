@@ -1,6 +1,6 @@
 import { all, fork, take, select, put, takeLatest, call } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
-import { isEmpty, pick, pickBy } from 'lodash';
+import { isEmpty, pick, pickBy, omitBy, isUndefined } from 'lodash';
 import { formValueSelector } from 'redux-form';
 import { push } from 'react-router-redux';
 import qs from 'qs';
@@ -63,7 +63,7 @@ function* editClientFormChange() {
     const keys = Object.keys(registeredFields);
     const diff = simpleObjectDiff(client, pick(values, keys));
 
-    if (!isEmpty(diff)) {
+    if (!isEmpty(omitBy(diff, isUndefined))) {
       yield put(editClient(id, {
         commit: true,
         ...diff,

@@ -1,5 +1,5 @@
 import { all, fork, select, put, take } from 'redux-saga/effects';
-import { isEmpty, omit } from 'lodash';
+import { isEmpty, omit, omitBy, isUndefined } from 'lodash';
 
 import { simpleObjectDiff } from 'src/helpers';
 import { loadSingleServiceGroup } from 'src/redux/serviceGroups/actions';
@@ -31,7 +31,7 @@ function* editAdjustmentFieldChange() {
 
     const diff = simpleObjectDiff(adjustment, omit(data, []));
 
-    if (!isEmpty(diff)) {
+    if (!isEmpty(omitBy(diff, isUndefined))) {
       const apiAction = yield put.sync(editAdjustment(id, {
         commit: true,
         ...diff,

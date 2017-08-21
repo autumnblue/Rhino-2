@@ -70,9 +70,7 @@ function* editServiceInstanceFieldChange() {
       diff = simpleObjectDiff(serviceInstance, omit(pick(values, keys), ['adjustments']));
     }
 
-    diff = omitBy(diff, isUndefined);
-
-    if (!isEmpty(diff)) {
+    if (!isEmpty(omitBy(diff, isUndefined))) {
       yield put(editServiceInstance(id, {
         commit: true,
         ...diff,

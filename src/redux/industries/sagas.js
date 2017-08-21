@@ -1,7 +1,7 @@
 import { all, fork, call, takeLatest, select, put, take } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { formValueSelector } from 'redux-form';
-import { pickBy, pick, isEmpty } from 'lodash';
+import { pickBy, pick, isEmpty, omitBy, isUndefined } from 'lodash';
 import { push } from 'react-router-redux';
 import qs from 'qs';
 
@@ -60,7 +60,7 @@ function* editIndustryFormChange() {
     const keys = Object.keys(registeredFields);
     const diff = simpleObjectDiff(industry, pick(values, keys));
 
-    if (!isEmpty(diff)) {
+    if (!isEmpty(omitBy(diff, isUndefined))) {
       yield put(editIndustry(id, {
         commit: true,
         ...diff,
