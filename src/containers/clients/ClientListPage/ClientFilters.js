@@ -26,6 +26,7 @@ const perPageOptions = [
 
 const reduxFormEnhancer = reduxForm({
   form: 'clientListFilterForm',
+  pure: true,
 });
 
 const enhance = compose(

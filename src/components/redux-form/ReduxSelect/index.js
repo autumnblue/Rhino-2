@@ -1,4 +1,4 @@
-import { compose, pure, withHandlers } from 'recompose';
+import { pure } from 'recompose';
 import { string, oneOfType, arrayOf } from 'prop-types';
 
 import { FieldError, Select } from 'src/components';
@@ -9,23 +9,17 @@ const propTypes = {
   error: oneOfType([string, arrayOf(string)]),
 };
 
-const handlersEnhancer = withHandlers({
-  onChange: ({ input: { onChange } }) => onChange,
-});
-
-const enhance = compose(
-  handlersEnhancer,
-  pure,
-);
+const enhance = pure;
 
 const ReduxSelect = ({
-  input: { value },
+  input: { value, onChange },
   error,
   ...props
 }) => (
   <div>
     <Select
       value={value}
+      onChange={onChange}
       {...props}
     />
     <FieldError error={error} />
