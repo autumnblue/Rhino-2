@@ -53,7 +53,6 @@ if(process.env.NODE_ENV === 'development') {
   plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 
-const autoprefixerPlugin = require('autoprefixer');
 const importPlugin = require('postcss-import');
 const cssNextPlugin = require('postcss-cssnext');
 const calcPlugin = require('postcss-calc');
@@ -94,7 +93,6 @@ module.exports = {
               loader: 'postcss-loader',
               options: {
                   plugins: (wp) => [
-                    autoprefixerPlugin(),
                     importPlugin({
                          addDependencyTo: wp,
                     }),
