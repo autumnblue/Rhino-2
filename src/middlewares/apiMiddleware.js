@@ -15,7 +15,7 @@ function showError(response, next) {
       }));
     }
 
-    if(dependent_resources) {
+    if (dependent_resources) {
       return next(noty({
         type: 'error',
         text: `Dependent resources: ${Object.keys(dependent_resources).join(', ')}`,
@@ -23,10 +23,10 @@ function showError(response, next) {
     }
   }
 
-    return next(noty({
-      type: 'error',
-      text: 'Unknown error',
-    }));
+  return next(noty({
+    type: 'error',
+    text: 'Unknown error',
+  }));
 }
 
 export default function apiMiddleware() {
