@@ -78,7 +78,7 @@ const ServiceOrderEditPage = ({
   onAddAdjustment,
   onDeleteAdjustment,
 }) => (
-  <Page>
+  <Page title={`Editing ${serviceOrder.composite_id}`}>
     <PageHeader breadcrumbs={breadcrumbs}>
       <Button tag={Link} to="/service-orders" color="success">Done</Button>
     </PageHeader>

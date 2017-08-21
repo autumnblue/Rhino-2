@@ -34,7 +34,7 @@ const ClientCreatePage = ({
 
   onFieldChange,
 }) => (
-  <Page>
+  <Page title="New Client">
     <PageHeader breadcrumbs={breadcrumbs}>
       <Link to="/clients">
         <Button color="default">Cancel</Button>

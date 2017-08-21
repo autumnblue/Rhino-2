@@ -27,7 +27,7 @@ const ServiceListPage = ({
   onEdit,
   onFiltersChange,
 }) => (
-  <Page>
+  <Page title="Services">
     <PageHeader breadcrumbs={breadcrumbs}>
       <Link to="/services/new">
         <Button color="primary">Create new Service</Button>

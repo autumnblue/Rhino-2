@@ -45,7 +45,7 @@ const ServiceInstanceEditPage = ({
 
   onUploadAsset,
 }) => (
-  <Page>
+  <Page title={`Editing ${serviceInstance.display_name}`}>
     <PageHeader breadcrumbs={breadcrumbs}>
       <Button tag={Link} to={`/service-orders/${serviceInstance.service_order.id}`} color="success">Done</Button>
     </PageHeader>

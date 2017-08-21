@@ -3,12 +3,13 @@ import { object, func } from 'prop-types';
 import { Link } from 'react-router';
 
 import { IssuerForm, Page, PageContent, PageHeader } from 'src/components';
-import { breadcrumbsType } from 'src/prop-types';
+import { breadcrumbsType, issuerType } from 'src/prop-types';
 
 import enhance from './enhance';
 
 
 const propTypes = {
+  issuer: issuerType.isRequired,
   validationErrors: object,
   breadcrumbs: breadcrumbsType.isRequired,
 
@@ -17,13 +18,14 @@ const propTypes = {
 };
 
 const IssuerEditPage = ({
+  issuer,
   breadcrumbs,
   validationErrors,
 
   onDelete,
   onFieldChange,
 }) => (
-  <Page>
+  <Page title={`Editing ${issuer.name}`}>
     <PageHeader breadcrumbs={breadcrumbs}>
       <Button tag={Link} to="/issuers" color="success">Done</Button>
     </PageHeader>

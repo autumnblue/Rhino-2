@@ -9,7 +9,6 @@ const propTypes = {
   name: string.isRequired,
   assetsData: object.isRequired,
   default_sort_priority: number.isRequired,
-  description: string.isRequired,
   feature_image: number,
   tools: array,
 
@@ -33,7 +32,6 @@ const ServiceListItem = ({
   name,
   default_sort_priority,
   feature_image,
-  description,
   tools,
 
   assetsData,
@@ -61,9 +59,6 @@ const ServiceListItem = ({
         alt="Feature Image"
         title="Feature Image"
       />
-    </td>
-    <td>
-      {description}
     </td>
     <td>
       <EntityLink to={`/services/${id}`} />

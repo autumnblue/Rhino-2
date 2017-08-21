@@ -3,12 +3,13 @@ import { object, func } from 'prop-types';
 import { Link } from 'react-router';
 
 import { IndustryForm, Page, PageContent, PageHeader } from 'src/components';
-import { breadcrumbsType } from 'src/prop-types';
+import { breadcrumbsType, industryType } from 'src/prop-types';
 
 import enhance from './enhance';
 
 
 const propTypes = {
+  industry: industryType.isRequired,
   validationErrors: object,
   breadcrumbs: breadcrumbsType.isRequired,
 
@@ -17,13 +18,14 @@ const propTypes = {
 };
 
 const IndustryEditPage = ({
+  industry,
   breadcrumbs,
   validationErrors,
 
   onDelete,
   onFieldChange,
 }) => (
-  <Page>
+  <Page title={`Editing ${industry.name}`}>
     <PageHeader breadcrumbs={breadcrumbs}>
       <Button tag={Link} to="/industries" color="success">Done</Button>
     </PageHeader>

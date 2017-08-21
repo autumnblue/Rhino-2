@@ -31,7 +31,7 @@ const DocumentTemplateEditPage = ({
   onDelete,
   onFieldChange,
 }) => (
-  <Page>
+  <Page title={`Editing Document Template #${documentTemplate.id}`}>
     <PageHeader breadcrumbs={breadcrumbs}>
       <Button tag={Link} to="/document-templates" color="success">Done</Button>
     </PageHeader>

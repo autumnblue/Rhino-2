@@ -30,7 +30,7 @@ const DocumentTemplateCreatePage = ({
 
   onFieldChange,
 }) => (
-  <Page>
+  <Page title="New Document Template">
     <PageHeader breadcrumbs={breadcrumbs}>
       <Link to="/document-templates">
         <Button color="default">Cancel</Button>

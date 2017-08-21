@@ -26,7 +26,7 @@ const ToolListPage = ({
   onEdit,
   onFiltersChange,
 }) => (
-  <Page>
+  <Page title="Tools">
     <PageHeader breadcrumbs={breadcrumbs}>
       <Link to="/tools/new">
         <Button color="primary">Create new tool</Button>

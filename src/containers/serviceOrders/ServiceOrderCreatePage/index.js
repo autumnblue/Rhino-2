@@ -34,7 +34,7 @@ const ToolCreatePage = ({
 
   onFieldChange,
 }) => (
-  <Page>
+  <Page title="New Service Order">
     <PageHeader breadcrumbs={breadcrumbs}>
       <Link to="/service-orders">
         <Button color="default">Cancel</Button>

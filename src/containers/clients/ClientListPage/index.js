@@ -35,7 +35,7 @@ const ClientListPage = ({
   onFiltersChange,
   onPageChange,
 }) => (
-  <Page>
+  <Page title="Clients">
     <PageHeader breadcrumbs={breadcrumbs}>
       <Link to="/clients/new">
         <Button color="primary">Create new client</Button>

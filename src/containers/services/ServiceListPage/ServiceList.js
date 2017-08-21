@@ -26,7 +26,6 @@ const ServiceList = ({
         id,
         name,
         default_sort_priority,
-        description,
         feature_image,
         tools,
       }) => (
@@ -37,7 +36,6 @@ const ServiceList = ({
             name,
             default_sort_priority,
             feature_image,
-            description,
             tools,
 
             assetsData,

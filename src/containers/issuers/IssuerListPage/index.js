@@ -24,7 +24,7 @@ const IssuerListPage = ({
 
   onFiltersChange,
 }) => (
-  <Page>
+  <Page title="Issuers">
     <PageHeader breadcrumbs={breadcrumbs}>
       <Link to="/issuers/new">
         <Button color="primary">Create new issuer</Button>

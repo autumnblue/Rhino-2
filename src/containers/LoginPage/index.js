@@ -1,5 +1,4 @@
 import { func, object } from 'prop-types';
-import Helmet from 'react-helmet';
 import BodyClassName from 'react-body-classname';
 
 import { Page, PageContent } from 'src/components';
@@ -20,8 +19,7 @@ const LoginPage = ({
 
   onSubmit,
 }) => (
-  <Page className="vertical-align text-center">
-    <Helmet title="Login" titleTemplate="%s | DJAVAN - RSL" />
+  <Page title="Login" className="vertical-align text-center">
     <BodyClassName className="page-login layout-full page-dark" />
     <PageContent className="vertical-align-middle">
       <div className="brand">

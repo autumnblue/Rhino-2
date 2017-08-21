@@ -31,7 +31,7 @@ const DocumentTemplateListPage = ({
 
   onFiltersChange,
 }) => (
-  <Page>
+  <Page title="Document Templates">
     <PageHeader breadcrumbs={breadcrumbs}>
       <Link to="/document-templates/new">
         <Button color="primary">Create new Template</Button>

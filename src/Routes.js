@@ -59,6 +59,7 @@ const Routes = ({ history }) => (
   >
     <Redirect from="/" to="/clients" />
     <Route component={MainLayout}>
+      <Route path="/login" component={LoginPage} />
       <Route path="/" component={App}>
         <Route path="settings" component={SettingsPage} />
 
@@ -92,7 +93,6 @@ const Routes = ({ history }) => (
 
         <Route path="service-instances/:serviceInstanceId" component={ServiceInstanceEditPage} />
       </Route>
-      <Route path="/login" component={LoginPage} />
     </Route>
   </Router>
 );

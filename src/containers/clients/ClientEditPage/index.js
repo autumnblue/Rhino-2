@@ -39,7 +39,7 @@ const ClientEditPage = ({
   onFieldChange,
   onRedirect,
 }) => (
-  <Page>
+  <Page title={`Editing ${client.name}`}>
     <PageHeader breadcrumbs={breadcrumbs}>
       <Button tag={Link} to="/clients" color="success">Done</Button>
     </PageHeader>

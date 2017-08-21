@@ -31,7 +31,7 @@ const ServiceCreatePage = ({
   onFieldChange,
   onUploadAsset,
 }) => (
-  <Page>
+  <Page title="New Service">
     <PageHeader breadcrumbs={breadcrumbs}>
       <Link to="/services">
         <Button color="default">Cancel</Button>

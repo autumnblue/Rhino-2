@@ -38,7 +38,7 @@ const categories = [{
 const enhance = pure;
 
 const SettingsPage = () => (
-  <Page>
+  <Page title="Settings">
     <PageHeader breadcrumbs={breadcrumbs} />
     <PageContent>
       <Row>

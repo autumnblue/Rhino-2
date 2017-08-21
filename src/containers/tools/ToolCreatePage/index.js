@@ -30,7 +30,7 @@ const ToolCreatePage = ({
 
   onFieldChange,
 }) => (
-  <Page>
+  <Page title="New Tool">
     <PageHeader breadcrumbs={breadcrumbs}>
       <Link to="/tools">
         <Button color="default">Cancel</Button>

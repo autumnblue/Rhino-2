@@ -1,6 +1,6 @@
 import { compose, pure, withHandlers, withPropsOnChange, defaultProps } from 'recompose';
 import classNames from 'classnames';
-import { func, number, string } from 'prop-types';
+import { func, number, string, bool } from 'prop-types';
 
 import { Icon, FieldError } from 'src/components';
 
@@ -10,7 +10,7 @@ const propTypes = {
   value: number,
   className: string.isRequired,
   error: string,
-  showNumber: number.isRequired,
+  showNumber: bool.isRequired,
 
   onVoteUp: func.isRequired,
   onVoteDown: func.isRequired,

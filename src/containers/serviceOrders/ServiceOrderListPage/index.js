@@ -51,7 +51,7 @@ const ServiceOrderListPage = ({
   onFiltersChange,
   onPageChange,
 }) => (
-  <Page>
+  <Page title="Service Orders">
     <PageHeader breadcrumbs={breadcrumbs}>
       <Link to="/service-orders/new">
         <Button color="primary">Create new Service Order</Button>

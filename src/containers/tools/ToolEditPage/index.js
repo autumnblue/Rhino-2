@@ -3,12 +3,13 @@ import { object, func, arrayOf, shape } from 'prop-types';
 import { Link } from 'react-router';
 
 import { ToolForm, Page, PageContent, PageHeader } from 'src/components';
-import { breadcrumbsType, serviceType } from 'src/prop-types';
+import { breadcrumbsType, serviceType, toolType } from 'src/prop-types';
 
 import enhance from './enhance';
 
 
 const propTypes = {
+  tool: toolType.isRequired,
   validationErrors: object,
   services: arrayOf(serviceType).isRequired,
   choices: shape({
@@ -21,6 +22,7 @@ const propTypes = {
 };
 
 const ToolEditPage = ({
+  tool,
   breadcrumbs,
   services,
   choices,
@@ -29,7 +31,7 @@ const ToolEditPage = ({
   onDelete,
   onFieldChange,
 }) => (
-  <Page>
+  <Page title={`Editing ${tool.name}`}>
     <PageHeader breadcrumbs={breadcrumbs}>
       <Button tag={Link} to="/tools" color="success">Done</Button>
     </PageHeader>

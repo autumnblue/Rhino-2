@@ -24,7 +24,7 @@ const IndustryListPage = ({
 
   onFiltersChange,
 }) => (
-  <Page>
+  <Page title="Industries">
     <PageHeader breadcrumbs={breadcrumbs}>
       <Link to="/industries/new">
         <Button color="primary">Create new industry</Button>

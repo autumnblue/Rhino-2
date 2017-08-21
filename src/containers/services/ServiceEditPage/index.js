@@ -3,11 +3,12 @@ import { object, func, shape } from 'prop-types';
 import { Link } from 'react-router';
 
 import { ServiceForm, Page, PageContent, PageHeader } from 'src/components';
-import { breadcrumbsType } from 'src/prop-types';
+import { breadcrumbsType, serviceType } from 'src/prop-types';
 
 import enhance from './enhance';
 
 const propTypes = {
+  service: serviceType.isRequired,
   breadcrumbs: breadcrumbsType.isRequired,
   assetsData: object.isRequired,
   choices: shape({
@@ -21,6 +22,7 @@ const propTypes = {
 };
 
 const ServiceEditPage = ({
+  service,
   breadcrumbs,
   validationErrors,
   choices,
@@ -30,7 +32,7 @@ const ServiceEditPage = ({
   onFieldChange,
   onUploadAsset,
 }) => (
-  <Page>
+  <Page title={`Editing ${service.name}`}>
     <PageHeader breadcrumbs={breadcrumbs}>
       <Button tag={Link} to="/services" color="success">Done</Button>
     </PageHeader>
