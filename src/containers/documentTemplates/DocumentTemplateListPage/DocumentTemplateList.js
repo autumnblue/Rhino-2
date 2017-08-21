@@ -31,7 +31,7 @@ const DocumentTemplateList = ({
       }) => (
         <tr key={id}>
           <td>
-            {choices.category[category]}
+            <strong>{choices.category[category]}</strong>
             <br /><br />
             Issuer: {issuer.name}
           </td>

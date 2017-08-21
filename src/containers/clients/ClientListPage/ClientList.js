@@ -25,7 +25,7 @@ const ClientList = ({ clients }) => (
       }) => (
         <tr key={id}>
           <td>
-            {name}
+            <strong>{name}</strong>
             <br /><br />
             {address}
           </td>

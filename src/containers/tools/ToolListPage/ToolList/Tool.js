@@ -39,7 +39,7 @@ const Tool = ({
       />
     </td>
     <td>
-      {name}
+      <strong>{name}</strong>
       <br />
       <br />
       {services.length}&nbsp;Services
@@ -53,4 +53,3 @@ const Tool = ({
 Tool.propTypes = propTypes;
 
 export default enhance(Tool);
-

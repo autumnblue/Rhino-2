@@ -46,7 +46,7 @@ const ServiceListItem = ({
       />
     </td>
     <td>
-      {name}
+      <strong>{name}</strong>
       <br /><br />
       {tools.length}&nbsp;tools
     </td>

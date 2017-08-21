@@ -24,7 +24,7 @@ const IndustryList = ({
       }) => (
         <tr key={id}>
           <td>
-            {name}
+            <strong>{name}</strong>
           </td>
           <td>
             {clients.length}&nbsp;Clients
