@@ -32,6 +32,8 @@ project:
   #Specify production or development. This must be in lowercase format!
   environment: production
   
+  API_URL: "https://djavan-server-dev.rsl.host/api/v1/"
+   
   #NPM logging level
   npm_config_loglevel: info
   

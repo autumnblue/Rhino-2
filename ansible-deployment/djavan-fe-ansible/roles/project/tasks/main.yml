@@ -1,4 +1,8 @@
 ---
+- name: project | set API_URL
+  lineinfile: dest=/etc/environment state=present regexp='^API_URL' >
+     line='API_URL="{{ project.API_URL }}"'
+     
 - name: project | check if pm2 exists
   stat: path=/etc/systemd/system/pm2-root.service
   register: service_status
