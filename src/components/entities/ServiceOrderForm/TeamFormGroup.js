@@ -34,6 +34,16 @@ const TeamFormGroup = ({
       />
     </FormGroup>
     <FormGroup>
+      <label>Account Manager</label>
+      <Field
+        component={ReduxSelect}
+        name="account_manager"
+        options={userOptions}
+        onChange={onFieldChange}
+        error={validationErrors.account_manager}
+      />
+    </FormGroup>
+    <FormGroup>
       <label>Project Manager</label>
       <Field
         component={ReduxSelect}
