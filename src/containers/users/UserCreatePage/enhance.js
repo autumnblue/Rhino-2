@@ -4,22 +4,26 @@ import { asyncConnect } from 'redux-connect';
 import { connect } from 'react-redux';
 
 // actions
-import { newIssuerFormChange } from 'src/redux/issuers/actions';
+import { newUserFormChange } from 'src/redux/users/actions';
 
 const reduxAsyncConnect = asyncConnect([{
   promise: () => Promise.resolve(),
 }]);
 
 const reduxConnect = connect(state => ({
-  validationErrors: state.issuers.validationErrors,
+  validationErrors: state.users.validationErrors,
 }), {
-  onFieldChange: newIssuerFormChange,
+  onFieldChange: newUserFormChange,
 });
 
 const reduxFormEnhancer = reduxForm({
   pure: true,
-  form: 'newIssuerForm',
-  initialValues: {},
+  form: 'newUserForm',
+  initialValues: {
+    profile: {
+      entity_type: 'rhino_profile'
+    }
+  },
 });
 
 export default compose(

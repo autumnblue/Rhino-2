@@ -1,10 +1,13 @@
-import { fork, all, take, select, put } from 'redux-saga/effects';
+import { fork, all, take, select, put, takeLatest, call } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import cookie from 'react-cookie';
 import { formValueSelector } from 'redux-form';
 import { push } from 'react-router-redux';
+import qs from 'qs';
+import { pickBy } from 'lodash'
 
 import * as c from './constants';
-import { login } from './actions';
+import { login, deleteUser, createUser } from './actions';
 
 function* listParamsChange() {
   // will cancel current running handleInput task
@@ -15,6 +18,7 @@ function* listParamsChange() {
     yield call(delay, 500);
     const params = yield select(
       formValueSelector('userListFilterForm'),
+      'profile_type',
       'contains',
       'per_page',
       'sort',
@@ -28,7 +32,7 @@ function* listParamsChange() {
 
     const query = qs.stringify(pickBy(params));
 
-    yield put(push(`/clients/?${query}`));
+    yield put(push(`/users/?${query}`));
   });
 }
 
@@ -78,11 +82,48 @@ function* logout() {
   }
 }
 
+function* newUserFormChange() {
+  while (true) {
+    yield take(c.NEW_USER_FORM_CHANGE);
+    const state = yield select();
+    const { values } = state.form.newUserForm;
+
+    yield put(createUser({
+      commit: true,
+      ...values,
+    }));
+  }
+}
+
+function* deleteUserTrigger() {
+  while (true) {
+    const { id } = yield take(c.DELETE_USER_TRIGGER);
+
+    // eslint-disable-next-line no-alert
+    if (window.confirm('Are you sure want to delete the user?')) {
+      yield put(deleteUser(id));
+    }
+  }
+}
+
+function* deleteUserSuccess() {
+  while (true) {
+    yield take(c.DELETE_USER_SUCCESS);
+
+    yield put(push('/users'));
+  }
+}
+
+
 export default function* createSaga() {
   yield all([
+    fork(listParamsChange),
     fork(loginSuccess),
     fork(submitLoginForm),
     fork(tokenSuccess),
     fork(logout),
+    fork(newUserFormChange),
+    fork(deleteUserTrigger),
+    fork(deleteUserSuccess),
   ]);
 }

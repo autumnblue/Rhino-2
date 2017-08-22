@@ -8,16 +8,24 @@ import { getUsers } from 'src/redux/users/selectors';
 const reduxAsyncConnect = asyncConnect([{
   promise: ({
     store: { dispatch },
-    location: { query: { contains, per_page, sort, page } },
+    location: { query: { profile_type, contains, per_page, sort, page } },
   }) => dispatch(loadUsers({
     page,
-    per_page,
+    per_page: per_page || 200,
     sort: sort ? [sort] : undefined,
-    filter: contains ? {
-      name: {
-        icontains: contains,
-      },
-    } : {},
+    filter: Object.assign({},
+      profile_type ? {
+        'profile.profile_type': {
+          eq: profile_type,
+        },
+      } : {},
+      contains ? {
+        name: {
+          icontains: contains,
+        },
+      } : {},
+    ),
+    include: ['profile']
   })),
 }]);
 
@@ -36,12 +44,13 @@ const reduxConnect = connect(
 );
 
 const propsEnhancer = withPropsOnChange(['location'], ({
-  location: { query: { contains, sort, per_page, page } },
+  location: { query: { profile_type, contains, sort, per_page, page } },
 }) => ({
   filters: {
+    profile_type,
     contains,
     sort,
-    per_page: +per_page,
+    per_page: per_page ? +per_page : '',
   },
   page: +page || 1,
 }));

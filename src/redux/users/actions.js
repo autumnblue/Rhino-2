@@ -20,6 +20,21 @@ export const pageChange = page => ({
   page,
 });
 
+export const newUserFormChange = () => ({
+  type: c.NEW_USER_FORM_CHANGE,
+});
+
+export const editUserFormChange = id => ({
+  type: c.EDIT_USER_FORM_CHANGE,
+  id,
+});
+
+export const deleteUserTrigger = id => ({
+  type: c.DELETE_USER_TRIGGER,
+  id,
+});
+
+// API actions
 
 export const refreshToken = token => ({
   types: [c.REFRESH_TOKEN, c.REFRESH_TOKEN_SUCCESS, c.REFRESH_TOKEN_FAIL],
@@ -54,4 +69,23 @@ export const loadUsers = ({
       include,
     },
   }),
+});
+
+export const loadSingleUser = id => ({
+  types: [c.LOAD_SINGLE_USER, c.LOAD_SINGLE_USER_SUCCESS, c.LOAD_SINGLE_USER_FAIL],
+  api: ({ get }) => get(endpoint + id, {
+    params: {
+      include: ['profile'],
+    },
+  }),
+});
+
+export const createUser = data => ({
+  types: [c.CREATE_USER, c.CREATE_USER_SUCCESS, c.CREATE_USER_FAIL],
+  api: ({ post }) => post(endpoint, { data }),
+});
+
+export const deleteUser = id => ({
+  types: [c.DELETE_USER, c.DELETE_USER_SUCCESS, c.DELETE_USER_FAIL],
+  api: ({ del }) => del(endpoint + id),
 });

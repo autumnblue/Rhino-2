@@ -16,13 +16,13 @@ const typeOptions = [
 ]
 
 const sortOptions = [
-  { value: 'date_created', label: 'Date Created' },
+  { value: 'profile.created', label: 'Date Created' },
   { value: 'last_name', label: 'Last Name' },
   { value: 'focal_name', label: 'Focal Name' },
 ];
 
 const perPageOptions = [
-  { value: '10', label: 'Display 10' },
+  { value: '', label: 'Display 10' },
   { value: '50', label: 'Display 50' },
   { value: '100', label: 'Display 100' },
   { value: '1000', label: 'Display All' },
@@ -46,7 +46,7 @@ const UserFilters = ({
       <label>Profile Type</label>
       <Field
         component={ReduxSelect}
-        name="type"
+        name="profile_type"
         options={typeOptions}
         placeholder="Profile Type"
         onChange={onFiltersChange}

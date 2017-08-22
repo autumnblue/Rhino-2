@@ -4,43 +4,43 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 // actions
-import { loadSingleIssuer, deleteIssuerTrigger, editIssuerFormChange } from 'src/redux/issuers/actions';
+import { loadSingleUser, deleteUserTrigger, editUserFormChange } from 'src/redux/users/actions';
 
 // selectors
-import { getCurrentIssuer } from 'src/redux/issuers/selectors';
+import { getCurrentUser } from 'src/redux/users/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
-  promise: ({ store: { dispatch }, params: { issuerId } }) => dispatch(loadSingleIssuer(issuerId)),
+  promise: ({ store: { dispatch }, params: { userId } }) => dispatch(loadSingleUser(userId)),
 }]);
 
 const reduxConnect = connect(state => ({
-  validationErrors: state.issuers.validationErrors,
-  issuer: getCurrentIssuer(state),
+  validationErrors: state.users.validationErrors,
+  user: getCurrentUser(state),
 }), {
-  onDelete: deleteIssuerTrigger,
-  onFieldChange: editIssuerFormChange,
+  onDelete: deleteUserTrigger,
+  onFieldChange: editUserFormChange,
 });
 
-const propsEnhancer = withPropsOnChange(['issuer'], ({ issuer }) => ({
+const propsEnhancer = withPropsOnChange(['user'], ({ user }) => ({
   breadcrumbs: [{
-    label: 'Issuers',
-    url: '/issuers',
+    label: 'Users',
+    url: '/users',
   }, {
-    label: issuer.name,
+    label: user.name,
   }],
   // initialValues used by reduxForm
-  initialValues: issuer,
+  initialValues: user,
 }));
 
 const reduxFormEnhancer = reduxForm({
   pure: true,
   enableReinitialize: true,
-  form: 'editIssuerForm',
+  form: 'editUserForm',
 });
 
 const handlersEnhancer = withHandlers({
-  onDelete: ({ onDelete, issuer }) => () => onDelete(issuer.id),
-  onFieldChange: ({ onFieldChange, issuer }) => () => onFieldChange(issuer.id),
+  onDelete: ({ onDelete, user }) => () => onDelete(user.id),
+  onFieldChange: ({ onFieldChange, user }) => () => onFieldChange(user.id),
 });
 
 export default compose(

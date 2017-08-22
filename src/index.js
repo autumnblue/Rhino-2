@@ -13,7 +13,7 @@ const initialState = {};
 const store = configureStore(browserHistory, initialState);
 const history = syncHistoryWithStore(browserHistory, store);
 
-if (true && process.env.NODE_ENV === 'development') { // eslint-disable-line no-constant-condition
+if (false && process.env.NODE_ENV === 'development') { // eslint-disable-line no-constant-condition
   // eslint-disable-next-line global-require, import/no-extraneous-dependencies
   const { whyDidYouUpdate } = require('why-did-you-update');
   let createClass = React.createClass; // eslint-disable-line no-unused-vars

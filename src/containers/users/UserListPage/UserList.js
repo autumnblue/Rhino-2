@@ -11,10 +11,16 @@ const propTypes = {
 const UserList = ({ users }) => (
   <Table striped>
     <tbody>
+      {console.log('users', users)}
       {users.map(({
         id,
+        first_name,
+        last_name,
+        email,
       }) => (
         <tr key={id}>
+          <td>{first_name} {last_name}</td>
+          <td>{email}</td>
           <td>
             <EntityLink to={`/users/${id}`} />
           </td>

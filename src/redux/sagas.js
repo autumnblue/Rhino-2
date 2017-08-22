@@ -7,6 +7,7 @@ export { default as documentTemplates } from './documentTemplates/sagas';
 export { default as focalProfiles } from './focalProfiles/sagas';
 export { default as industries } from './industries/sagas';
 export { default as issuers } from './issuers/sagas';
+export { default as profiles } from './profiles/sagas';
 export { default as services } from './services/sagas';
 export { default as serviceInstances } from './serviceInstances/sagas';
 export { default as serviceGroups } from './serviceGroups/sagas';

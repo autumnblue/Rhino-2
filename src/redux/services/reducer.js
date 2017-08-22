@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { map } from 'lodash';
 
+import { empty } from 'src/helpers';
 import { validationErrorsHelper, choicesHelper } from 'src/helpers/reducerHelpers';
 
 import * as c from './constants';
@@ -10,7 +11,7 @@ const initialState = {
   ids: [],
   id: null,
   choices: null,
-  validationErrors: {},
+  validationErrors: empty,
 };
 
 function data(state = initialState.data) {
@@ -51,7 +52,7 @@ function validationErrors(state = initialState.validationErrors, action) {
       return validationErrorsHelper(state, action);
     case c.EDIT_SERVICE_SUCCESS:
     case c.CREATE_SERVICE_SUCCESS:
-      return {};
+      return empty;
     default:
       return state;
   }

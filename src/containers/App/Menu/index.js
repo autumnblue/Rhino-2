@@ -12,13 +12,20 @@ const propTypes = {
 };
 
 const onResize = () => {
+  const view = window.document.getElementById('react-view');
   const { body } = window.document;
-  body.classList.toggle('site-menubar-unfold', body.clientWidth > 767);
-  body.classList.toggle('site-menubar-fold', body.clientWidth <= 767);
+  const isSmall = body.clientWidth <= 767;
+
+  view.classList.toggle('site-menubar-unfold', !isSmall);
+  view.classList.toggle('site-menubar-fold', isSmall);
 };
 
 window.addEventListener('resize', onResize);
 window.addEventListener('load', onResize);
+
+if(window.document.body) {
+  onResize();
+}
 
 const menuItems = [{
   label: 'Dashboard',

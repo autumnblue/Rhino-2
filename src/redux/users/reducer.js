@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 import { map } from 'lodash';
+
+import { empty } from 'src/helpers';
 import { validationErrorsHelper } from 'src/helpers/reducerHelpers';
 
 import * as c from './constants';
@@ -11,7 +13,7 @@ const initialState = {
   page: 1,
   pageCount: 1,
   me: null,
-  validationErrors: {},
+  validationErrors: empty,
 };
 
 function data(state = initialState.data) {
@@ -72,7 +74,7 @@ function validationErrors(state = initialState.validationErrors, action) {
       return validationErrorsHelper(state, action);
     }
     case c.LOGIN_SUCCESS:
-      return {};
+      return empty;
     default:
       return state;
   }

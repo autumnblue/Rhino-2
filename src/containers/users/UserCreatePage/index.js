@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import { object, func } from 'prop-types';
 
-import { Page, PageContent, PageHeader, Button, IssuerForm } from 'src/components';
+import { Page, PageContent, PageHeader, Button, UserForm } from 'src/components';
 
 import enhance from './enhance';
 
@@ -12,10 +12,10 @@ const propTypes = {
 };
 
 const breadcrumbs = [{
-  label: 'Issuers',
-  url: '/issuers',
+  label: 'Users',
+  url: '/users',
 }, {
-  label: 'New Issuer',
+  label: 'New User',
 }];
 
 const ToolCreatePage = ({
@@ -23,14 +23,14 @@ const ToolCreatePage = ({
 
   onFieldChange,
 }) => (
-  <Page title="New Issuer">
+  <Page title="New User">
     <PageHeader breadcrumbs={breadcrumbs}>
-      <Link to="/issuers">
+      <Link to="/users">
         <Button color="default">Cancel</Button>
       </Link>
     </PageHeader>
     <PageContent>
-      <IssuerForm
+      <UserForm
         onFieldChange={onFieldChange}
         validationErrors={validationErrors}
       />

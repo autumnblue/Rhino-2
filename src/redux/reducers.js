@@ -7,6 +7,7 @@ export { default as documentTemplates } from './documentTemplates/reducer';
 export { default as focalProfiles } from './focalProfiles/reducer';
 export { default as industries } from './industries/reducer';
 export { default as issuers } from './issuers/reducer';
+export { default as profiles } from './profiles/reducer';
 export { default as services } from './services/reducer';
 export { default as serviceInstances } from './serviceInstances/reducer';
 export { default as serviceGroups } from './serviceGroups/reducer';
