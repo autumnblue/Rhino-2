@@ -85,6 +85,7 @@ const ServiceInstanceItem = ({
         name={`${member}.custom_sort_priority`}
         showNumber={false}
         onChange={onEdit}
+        error={validationErrors.custom_sort_priority}
       />
     </td>
     <td>

@@ -21,10 +21,24 @@ function showError(response, next) {
     }));
   }
 
-  return next(noty({
-    type: 'error',
-    text: String(response.data) || 'Unknown error',
-  }));
+  let customError;
+
+  if (typeof response.data === 'string') {
+    customError = response.data;
+  } else if (response.data instanceof Array) {
+    customError = response.data.join('\n');
+  } else if (!response.data) {
+    customError = 'Unknown error';
+  }
+
+  if (customError) {
+    return next(noty({
+      type: 'error',
+      text: customError,
+    }));
+  }
+
+  return undefined;
 }
 
 export default function apiMiddleware() {
