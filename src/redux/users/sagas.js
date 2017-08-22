@@ -6,6 +6,32 @@ import { push } from 'react-router-redux';
 import * as c from './constants';
 import { login } from './actions';
 
+function* listParamsChange() {
+  // will cancel current running handleInput task
+  yield takeLatest([
+    c.LIST_FILTERS_CHANGE,
+    c.PAGE_CHANGE,
+  ], function* handle() {
+    yield call(delay, 500);
+    const params = yield select(
+      formValueSelector('userListFilterForm'),
+      'contains',
+      'per_page',
+      'sort',
+    );
+    const { users } = yield select();
+    const { page } = users;
+
+    if (page > 1) {
+      params.page = page;
+    }
+
+    const query = qs.stringify(pickBy(params));
+
+    yield put(push(`/clients/?${query}`));
+  });
+}
+
 function* submitLoginForm() {
   while (true) {
     yield take(c.SUBMIT_LOGIN_FORM);

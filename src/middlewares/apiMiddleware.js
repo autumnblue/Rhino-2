@@ -23,7 +23,7 @@ function showError(response, next) {
 
   return next(noty({
     type: 'error',
-    text: String(response.data) || 'Unknown error',
+    text: response.data ? String(response.data) : 'Unknown error',
   }));
 }
 

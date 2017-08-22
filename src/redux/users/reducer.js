@@ -7,6 +7,9 @@ import * as c from './constants';
 const initialState = {
   data: {},
   ids: [],
+  id: null,
+  page: 1,
+  pageCount: 1,
   me: null,
   validationErrors: {},
 };
@@ -19,6 +22,33 @@ function ids(state = initialState.ids, action) {
   switch (action.type) {
     case c.LOAD_USERS_SUCCESS:
       return map(action.response.data.users, 'id');
+    default:
+      return state;
+  }
+}
+
+function id(state = initialState.id, action) {
+  switch (action.type) {
+    case c.LOAD_SINGLE_USER_SUCCESS:
+      return action.response.data.user.id;
+    default:
+      return state;
+  }
+}
+
+function page(state = initialState.page, action) {
+  switch (action.type) {
+    case c.PAGE_CHANGE:
+      return action.page;
+    default:
+      return state;
+  }
+}
+
+function pageCount(state = initialState.pageCount, action) {
+  switch (action.type) {
+    case c.LOAD_USERS_SUCCESS:
+      return action.response.data.meta.total_pages;
     default:
       return state;
   }
@@ -51,6 +81,9 @@ function validationErrors(state = initialState.validationErrors, action) {
 export default combineReducers({
   data,
   ids,
+  id,
+  page,
+  pageCount,
   me,
   validationErrors,
 });

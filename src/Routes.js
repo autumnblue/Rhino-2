@@ -39,6 +39,8 @@ import ServiceOrderEditPage from './containers/serviceOrders/ServiceOrderEditPag
 
 import ServiceInstanceEditPage from './containers/serviceInstances/ServiceInstanceEditPage';
 
+import UserListPage from './containers/users/UserListPage';
+
 function reduxAsyncConnect(props) {
   return (
     <ReduxAsyncConnect
@@ -92,6 +94,8 @@ const Routes = ({ history }) => (
         <Route path="service-orders/:serviceOrderId" component={ServiceOrderEditPage} />
 
         <Route path="service-instances/:serviceInstanceId" component={ServiceInstanceEditPage} />
+
+        <Route path="users" component={UserListPage} />
       </Route>
     </Route>
   </Router>
