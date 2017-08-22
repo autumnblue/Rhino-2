@@ -1,4 +1,3 @@
-import BodyClassName from 'react-body-classname';
 import { element, string, func } from 'prop-types';
 import enhance from './enhance';
 import Menu from './Menu';
@@ -17,7 +16,6 @@ const App = ({
   onLogoutRequest,
 }) => (
   <div>
-    <BodyClassName className="site-menubar-unfold" />
     <Menu activeCategory={activeCategory} onLogoutRequest={onLogoutRequest} />
     <div>
       {children}

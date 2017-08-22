@@ -11,16 +11,25 @@ const propTypes = {
   onLogoutRequest: func.isRequired,
 };
 
+const onResize = () => {
+  const { body } = window.document;
+  body.classList.toggle('site-menubar-unfold', body.clientWidth > 767);
+  body.classList.toggle('site-menubar-fold', body.clientWidth <= 767);
+};
+
+window.addEventListener('resize', onResize);
+window.addEventListener('load', onResize);
+
 const menuItems = [{
+  label: 'Dashboard',
+  url: '/',
+  faIcon: 'dashboard',
+  category: 'dashboard',
+}, {
   label: 'Clients',
   url: '/clients',
   wbIcon: 'users',
   category: 'clients',
-}, {
-  label: 'Document Templates',
-  url: '/document-templates',
-  faIcon: 'file-text',
-  category: 'document-templates',
 }, {
   label: 'Service Orders',
   url: '/service-orders',
@@ -46,7 +55,7 @@ const Menu = ({
             <li className="site-menu-category">Djavan</li>
             {menuItems.map(({ label, url, category, faIcon, wbIcon }) => (
               <li key={url} className={`site-menu-item ${activeCategory === category ? css.active : ''}`}>
-                <Link to={url}>
+                <Link to={url} title={label}>
                   <Icon wb={wbIcon} fa={faIcon} className="site-menu-icon" />
                   <span className="site-menu-title">{label}</span>
                 </Link>
@@ -55,7 +64,9 @@ const Menu = ({
           </ul>
         </div>
       </div>
-      <div className="scrollable-bar scrollable-bar-vertical scrollable-bar-hide" draggable="false"><div className="scrollable-bar-handle" style={{ height: '805.792px' }} /></div></div>
+      <div className="scrollable-bar scrollable-bar-vertical scrollable-bar-hide" draggable="false">
+        <div className="scrollable-bar-handle" style={{ height: '805.792px' }} /></div>
+    </div>
     <div className="site-menubar-footer">
       <a onClick={onLogoutRequest} title="Logout" className={css.logout}>
         <span className="icon wb-power" aria-hidden="true" />

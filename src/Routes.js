@@ -1,12 +1,13 @@
 import Route from 'react-router/es/Route';
-import Redirect from 'react-router/es/Redirect';
 import Router from 'react-router/es/Router';
+import IndexRoute from 'react-router/es/IndexRoute';
 import { ReduxAsyncConnect } from 'redux-connect';
 import { object } from 'prop-types';
 
 import App from './containers/App';
 import LoginPage from './containers/LoginPage';
 import MainLayout from './containers/MainLayout';
+import Dashboard from './containers/Dashboard';
 import SettingsPage from './containers/SettingsPage';
 
 import ClientListPage from './containers/clients/ClientListPage';
@@ -59,10 +60,11 @@ const Routes = ({ history }) => (
     render={reduxAsyncConnect}
     history={history}
   >
-    <Redirect from="/" to="/clients" />
     <Route component={MainLayout}>
       <Route path="/login" component={LoginPage} />
       <Route path="/" component={App}>
+        <IndexRoute component={Dashboard} />
+
         <Route path="settings" component={SettingsPage} />
 
         <Route path="clients" component={ClientListPage} />

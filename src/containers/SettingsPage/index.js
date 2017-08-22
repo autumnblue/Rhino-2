@@ -33,6 +33,9 @@ const categories = [{
 }, {
   label: 'Industries',
   url: '/industries',
+}, {
+  label: 'Document Templates',
+  url: '/document-templates',
 }];
 
 const enhance = pure;
@@ -43,7 +46,7 @@ const SettingsPage = () => (
     <PageContent>
       <Row>
         {categories.map(({ label, url }) => (
-          <Col md="3" key={label + url} className={css.category}>
+          <Col xl="2" lg="3" md="4" sm="6" xs="12" key={label + url} className={css.category}>
             <Button
               tag={Link}
               to={url}
