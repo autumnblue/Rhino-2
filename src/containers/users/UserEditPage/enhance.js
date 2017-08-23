@@ -5,20 +5,29 @@ import { reduxForm } from 'redux-form';
 
 // actions
 import { loadSingleUser, deleteUserTrigger, editUserFormChange } from 'src/redux/users/actions';
+import { createAsset } from 'src/redux/assets/actions';
+import { loadClients } from 'src/redux/clients/actions';
 
 // selectors
 import { getCurrentUser } from 'src/redux/users/selectors';
+import { getClients } from 'src/redux/clients/selectors';
 
 const reduxAsyncConnect = asyncConnect([{
-  promise: ({ store: { dispatch }, params: { userId } }) => dispatch(loadSingleUser(userId)),
+  promise: ({ store: { dispatch }, params: { userId } }) => Promise.all([
+    dispatch(loadSingleUser(userId)),
+    dispatch(loadClients()),
+  ]),
 }]);
 
 const reduxConnect = connect(state => ({
+  clients: getClients(state),
+  assetsData: state.assets.data,
   validationErrors: state.users.validationErrors,
   user: getCurrentUser(state),
 }), {
   onDelete: deleteUserTrigger,
   onFieldChange: editUserFormChange,
+  onUpload: createAsset,
 });
 
 const propsEnhancer = withPropsOnChange(['user'], ({ user }) => ({
@@ -26,7 +35,7 @@ const propsEnhancer = withPropsOnChange(['user'], ({ user }) => ({
     label: 'Users',
     url: '/users',
   }, {
-    label: user.name,
+    label: `${user.first_name} ${user.last_name}`,
   }],
   // initialValues used by reduxForm
   initialValues: user,

@@ -25,7 +25,7 @@ const reduxAsyncConnect = asyncConnect([{
         },
       } : {},
     ),
-    include: ['profile']
+    include: ['profile'],
   })),
 }]);
 

@@ -13,7 +13,7 @@ const typeOptions = [
   { value: '', label: 'All' },
   { value: 'rhino', label: 'Rhino' },
   { value: 'focals', label: 'Focals' },
-]
+];
 
 const sortOptions = [
   { value: 'profile.created', label: 'Date Created' },

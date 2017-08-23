@@ -1,13 +1,17 @@
 import { Link } from 'react-router';
-import { object, func } from 'prop-types';
+import { object, func, arrayOf, objectOf } from 'prop-types';
 
+import { clientType, assetType } from 'src/prop-types';
 import { Page, PageContent, PageHeader, Button, UserForm } from 'src/components';
 
 import enhance from './enhance';
 
 const propTypes = {
+  clients: arrayOf(clientType).isRequired,
+  assetsData: objectOf(assetType),
   validationErrors: object,
 
+  onUpload: func.isRequired,
   onFieldChange: func.isRequired,
 };
 
@@ -19,8 +23,11 @@ const breadcrumbs = [{
 }];
 
 const ToolCreatePage = ({
+  clients,
+  assetsData,
   validationErrors,
 
+  onUpload,
   onFieldChange,
 }) => (
   <Page title="New User">
@@ -31,8 +38,12 @@ const ToolCreatePage = ({
     </PageHeader>
     <PageContent>
       <UserForm
-        onFieldChange={onFieldChange}
+        isNew
+        clients={clients}
+        assetsData={assetsData}
         validationErrors={validationErrors}
+        onUpload={onUpload}
+        onFieldChange={onFieldChange}
       />
     </PageContent>
   </Page>

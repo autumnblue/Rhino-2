@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-import { getProfileData  } from 'src/redux/profiles/selectors'
+import { getProfileData } from 'src/redux/profiles/selectors';
 
 const getUsersIds = state => state.users.ids;
 const getCurrentUserId = state => state.users.id;
@@ -22,5 +22,5 @@ export const getSessionUser = createSelector(
 
 export const getCurrentUser = createSelector(
   [getCurrentUserId, getUsersData],
-  (id, data) => data[id]
+  (id, data) => data[id],
 );

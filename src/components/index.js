@@ -18,7 +18,7 @@ export { default as ServiceForm } from './entities/ServiceForm';
 export { default as ServiceInstanceForm } from './entities/ServiceInstanceForm';
 export { default as ServiceOrderForm } from './entities/ServiceOrderForm';
 export { default as ToolForm } from './entities/ToolForm';
-export { default as UserForm } from './entities/UserForm'
+export { default as UserForm } from './entities/UserForm';
 
 // form
 export { default as Associations } from './form/Associations';

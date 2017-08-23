@@ -4,7 +4,7 @@ import cookie from 'react-cookie';
 import { formValueSelector } from 'redux-form';
 import { push } from 'react-router-redux';
 import qs from 'qs';
-import { pickBy } from 'lodash'
+import { pickBy } from 'lodash';
 
 import * as c from './constants';
 import { login, deleteUser, createUser } from './actions';

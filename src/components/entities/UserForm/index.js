@@ -1,30 +1,35 @@
-import { Col, Row, FormGroup, Form } from 'reactstrap';
+import { Col, Row, Form } from 'reactstrap';
+import { object, func, objectOf, string, bool } from 'prop-types';
 import { Field } from 'redux-form';
-import { object, func } from 'prop-types';
 
-import { ReduxInput, ReduxCheckbox, ReduxSelect, ReduxHidden } from 'src/components';
+import { ReduxHidden } from 'src/components';
+import { assetType, selectOptionsType } from 'src/prop-types';
 
-import RhinoProfileFormGroup from './RhinoProfileFormGroup'
-import FocalProfileFormGroup from './FocalProfileFormGroup'
+import CommonFieldsFormGroup from './CommonFieldsFormGroup';
+import RhinoProfileFormGroup from './RhinoProfileFormGroup';
+import FocalProfileFormGroup from './FocalProfileFormGroup';
 import enhance from './enhance';
 
 const propTypes = {
+  isNew: bool,
+  profileType: string.isRequired,
+  assetsData: objectOf(assetType).isRequired,
+  clientOptions: selectOptionsType.isRequired,
   validationErrors: object.isRequired,
 
+  onUpload: func.isRequired,
   onFieldChange: func.isRequired,
+  onSetProfileType: func.isRequired,
 };
 
-const typeOptions = [
-  { value: 'rhino_profile', label: 'Rhino' },
-  { value: 'focal_profile', label: 'Focal' },
-  { value: 'wrong', label: 'Wrong (test)' }
-];
-
-
 const UserForm = ({
+  isNew,
   profileType,
+  assetsData,
+  clientOptions,
   validationErrors,
 
+  onUpload,
   onFieldChange,
   onSetProfileType,
 }) => (
@@ -32,82 +37,28 @@ const UserForm = ({
     <Field component={ReduxHidden} onFill={onSetProfileType} name="profile.entity_type" />
     <Row>
       <Col md="6">
-        <FormGroup>
-          <label>Profile Type</label>
-          <Field
-            component={ReduxSelect}
-            name="profile.entity_type"
-            searchable={false}
-            clearable={false}
-            onChange={onFieldChange}
-            options={typeOptions}
-            error={validationErrors.name}
-          />
-        </FormGroup>
-        <FormGroup>
-          <label>Email</label>
-          <Field
-            component={ReduxInput}
-            type="text"
-            name="email"
-            placeholder="Email"
-            onBlur={onFieldChange}
-            error={validationErrors.email}
-          />
-        </FormGroup>
-        <FormGroup>
-          <label>Profile Title</label>
-          <Field
-            component={ReduxInput}
-            type="text"
-            name="profile.title"
-            placeholder="Profile Title"
-            onBlur={onFieldChange}
-            error={validationErrors.email}
-          />
-        </FormGroup>
-        <FormGroup>
-          <label>First Name</label>
-          <Field
-            component={ReduxInput}
-            type="text"
-            name="first_name"
-            placeholder="First Name"
-            onBlur={onFieldChange}
-            error={validationErrors.first_name}
-          />
-        </FormGroup>
-        <FormGroup>
-          <label>Last Name</label>
-          <Field
-            component={ReduxInput}
-            type="text"
-            name="last_name"
-            placeholder="Last Name"
-            onBlur={onFieldChange}
-            error={validationErrors.last_name}
-          />
-        </FormGroup>
-        <FormGroup>
-          <label>Profile Phone</label>
-          <Field
-            component={ReduxInput}
-            type="text"
-            name="profile.phone"
-            placeholder="Profile Phone"
-            onBlur={onFieldChange}
-            error={validationErrors.email}
-          />
-        </FormGroup>
+        <CommonFieldsFormGroup
+          isNew={isNew}
+          validationErrors={validationErrors}
+          onFieldChange={onFieldChange}
+          onSetProfileType={onSetProfileType}
+        />
       </Col>
       <Col md="6">
         <Base
           exists={profileType === 'rhino_profile'}
           component={RhinoProfileFormGroup}
+          assetsData={assetsData}
+          validationErrors={validationErrors}
+          onFieldChange={onFieldChange}
+          onUpload={onUpload}
         />
         <Base
           exists={profileType === 'focal_profile'}
           component={FocalProfileFormGroup}
+          clientOptions={clientOptions}
+          validationErrors={validationErrors}
+          onFieldChange={onFieldChange}
         />
       </Col>
     </Row>

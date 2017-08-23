@@ -11,7 +11,6 @@ const propTypes = {
 const UserList = ({ users }) => (
   <Table striped>
     <tbody>
-      {console.log('users', users)}
       {users.map(({
         id,
         first_name,

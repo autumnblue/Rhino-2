@@ -71,6 +71,7 @@ async function fetchResource(method, url, options = {}) {
 
   const reqOptions = {
     method,
+    credentials: 'include',
     ...omit(options, ['params', 'data']),
     headers: {
 

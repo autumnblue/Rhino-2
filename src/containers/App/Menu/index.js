@@ -23,7 +23,7 @@ const onResize = () => {
 window.addEventListener('resize', onResize);
 window.addEventListener('load', onResize);
 
-if(window.document.body) {
+if (window.document.body) {
   onResize();
 }
 

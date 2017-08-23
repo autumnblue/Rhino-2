@@ -42,7 +42,7 @@ const reduxConnect = connect(
 const propsEnhancer = withPropsOnChange(['location'], ({ location }) => {
   const category = location.pathname.split('/')[1];
 
-  if (['tools', 'issuers', 'services', 'industries', 'document-templates'].includes(category)) {
+  if (['tools', 'issuers', 'services', 'industries', 'document-templates', 'users'].includes(category)) {
     return { activeCategory: 'settings' };
   }
 
