@@ -36,7 +36,10 @@ module.exports = {
     "max-lines": ["error", {"max": 160, "skipBlankLines": true}],
 
     // unary operators are useful :)
-    "no-plusplus": 0
+    "no-plusplus": 0,
+
+    // allows to store dev stuff at devDependencies
+    "import/no-extraneous-dependencies":  ["error", {"devDependencies": true}]
   },
   globals: {
     __CLIENT__: true,
