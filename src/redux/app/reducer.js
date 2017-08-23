@@ -16,13 +16,13 @@ function reachedLocations(state = initialState.reachedLocations, action) {
 
       return {
         ...state,
-        [pathname.split('/')[1]]: payload
-      }
+        [pathname.split('/')[1]]: payload,
+      };
     default:
       return state;
   }
 }
 
 export default combineReducers({
-  reachedLocations
+  reachedLocations,
 });

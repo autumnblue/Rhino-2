@@ -58,7 +58,7 @@ export const loadUsers = ({
   sort = ['id'],
   page = 1,
   include = [],
-}) => ({
+} = {}) => ({
   types: [c.LOAD_USERS, c.LOAD_USERS_SUCCESS, c.LOAD_USERS_FAIL],
   api: ({ get }) => get(endpoint, {
     params: {

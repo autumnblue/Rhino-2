@@ -19,7 +19,7 @@ const reduxFormEnhancer = reduxForm({
 
 const sortOptions = [{
   label: 'Date Created',
-  value: 'created',
+  value: '',
 }, {
   label: 'Company Name',
   value: 'client.name',

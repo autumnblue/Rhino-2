@@ -22,7 +22,7 @@ const reduxAsyncConnect = asyncConnect([{
     dispatch(loadServiceOrders({
       page,
       per_page: per_page || 10,
-      sort: sort ? [sort] : undefined,
+      sort: sort ? [sort] : ['-created'],
       include: ['client'],
       filter: {
         ...(status ? {
