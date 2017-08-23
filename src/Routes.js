@@ -1,6 +1,7 @@
 import Route from 'react-router/es/Route';
 import Router from 'react-router/es/Router';
 import IndexRoute from 'react-router/es/IndexRoute';
+import Redirect from 'react-router/es/Redirect';
 import { ReduxAsyncConnect } from 'redux-connect';
 import { object } from 'prop-types';
 
@@ -66,6 +67,7 @@ const Routes = ({ history }) => (
     <Route component={MainLayout}>
       <Route path="/login" component={LoginPage} />
       <Route path="/404" component={NotFoundErrorPage} />
+
       <Route path="/" component={App}>
         <IndexRoute component={Dashboard} />
 
@@ -105,6 +107,7 @@ const Routes = ({ history }) => (
         <Route path="users/new" component={UserCreatePage} />
         <Route path="users/:userId" component={UserEditPage} />
       </Route>
+      <Redirect from='/*' to='/404'/>
     </Route>
   </Router>
 );
