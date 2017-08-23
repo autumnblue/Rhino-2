@@ -40,4 +40,4 @@
       - nodejs
       # npm gets installed at the time nodejs is installed
       #- npm
-    state: installed
+    state: latest
