@@ -2,6 +2,7 @@
 
 // common
 export { default as Icon } from './common/Icon';
+export { default as Link } from './common/Link';
 export { default as Modal } from './common/Modal';
 export { default as ModalBody } from './common/Modal/ModalBody';
 export { default as ModalFooter } from './common/Modal/ModalFooter';

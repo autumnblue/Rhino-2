@@ -1,8 +1,7 @@
 import { pure } from 'recompose';
-import { Link } from 'react-router';
 import { Col, Row } from 'reactstrap';
 
-import { Page, PageHeader, PageContent, Button } from 'src/components';
+import { Page, PageHeader, PageContent, Button, Link } from 'src/components';
 
 import css from './style.css';
 
@@ -13,17 +12,17 @@ const breadcrumbs = [{
 
 const categories = [{
   label: 'Tools',
-  url: '/tools',
+  url: '/tools/',
 }, {
   label: 'Site Variables',
 }, {
   label: 'Assets',
 }, {
   label: 'Issuers',
-  url: '/issuers',
+  url: '/issuers/',
 }, {
   label: 'Services',
-  url: '/services',
+  url: '/services/',
 }, {
   label: 'Shortcodes',
 }, {
@@ -32,10 +31,10 @@ const categories = [{
   label: 'Site Settings',
 }, {
   label: 'Industries',
-  url: '/industries',
+  url: '/industries/',
 }, {
   label: 'Document Templates',
-  url: '/document-templates',
+  url: '/document-templates/',
 }];
 
 const enhance = pure;

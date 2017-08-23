@@ -1,7 +1,6 @@
-import { Link } from 'react-router';
 import { string, func } from 'prop-types';
 
-import { Icon } from 'src/components';
+import { Icon, Link } from 'src/components';
 
 import css from './style.css';
 
@@ -34,17 +33,17 @@ const menuItems = [{
   category: 'dashboard',
 }, {
   label: 'Clients',
-  url: '/clients',
+  url: '/clients/',
   wbIcon: 'users',
   category: 'clients',
 }, {
   label: 'Service Orders',
-  url: '/service-orders',
+  url: '/service-orders/',
   faIcon: 'magic',
   category: 'service-orders',
 }, {
   label: 'Settings & Assets',
-  url: '/settings',
+  url: '/settings/',
   wbIcon: 'settings',
   category: 'settings',
 }];
