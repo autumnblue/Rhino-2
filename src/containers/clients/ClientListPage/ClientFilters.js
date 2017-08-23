@@ -18,7 +18,7 @@ const sortOptions = [
 ];
 
 const perPageOptions = [
-  { value: '10', label: 'Display 10' },
+  { value: '', label: 'Display 10' },
   { value: '50', label: 'Display 50' },
   { value: '100', label: 'Display 100' },
   { value: '1000', label: 'Display All' },
@@ -37,8 +37,9 @@ const enhance = compose(
 const ClientFilters = ({
   onFiltersChange,
 }) => (<Row>
-  <Col md="4">
+  <Col md="4" sm="6" xs="12">
     <FormGroup>
+      <label>Sort</label>
       <Field
         component={ReduxSelect}
         name="sort"
@@ -48,18 +49,22 @@ const ClientFilters = ({
       />
     </FormGroup>
   </Col>
-  <Col md="4">
+  <Col md="4" sm="6" xs="12">
     <FormGroup>
+      <label>Items per Page</label>
       <Field
         component={ReduxSelect}
         name="per_page"
         options={perPageOptions}
-        placeholder="Items Per Page"
+        placeholder="Items per Page"
         onChange={onFiltersChange}
+        searchable={false}
+        clearable={false}
       />
     </FormGroup>
   </Col>
-  <Col md="4">
+  <Col md="4" sm="6" xs="12">
+    <label>Filter by Name</label>
     <FormGroup>
       <Field
         component={ReduxInput}

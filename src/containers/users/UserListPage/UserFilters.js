@@ -74,6 +74,8 @@ const UserFilters = ({
         options={perPageOptions}
         placeholder="Items Per Page"
         onChange={onFiltersChange}
+        searchable={false}
+        clearable={false}
       />
     </FormGroup>
   </Col>

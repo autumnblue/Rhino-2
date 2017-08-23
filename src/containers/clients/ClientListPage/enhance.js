@@ -11,7 +11,7 @@ const reduxAsyncConnect = asyncConnect([{
     location: { query: { contains, per_page, sort, page } },
   }) => dispatch(loadClients({
     page,
-    per_page,
+    per_page: per_page || 10,
     sort: sort ? [sort] : undefined,
     filter: contains ? {
       name: {
@@ -41,7 +41,7 @@ const propsEnhancer = withPropsOnChange(['location'], ({
   filters: {
     contains,
     sort,
-    per_page: +per_page,
+    per_page,
   },
   page: +page || 1,
 }));

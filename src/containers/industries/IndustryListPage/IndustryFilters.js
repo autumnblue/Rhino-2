@@ -23,6 +23,7 @@ const IndustryFilters = ({
 }) => (<Row>
   <Col md="12">
     <FormGroup>
+      <label>Filter by Name</label>
       <Field
         component={ReduxInput}
         name="contains"

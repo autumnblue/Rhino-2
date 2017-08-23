@@ -18,18 +18,18 @@ const reduxFormEnhancer = reduxForm({
 });
 
 const sortOptions = [{
-  label: 'Sort: Date Created',
+  label: 'Date Created',
   value: 'created',
 }, {
-  label: 'Sort: Company Name',
+  label: 'Company Name',
   value: 'client.name',
 }, {
-  label: 'Sort: Number of Assessments',
+  label: 'Number of Assessments',
   value: 'assessment_count',
 }];
 
 const perPageOptions = [
-  { value: '10', label: 'Display 10' },
+  { value: '', label: 'Display 10' },
   { value: '50', label: 'Display 50' },
   { value: '100', label: 'Display 100' },
   { value: '1000', label: 'Display All' },
@@ -52,6 +52,7 @@ const ServiceOrderFilters = ({
 }) => (<Row>
   <Col md="6">
     <FormGroup>
+      <label>Sort</label>
       <Field
         component={ReduxSelect}
         name="sort"
@@ -63,17 +64,21 @@ const ServiceOrderFilters = ({
   </Col>
   <Col md="6">
     <FormGroup>
+      <label>Items per Page</label>
       <Field
         component={ReduxSelect}
         name="per_page"
         options={perPageOptions}
-        placeholder="Items Per Page"
+        placeholder="Items per Page"
         onChange={onFiltersChange}
+        searchable={false}
+        clearable={false}
       />
     </FormGroup>
   </Col>
   <Col md="6">
     <FormGroup>
+      <label>SO Status</label>
       <Field
         component={ReduxSelect}
         name="status"
@@ -85,6 +90,7 @@ const ServiceOrderFilters = ({
   </Col>
   <Col md="6">
     <FormGroup>
+      <label>Search</label>
       <Field
         component={ReduxInput}
         name="client"

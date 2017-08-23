@@ -21,7 +21,7 @@ const reduxAsyncConnect = asyncConnect([{
     dispatch(loadServiceOrderChoices()),
     dispatch(loadServiceOrders({
       page,
-      per_page,
+      per_page: per_page || 10,
       sort: sort ? [sort] : undefined,
       include: ['client'],
       filter: {
