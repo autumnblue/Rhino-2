@@ -20,13 +20,11 @@ const reduxAsyncConnect = asyncConnect([{
     const defaultIssuer = issuers.find(({ is_default: d }) => d);
     const filter = {};
 
-    if (issuer) {
-      if (defaultIssuer && issuer === 'default') {
-        issuer = defaultIssuer.id; // eslint-disable-line no-param-reassign
-      }
+    if (defaultIssuer && !issuer) {
+      issuer = defaultIssuer.id; // eslint-disable-line no-param-reassign
     }
 
-    if (issuer) {
+    if (issuer && issuer !== 'all') {
       filter.issuer = { eq: +issuer };
     }
 
@@ -34,14 +32,12 @@ const reduxAsyncConnect = asyncConnect([{
       filter.category = { eq: category };
     }
 
-    if (is_default) {
-      if (is_default === 'default') {
-        filter.is_default = { eq: true };
-      }
+    if (!is_default) {
+      filter.is_default = { eq: true };
+    }
 
-      if (is_default === 'non-default') {
-        filter.is_default = { eq: false };
-      }
+    if (is_default === 'non-default') {
+      filter.is_default = { eq: false };
     }
 
     await Promise.all([

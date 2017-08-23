@@ -19,11 +19,11 @@ const propsEnhancer = withPropsOnChange(['issuers'], ({ issuers, choices }) => (
   issuerOptions: [
     {
       label: 'All issuers',
-      value: '',
+      value: 'all',
     },
     ...issuers.map(({ name, id, is_default }) => ({
       label: name,
-      value: is_default ? 'default' : `${id}`,
+      value: is_default ? '' : `${id}`,
     })),
   ],
   categoryOptions: [
@@ -35,10 +35,10 @@ const propsEnhancer = withPropsOnChange(['issuers'], ({ issuers, choices }) => (
   ],
   isDefaultOptions: [{
     label: 'All',
-    value: '',
+    value: 'all',
   }, {
     label: 'Defaults',
-    value: 'default',
+    value: '',
   }, {
     label: 'Non-defaults',
     value: 'non-default',
@@ -47,6 +47,9 @@ const propsEnhancer = withPropsOnChange(['issuers'], ({ issuers, choices }) => (
 
 const reduxFormEnhancer = reduxForm({
   form: 'documentTemplateListFilterForm',
+  initialValues: {
+    issuer: '',
+  },
 });
 
 const enhance = compose(
@@ -64,6 +67,7 @@ const DocumentTemplateFilters = ({
 }) => (<Row>
   <Col md="4">
     <FormGroup>
+      <label>Issuer</label>
       <Field
         component={ReduxSelect}
         name="issuer"
@@ -75,6 +79,7 @@ const DocumentTemplateFilters = ({
   </Col>
   <Col md="4">
     <FormGroup>
+      <label>Category</label>
       <Field
         component={ReduxSelect}
         name="category"
@@ -86,11 +91,12 @@ const DocumentTemplateFilters = ({
   </Col>
   <Col md="4">
     <FormGroup>
+      <label>Is Default</label>
       <Field
         component={ReduxSelect}
         name="is_default"
         options={isDefaultOptions}
-        placeholder="Is default"
+        placeholder="Is Default"
         onChange={onFiltersChange}
       />
     </FormGroup>
