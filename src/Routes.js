@@ -6,6 +6,7 @@ import { object } from 'prop-types';
 
 import App from './containers/App';
 import LoginPage from './containers/LoginPage';
+import NotFoundErrorPage from './containers/NotFoundErrorPage';
 import MainLayout from './containers/MainLayout';
 import Dashboard from './containers/Dashboard';
 import SettingsPage from './containers/SettingsPage';
@@ -64,6 +65,7 @@ const Routes = ({ history }) => (
   >
     <Route component={MainLayout}>
       <Route path="/login" component={LoginPage} />
+      <Route path="/404" component={NotFoundErrorPage} />
       <Route path="/" component={App}>
         <IndexRoute component={Dashboard} />
 

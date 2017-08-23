@@ -14,6 +14,7 @@ import '!style-loader!css-loader!../../remark-classic/global/fonts/font-awesome/
 
 // login page
 import '!style-loader!css-loader!../../remark-classic/mmenu/assets/examples/css/pages/login-v2.css';
+import '!style-loader!css-loader!../../remark-classic/mmenu/assets/examples/css/pages/errors.css';
 
 // overrides and other custom styles
 import '!style-loader!css-loader!./global.css';
