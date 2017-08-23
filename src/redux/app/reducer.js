@@ -2,15 +2,13 @@ import { combineReducers } from 'redux';
 
 import { empty } from 'src/helpers';
 
-import * as c from './constants';
-
 const initialState = {
   reachedLocations: empty,
 };
 
 function reachedLocations(state = initialState.reachedLocations, action) {
   switch (action.type) {
-    case '@@router/LOCATION_CHANGE':
+    case '@@router/LOCATION_CHANGE': {
       const { payload } = action;
       const { pathname } = payload;
 
@@ -18,6 +16,7 @@ function reachedLocations(state = initialState.reachedLocations, action) {
         ...state,
         [pathname.split('/')[1]]: payload,
       };
+    }
     default:
       return state;
   }
