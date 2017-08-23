@@ -11,7 +11,7 @@ if (isDevelopment) {
   entry.main.unshift(
     'react-hot-loader/patch',
     `webpack-dev-server/client?http://${webpackHost}:${webpackPort}`,
-    'webpack/hot/only-dev-server',
+    'webpack/hot/only-dev-server'
   );
 }
 
