@@ -25,7 +25,7 @@ const OptionsFormGroup = ({
     <Field
       component={ReduxCheckbox}
       label="Show Appendix C"
-      name="app_c_enabled"
+      name="appendix_c_enabled"
       onChange={onFieldChange}
     />
     <Field
