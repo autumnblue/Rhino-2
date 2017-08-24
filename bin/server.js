@@ -1,31 +1,19 @@
-/* eslint no-console: 0, react/jsx-filename-extension: 0 */
-
 const express = require('express');
-const http = require( 'http');
-const httpProxy = require( 'http-proxy');
-const path = require( 'path');
-const PrettyError = require( 'pretty-error');
-const { port, host, webpackHost, webpackPort } = require( '../config/env');
+const http = require('http');
+const httpProxy = require('http-proxy');
+const path = require('path');
+const { port, webpackHost, webpackPort, isDevelopment } = require('../config/env');
 
-const pretty = new PrettyError();
 const app = express();
 const server = new http.Server(app);
-/*const proxy = httpProxy.createProxyServer({
-  target: targetUrl,
-  ws: true,
-});
 
-
-app.use('/api', (req, res) => {
-  proxy.web(req, res, { target: `${targetUrl}/api` });
-});*/
-
-if(process.env.NODE_ENV != 'development') {
-  var staticFile = require('connect-static-file');
+if (isDevelopment) {
+  // eslint-disable-next-line global-require
+  const staticFile = require('connect-static-file');
   app.use(express.static(path.join(__dirname, '../dist')));
   app.use('*', staticFile(path.join(__dirname, '../dist/index.html')));
 } else {
-  const webpackUrl = `http://${webpackHost}:${webpackPort}`
+  const webpackUrl = `http://${webpackHost}:${webpackPort}`;
   const proxy = httpProxy.createProxyServer({
     target: webpackUrl,
     ws: true,
@@ -33,6 +21,7 @@ if(process.env.NODE_ENV != 'development') {
 
   proxy.on('error', (error, req, res) => {
     if (error.code !== 'ECONNRESET') {
+      // eslint-disable-next-line no-console
       console.error('proxy error', error);
     }
 
@@ -52,28 +41,14 @@ if(process.env.NODE_ENV != 'development') {
   server.on('upgrade', (req, socket, head) => {
     proxy.ws(req, socket, head);
   });
-
-  /*if(process.env.API_URL) {
-    const proxy = httpProxy.createProxyServer({
-      target: process.env.API_URL,
-    });
-
-    app.use('/api/', (req, res) => {
-      proxy.web(req, res, { target: webpackUrl });
-    });
-  }*/
 }
-
-
-
-
-
-
 
 app.listen(port, (err) => {
   if (err) {
+    // eslint-disable-next-line no-console
     console.error(err);
   } else {
+    // eslint-disable-next-line no-console
     console.info(`Server listening on port ${port}!`);
   }
 });
