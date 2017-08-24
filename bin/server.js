@@ -1,7 +1,6 @@
 /* eslint no-console: 0, react/jsx-filename-extension: 0 */
 
 const express = require('express');
-const favicon = require( 'serve-favicon');
 const http = require( 'http');
 const httpProxy = require( 'http-proxy');
 const path = require( 'path');
