@@ -71,7 +71,12 @@ const handlersEnhancer = withHandlers({
   onBlur: ({ onChange, editingValue }) => () => {
     onChange(editingValue);
   },
-  onReset: ({ onChange }) => () => onChange(null),
+  onReset: ({ onChange }) => () => {
+    // eslint-disable-next-line no-alert
+    if (window.confirm('Are you sure you want to reset the field?')) {
+      onChange(null);
+    }
+  },
 });
 
 const valueChangeEnhancer = withPropsOnChange(['value'], ({ value, onSetEditValue }) => {
