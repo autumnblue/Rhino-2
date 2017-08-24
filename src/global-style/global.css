@@ -7,7 +7,7 @@ body {
 }
 
 #nprogress .bar {
-  z-index: 1500 !important;
+  z-index: 15000 !important;
 }
 
 #nprogress .spinner {

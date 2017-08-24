@@ -39,6 +39,7 @@ const propTypes = {
   onSetEditValue: func.isRequired,
   onCancel: func.isRequired,
   onReset: func.isRequired,
+  onBlur: func.isRequired,
 };
 
 const defaultPropsEnhancer = defaultProps({
@@ -48,22 +49,29 @@ const defaultPropsEnhancer = defaultProps({
 
 const isEditingEnhancer = withState('isEditing', 'onSetIsEditing', false);
 const editingValueEnhancer = withState('editingValue', 'onSetEditValue', ({ value }) => value);
+const originalValueEnhancer = withState('originalValue', 'onSetOriginalValue', ({ value }) => value);
 
 const handlersEnhancer = withHandlers({
-  onOpenEdit: ({ onSetIsEditing }) => () => onSetIsEditing(true),
-  onCloseEdit: ({ onChange, onSetIsEditing, editingValue }) => () => {
+  onOpenEdit: ({ onSetIsEditing, onSetOriginalValue, value }) => () => {
+    onSetIsEditing(true);
+    onSetOriginalValue(value);
+  },
+  onCloseEdit: ({ onSetIsEditing }) => () => {
     onSetIsEditing(false);
-    onChange(editingValue);
   },
-  onCancel: ({ onSetEditValue, onSetIsEditing, value }) => () => {
+  onCancel: ({ onSetEditValue, onSetIsEditing, onChange, originalValue }) => () => {
     onSetIsEditing(false);
-    onSetEditValue(value);
+    onSetEditValue(originalValue);
+    onChange(originalValue);
   },
-  onReset: ({ onChange }) => () => {
-    onChange(null);
-  },
+
   // have no idea why it needs a delay
   onSetEditValue: ({ onSetEditValue }) => debounce(value => onSetEditValue(value)),
+
+  onBlur: ({ onChange, editingValue }) => () => {
+    onChange(editingValue);
+  },
+  onReset: ({ onChange }) => () => onChange(null),
 });
 
 const valueChangeEnhancer = withPropsOnChange(['value'], ({ value, onSetEditValue }) => {
@@ -85,6 +93,7 @@ const propsEnhancer = withPropsOnChange(['parentBreadcrumbs', 'breadcrumbLabel',
 const enhance = compose(
   defaultPropsEnhancer,
   isEditingEnhancer,
+  originalValueEnhancer,
   editingValueEnhancer,
   handlersEnhancer,
   valueChangeEnhancer,
@@ -107,6 +116,7 @@ const FullPageRichText = ({
   onSetEditValue,
   onCancel,
   onReset,
+  onBlur,
 }) => (
   <div>
     <Base exists={showContent} className={css.content}>
@@ -119,17 +129,19 @@ const FullPageRichText = ({
     <Modal isOpen={isEditing} onRequestClose={onCloseEdit} fillIn>
       <ModalHeader onRequestClose={onCloseEdit}>
         <Breadcrumbs className={css.breadcrumbs} breadcrumbs={breadcrumbs} />
-        <Button onClick={onCancel}>Cancel</Button>
+
+        <Button onClick={onReset}>Clear/Reset</Button>
       </ModalHeader>
       <ModalBody>
         <RichText
-          onChange={onSetEditValue}
           value={editingValue}
           className={css.editor}
+          onBlur={onBlur}
+          onChange={onSetEditValue}
         />
       </ModalBody>
       <ModalFooter>
-        <Button onClick={onReset} color="default" className={css.reset}>Clear/Reset</Button>
+        <Button onClick={onCancel} className={css.cancel}>Cancel</Button>
         <Button onClick={onCloseEdit} color="success">Done</Button>
       </ModalFooter>
     </Modal>

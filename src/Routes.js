@@ -107,7 +107,7 @@ const Routes = ({ history }) => (
         <Route path="users/new" component={UserCreatePage} />
         <Route path="users/:userId" component={UserEditPage} />
       </Route>
-      <Redirect from='/*' to='/404'/>
+      <Redirect from="/*" to="/404" />
     </Route>
   </Router>
 );
