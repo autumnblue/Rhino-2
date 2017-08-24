@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 
-import { getProfileData } from 'src/redux/profiles/selectors';
+import { getFocalProfilesData } from 'src/redux/focalProfiles/selectors';
+import { getRhinoProfilesData } from 'src/redux/rhinoProfiles/selectors';
 
 const getUsersIds = state => state.users.ids;
 const getCurrentUserId = state => state.users.id;
@@ -8,10 +9,11 @@ const getMeId = state => state.users.me;
 const getUsersData = state => state.users.data;
 
 export const getUsers = createSelector(
-    [getUsersIds, getUsersData, getProfileData],
-    (ids, data, profileData) => ids.map(id => ({
+    [getUsersIds, getUsersData, getFocalProfilesData, getRhinoProfilesData],
+    (ids, data, focalProfilesData, rhinoProfilesData) => ids.map(id => ({
       ...data[id],
-      profile: data[id].profile ? profileData[data[id].profile] : {},
+      focal_profile: data[id].focal_profile ? focalProfilesData[data[id].focal_profile] : {},
+      rhino_profile: data[id].rhino_profile ? rhinoProfilesData[data[id].rhino_profile] : {},
     })),
 );
 

@@ -75,7 +75,7 @@ export const loadSingleUser = id => ({
   types: [c.LOAD_SINGLE_USER, c.LOAD_SINGLE_USER_SUCCESS, c.LOAD_SINGLE_USER_FAIL],
   api: ({ get }) => get(endpoint + id, {
     params: {
-      include: ['profile'],
+      include: [],
     },
   }),
 });
